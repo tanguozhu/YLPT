@@ -14,8 +14,7 @@ namespace WebApplication4.Models
         public int name { get; set; }
         public string condition { get; set; }
         public DateTime time { get; set; }
-        public int isInfected { get; set; }
-        public int isEradicated { get; set; }
+      
         public int Omeprazole { get; set; }
         public int Rabeprazole { get; set; }
         public int Esomeprazole { get; set; }
@@ -30,5 +29,7 @@ namespace WebApplication4.Models
         public int treatTime { get; set; }
         public int isOnTime { get; set; }
         public string content { get; set; }
-    }
+		public int biji { get; set; }
+		public int isfollowup { get; set; }
+	}
 }
