@@ -1,0 +1,478 @@
+﻿@model WebApplication4.Models.Visit
+
+@{
+    ViewBag.Title = "TreatmentDetails";
+}
+@using System.Data;
+@using System;
+<h2>治疗详情</h2>
+
+
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+
+@{
+    int treatmentid = 0;
+}
+
+<div>
+    <hr />
+    @foreach (DataRow item in Model.getTreatmentDetails.Rows)
+    {
+        treatmentid = Convert.ToInt32(item[0]);
+        int name = Convert.ToInt32(item[3]);
+        if (name == 0)
+        {
+            <div>
+                <h3 style="margin-top:0px">治疗基本情况</h3>
+                <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
+
+                    <dt>
+                        治疗内容:
+                    </dt>
+                    <dd>
+                        @{
+                            string youmen = "幽门螺杆菌";
+                        }
+                        @youmen
+
+                    </dd>
+                    <dt>
+                        感染及根除情况:
+                    </dt>
+
+                    <dd>
+                        @item[4]
+                    </dd>
+                    <dt>
+                        是否感染:
+                    </dt>
+                    <dd>
+                        @{
+                            int isInfected = Convert.ToInt32(item[6]);
+                            if (isInfected == 0)
+                            {
+                                @:否
+                            }
+                            else
+                            {
+                                @:是
+                            }
+                        }
+                    </dd>
+                    <dt>
+                        是否根除:
+                    </dt>
+                    <dd>
+                        @{
+                            int isEradicated = Convert.ToInt32(item[7]);
+                            if (isEradicated == 0)
+                            {
+                                @:否
+                            }
+                            else
+                            {
+                                @:是
+                            }
+                        }
+                    </dd>
+                </dl>
+            </div>
+
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                <h3>方案</h3>
+                @foreach (DataRow item1 in Model.getTreatmentDetails.Rows)
+                {
+                    int i1 = Convert.ToInt32(item1[8]);
+                    int i2 = Convert.ToInt32(item1[9]);
+                    int i3 = Convert.ToInt32(item1[10]);
+                    int i4 = Convert.ToInt32(item1[11]);
+                    int i5 = Convert.ToInt32(item1[12]);
+
+                    if (i1 == 0 && i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0)
+                    {
+                        <div>暂时没有选择方案</div>
+                    }
+                    else
+                    {
+                        if (i1 != 0)
+                        {
+                            <div class="col-md-2">
+                                奥美拉唑
+                            </div>
+                        }
+                        if (i2 != 0)
+                        {
+                            <div class="col-md-2">
+                                雷贝拉唑
+                            </div>
+                        }
+                        if (i3 != 0)
+                        {
+                            <div class="col-md-2">
+                                埃索美拉唑
+                            </div>
+                        }
+                        if (i4 != 0)
+                        {
+                            <div class="col-md-2">
+                                泮托拉唑
+                            </div>
+                        }
+                        if (i5 != 0)
+                        {
+                            <div class="col-md-2">
+                                其他质子泵抑制剂
+                            </div>
+                        }
+                    }
+
+                }
+
+            </div>
+
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                <h3>铋剂</h3>
+                @foreach (DataRow item2 in Model.getTreatmentDetails.Rows)
+                {
+                    int i1 = Convert.ToInt32(item2[13]);
+                    int i2 = Convert.ToInt32(item2[14]);
+                    int i3 = Convert.ToInt32(item2[15]);
+                    int i4 = Convert.ToInt32(item2[16]);
+                    int i5 = Convert.ToInt32(item2[17]);
+                    int i6 = Convert.ToInt32(item2[18]);
+
+                    if (i1 == 0 && i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0 && i6 == 0)
+                    {
+                        <div>暂时没有选择铋剂</div>
+                    }
+                    else
+                    {
+                        if (i1 != 0)
+                        {
+                            <div class="col-md-2">
+                                阿莫西林
+                            </div>
+                        }
+                        if (i2 != 0)
+                        {
+                            <div class="col-md-2">
+                                四环素
+                            </div>
+                        }
+                        if (i3 != 0)
+                        {
+                            <div class="col-md-2">
+                                左氧氟沙星
+                            </div>
+                        }
+                        if (i4 != 0)
+                        {
+                            <div class="col-md-2">
+                                克拉霉素
+                            </div>
+                        }
+                        if (i5 != 0)
+                        {
+                            <div class="col-md-2">
+                                呋喃唑酮
+                            </div>
+                        }
+                        if (i6 != 0)
+                        {
+                            <div class="col-md-2">
+                                甲硝唑
+                            </div>
+                        }
+                    }
+
+                }
+
+            </div>
+
+        }
+        else
+        {
+            <div>
+                <h3 style="margin-top:0px">治疗基本情况</h3>
+                <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
+
+                    <dt>
+                        治疗内容:
+                    </dt>
+                    <dd>
+                        @{
+                            string othert = "其他治疗";
+
+                        }
+                        @othert
+                    </dd>
+                    <dt>
+                        具体:
+                    </dt>
+                    <dd>
+                        @item[21]
+                    </dd>
+                </dl>
+            </div>
+        }
+    }
+
+
+
+
+
+    <div style="overflow-y:auto; overflow-x:auto;">
+        <hr />
+        <h3>疗程及服药情况</h3>
+        <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
+
+            @foreach (DataRow item in Model.getTreatmentDetails.Rows)
+            {
+                <dt>
+                    疗程:
+                </dt>
+                <dd>
+                    @item[19]
+
+                </dd>
+                <dt>
+                    是否按时服药:
+                </dt>
+
+                <dd>
+                    @{
+                        int isOnTime = Convert.ToInt32(item[20]);
+                        if (isOnTime == 0)
+                        {
+                            @:否
+                        }
+                        else
+                        {
+                            @:是
+                        }
+                    }
+                </dd>
+            }
+        </dl>
+
+    </div>
+
+    <div style="overflow-y:auto; overflow-x:auto;">
+        <hr />
+
+        <div>
+            @{
+                int checkid = 0;
+                foreach (DataRow itemid in Model.getadverseraction.Rows)
+                {
+                    checkid = Convert.ToInt32(itemid[0]);
+                    break;
+                }
+                if (checkid == 0)
+                {
+                    if (webinsert == "0")
+                    {
+                        <h3>
+                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        </h3>
+                        <h4>暂时没有药物不良反应请新增</h4>
+                    }
+                    else if (webinsert == "1")
+                    {
+                        <h3>
+                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a style="font-size:18px" href="/Adversereactions/Create?id=@Model.Id&&treatmentid=@treatmentid">新增</a>
+                        </h3>
+                        <h4>暂时没有药物不良反应请新增</h4>
+                    }
+
+
+
+                }
+                else
+                {
+                    if (webmodify == "0")
+                    {
+                        <h3>
+                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+                        </h3>
+                    }
+                    else if (webmodify == "1")
+                    {
+                        <h3>
+                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a style="font-size:18px" href="/Adversereactions/Edit?id=@Model.Id&&treatmentid=@treatmentid">编辑</a>
+                        </h3>
+                    }
+
+                    <table class="table" style="font-size:18px;padding:3px">
+                        <tr>
+                            <th style="border-top:0px solid #ff4136;">
+                                何种类型
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                发生时间
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                持续时间
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                程度
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                频度
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                需否治疗
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                对用药影响
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                与用药的关系
+                            </th>
+                            <th style="border-top:0px solid #ff4136;">
+                                结局
+                            </th>
+                        </tr>
+                        @foreach (DataRow item in Model.getadverseraction.Rows)
+                        {
+                            <tr>
+                                <td style="border:#ffffff 0px solid;">
+                                    @{
+                                        int type = Convert.ToInt32(item[2]);
+                                        string stype = "";
+                                        if (type == 0)
+                                        {
+                                            stype = "头晕";
+                                        }
+                                        else if (type == 1)
+                                        {
+                                            stype = "恶心";
+                                        }
+                                        else if (type == 2)
+                                        {
+                                            stype = "呕吐";
+                                        }
+                                        else if (type == 3)
+                                        {
+                                            stype = "腹痛";
+                                        }
+                                        else if (type == 4)
+                                        {
+                                            stype = "腹泻";
+                                        }
+                                        else if (type == 5)
+                                        {
+                                            stype = "皮疹";
+                                        }
+                                        else if (type == 6)
+                                        {
+                                            stype = "其他";
+                                        }
+                                    }
+                                    @stype
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @{
+                                        DateTime a = Convert.ToDateTime(item[3]);
+
+                                        string b = "";
+
+                                        b = a.ToString("yyyy-MM-dd");
+                                    }
+                                    @b
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @{
+                                        string chixushijian = item[4].ToString();
+                                        string chixushijianset = "";
+                                        if (chixushijian.Length >= 10)
+                                        {
+                                            chixushijianset = chixushijian.Substring(0, 8) + "...";
+                                        }
+                                        else
+                                        {
+                                            chixushijianset = chixushijian;
+                                        }
+
+                                    }
+                                    @chixushijianset
+
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @item[5]
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @{
+                                        string pindu = item[6].ToString();
+                                        string pinduset = "";
+                                        if (pindu.Length >= 10)
+                                        {
+                                            pinduset = pindu.Substring(0, 8) + "...";
+                                        }
+                                        else
+                                        {
+                                            pinduset = pindu;
+                                        }
+
+                                    }
+                                    @pinduset
+
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @{
+                                        int zhiliao = Convert.ToInt32(item[7]);
+                                        string szhiliao = "";
+                                        if (zhiliao == 0)
+                                        {
+                                            szhiliao = "不需要";
+                                        }
+                                        else if (zhiliao == 1)
+                                        {
+                                            szhiliao = "需要";
+                                        }
+                                    }
+                                    @szhiliao
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @item[8]
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @item[9]
+                                </td>
+                                <td style="border:#ffffff 0px solid;">
+                                    @item[10]
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                }
+
+            }
+
+        </div>
+
+    </div>
+
+    <p style="font-size:18px;padding:3px">
+
+        <a href="javascript:window.history.go(-1)">返回</a>
+    </p>
+</div>
+

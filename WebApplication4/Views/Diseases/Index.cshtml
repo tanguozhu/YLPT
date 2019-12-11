@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebApplication4.Models.Disease>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cardiovascular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breathing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SportsOthers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specific)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gastric)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specificgastric)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Allergy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specificallergy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hptherapy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecificHptherapy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cardiovascular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breathing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SportsOthers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specific)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gastric)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specificgastric)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Allergy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specificallergy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hptherapy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecificHptherapy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DiseaseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DiseaseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DiseaseId })
+        </td>
+    </tr>
+}
+
+</table>

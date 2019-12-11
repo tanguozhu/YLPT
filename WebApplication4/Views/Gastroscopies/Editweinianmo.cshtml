@@ -1,0 +1,1007 @@
+﻿@model WebApplication4.Models.Gastroscopy
+
+@{
+    ViewBag.Title = "Editweinianmo";
+}
+
+<h2>编辑</h2>
+@using System.Data;
+@using System;
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.scannum)
+    @Html.HiddenFor(model => model.Visit)
+    @Html.HiddenFor(model => model.PastId)
+    @Html.HiddenFor(model => model.Id)
+
+<div class="form-horizontal">
+    <h4>胃粘膜血清检查</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(Model => Model.dt, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.dt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">检查号:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Checknum, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Checknum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div style="margin-bottom:10px">
+        <div>
+
+            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal2" style="display:none" />
+            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal3" style="display:none" />
+            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal4" style="display:none" />
+            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal5" style="display:none" />
+            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal6" style="display:none" />
+        </div>
+
+    </div>
+
+    @{
+        int a = Model.getweinianmo.Rows.Count;
+        <textarea id="result1" name="result1" style="display:none">@a</textarea>
+
+        <div id="div1" style="overflow-y:auto;width:100%">
+            <hr />
+            @{
+                string check1 = Convert.ToString(Model.getweinianmo.Rows[0][2]);
+                int id1 = Convert.ToInt32(Model.getweinianmo.Rows[0][0]);
+            }
+            <textarea id="id1" name="id1" style="display:none">@id1</textarea>
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => check1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => check1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                string result1 = Convert.ToString(Model.getweinianmo.Rows[0][3]);
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result1" name="result1" rows="2">@result1</textarea>
+
+                    @Html.ValidationMessageFor(model => result1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                DateTime dt1 = Convert.ToDateTime(Model.getweinianmo.Rows[0][4]);
+            }
+            <div class="form-group">
+
+                <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => dt1, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => dt1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        if (a == 1)
+        {
+            <div id="div2" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+                @{
+                    string check2 = "";
+                    int id2 = 0;
+                }
+
+                <textarea id="id2" name="id2" style="display:none">@id2</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result2 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt2 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div3" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check3 = "";
+                    int id3 = 0;
+                }
+
+                <textarea id="id3" name="id3" style="display:none">@id3</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result3 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt3 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div4" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check4 = "";
+                    int id4 = 0;
+                }
+
+                <textarea id="id4" name="id4" style="display:none">@id4</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result4 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt4 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div5" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check5 = "";
+                    int id5 = 0;
+                }
+
+                <textarea id="id5" name="id5" style="display:none">@id5</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result5 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt5 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        }
+        else if (a == 2)
+        {
+            <div id="div2" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check2 = Convert.ToString(Model.getweinianmo.Rows[1][2]);
+                    int id2 = Convert.ToInt32(Model.getweinianmo.Rows[1][0]);
+                }
+                <textarea id="id2" name="id2" style="display:none">@id2</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result2 = Convert.ToString(Model.getweinianmo.Rows[1][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2">@result2</textarea>
+
+                        @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt2 = Convert.ToDateTime(Model.getweinianmo.Rows[1][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div3" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check3 = "";
+                    int id3 = 0;
+                }
+
+                <textarea id="id3" name="id3" style="display:none">@id3</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result3 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt3 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div4" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check4 = "";
+                    int id4 = 0;
+                }
+
+                <textarea id="id4" name="id4" style="display:none">@id4</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result4 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt4 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div5" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check5 = "";
+                    int id5 = 0;
+                }
+
+                <textarea id="id5" name="id5" style="display:none">@id5</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result5 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt5 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        }
+        else if (a == 3)
+        {
+            <div id="div2" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check2 = Convert.ToString(Model.getweinianmo.Rows[1][2]);
+                    int id2 = Convert.ToInt32(Model.getweinianmo.Rows[1][0]);
+                }
+                <textarea id="id2" name="id2" style="display:none">@id2</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result2 = Convert.ToString(Model.getweinianmo.Rows[1][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2">@result2</textarea>
+
+                        @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt2 = Convert.ToDateTime(Model.getweinianmo.Rows[1][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div3" overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check3 = Convert.ToString(Model.getweinianmo.Rows[2][2]);
+                    int id3 = Convert.ToInt32(Model.getweinianmo.Rows[2][0]);
+                }
+                <textarea id="id3" name="id3" style="display:none">@id3</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result3 = Convert.ToString(Model.getweinianmo.Rows[2][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2">@result3</textarea>
+
+                        @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt3 = Convert.ToDateTime(Model.getweinianmo.Rows[2][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div4" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check4 = "";
+                    int id4 = 0;
+                }
+
+                <textarea id="id4" name="id4" style="display:none">@id4</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result4 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt4 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div5" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check5 = "";
+                    int id5 = 0;
+                }
+
+                <textarea id="id5" name="id5" style="display:none">@id5</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result5 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt5 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        }
+        else if (a == 4)
+        {
+            <div id="div2" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check2 = Convert.ToString(Model.getweinianmo.Rows[1][2]);
+                    int id2 = Convert.ToInt32(Model.getweinianmo.Rows[1][0]);
+                }
+                <textarea id="id2" name="id2" style="display:none">@id2</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result2 = Convert.ToString(Model.getweinianmo.Rows[1][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2">@result2</textarea>
+
+                        @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt2 = Convert.ToDateTime(Model.getweinianmo.Rows[1][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div3" overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check3 = Convert.ToString(Model.getweinianmo.Rows[2][2]);
+                    int id3 = Convert.ToInt32(Model.getweinianmo.Rows[2][0]);
+                }
+                <textarea id="id3" name="id3" style="display:none">@id3</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result3 = Convert.ToString(Model.getweinianmo.Rows[2][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2">@result3</textarea>
+
+                        @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt3 = Convert.ToDateTime(Model.getweinianmo.Rows[2][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div4" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check4 = Convert.ToString(Model.getweinianmo.Rows[3][2]);
+                    int id4 = Convert.ToInt32(Model.getweinianmo.Rows[3][0]);
+                }
+                <textarea id="id4" name="id4" style="display:none">@id4</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result4 = Convert.ToString(Model.getweinianmo.Rows[3][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2">@result4</textarea>
+
+                        @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt4 = Convert.ToDateTime(Model.getweinianmo.Rows[3][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div5" style="display:none;overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check5 = "";
+                    int id5 = 0;
+                }
+
+                <textarea id="id5" name="id5" style="display:none">@id5</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result5 = "";
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2"></textarea>
+
+                        @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt5 = DateTime.Now;
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        }
+        else if (a == 5)
+        {
+            <div id="div2" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check2 = Convert.ToString(Model.getweinianmo.Rows[1][2]);
+                    int id2 = Convert.ToInt32(Model.getweinianmo.Rows[1][0]);
+                }
+                <textarea id="id2" name="id2" style="display:none">@id2</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result2 = Convert.ToString(Model.getweinianmo.Rows[1][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2">@result2</textarea>
+
+                        @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt2 = Convert.ToDateTime(Model.getweinianmo.Rows[1][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div3" overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check3 = Convert.ToString(Model.getweinianmo.Rows[2][2]);
+                    int id3 = Convert.ToInt32(Model.getweinianmo.Rows[2][0]);
+                }
+                <textarea id="id3" name="id3" style="display:none">@id3</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result3 = Convert.ToString(Model.getweinianmo.Rows[2][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2">@result3</textarea>
+
+                        @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt3 = Convert.ToDateTime(Model.getweinianmo.Rows[2][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div4" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check4 = Convert.ToString(Model.getweinianmo.Rows[3][2]);
+                    int id4 = Convert.ToInt32(Model.getweinianmo.Rows[3][0]);
+                }
+                <textarea id="id4" name="id4" style="display:none">@id4</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result4 = Convert.ToString(Model.getweinianmo.Rows[3][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2">@result4</textarea>
+
+                        @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt4 = Convert.ToDateTime(Model.getweinianmo.Rows[3][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div id="div5" style="overflow-y:auto;width:100%">
+                <hr />
+
+                @{
+                    string check5 = Convert.ToString(Model.getweinianmo.Rows[4][2]);
+                    int id5 = Convert.ToInt32(Model.getweinianmo.Rows[4][0]);
+                }
+                <textarea id="id5" name="id5" style="display:none">@id5</textarea>
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    string result5 = Convert.ToString(Model.getweinianmo.Rows[4][3]);
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                    <div class="col-md-10">
+                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2">@result5</textarea>
+
+                        @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @{
+                    DateTime dt5 = Convert.ToDateTime(Model.getweinianmo.Rows[4][4]);
+                }
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        }
+
+
+    }
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    var a = $('#result1').val()
+
+    if (a==1) {
+        $("#myModal2").show();
+    }
+    else if (a==2) {
+        $("#myModal3").show();
+    }
+    else if (a==3) {
+        $("#myModal4").show();
+    }
+    else if (a==4) {
+        $("#myModal5").show();
+    }
+    else if (a==5) {
+        $("#myModal6").show();
+    }
+
+
+    $('#myModal2').click(function () {
+        $("#div2").show();
+        $("#myModal2").hide();
+        $("#myModal3").show();
+    });
+    $('#myModal3').click(function () {
+        $("#div3").show();
+        $("#myModal3").hide();
+        $("#myModal4").show();
+    });
+    $('#myModal4').click(function () {
+        $("#div4").show();
+        $("#myModal4").hide();
+        $("#myModal5").show();
+    });
+    $('#myModal5').click(function () {
+        $("#div5").show();
+        $("#myModal5").hide();
+        $("#myModal6").show();
+    });
+    $('#myModal6').click(function () {
+        alert("最多只能添加五个检查项目");
+    });
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

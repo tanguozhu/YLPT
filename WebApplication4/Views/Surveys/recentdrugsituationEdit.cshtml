@@ -1,0 +1,171 @@
+﻿@model WebApplication4.Models.Surveys
+
+@{
+    ViewBag.Title = "recentdrugsituationEdit";
+}
+
+@using System.Data;
+@using System;
+<h2>编辑</h2>
+<h4>F 近期用药情况</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.num)
+    @Html.HiddenFor(model => model.phone)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.checkid)
+    @Html.HiddenFor(model => model.dt1)
+    @Html.HiddenFor(model => model.dt2)
+    @Html.HiddenFor(model => model.dt3)
+    @Html.HiddenFor(model => model.dt4)
+    @Html.HiddenFor(model => model.dt5)
+    @Html.HiddenFor(model => model.dt6)
+    @Html.HiddenFor(model => model.dt7)
+    @Html.HiddenFor(model => model.dt8)
+    @Html.HiddenFor(model => model.dt9)
+
+<div>
+    <hr style="border:#000000 1px solid;" />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @foreach (DataRow item in Model.dt8.Rows)
+    {
+
+       
+            int Aspirins = Convert.ToInt32(item[2]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F1&nbsp;&nbsp;&nbsp;&nbsp;近3个月有无服用阿司匹林:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => Aspirins, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                <label>@Html.RadioButtonFor(model => Aspirins, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+            </div>
+        </div>
+
+        
+            int AspirinCRs = Convert.ToInt32(item[3]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F2&nbsp;&nbsp;&nbsp;&nbsp;近3个月阿司匹林服用频率:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => AspirinCRs, 1, new { htmlAttributes = new { @class = "form-control" } }) 2-3次/月</label>
+
+                <label>@Html.RadioButtonFor(model => AspirinCRs, 2, new { htmlAttributes = new { @class = "form-control" } }) 1-2次/周</label>
+                <label>@Html.RadioButtonFor(model => AspirinCRs, 3, new { htmlAttributes = new { @class = "form-control" } }) 3-6次/周</label>
+
+                <label>@Html.RadioButtonFor(model => AspirinCRs, 4, new { htmlAttributes = new { @class = "form-control" } }) >=7次/周</label>
+
+            </div>
+        </div>
+
+        
+            int NonSteroidalAntiInflammatory = Convert.ToInt32(item[4]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F3&nbsp;&nbsp;&nbsp;&nbsp;近3个月有无服用其他非甾体抗炎药:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => NonSteroidalAntiInflammatory, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                <label>@Html.RadioButtonFor(model => NonSteroidalAntiInflammatory, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+            </div>
+        </div>
+
+       
+            int Glucocorticoids = Convert.ToInt32(item[5]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F4&nbsp;&nbsp;&nbsp;&nbsp;近3个月有无服用糖皮质激素类的药物:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => Glucocorticoids, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                <label>@Html.RadioButtonFor(model => Glucocorticoids, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+            </div>
+        </div>
+
+
+        
+            int GlucocorticoidsCR = Convert.ToInt32(item[6]);
+       
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F5&nbsp;&nbsp;&nbsp;&nbsp;近3个月糖皮质激素类服用频率:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => GlucocorticoidsCR, 1, new { htmlAttributes = new { @class = "form-control" } }) 2-3次/月</label>
+
+                <label>@Html.RadioButtonFor(model => GlucocorticoidsCR, 2, new { htmlAttributes = new { @class = "form-control" } }) 1-2次/周</label>
+                <label>@Html.RadioButtonFor(model => GlucocorticoidsCR, 3, new { htmlAttributes = new { @class = "form-control" } }) 3-6次/周</label>
+
+                <label>@Html.RadioButtonFor(model => GlucocorticoidsCR, 4, new { htmlAttributes = new { @class = "form-control" } }) >=7次/周</label>
+
+            </div>
+        </div>
+
+       
+            int Antibiotics = Convert.ToInt32(item[7]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F6&nbsp;&nbsp;&nbsp;&nbsp;近1个月是否服用抗生素类药物:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => Antibiotics, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                <label>@Html.RadioButtonFor(model => Antibiotics, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+            </div>
+        </div>
+
+        
+            int Tincture = Convert.ToInt32(item[8]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F7&nbsp;&nbsp;&nbsp;&nbsp;近1个月是否服用铋剂类药物:</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => Tincture, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                <label>@Html.RadioButtonFor(model => Tincture, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+            </div>
+        </div>
+
+        
+            int PPIs = Convert.ToInt32(item[9]);
+        
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">F8&nbsp;&nbsp;&nbsp;&nbsp;近1个月有无服用质子泵抑制剂药(PPI):</label>
+            <div class="col-md-8">
+
+                <label>@Html.RadioButtonFor(model => PPIs, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                <label>@Html.RadioButtonFor(model => PPIs, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+            </div>
+        </div>
+    }
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,71 @@
+﻿@model WebApplication4.Models.ReturnVisit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>查看</h2>
+
+<div>
+    <h4>详情</h4>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            姓名:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            检查号:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scannum)
+        </dd>
+
+        <dt>
+            身份证号:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identinum)
+        </dd>
+
+        <dt>
+            就诊:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitId)
+        </dd>
+
+        <dt>
+            就诊时间:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            复查内容:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.returnvisitcontent)
+        </dd>
+        <dt>
+            复查时间:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.returnvisitdate)
+        </dd>
+    </dl>
+</div>
+<p style="font-size:18px;padding:3px">
+    @Html.ActionLink("返回", "Index")
+</p>

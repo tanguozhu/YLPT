@@ -1,0 +1,607 @@
+﻿@model WebApplication4.Models.Adversereactions
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>新建</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.treatmentid)
+    @Html.HiddenFor(model => model.type0)
+    @Html.HiddenFor(model => model.type1)
+    @Html.HiddenFor(model => model.type2)
+    @Html.HiddenFor(model => model.type3)
+    @Html.HiddenFor(model => model.type4)
+    @Html.HiddenFor(model => model.type5)
+    @Html.HiddenFor(model => model.type6)
+
+<div class="form-horizontal">
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+        <h3>头晕</h3>
+        <div class="col-md-6">
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime0" name="beginTime0" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime0" name="lastTime0" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree0" name="degree0" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed0" name="relationshipWithMed0" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment0 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment0, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment0, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency0" name="frequency0" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending0" name="ending0" type="text" value="">
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed0" name="effectToMed0" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>恶心</h3>
+        <div class="col-md-6">
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime1" name="beginTime1" type="date" value="">
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime1" name="lastTime1" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree1" name="degree1" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed1" name="relationshipWithMed1" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment1 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment1, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment1, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency1" name="frequency1" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending1" name="ending1" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed1" name="effectToMed1" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <hr />
+
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>呕吐</h3>
+        <div class="col-md-6">
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime2" name="beginTime2" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime2" name="lastTime2" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree2" name="degree2" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed2" name="relationshipWithMed2" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment2 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment2, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment2, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency2" name="frequency2" type="text" value="">
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending2" name="ending2" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed2" name="effectToMed2" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>腹痛</h3>
+        <div class="col-md-6">
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime3" name="beginTime3" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime3" name="lastTime3" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree3" name="degree3" type="text" value="">
+                </div>
+            </div>
+
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed3" name="relationshipWithMed3" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment3 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment3, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment3, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency3" name="frequency3" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending3" name="ending3" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed3" name="effectToMed3" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>腹泻</h3>
+        <div class="col-md-6">
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime4" name="beginTime4" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime4" name="lastTime4" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree4" name="degree4" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed4" name="relationshipWithMed4" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment4 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment4, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment4, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency4" name="frequency4" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending4" name="ending4" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed4" name="effectToMed4" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>皮疹</h3>
+        <div class="col-md-6">
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime5" name="beginTime5" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime5" name="lastTime5" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree5" name="degree5" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed5" name="relationshipWithMed5" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment5 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment5, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment5, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency5" name="frequency5" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending5" name="ending5" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed5" name="effectToMed5" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>其他</h3>
+        <div class="col-md-6">
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime6" name="beginTime6" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime6" name="lastTime6" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree6" name="degree6" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed6" name="relationshipWithMed6" type="text" value="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment6 = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment6, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                    <label>@Html.RadioButtonFor(model => isNeedTreatment6, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency6" name="frequency6" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending6" name="ending6" type="text" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed6" name="effectToMed6" type="text" value="">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

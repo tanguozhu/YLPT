@@ -1,0 +1,27 @@
+﻿@model WebApplication4.Models.PopSciinManger
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>查看</h2>
+
+<div>
+    <h4>科普信息详情</h4>
+    <hr />
+ 
+    <h3>@Model.Title</h3>
+    <div style="overflow-y:auto; overflow-x:auto; width:70%;height:400px">
+
+        <div>@Html.Raw(HttpUtility.HtmlDecode(Model.Introduction))</div>
+        <img src="@Html.DisplayFor(model => model.Imag)" width="150" height="150" id="Imag">
+
+    </div>
+</div>
+
+
+<p style="font-size:18px;padding:3px">
+    @Html.ActionLink("编辑", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("返回标题列表", "Index")
+</p>

@@ -1,0 +1,61 @@
+﻿@model WebApplication4.Models.Workflow
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>方案集及最佳方案</h2>
+
+
+<div>
+
+    <hr />
+    <h4>方案集</h4>
+    <div class="col-md-10" style="padding-left:0">
+        <img src="http://58.192.132.31:9010/pic/timg.jpg" width="600" height="400" id="image">
+    </div>
+    <div class="col-md-2">
+        <div>&#12288</div>
+    </div>
+
+    <div class="col-md-10">
+        <div style="height:20px;">
+            <a>&#12288</a>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div>&#12288</div>
+    </div>
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">best scheme id:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">cost(yuan):</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+      </div>
+        
+
+        <div class="col-md-10">
+            <p style="font-size:18px;padding:3px">
+
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <div>&#12288</div>
+        </div>
+    </div>

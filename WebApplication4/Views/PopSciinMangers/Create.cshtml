@@ -1,0 +1,64 @@
+﻿@model WebApplication4.Models.PopSciinManger
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>新建</h2>
+
+
+@using (Html.BeginForm("Create", "PopSciinMangers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>科普信息</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Introduction, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea  htmlattributes="{ class = white-space:pre-wrap }" style="height:250px;width:400px" id="Introduction" name="Introduction" ></textarea>
+            @Html.ValidationMessageFor(model => model.Introduction, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">选择图片</label>
+        <div class="col-md-10">
+            <input type="file" name="filename" id="filename" value="选择" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+       
+        <div>
+            <input type="text" name="Imag" id="Imag" value="1" style="display:none" />
+            @Html.ValidationMessageFor(model => model.Imag, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div style="font-size:18px;padding:3px">
+    @Html.ActionLink("返回科普信息列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,379 @@
+﻿@model IEnumerable<WebApplication4.Models.Student>
+
+
+
+<link href="~/Scripts/css/StyleSheet1.css" rel="stylesheet" />
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>这是主页</h2>
+
+<div>
+    <div>
+        <p>
+
+            <button type="button" class="btn btn-primary btn-lg" style="font-size: 16px" onclick="window.location.href='/Students/Create'">
+                导出就诊表
+            </button>
+
+        </p>
+    </div>
+    <div>
+
+        <button class="btn btn-info" id="myModal1">点击一下</button>
+        <button class="btn btn-info" id="myModal2" style="display:none">在点一下</button>
+        <button class="btn btn-info" id="myModal3" style="display:none">在点一下</button>
+        <button class="btn btn-info" id="myModal4" style="display:none">在点一下</button>
+        <button class="btn btn-info" id="myModal5" style="display:none">在点一下</button>
+        <button class="btn btn-info" id="myModal6" style="display:none">在点一下</button>
+        <div>
+            <label id="wenzi1" style="display:none">这是文字1</label>
+            <label id="wenzi2" style="display:none">这是文字2</label>
+            <label id="wenzi3" style="display:none">这是文字3</label>
+            <label id="wenzi4" style="display:none">这是文字4</label>
+            <label id="wenzi5" style="display:none">这是文字5</label>
+        </div>
+    </div>
+</div>
+
+<div>
+    <img height="100" width="100" src="https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg" class="pic" />
+    <img height="100" width="100" src="https://cdn.pixabay.com/photo/2011/12/14/12/21/orion-nebula-11107_960_720.jpg" class="pic" />
+    <img height="100" width="100" src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg" class="pic" />
+</div>
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+    <div id="innerdiv" style="position:absolute;">
+        <img id="bigimg" style="border:5px solid #fff;" src="" />
+    </div>
+</div>
+
+
+
+
+<div class="aui-col-xs-3" id="img" >
+    <svg class="icon bigIcon" aria-hidden="true">
+        <use xlink:href="#icon-msnui-add"></use>
+    </svg>
+    <!--阿里巴巴矢量图标，就是最后效果图中的“+”图标-->
+    <div class="aui-grid-label">添加图片</div>
+    <div id="upImg">
+       
+            <input type="file" name="file" id="chooseImage1"  class="form-control-static"/>
+            <input type="file" name="file" id="chooseImage2" style="display:none" />
+            <input type="file" name="file" id="chooseImage3" style="display:none" />
+       
+        <label id="chooseImage4" style="display:none">最多添加三张图片</label>
+    </div>
+    <div id="imgPreview">
+        <img src="#" id="cropedBigImg1" height="100" width="100" style="display:none" />
+        <img src="#" id="cropedBigImg2" height="100" width="100"  style="display:none"/>
+        <img src="#" id="cropedBigImg3" height="100" width="100" style="display:none"/>
+    </div>
+    <div>
+
+    </div>
+</div>
+
+<div class="aui-grid-label">最多添加三张图片</div>
+<div>
+    <div class="col-md-6">
+
+        <div class="col-sm-4">
+            <div>
+            <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img1">
+            <img src="#" id="cb1" height="100" width="100" style="display:none" class="pic" />
+            <input type="file" id="img-upload1" style="display:none" />
+            </div>
+            <div>
+                <button id="btn1" style="display:none">移除</button>&nbsp;&nbsp;
+                <button id="btn2" style="display:none">修改</button>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img2">
+                <img src="#" id="cb2" height="100" width="100" style="display:none" class="pic" />
+                <input type="file" id="img-upload2" style="display:none" />
+            </div>
+            <div>
+                <button id="btn3" style="display:none">移除</button>&nbsp;&nbsp;
+                <button id="btn4" style="display:none">修改</button>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img3">
+                <img src="#" id="cb3" height="100" width="100" style="display:none" class="pic" />
+                <input type="file" id="img-upload3" style="display:none" />
+            </div>
+            <div>
+                <button id="btn5" style="display:none">移除</button>&nbsp;&nbsp;
+                <button id="btn6" style="display:none">修改</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        &nbsp;&nbsp;
+
+    </div>
+    
+
+    
+</div>
+<div>
+    
+   
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    //动态添加
+    $('#myModal1').click(function () {
+        $("#wenzi1").show();
+        $("#myModal1").hide();
+        $("#myModal2").show();
+    });
+    $('#myModal2').click(function () {
+        $("#wenzi2").show();
+        $("#myModal2").hide();
+        $("#myModal3").show();
+    });
+    $('#myModal3').click(function () {
+        $("#wenzi3").show();
+        $("#myModal3").hide();
+        $("#myModal4").show();
+    });
+    $('#myModal4').click(function () {
+        $("#wenzi4").show();
+        $("#myModal4").hide();
+        $("#myModal5").show();
+    });
+    $('#myModal5').click(function () {
+        $("#wenzi5").show();
+        $("#myModal5").hide();
+        $("#myModal6").show();
+    });
+    $('#myModal6').click(function () {
+        alert("最多只有五个label");
+    });
+
+    //图片放大缩小
+    $(function () {
+        $(".pic").on("click", function () {
+            var _this = $(this);//将当前的pimg元素作为_this传入函数
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+        });
+    });
+    function imgShow(outerdiv, innerdiv, bigimg, _this) {
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+        $("<img/>").attr("src", src).on("load", function () {
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+            if (realHeight > windowH * scale) {//判断图片高度
+                imgHeight = windowH * scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight / realHeight * realWidth;//等比例缩放宽度
+                if (imgWidth > windowW * scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW * scale;//再对宽度进行缩放
+                }
+            } else if (realWidth > windowW * scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW * scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth / realWidth * realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width", imgWidth);//以最终的宽度对图片缩放
+            var w = (windowW - imgWidth) / 2;//计算图片与窗口左边距
+            var h = (windowH - imgHeight) / 2;//计算图片与窗口上边距
+            $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+        });
+        $(outerdiv).on("click", function () {//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }
+
+    //图片预览
+    $('#chooseImage1').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cropedBigImg1").show();
+        $("#chooseImage1").hide();
+        $("#chooseImage2").show();
+ var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+ fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+ src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+  
+ // 检查是否是图片
+ if(!fileFormat.match(/.png|.jpg|.jpeg/)) {
+  error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+ return;
+ }else{
+ $('#cropedBigImg1').attr('src', src); 
+ } 
+});
+
+    $('#chooseImage2').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cropedBigImg2").show();
+        $("#chooseImage2").hide();
+        $("#chooseImage3").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cropedBigImg2').attr('src', src);
+        }
+    });
+
+    $('#chooseImage3').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cropedBigImg3").show();
+        $("#chooseImage3").hide();
+        $("#chooseImage4").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cropedBigImg3').attr('src', src);
+        }
+    });
+
+    //点击图片就是点击输入框
+    $(document).ready(function () {
+        $('#my-img1').on('click',function () {
+            $('#img-upload1').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img2').on('click', function () {
+            $('#img-upload2').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img3').on('click', function () {
+            $('#img-upload3').click();
+        });
+
+    });
+    
+    //图片预览
+    $('#img-upload1').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb1").show();
+        $("#my-img1").hide();
+        $("#btn1").show();
+        $("#btn2").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb1').attr('src', src);
+        }
+    });
+    $('#btn1').on('click', function () {
+        $('#cb1').attr('src', "");
+        $('#cb1').hide();
+        $('#btn1').hide();
+        $('#btn2').hide();
+        $("#my-img1").show();
+    });
+    $(document).ready(function () {
+        $('#btn2').on('click', function () {
+            $('#img-upload1').click();
+        });
+
+    });
+    
+    $('#img-upload2').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb2").show();
+        $("#my-img2").hide();
+        $("#btn3").show();
+        $("#btn4").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb2').attr('src', src);
+        }
+    });
+    $('#btn3').on('click', function () {
+        $('#cb2').attr('src', "");
+        $('#cb2').hide();
+        $('#btn3').hide();
+        $('#btn4').hide();
+        $("#my-img2").show();
+    });
+    $(document).ready(function () {
+        $('#btn4').on('click', function () {
+            $('#img-upload2').click();
+        });
+
+    });
+
+
+    $('#img-upload3').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb3").show();
+        $("#my-img3").hide();
+        $("#btn5").show();
+        $("#btn6").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb3').attr('src', src);
+        }
+    });
+    $('#btn5').on('click', function () {
+        $('#cb3').attr('src', "");
+        $('#cb3').hide();
+        $('#btn5').hide();
+        $('#btn6').hide();
+        $("#my-img3").show();
+    });
+    $(document).ready(function () {
+        $('#btn6').on('click', function () {
+            $('#img-upload3').click();
+        });
+
+    });
+
+    
+</script>

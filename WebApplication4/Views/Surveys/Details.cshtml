@@ -1,0 +1,1856 @@
+﻿@model WebApplication4.Models.Surveys
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using System.Data;
+@using System;
+
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+
+<h2>查看调查结果</h2>
+
+
+@{
+
+    if (Model.checkid > 0)
+    {
+        <div>
+
+            <hr style="border:#000000 1px solid;" />
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                    <span> A调查者基本情况 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                    <span> A调查者基本情况 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                    <a style="font-size:18px" href="/Surveys/normalsituationEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                @foreach (DataRow item in Model.dt1.Rows)
+                {
+                    <div class="col-md-6">
+                        <div>
+                            A1姓名:
+                            @item[2]
+                        </div>
+                        <div>
+                            A2性别:
+                            @{
+                                int sex = Convert.ToInt32(item[3]);
+                                string s = "";
+                                if (sex == 0)
+                                {
+                                    s = "男";
+                                }
+                                else
+                                {
+                                    s = "女";
+                                }
+                            }
+                            @s
+                        </div>
+                        <div>
+                            A3出生日期:
+                            @{
+                                DateTime bi = Convert.ToDateTime(item[4]);
+
+                                string birth = "";
+
+                                birth = bi.ToString("yyyy-MM-dd");
+                            }
+                            @birth
+                        </div>
+                        <div>
+                            A31年龄:
+                            @{
+                                DateTime age = Convert.ToDateTime(item[4]);
+
+                                int year;
+
+                                year = DateTime.Now.Year - age.Year;
+                            }
+                            @year 岁
+                        </div>
+                        <div>
+                            A4身份证号:
+                            @{
+                                string identi = Convert.ToString(item[1]);
+                            }
+                            @identi
+                        </div>
+                        @{
+                            int mingzu = Convert.ToInt32(item[5]);
+                            if (mingzu == 4)
+                            {
+                                string Specificnation = Convert.ToString(item[6]);
+                                <div>
+                                    A5民族:
+                                    @Specificnation
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    A5民族:
+                                    @{
+
+                                        string ming = "";
+                                        if (mingzu == 1)
+                                        {
+                                            ming = "汉族";
+                                        }
+                                        else if (mingzu == 2)
+                                        {
+                                            ming = "回族";
+                                        }
+                                        else if (mingzu == 3)
+                                        {
+                                            ming = "满族";
+                                        }
+
+                                    }
+                                    @ming
+                                </div>
+
+                            }
+
+                        }
+
+                        <div>
+                            A6最高学历:
+                            @{
+                                int education = Convert.ToInt32(item[7]);
+                                string edu = "";
+                                if (education == 1)
+                                {
+                                    edu = "文盲";
+                                }
+                                else if (education == 2)
+                                {
+                                    edu = "小学";
+                                }
+                                else if (education == 3)
+                                {
+                                    edu = "初中";
+                                }
+                                else if (education == 4)
+                                {
+                                    edu = "高中/中专";
+                                }
+                                else if (education == 5)
+                                {
+                                    edu = "大专及以上";
+                                }
+
+                            }
+                            @edu
+                        </div>
+                        <div>
+                            A7职业:
+                            @{
+                                int profession = Convert.ToInt32(item[8]);
+                                string pro = "";
+                                if (profession == 1)
+                                {
+                                    pro = "国家机关、党群组织、企业、事业单位负责人";
+                                }
+                                else if (profession == 2)
+                                {
+                                    pro = "专业技术人员";
+                                }
+                                else if (profession == 3)
+                                {
+                                    pro = "办事人员和有关人员";
+                                }
+                                else if (profession == 4)
+                                {
+                                    pro = "商业、服务业人员";
+                                }
+                                else if (profession == 5)
+                                {
+                                    pro = "农、林、牧、渔、水利业生产人员";
+                                }
+                                else if (profession == 6)
+                                {
+                                    pro = "生产、运输设备操作人员及有关人员";
+                                }
+                                else if (profession == 7)
+                                {
+                                    pro = "军人";
+                                }
+                                else if (profession == 8)
+                                {
+                                    pro = "不便分类的其他从业人员";
+                                }
+                                else if (profession == 9)
+                                {
+                                    pro = "学生";
+                                }
+
+                            }
+                            @pro
+                        </div>
+                        <div>
+                            A8婚姻状况:
+                            @{
+                                int maritalstatus = Convert.ToInt32(item[9]);
+                                string mari = "";
+                                if (maritalstatus == 1)
+                                {
+                                    mari = "在婚";
+                                }
+                                else if (maritalstatus == 2)
+                                {
+                                    mari = "离婚";
+                                }
+                                else if (maritalstatus == 3)
+                                {
+                                    mari = "丧偶";
+                                }
+                                else if (maritalstatus == 4)
+                                {
+                                    mari = "分居";
+                                }
+                                else if (maritalstatus == 5)
+                                {
+                                    mari = "未婚";
+                                }
+                                else if (maritalstatus == 6)
+                                {
+                                    mari = "同居";
+                                }
+
+                            }
+                            @mari
+                        </div>
+                        <div>
+                            A9本人常用电话:
+                            @item[10]
+                        </div>
+                        <div>
+                            A91联系人1(关系):
+                            @item[11]
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div>
+                            A92电话:
+                            @item[12]
+                        </div>
+                        <div>
+                            A93联系人1(关系):
+                            @item[13]
+                        </div>
+                        <div>
+                            A94电话:
+                            @item[14]
+                        </div>
+                        <div>
+                            A95联系人1(关系):
+                            @item[15]
+                        </div>
+                        <div>
+                            A96电话:
+                            @item[16]
+                        </div>
+                        <div>
+                            A10现居地:
+                            @{
+                                int Currentresidence = Convert.ToInt32(item[17]);
+                                string curr = "";
+                                if (Currentresidence == 1)
+                                {
+                                    curr = "农村";
+                                }
+                                else
+                                {
+                                    curr = "城市";
+                                }
+                            }
+                            @curr
+                        </div>
+                        <div>
+                            A101农村:
+                            @item[18] 年
+                        </div>
+                        <div>
+                            A102城市:
+                            @item[19] 年
+                        </div>
+                        <div>
+                            A11家里几个人一起生活(包括自己):
+                            @item[20] 个
+                        </div>
+                        <div>
+                            A12目前参加了哪一类医疗保健保险服务:
+                            @{
+                                int insurance = Convert.ToInt32(item[21]);
+                                string ins = "";
+                                if (insurance == 1)
+                                {
+                                    ins = "城镇基本医疗保险(包括公费和劳保)";
+                                }
+                                else if (insurance == 2)
+                                {
+                                    ins = "农村合作医疗";
+                                }
+                                else if (insurance == 3)
+                                {
+                                    ins = "商业医疗保险";
+                                }
+                                else if (insurance == 4)
+                                {
+                                    ins = "无任何医疗保险";
+                                }
+                            }
+                            @ins
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+        <hr style="border:#000000 1px solid;" />
+        <div>
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                <span> B身体状况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                <span> B身体状况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a style="font-size:18px" href="/Surveys/physicalconditionsEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+               
+                
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                @foreach (DataRow item in Model.dt2.Rows)
+                {
+                    <div class="col-md-6">
+                        <div>
+                            B1身高:
+                            @item[2] cm
+                        </div>
+                        <div>
+                            B1体重:
+                            @item[3] kg
+                        </div>
+                        @{
+                            int dropweight = Convert.ToInt32(item[4]);
+                            string dro = "";
+                            if (dropweight == 0)
+                            {
+                                dro = "否";
+                                <div>
+                                    B11近半年体重是否下降:
+                                    @dro
+                                </div>
+                            }
+                            else
+                            {
+                                dro = "是";
+                                <div>
+                                    B11近半年体重是否下降:
+                                    @dro
+                                </div>
+                                <div>
+                                    B111以前体重为:
+                                    @item[5]
+                                </div>
+
+                            }
+                        }
+
+                        <div>
+                            B2血型:
+                            @{
+                                int blood = Convert.ToInt32(item[6]);
+                                string bl = "";
+                                if (blood == 1)
+                                {
+                                    bl = "A型";
+                                }
+                                else if (blood == 2)
+                                {
+                                    bl = "B型";
+                                }
+                                else if (blood == 3)
+                                {
+                                    bl = "C型";
+                                }
+                                else if (blood == 4)
+                                {
+                                    bl = "O型";
+                                }
+                                else if (blood == 9)
+                                {
+                                    bl = "不清楚";
+                                }
+
+                            }
+                            @bl
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div>
+                            B3平时性格:
+                            @{
+                                int character = Convert.ToInt32(item[7]);
+                                string chara = "";
+                                if (character == 1)
+                                {
+                                    chara = "外向型";
+                                }
+                                else if (character == 2)
+                                {
+                                    chara = "混合型";
+                                }
+                                else if (character == 3)
+                                {
+                                    chara = "内向型";
+                                }
+
+                            }
+                            @chara
+                        </div>
+                        <div>
+                            B4平时工作时心理紧张(心理压力)程度:
+                            @{
+                                int Psychologicalstress = Convert.ToInt32(item[8]);
+                                string pycho = "";
+                                if (Psychologicalstress == 1)
+                                {
+                                    pycho = "不太紧张";
+                                }
+                                else if (Psychologicalstress == 2)
+                                {
+                                    pycho = "适中";
+                                }
+                                else if (Psychologicalstress == 3)
+                                {
+                                    pycho = "较紧张、压力大";
+                                }
+
+                            }
+                            @pycho
+                        </div>
+                        <div>
+                            B5平时会时常感到焦虑:
+                            @{
+                                int anxiety = Convert.ToInt32(item[9]);
+                                string anx = "";
+                                if (anxiety == 0)
+                                {
+                                    anx = "否";
+                                }
+                                else if (anxiety == 1)
+                                {
+                                    anx = "是";
+                                }
+
+                            }
+                            @anx
+                        </div>
+                        <div>
+                            B6自觉每天的睡眠质量:
+                            @{
+                                int Sleepquality = Convert.ToInt32(item[10]);
+                                string slee = "";
+                                if (Sleepquality == 1)
+                                {
+                                    slee = "好";
+                                }
+                                else if (Sleepquality == 2)
+                                {
+                                    slee = "一般";
+                                }
+                                else if (Sleepquality == 3)
+                                {
+                                    slee = "差";
+                                }
+
+                            }
+                            @slee
+                        </div>
+                        @{
+                            int HP = Convert.ToInt32(item[11]);
+                            int isacceptHP = Convert.ToInt32(item[12]);
+                            int HPtreatment = Convert.ToInt32(item[13]);
+                            string hps = "";
+                            string isac = "";
+                            string HPtr = "";
+                            if (HP == 1)
+                            {
+                                hps = "是";
+                                if (isacceptHP == 1)
+                                {
+                                    <div>
+                                        B7曾经是否感染幽门螺杆菌(HP):
+                                        @hps
+                                    </div>
+                                    <div>
+                                        B71是否接受抗菌治疗:
+                                        @{
+                                            isac = "是";
+                                        }
+                                        @isac
+                                    </div>
+                                    <div>
+                                        B711具体治疗方案:
+                                        @{
+                                            if (HPtreatment == 1)
+                                            {
+                                                HPtr = "PPI+阿莫西林+甲硝唑+克拉霉素";
+                                            }
+                                            else if (Sleepquality == 2)
+                                            {
+                                                HPtr = "PPI+铋剂+甲硝唑+四环素";
+                                            }
+                                            else if (HPtreatment == 3)
+                                            {
+                                                HPtr = "PPI+克拉霉素+阿莫西林/甲硝唑";
+                                            }
+                                            else if (HPtreatment == 4)
+                                            {
+                                                HPtr = "PPI+阿莫西林+甲硝唑";
+                                            }
+                                            else if (HPtreatment == 5)
+                                            {
+                                                HPtr = "PPI+阿莫西林+左氧氟沙星";
+                                            }
+                                            else if (HPtreatment == 6)
+                                            {
+                                                HPtr = "PPI+阿莫西林+克拉霉素+铋剂";
+                                            }
+                                            else if (HPtreatment == 7)
+                                            {
+                                                HPtr = "其他";
+                                            }
+                                            else if (HPtreatment == 9)
+                                            {
+                                                HPtr = "不清楚";
+                                            }
+                                        }
+                                        @HPtr
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div>
+                                        B7曾经是否感染幽门螺杆菌(HP):
+                                        @hps
+                                    </div>
+                                    <div>
+                                        B71是否接受抗菌治疗:
+                                        @{
+                                            if (isacceptHP == 0)
+                                            {
+                                                isac = "否";
+                                            }
+                                            else
+                                            {
+                                                isac = "不清楚";
+                                            }
+                                        }
+                                        @isac
+                                    </div>
+                                }
+
+
+                            }
+                            else
+                            {
+                                if (HP == 0)
+                                {
+                                    hps = "否";
+                                }
+                                else
+                                {
+                                    hps = "不清楚";
+                                }
+                                <div>
+                                    B7曾经是否感染幽门螺杆菌(HP):
+                                    @hps
+                                </div>
+
+                            }
+                        }
+
+                    </div>
+                }
+
+
+            </div>
+        </div>
+        <hr style="border:#000000 1px solid;" />
+        <div>
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                <span> C个人史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                <span> C个人史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a style="font-size:18px" href="/Surveys/personalhistoryEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+               
+                
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                @foreach (DataRow item in Model.dt3.Rows)
+                {
+                    <div class="col-md-6">
+                        <div>
+                            <h3>吸烟史</h3>
+                        </div>
+                        <div>
+                            C1生病前是否吸烟:
+                            @{
+                                int whetherSmoking = Convert.ToInt32(item[2]);
+                                string ws = "";
+                                if (whetherSmoking == 1)
+                                {
+                                    ws = "从不";
+                                }
+                                else if (whetherSmoking == 2)
+                                {
+                                    ws = "已戒烟(不吸烟三个月以上)";
+                                }
+                                else if (whetherSmoking == 3)
+                                {
+                                    ws = "吸烟(每天>= 1支，持续6个月以上)";
+                                }
+
+                            }
+                            @ws
+                        </div>
+                        @{
+
+                            if (whetherSmoking == 3)
+                            {
+                                <div>
+                                    C111每天吸烟量:
+                                    @item[3] 只
+                                </div>
+                                <div>
+                                    C112规律吸烟:
+                                    @item[4] 年
+                                </div>
+                            }
+                            else if (whetherSmoking == 2)
+                            {
+                                <div>
+                                    C121戒烟前每天吸烟量:
+                                    @item[5] 只
+                                </div>
+                                <div>
+                                    C122规律吸烟:
+                                    @item[6] 年
+                                </div>
+                                <div>
+                                    C123戒烟年龄:
+                                    @item[7] 岁
+                                </div>
+                                <div>
+                                    C124戒烟共:
+                                    @item[8] 年
+                                </div>
+                            }
+
+                        }
+
+                        <div>
+                            C13在家或者单位是否存在被动吸烟:
+                            @{
+                                int passiveSmoking = Convert.ToInt32(item[9]);
+                                string ps = "";
+                                if (passiveSmoking == 0)
+                                {
+                                    ps = "否";
+                                }
+                                else if (passiveSmoking == 1)
+                                {
+                                    ps = "是";
+                                }
+                            }
+                            @ps
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div>
+                            <h3>饮酒史</h3>
+                        </div>
+                        <div>
+                            C2生病前是否饮酒:
+                            @{
+                                int whetherDrinkingAlcohol = Convert.ToInt32(item[10]);
+                                string wd = "";
+                                if (whetherDrinkingAlcohol == 1)
+                                {
+                                    wd = "从不饮或几乎从不喝";
+                                }
+                                else if (whetherDrinkingAlcohol == 2)
+                                {
+                                    wd = "只在特殊场合下（如喜庆、聚会或节假日）偶尔喝";
+                                }
+                                else if (whetherDrinkingAlcohol == 3)
+                                {
+                                    wd = "每个月都喝，但频度不到每周一次";
+                                }
+                                else if (whetherDrinkingAlcohol == 4)
+                                {
+                                    wd = "1次/周";
+                                }
+                                else if (whetherDrinkingAlcohol == 5)
+                                {
+                                    wd = "2-3次/周";
+                                }
+                                else if (whetherDrinkingAlcohol == 6)
+                                {
+                                    wd = "4次及以上/周";
+                                }
+
+                            }
+                            @wd
+                        </div>
+                        @{
+                            if (whetherDrinkingAlcohol == 1)
+                            {
+                                <div>&nbsp;&nbsp;</div>
+                                <div>&nbsp;&nbsp;</div>
+                                <div>&nbsp;&nbsp;</div>
+                            }
+                            else
+                            {
+                                <div>
+                                    C21开始规律饮酒年龄:
+                                    @item[11] 年
+                                </div>
+                                <div>
+                                    C22每次饮酒量:
+                                    @item[13] 两
+                                </div>
+                                <div>
+                                    C23规律饮酒:
+                                    @item[12] 年
+                                </div>
+                                <div>
+                                    C24喝酒后是否出现脸红、心跳加快及头晕等反应:
+                                    @{
+                                        int drinkingReaction = Convert.ToInt32(item[14]);
+                                        string dr = "";
+                                        if (drinkingReaction == 1)
+                                        {
+                                            dr = "喝上—两口就会出现";
+                                        }
+                                        else if (drinkingReaction == 2)
+                                        {
+                                            dr = "少量饮酒后会出现";
+                                        }
+                                        else if (drinkingReaction == 3)
+                                        {
+                                            dr = "大量饮酒后才会出现";
+                                        }
+                                        else if (drinkingReaction == 4)
+                                        {
+                                            dr = "不会出现类似反应";
+                                        }
+
+                                    }
+                                    @dr
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div>
+                            <h3>饮食史</h3>
+                        </div>
+                        <div>
+                            C31一日三餐是否规律:
+                            @{
+                                int eatingRegularly = Convert.ToInt32(item[15]);
+                                string er = "";
+                                if (eatingRegularly == 1)
+                                {
+                                    er = "规律";
+                                }
+                                else if (eatingRegularly == 2)
+                                {
+                                    er = "较规律/偶尔不规律";
+                                }
+                                else if (eatingRegularly == 3)
+                                {
+                                    er = "经常不规律";
+                                }
+
+                            }
+                            @er
+                        </div>
+                        <div>
+                            C32进食速度:
+                            @{
+                                int eatingSpeed = Convert.ToInt32(item[16]);
+                                string es = "";
+                                if (eatingSpeed == 1)
+                                {
+                                    es = "慢/>30分钟";
+                                }
+                                else if (eatingSpeed == 2)
+                                {
+                                    es = "速度正常/10-30分钟";
+                                }
+                                else if (eatingSpeed == 3)
+                                {
+                                    es = "过快/≤10分钟";
+                                }
+
+                            }
+                            @es
+                        </div>
+                        <div>
+                            C33进食习惯:
+                            @{
+                                int eatingHabit = Convert.ToInt32(item[17]);
+                                string eh = "";
+                                if (eatingHabit == 1)
+                                {
+                                    eh = "过冷";
+                                }
+                                else if (eatingHabit == 2)
+                                {
+                                    eh = "温度适中";
+                                }
+                                else if (eatingHabit == 3)
+                                {
+                                    eh = "过烫";
+                                }
+
+                            }
+                            @eh
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div>
+                            <h3>饮茶史</h3>
+                        </div>
+                        <div>
+                            C4是否经常饮茶(每周至少三杯,持续六个月以上):
+                            @{
+                                int whetherDrinkTeaRegularly = Convert.ToInt32(item[18]);
+                                string wdt = "";
+                                if (whetherDrinkTeaRegularly == 1)
+                                {
+                                    wdt = "否";
+                                }
+                                else if (whetherDrinkTeaRegularly == 2)
+                                {
+                                    wdt = "是,但现在已不饮";
+                                }
+                                else if (whetherDrinkTeaRegularly == 3)
+                                {
+                                    wdt = "是,且现在仍在饮用";
+                                }
+
+                            }
+                            @wdt
+                        </div>
+                        @{
+                            if (whetherDrinkTeaRegularly == 1)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    C41经常饮茶年数:
+                                    @item[19] 年
+                                </div>
+                                <div>
+                                    C42喜欢喝浓茶还是淡茶:
+                                    @{
+                                        int strongOrLightTea = Convert.ToInt32(item[20]);
+                                        string sol = "";
+                                        if (strongOrLightTea == 1)
+                                        {
+                                            sol = "淡茶";
+                                        }
+                                        else if (strongOrLightTea == 2)
+                                        {
+                                            sol = "适中";
+                                        }
+                                        else if (strongOrLightTea == 3)
+                                        {
+                                            sol = "浓茶";
+                                        }
+
+                                    }
+                                    @sol
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+        <hr style="border:#000000 1px solid;" />
+        <div>
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                <span> D家族史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                <span> D家族史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a style="font-size:18px" href="/Surveys/familyhistoryEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+               
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                @{
+                    int hasTumor = 2;
+                }
+                @foreach (DataRow item in Model.dt4.Rows)
+                {
+                    <div>
+                        <div>
+                            D1几个儿子:
+                            @item[2] 个
+                        </div>
+                        <div>
+                            D2几个女儿:
+                            @item[3] 个
+                        </div>
+                        <div>
+                            D3几个兄弟(不包括本人):
+                            @item[4] 个
+                        </div>
+                        <div>
+                            D4几个姐妹(不包括本人):
+                            @item[5] 个
+                        </div>
+                        <div>
+                            D5亲属中，有没有人曾经被医生诊断过患有消化道肿瘤或者其它肿瘤:
+                            @{
+                                hasTumor = Convert.ToInt32(item[6]);
+                                string ht = "";
+                                if (hasTumor == 0)
+                                {
+                                    ht = "无";
+                                }
+                                else if (hasTumor == 1)
+                                {
+                                    ht = "有";
+                                }
+                            }
+                            @ht
+                        </div>
+                    </div>
+                }
+                @{
+                    if (hasTumor == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        <div>
+                            <table class="table">
+                                <tr>
+                                    <th style="border-top:0px solid #ff4136;width:30%">
+                                        亲属关系
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;width:20%">
+                                        性别
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;width:20%">
+                                        消化道肿瘤
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;width:30%">
+                                        其他肿瘤
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td style="border:#ffffff 0px solid;">
+                                        <label>一级亲属</label>
+                                    </td>
+                                    <td style="border:#ffffff 0px solid;"></td>
+                                    <td style="border:#ffffff 0px solid;"></td>
+                                    <td style="border:#ffffff 0px solid;"></td>
+                                </tr>
+
+                                @foreach (DataRow item1 in Model.dt5.Rows)
+                                {
+
+                                    string kinshipnum = Convert.ToString(item1[2]);
+                                    string ksp = "";
+                                    int sexcmn = Convert.ToInt32(item1[4]);
+                                    string sc = "";
+                                    int Gastrolcancer = Convert.ToInt32(item1[5]);
+                                    string gal = "";
+
+                                    if (kinshipnum == "D51" || kinshipnum == "D52" || kinshipnum == "D531" || kinshipnum == "D532" || kinshipnum == "D533" ||
+                                        kinshipnum == "D534" || kinshipnum == "D541" || kinshipnum == "D542" || kinshipnum == "D543" ||
+                                            kinshipnum == "D544")
+                                    {
+
+                                        <tr>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @{
+
+                                                    if (kinshipnum == "D51")
+                                                    {
+                                                        ksp = "D51父亲";
+                                                    }
+                                                    else if (kinshipnum == "D52")
+                                                    {
+                                                        ksp = "D52母亲";
+                                                    }
+                                                    else if (kinshipnum == "D531")
+                                                    {
+                                                        ksp = "D531同胞1:" + Convert.ToString(item1[3]);
+                                                    }
+                                                    else if (kinshipnum == "D532")
+                                                    {
+                                                        ksp = "D532同胞2:" + Convert.ToString(item1[3]);
+                                                    }
+                                                    else if (kinshipnum == "D533")
+                                                    {
+                                                        ksp = "D533同胞3:" + Convert.ToString(item1[3]);
+                                                    }
+                                                    else if (kinshipnum == "D534")
+                                                    {
+                                                        ksp = "D534同胞4:" + Convert.ToString(item1[3]);
+                                                    }
+                                                    else if (kinshipnum == "D541")
+                                                    {
+                                                        ksp = "D541子女1";
+                                                    }
+                                                    else if (kinshipnum == "D542")
+                                                    {
+                                                        ksp = "D542子女2";
+                                                    }
+                                                    else if (kinshipnum == "D543")
+                                                    {
+                                                        ksp = "D543子女3";
+                                                    }
+                                                    else if (kinshipnum == "D544")
+                                                    {
+                                                        ksp = "D544子女4";
+                                                    }
+                                                }
+                                                @ksp
+                                            </td>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @{
+
+                                                    if (sexcmn == 0)
+                                                    {
+                                                        sc = "男";
+                                                    }
+                                                    else
+                                                    {
+                                                        sc = "女";
+                                                    }
+                                                }
+                                                @sc
+                                            </td>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @{
+
+                                                    if (Gastrolcancer == 0)
+                                                    {
+                                                        gal = "无";
+                                                    }
+                                                    else
+                                                    {
+                                                        gal = "有";
+                                                    }
+                                                }
+                                                @gal
+                                            </td>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @item1[6]
+                                            </td>
+                                        </tr>
+                                    }
+
+
+
+                                }
+
+                                <tr>
+                                    <td style="border:#ffffff 0px solid;">
+                                        <label>二级亲属</label>
+                                    </td>
+                                    <td style="border:#ffffff 0px solid;"></td>
+                                    <td style="border:#ffffff 0px solid;"></td>
+                                    <td style="border:#ffffff 0px solid;"></td>
+                                </tr>
+                                @foreach (DataRow item1 in Model.dt5.Rows)
+                                {
+
+                                    string kinshipnum = Convert.ToString(item1[2]);
+                                    string ksp = "";
+                                    int sexcmn = Convert.ToInt32(item1[4]);
+                                    string sc = "";
+                                    int Gastrolcancer = Convert.ToInt32(item1[5]);
+                                    string gal = "";
+
+                                    if (kinshipnum == "D551" || kinshipnum == "D552" || kinshipnum == "D553")
+                                    {
+
+                                        <tr>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @{
+                                                    if (kinshipnum == "D551")
+                                                    {
+                                                        ksp = "D551二级亲属1:" + Convert.ToString(item1[3]);
+                                                    }
+                                                    else if (kinshipnum == "D552")
+                                                    {
+                                                        ksp = "D552二级亲属2:" + Convert.ToString(item1[3]);
+                                                    }
+                                                    else if (kinshipnum == "D553")
+                                                    {
+                                                        ksp = "D553二级亲属3:" + Convert.ToString(item1[3]);
+                                                    }
+
+                                                }
+                                                @ksp
+                                            </td>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @{
+
+                                                    if (sexcmn == 0)
+                                                    {
+                                                        sc = "男";
+                                                    }
+                                                    else
+                                                    {
+                                                        sc = "女";
+                                                    }
+                                                }
+                                                @sc
+                                            </td>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @{
+
+                                                    if (Gastrolcancer == 0)
+                                                    {
+                                                        gal = "无";
+                                                    }
+                                                    else
+                                                    {
+                                                        gal = "有";
+                                                    }
+                                                }
+                                                @gal
+                                            </td>
+                                            <td style="border:#ffffff 0px solid;">
+                                                @item1[6]
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                }
+
+                            </table>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+
+        <hr style="border:#000000 1px solid;" />
+        <div>
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                <span> E疾病史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                <span> E疾病史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a style="font-size:18px" href="/Surveys/medicalhistoryEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+               
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                <div class="col-md-6" style="padding-left:0">
+                    E1反复出现腹痛、纳差、饱胀、烧心或吞咽不畅等消化不良症状:
+                </div>
+                <div class="col-md-6">
+                    <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </div>
+                @foreach (DataRow item in Model.dt7.Rows)
+                {
+                    int symptomstype = Convert.ToInt32(item[2]);
+                    string syte = "";
+                    int symptomscore = Convert.ToInt32(item[3]);
+                    string syto = "";
+                    if (symptomstype == 1 || symptomstype == 2 || symptomstype == 3)
+                    {
+                        <div class="col-md-6">
+                            @{
+                                if (symptomstype == 1)
+                                {
+                                    syte = "疼痛";
+                                    if (symptomscore == 1)
+                                    {
+                                        syto = "无疼痛感觉";
+                                    }
+                                    else if (symptomscore == 2)
+                                    {
+                                        syto = "轻度疼痛，不影响日常生活和工作，不需服药";
+                                    }
+                                    else if (symptomscore == 3)
+                                    {
+                                        syto = "疼痛明显，部分影响日常生活和工作，或需服药";
+                                    }
+                                    else if (symptomscore == 4)
+                                    {
+                                        syto = "疼痛严重，必须全休，服药或进食无效";
+                                    }
+                                }
+                                else if (symptomstype == 2)
+                                {
+                                    syte = "烧灼感";
+                                    if (symptomscore == 1)
+                                    {
+                                        syto = "无烧灼感";
+                                    }
+                                    else if (symptomscore == 2)
+                                    {
+                                        syto = "偶有不适";
+                                    }
+                                    else if (symptomscore == 3)
+                                    {
+                                        syto = "频繁不适，持续时间长";
+                                    }
+                                    else if (symptomscore == 4)
+                                    {
+                                        syto = "持续不适，用抗酸药只能短暂缓解";
+                                    }
+                                }
+                                else if (symptomstype == 3)
+                                {
+                                    syte = "反酸";
+                                    if (symptomscore == 1)
+                                    {
+                                        syto = "无反酸";
+                                    }
+                                    else if (symptomscore == 2)
+                                    {
+                                        syto = "偶有反酸";
+                                    }
+                                    else if (symptomscore == 3)
+                                    {
+                                        syto = "一天1到2次反酸";
+                                    }
+                                    else if (symptomscore == 4)
+                                    {
+                                        syto = "一天数次反酸";
+                                    }
+                                }
+
+
+                            }
+
+                            @syte &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            症状程度:
+                            @syto
+                        </div>
+                    }
+
+                }
+                @foreach (DataRow item in Model.dt7.Rows)
+                {
+                    int symptomstype = Convert.ToInt32(item[2]);
+                    string syte = "";
+                    int symptomscore = Convert.ToInt32(item[3]);
+                    string syto = "";
+                    if (symptomstype == 4 || symptomstype == 5 || symptomstype == 6)
+                    {
+                        <div class="col-md-6">
+                            @{
+                                if (symptomstype == 4)
+                                {
+                                    syte = "恶心呕吐";
+                                    if (symptomscore == 1)
+                                    {
+                                        syto = "不恶心";
+                                    }
+                                    else if (symptomscore == 2)
+                                    {
+                                        syto = "偶有且短暂";
+                                    }
+                                    else if (symptomscore == 3)
+                                    {
+                                        syto = "频繁恶心，有呕吐";
+                                    }
+                                    else if (symptomscore == 4)
+                                    {
+                                        syto = "持续恶心，频繁呕吐";
+                                    }
+                                }
+                                else if (symptomstype == 5)
+                                {
+                                    syte = "嗳气";
+                                    if (symptomscore == 1)
+                                    {
+                                        syto = "无嗳气";
+                                    }
+                                    else if (symptomscore == 2)
+                                    {
+                                        syto = "偶有嗳气";
+                                    }
+                                    else if (symptomscore == 3)
+                                    {
+                                        syto = "频繁嗳气";
+                                    }
+                                    else if (symptomscore == 4)
+                                    {
+                                        syto = "持续嗳气，影响活动";
+                                    }
+                                }
+                                else if (symptomstype == 6)
+                                {
+                                    syte = "腹胀";
+                                    if (symptomscore == 1)
+                                    {
+                                        syto = "无腹胀";
+                                    }
+                                    else if (symptomscore == 2)
+                                    {
+                                        syto = "偶有不适";
+                                    }
+                                    else if (symptomscore == 3)
+                                    {
+                                        syto = "腹胀明显，影响活动";
+                                    }
+                                    else if (symptomscore == 4)
+                                    {
+                                        syto = "腹胀严重，影响活动";
+                                    }
+                                }
+
+
+                            }
+
+                            @syte &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            症状程度:
+                            @syto
+                        </div>
+                    }
+
+                }
+
+                @foreach (DataRow item in Model.dt6.Rows)
+                {
+                    <div>
+                        E2本次之前，您接受过内镜检查的次数是:
+                        @item[2] 次
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接受过HP检测次数是:
+                        @item[3] 次
+                    </div>
+                    <div>
+                        E3慢性病:
+                    </div>
+                    <div class="col-md-6">
+                        @{
+                            int hypert = Convert.ToInt32(item[4]);
+                            DateTime dt1 = Convert.ToDateTime(item[5]);
+                            string time1 = dt1.ToString("yyyy-MM-dd");
+                            if (hypert == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E31高血压:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time1
+                                </div>
+                            }
+                        }
+                        @{
+                            int Hyperlipidemia = Convert.ToInt32(item[6]);
+                            DateTime dt2 = Convert.ToDateTime(item[7]);
+                            string time2 = dt2.ToString("yyyy-MM-dd");
+                            if (Hyperlipidemia == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E32高血脂:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time2
+                                </div>
+                            }
+                        }
+
+                        @{
+                            int codisease = Convert.ToInt32(item[8]);
+                            DateTime dt3 = Convert.ToDateTime(item[9]);
+                            string time3 = dt3.ToString("yyyy-MM-dd");
+                            if (codisease == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E33冠心病:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time3
+                                </div>
+                            }
+                        }
+
+                        @{
+                            int apoplexy = Convert.ToInt32(item[10]);
+                            DateTime dt4 = Convert.ToDateTime(item[11]);
+                            string time4 = dt4.ToString("yyyy-MM-dd");
+                            if (apoplexy == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E34脑卒中:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time4
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        @{
+                            int Diabetes = Convert.ToInt32(item[12]);
+                            DateTime dt5 = Convert.ToDateTime(item[13]);
+                            string time5 = dt5.ToString("yyyy-MM-dd");
+                            if (Diabetes == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E35糖尿病:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time5
+                                </div>
+                            }
+                        }
+                        @{
+                            int chronichepatitis = Convert.ToInt32(item[14]);
+                            DateTime dt6 = Convert.ToDateTime(item[15]);
+                            string time6 = dt6.ToString("yyyy-MM-dd");
+                            if (chronichepatitis == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E36慢性肝炎(乙肝/丙肝):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time6
+                                </div>
+                            }
+                        }
+                        @{
+                            int Pulmonarytuberculosis = Convert.ToInt32(item[16]);
+                            DateTime dt7 = Convert.ToDateTime(item[17]);
+                            string time7 = dt7.ToString("yyyy-MM-dd");
+                            if (Pulmonarytuberculosis == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E37肺结核:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time7
+                                </div>
+                            }
+                        }
+                        @{
+                            int other = Convert.ToInt32(item[18]);
+                            DateTime dt8 = Convert.ToDateTime(item[19]);
+                            string time8 = dt8.ToString("yyyy-MM-dd");
+                            if (other == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    E38其他:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    时间:
+                                    @time8
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+
+
+        <hr style="border:#000000 1px solid;" />
+        <div>
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                <span> F近期用药情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                <span> F近期用药情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a style="font-size:18px" href="/Surveys/recentdrugsituationEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+               
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                @foreach (DataRow item in Model.dt8.Rows)
+                {
+                    <div class="col-md-6">
+                        <div>
+                            F1近3个月有无服用阿司匹林:
+                            @{
+                                int Aspirin = Convert.ToInt32(item[2]);
+                                string asp = "";
+                                if (Aspirin == 0)
+                                {
+                                    asp = "否";
+                                }
+                                else
+                                {
+                                    asp = "是";
+                                }
+                            }
+                            @asp
+                        </div>
+                        <div>
+                            F2近3个月阿司匹林服用频率:
+                            @{
+                                int AspirinCR = Convert.ToInt32(item[3]);
+                                string aspcr = "";
+                                if (AspirinCR == 1)
+                                {
+                                    aspcr = "2-3次/月";
+                                }
+                                else if (AspirinCR == 2)
+                                {
+                                    aspcr = "1-2次/周";
+                                }
+                                else if (AspirinCR == 3)
+                                {
+                                    aspcr = "3-6次/周";
+                                }
+                                else if (AspirinCR == 4)
+                                {
+                                    aspcr = ">=7次/周";
+                                }
+                            }
+                            @aspcr
+                        </div>
+                        <div>
+                            F3近3个月有无服用其他非甾体抗炎药:
+                            @{
+                                int NonSteroidalAntiInflammatory = Convert.ToInt32(item[4]);
+                                string nsai = "";
+                                if (NonSteroidalAntiInflammatory == 0)
+                                {
+                                    nsai = "否";
+                                }
+                                else
+                                {
+                                    nsai = "是";
+                                }
+                            }
+                            @nsai
+                        </div>
+                        <div>
+                            F4近3个月有无服用糖皮质激素类的药物:
+                            @{
+                                int Glucocorticoids = Convert.ToInt32(item[5]);
+                                string glu = "";
+                                if (Glucocorticoids == 0)
+                                {
+                                    glu = "否";
+                                }
+                                else
+                                {
+                                    glu = "是";
+                                }
+                            }
+                            @glu
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            F5近3个月糖皮质激素类服用频率:
+                            @{
+                                int GlucocorticoidsCR = Convert.ToInt32(item[6]);
+                                string glucocr = "";
+                                if (GlucocorticoidsCR == 1)
+                                {
+                                    glucocr = "2-3次/月";
+                                }
+                                else if (GlucocorticoidsCR == 2)
+                                {
+                                    glucocr = "1-2次/周";
+                                }
+                                else if (GlucocorticoidsCR == 3)
+                                {
+                                    glucocr = "3-6次/周";
+                                }
+                                else if (GlucocorticoidsCR == 4)
+                                {
+                                    glucocr = ">=7次/周";
+                                }
+                            }
+                            @glucocr
+                        </div>
+                        <div>
+                            F6近1个月是否服用抗生素类药物:
+                            @{
+                                int Antibiotics = Convert.ToInt32(item[7]);
+                                string anti = "";
+                                if (Antibiotics == 0)
+                                {
+                                    anti = "否";
+                                }
+                                else
+                                {
+                                    anti = "是";
+                                }
+                            }
+                            @anti
+                        </div>
+                        <div>
+                            F7近1个月是否服用铋剂类药物:
+                            @{
+                                int Tincture = Convert.ToInt32(item[8]);
+                                string Tin = "";
+                                if (Tincture == 0)
+                                {
+                                    Tin = "否";
+                                }
+                                else
+                                {
+                                    Tin = "是";
+                                }
+                            }
+                            @Tin
+                        </div>
+                        <div>
+                            F8近1个月有无服用质子泵抑制剂药(PPI):
+                            @{
+                                int PPI = Convert.ToInt32(item[9]);
+                                string p = "";
+                                if (PPI == 0)
+                                {
+                                    p = "否";
+                                }
+                                else
+                                {
+                                    p = "是";
+                                }
+                            }
+                            @p
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <hr style="border:#000000 1px solid;" />
+        <div>
+            <h3 style="margin-top:0">
+                @if (webmodify == "0")
+                {
+                <span>  G调查员后记&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+                else if (webmodify == "1")
+                {
+                <span> G调查员后记&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a style="font-size:18px" href="/Surveys/surveyEdit?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name">编辑</a>
+                }
+               
+            </h3>
+            <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+                @foreach (DataRow item in Model.dt9.Rows)
+                {
+                    <div class="col-md-6">
+                        <div>
+                            G1调查对象合作情况:
+                            @{
+                                int surveyobject = Convert.ToInt32(item[2]);
+                                string sur = "";
+                                if (surveyobject == 1)
+                                {
+                                    sur = "很好";
+                                }
+                                else if (surveyobject == 2)
+                                {
+                                    sur = "好";
+                                }
+                                else if (surveyobject == 3)
+                                {
+                                    sur = "一般";
+                                }
+                                else if (surveyobject == 4)
+                                {
+                                    sur = "差";
+                                }
+                            }
+                            @sur
+                        </div>
+                        <div>
+                            G2调查对象回答问题是否可信:
+                            @{
+                                int surveybelieve = Convert.ToInt32(item[3]);
+                                string sub = "";
+                                if (surveybelieve == 1)
+                                {
+                                    sub = "可信";
+                                }
+                                else if (surveybelieve == 2)
+                                {
+                                    sub = "尚可信";
+                                }
+                                else if (surveybelieve == 3)
+                                {
+                                    sub = "似不可信";
+                                }
+
+                            }
+                            @sub
+                        </div>
+                        <div>
+                            G3调查结束时间:
+                            @{
+                                DateTime surveyend = Convert.ToDateTime(item[4]);
+                                string sennd = surveyend.ToString("yyyy-MM-dd");
+                            }
+                            @sennd
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            G4本调查共用去多少时间:
+                            @item[5] 分钟
+                        </div>
+                        <div>
+                            G5整个调查材料质量评价:
+                            @{
+                                int surveyevaluate = Convert.ToInt32(item[6]);
+                                string suva = "";
+                                if (surveyevaluate == 1)
+                                {
+                                    suva = "较高";
+                                }
+                                else if (surveyevaluate == 2)
+                                {
+                                    suva = "一般";
+                                }
+                                else if (surveyevaluate == 3)
+                                {
+                                    suva = "不太满意";
+                                }
+                            }
+                            @suva
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+        <div style="font-size:18px;padding:3px">
+            <p>
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </p>
+        </div>
+    }
+    else
+    {
+
+        if (webinsert == "0")
+        {
+            <h4>暂时没有调查结果</h4>
+        }
+        else if (webinsert == "1")
+        {
+            <h4>暂时没有调查结果请新增</h4>
+            <p>
+                @*@Html.ActionLink("新建", "Create" )*@
+                <button type="button" class="btn btn-primary btn-lg" style="font-size: 16px" onclick="window.location.href='/Surveys/Create/?id=@Model.Id&&num=@Model.num&&phone=@Model.phone&&name=@Model.name'">
+                    <span class="glyphicon glyphicon-plus"></span>新建调查结果
+                </button>
+                @*<span class="glyphicon glyphicon-plus"></span>
+                    <a href="/UserMangers/Create" style="font-size:22px">新建病人信息</a>*@
+            </p>
+        }
+
+        <p style="font-size:18px;padding:3px">
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </p>
+    }
+
+}
+
+
+
+

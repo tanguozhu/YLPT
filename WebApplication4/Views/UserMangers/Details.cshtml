@@ -1,0 +1,396 @@
+﻿@model WebApplication4.Models.UserManger
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+
+@using System.Data;
+@using System;
+<h2>查看</h2>
+
+<div style="overflow-y:auto; overflow-x:auto;">
+
+    <hr style="border:#000000 1px solid;" />
+    <h3>病人基本情况</h3>
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.pnickname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.pnickname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identinum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identinum)
+        </dd>
+
+        <dt>
+            筛查号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scannum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @if (Model.Image == "")
+            {
+                <text>暂时没有头像</text>
+            }
+            else
+            {
+                <img src="@Html.DisplayFor(model => model.Image)" width="100" height="100" id="image" class="pic">
+            }
+        </dd>
+
+    </dl>
+</div>
+
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+    <div id="innerdiv" style="position:absolute;">
+        <img id="bigimg" style="border:5px solid #fff;" src="" />
+    </div>
+</div>
+<div style="font-size:18px;padding:3px">
+    <p>
+        @if (webmodify == "0")
+        {
+            @Html.ActionLink("返回病人信息列表", "Index");
+        }
+        else if (webmodify == "1")
+        {
+            @Html.ActionLink("编辑", "Edit", new { id = Model.Id });
+            <span>|</span>
+            @Html.ActionLink("返回病人信息列表", "Index");
+        }
+
+    </p>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".pic").on("click", function () {
+            var _this = $(this);//将当前的pimg元素作为_this传入函数
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+        });
+    });
+    function imgShow(outerdiv, innerdiv, bigimg, _this) {
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+        $("<img/>").attr("src", src).on("load", function () {
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+            if (realHeight > windowH * scale) {//判断图片高度
+                imgHeight = windowH * scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight / realHeight * realWidth;//等比例缩放宽度
+                if (imgWidth > windowW * scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW * scale;//再对宽度进行缩放
+                }
+            } else if (realWidth > windowW * scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW * scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth / realWidth * realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width", imgWidth);//以最终的宽度对图片缩放
+            var w = (windowW - imgWidth) / 2;//计算图片与窗口左边距
+            var h = (windowH - imgHeight) / 2;//计算图片与窗口上边距
+            $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+        });
+        $(outerdiv).on("click", function () {//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }
+</script>
+@*<div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+        @if (Model.isverifyId == 0)
+        {
+            <h3 style="margin-top:0">病史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a style="font-size:18px" href="/Diseases/Create?id=@Model.Id&&name=@Model.Name&&phone=@Model.Phone&&refid=@Model.Id">新增</a></h3>
+        }
+        else
+        {
+            <h3 style="margin-top:0">病史</h3>
+        }
+
+        <div style="overflow-y:auto; overflow-x:auto;">
+            @foreach (DataRow item in Model.Disease.Rows)
+            {
+                int disease = Convert.ToInt32(item[2]);
+                int cardiovascular = Convert.ToInt32(item[3]);
+                int breathing = Convert.ToInt32(item[4]);
+                int URM = Convert.ToInt32(item[5]);
+                int SportsOthers = Convert.ToInt32(item[6]);
+                int gastric = Convert.ToInt32(item[8]);
+                int allergy = Convert.ToInt32(item[10]);
+                int Hptherapy = Convert.ToInt32(item[12]);
+                if (disease == 0)
+                {
+                    <label>疾病史:</label>
+                    <text> 无</text>
+                }
+                else
+                {
+                    <label>疾病史:</label>
+                    <text> 有</text>
+                    <div>
+                        <label>病种:</label>
+                        <div>
+                            <label>心血管:</label>
+                            @if (cardiovascular == 0)
+                            {
+                                @:无
+                            }
+                            else
+                            {
+                                @:有
+                            }
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>呼吸:</label>
+                            @if (breathing == 0)
+                            {
+                                @:无
+                            }
+                            else
+                            {
+                                @:有
+                            }
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>泌尿、生殖、代谢:</label>
+                            @if (URM == 0)
+                            {
+                                @:无
+                            }
+                            else
+                            {
+                                @:有
+                            }
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>运动及其它:</label>
+                            @if (SportsOthers == 0)
+                            {
+                                @:无
+                            }
+                            else
+                            {
+                                @:有
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <label>具体:</label>
+                    </div>
+                    <div style="overflow-y:auto; width:30%">
+                        @item[7]
+                    </div>
+                }
+                <hr />
+                if (gastric == 0)
+                {
+                    <div>
+                        <label>消化系统肿瘤家族史:</label>
+                        <text>无</text>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <label>消化系统肿瘤家族史:</label>
+                        <text> 有</text>
+                    </div>
+                    <div>
+                        <label>具体:</label>
+                    </div>
+                    <div style="overflow-y:auto; width:30%">
+                        @item[9]
+                    </div>
+                }
+                <hr />
+                if (allergy == 0)
+                {
+                    <div>
+                        <label>药物过敏史:</label>
+                        <text>无</text>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <label>药物过敏史:</label>
+                        <text>有</text>
+                    </div>
+                    <div>
+                        <label>具体:</label>
+                    </div>
+                    <div style="overflow-y:auto; width:30%">
+                        @item[11]
+                    </div>
+                }
+                <hr />
+
+
+                <div>
+                    @{
+                        string diseaseIds = item[0].ToString();
+                        int diseaseIdi = Convert.ToInt32(diseaseIds);
+                    }
+                    <a href="/Diseases/Edit?id=@diseaseIdi&&refId=@Model.Id">编辑</a>
+                </div>
+            }
+        </div>
+        <hr style="border:#000000 1px solid;" />
+    </div>*@
+
+@*<div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+        <h3 style="margin-top:0">Hp治疗既往根除史&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a style="font-size:18px" href="/Previouseradications/Create?id=@Model.Id&&phone=@Model.Phone&&refid=@Model.Id">新增</a></h3>
+        <div>
+            <table class="table">
+                <tr>
+                    <th style="border-top:0px solid #ff4136;">
+                        次数
+                    </th>
+                    <th style="border-top:0px solid #ff4136;">
+                        时间
+                    </th>
+                    <th style="border-top:0px solid #ff4136;">
+                        根除方案
+                    </th>
+                    <th style="border-top:0px solid #ff4136;">
+                        疗程
+                    </th>
+                    <th style="border-top:0px solid #ff4136;">
+                        根除结果
+                    </th>
+                </tr>
+                @foreach (DataRow item1 in Model.Previouseradication.Rows)
+                {
+                <tr>
+                    <td style="border:#ffffff 0px solid;">
+                        第 @item1[2] 次
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+
+                        @{
+                            DateTime a = Convert.ToDateTime(item1[3]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+                        @b
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            string gettime = item1[4].ToString();
+                            string settime = "";
+                            if (gettime.Length>=10)
+                            {
+                                settime= gettime.Substring(0, 10)+"...";
+                            }
+                            else
+                            {
+                                settime = gettime;
+                            }
+
+                        }
+                        @settime
+
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            string liaochengget = item1[5].ToString();
+                            string liaochengset = "";
+                            if (liaochengget.Length >= 10)
+                            {
+                                liaochengset = liaochengget.Substring(0, 10)+"...";
+                            }
+                            else
+                            {
+                                liaochengset = liaochengget;
+                            }
+
+                        }
+                        @liaochengset
+
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            string getresult = item1[6].ToString();
+                            string setresult = "";
+                            if (getresult.Length >= 10)
+                            {
+                                setresult = getresult.Substring(0, 10)+"...";
+                            }
+                            else
+                            {
+                                setresult = getresult;
+                            }
+
+                        }
+                        @setresult
+
+                    </td>
+
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            string c = item1[0].ToString();
+                            int d = Convert.ToInt32(c);
+                        }
+                        <a href="/Previouseradications/Edit?id=@d&&RfId=@Model.Id">编辑</a> |
+                        <a href="/Previouseradications/Details?id=@d">查看</a> |
+                        <a href="/Previouseradications/Delete?id=@d">删除</a>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+        <hr style="border:#000000 1px solid;" />
+    </div>*@
+
+
+

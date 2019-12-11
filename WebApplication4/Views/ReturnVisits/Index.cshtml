@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebApplication4.Models.ReturnVisit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>今日复查</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+   
+}
+
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+        <th>
+            姓名
+        </th>
+        <th>
+            检查号
+        </th>
+        <th>
+            身份证号
+        </th>
+        <th>
+            就诊
+        </th>
+        <th>
+            就诊时间
+        </th>
+        <th>
+            复查内容
+        </th>
+        <th>
+            复查时间
+        </th>
+
+        <th>
+            
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.scannum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identinum)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.VisitId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @{
+                string getresult = item.returnvisitcontent.ToString();
+                string setresult = "";
+                if (getresult.Length >= 10)
+                {
+                    setresult = getresult.Substring(0, 10) + "...";
+                }
+                else
+                {
+                    setresult = getresult;
+                }
+
+            }
+            @setresult
+
+
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.returnvisitdate)
+        </td>
+        <td>
+            @Html.ActionLink("查看详情", "Details", new { id = item.Id }) 
+        </td>
+    </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

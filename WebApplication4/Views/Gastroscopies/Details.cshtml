@@ -1,0 +1,60 @@
+﻿@model WebApplication4.Models.Gastroscopy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Gastroscopy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Checktime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checktime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Checknum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checknum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conclusion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conclusion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pathologynum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pathologynum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pathologyconclusion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pathologyconclusion)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

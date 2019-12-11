@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebApplication4.Models.Pathology>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pathologynum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rawid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.part)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.chronic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.acute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.atrophy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intestinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dysplasia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lymphoid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pitepithelial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mucosal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pathologynum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rawid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.part)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.chronic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.acute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.atrophy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intestinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dysplasia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lymphoid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pitepithelial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mucosal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,186 @@
+﻿@model WebApplication4.Models.Treatment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Treatment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.scannum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scannum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.visit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.visit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.condition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.condition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isInfected)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isInfected)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isEradicated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isEradicated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Omeprazole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Omeprazole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rabeprazole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rabeprazole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Esomeprazole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Esomeprazole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pantoprazole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pantoprazole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherPPI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherPPI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amoxicillin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amoxicillin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tetracycline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tetracycline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Levofloxacin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Levofloxacin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clarithromycin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clarithromycin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Furazolidone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Furazolidone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Metronidazole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Metronidazole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.treatTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.treatTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isOnTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isOnTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

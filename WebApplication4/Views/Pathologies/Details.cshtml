@@ -1,0 +1,106 @@
+﻿@model WebApplication4.Models.Pathology
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pathology</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pathologynum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pathologynum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rawid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rawid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.part)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.part)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chronic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chronic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.atrophy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.atrophy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intestinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intestinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dysplasia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dysplasia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lymphoid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lymphoid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pitepithelial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pitepithelial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mucosal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mucosal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

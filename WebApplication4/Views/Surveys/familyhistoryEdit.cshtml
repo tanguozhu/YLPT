@@ -1,0 +1,1156 @@
+﻿@model WebApplication4.Models.Surveys
+
+@{
+    ViewBag.Title = "familyhistoryEdit";
+}
+
+@using System.Data;
+@using System;
+<h2>编辑</h2>
+<h4>D 家族史</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.num)
+    @Html.HiddenFor(model => model.phone)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.checkid)
+    @Html.HiddenFor(model => model.dt1)
+    @Html.HiddenFor(model => model.dt2)
+    @Html.HiddenFor(model => model.dt3)
+    @Html.HiddenFor(model => model.dt4)
+    @Html.HiddenFor(model => model.dt5)
+    @Html.HiddenFor(model => model.dt6)
+    @Html.HiddenFor(model => model.dt7)
+    @Html.HiddenFor(model => model.dt8)
+    @Html.HiddenFor(model => model.dt9)
+
+    <div>
+        <hr style="border:#000000 1px solid;" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div style="overflow-y:auto; overflow-x:auto;">
+            @foreach (DataRow item in Model.dt4.Rows)
+            {
+
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-10" style="padding-top:1px;padding-left:0"> 您的家庭成员，请填写下表:(说明:不包括领养的兄弟姐妹、领养的子女以及同父异母或同母异父的兄弟姐妹。)</label>
+                    <div class="col-md-2">
+                        &nbsp;
+                    </div>
+                </div>
+
+                int numofsons = Convert.ToInt32(item[2]);
+
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">D1&nbsp;&nbsp;&nbsp;&nbsp;一共有几个儿子(个):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="numofsons" name="numofsons" type="text" value="@numofsons">
+                    </div>
+                </div>
+
+                int numofdaughters = Convert.ToInt32(item[3]);
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">D2&nbsp;&nbsp;&nbsp;&nbsp;一共有几个女儿(个):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="numofdaughters" name="numofdaughters" type="text" value="@numofdaughters">
+                    </div>
+                </div>
+
+                int numofbros = Convert.ToInt32(item[4]);
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">D3&nbsp;&nbsp;&nbsp;&nbsp;一共有几个兄弟(不包括本人)(个):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="numofbros" name="numofbros" type="text" value="@numofbros">
+                    </div>
+                </div>
+
+                int numofsisters = Convert.ToInt32(item[5]);
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">D4&nbsp;&nbsp;&nbsp;&nbsp;一共有几个姐妹(不包括本人)(个):</label>
+                    <div class="col-md-8">
+                        <input class="form-control text-box single-line" data-val="true" id="numofsisters" name="numofsisters" type="text" value="@numofsisters">
+                    </div>
+                </div>
+
+
+                int hasTumor = Convert.ToInt32(item[6]);
+
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-7" style="padding-top:1px;padding-left:0">D5&nbsp;&nbsp;&nbsp;&nbsp;亲属中，有没有人曾经被医生诊断过患有消化道肿瘤或者其它肿瘤:</label>
+                    <div class="col-md-5">
+
+                        <label>@Html.RadioButtonFor(model => hasTumor, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => hasTumor, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+
+                    </div>
+                </div>
+
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-10" style="padding-top:1px;padding-left:0"> 若有，请为各患病亲属填入疾病名称。注：其它肿瘤填肿瘤名称(无肿瘤填“无”，不清楚或不详填“不详”)</label>
+                    <div class="col-md-2">
+                        &nbsp;
+                    </div>
+                </div>
+            }
+
+            <table class="table" style="font-size:18px;padding:3px">
+                <tr>
+                    <th>
+                        亲属关系
+                    </th>
+
+                    <th>
+                        性别
+                    </th>
+                    <th>
+                        消化道肿瘤
+                    </th>
+                    <th>
+                        其他肿瘤
+                    </th>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        范例:某亲属
+                    </td>
+
+                    <td>
+                        女
+                    </td>
+                    <td>
+                        有
+                    </td>
+                    <td>
+                        无
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>一级亲属</label>
+                    </td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                @{
+                    string kinshipnum1 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum1 = Convert.ToString(item1[2]);
+                    if (kinshipnum1 == "D51")
+                    {
+                        <tr>
+                            <td>
+                                D51父亲
+                            </td>
+
+                            <td>
+                                男
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer1 = Convert.ToInt32(item1[5]);
+                                    string othercancer1 = Convert.ToString(item1[6]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer1, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer1, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer1" name="othercancer1" type="text" value="@othercancer1">
+                            </td>
+
+                        </tr>
+                    }
+                    break;
+                }
+                @{
+                    if (kinshipnum1 != "D51")
+                    {
+                        <tr>
+                            <td>
+                                D51父亲
+                            </td>
+
+                            <td>
+                                男
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer1 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer1, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer1, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer1" name="othercancer1" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+                @{
+                    string kinshipnum2 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum2 = Convert.ToString(item1[2]);
+                    if (kinshipnum2 == "D52")
+                    {
+                        <tr>
+                            <td>
+                                D52母亲
+                            </td>
+
+                            <td>
+                                女
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer2 = Convert.ToInt32(item1[5]);
+                                    string othercancer2 = Convert.ToString(item1[6]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer2, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer2, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer2" name="othercancer2" type="text" value="@othercancer2">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum2 != "D52")
+                    {
+                        <tr>
+                            <td>
+                                D52母亲
+                            </td>
+
+                            <td>
+                                女
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer2 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer2, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer2, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer2" name="othercancer2" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum3 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum3 = Convert.ToString(item1[2]);
+                    if (kinshipnum3 == "D531")
+                    {
+                        <tr>
+                            @{
+                                string kinship3 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D531同胞1:<input class="form-control text-box single-line" data-val="true" id="kinship3" name="kinship3" type="text" value="@kinship3" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex3 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex3, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex3, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer3 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer3, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer3, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer3 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer3" name="othercancer3" type="text" value="@othercancer3">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum3 != "D531")
+                    {
+                        <tr>
+                            <td>
+
+                                D531同胞1:<input class="form-control text-box single-line" data-val="true" id="kinship3" name="kinship3" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex3 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex3, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex3, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer3 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer3, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer3, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer3" name="othercancer3" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum4 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum4 = Convert.ToString(item1[2]);
+                    if (kinshipnum4 == "D532")
+                    {
+                        <tr>
+                            @{
+                                string kinship4 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D532同胞2:<input class="form-control text-box single-line" data-val="true" id="kinship4" name="kinship4" type="text" value="@kinship4" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex4 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex4, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex4, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer4 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer4, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer4, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer4 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer4" name="othercancer4" type="text" value="@othercancer4">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum4 != "D532")
+                    {
+                        <tr>
+                            <td>
+                                D532同胞2:
+                                <input class="form-control text-box single-line" data-val="true" id="kinship4" name="kinship4" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex4 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex4, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex4, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer4 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer4, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer4, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer4" name="othercancer4" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum5 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum5 = Convert.ToString(item1[2]);
+                    if (kinshipnum5 == "D533")
+                    {
+                        <tr>
+                            @{
+                                string kinship5 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D533同胞3:<input class="form-control text-box single-line" data-val="true" id="kinship5" name="kinship5" type="text" value="@kinship5" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex5 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex5, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex5, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer5 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer5, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer5, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer5 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer5" name="othercancer5" type="text" value="@othercancer5">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum5 != "D533")
+                    {
+                        <tr>
+                            <td>
+                                D533同胞3:
+                                <input class="form-control text-box single-line" data-val="true" id="kinship5" name="kinship5" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex5 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex5, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex5, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer5 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer5, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer5, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer5" name="othercancer5" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum6 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum6 = Convert.ToString(item1[2]);
+                    if (kinshipnum6 == "D534")
+                    {
+                        <tr>
+                            @{
+                                string kinship6 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D534同胞4:<input class="form-control text-box single-line" data-val="true" id="kinship6" name="kinship6" type="text" value="@kinship6" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex6 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex6, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex6, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer6 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer6, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer6, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer6 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer6" name="othercancer6" type="text" value="@othercancer6">
+                            </td>
+
+                        </tr>
+                    }
+
+
+                }
+                @{
+                    if (kinshipnum6 != "D534")
+                    {
+                        <tr>
+                            <td>
+                                D534同胞4:
+                                <input class="form-control text-box single-line" data-val="true" id="kinship6" name="kinship6" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex6 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex6, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex6, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer6 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer6, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer6, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer6" name="othercancer6" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum7 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum7 = Convert.ToString(item1[2]);
+                    if (kinshipnum7 == "D541")
+                    {
+                        <tr>
+                            <td>
+
+                                D541子女1:
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex7 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex7, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex7, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer7 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer7, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer7, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer7 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer7" name="othercancer7" type="text" value="@othercancer7">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum7 != "D541")
+                    {
+                        <tr>
+                            <td>
+                                D541子女1:
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex7 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex7, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex7, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer7 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer7, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer7, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer7" name="othercancer7" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum8 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum8 = Convert.ToString(item1[2]);
+                    if (kinshipnum8 == "D542")
+                    {
+                        <tr>
+                            <td>
+
+                                D542子女2:
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex8 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex8, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex8, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer8 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer8, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer8, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer8 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer8" name="othercancer8" type="text" value="@othercancer8">
+                            </td>
+
+                        </tr>
+                    }
+
+
+                }
+                @{
+                    if (kinshipnum8 != "D542")
+                    {
+                        <tr>
+                            <td>
+                                D542子女2:
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex8 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex8, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex8, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer8 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer8, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer8, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer8" name="othercancer8" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum9 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum9 = Convert.ToString(item1[2]);
+                    if (kinshipnum9 == "D543")
+                    {
+                        <tr>
+                            <td>
+
+                                D543子女3:
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex9 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex9, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex9, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer9 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer9, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer9, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer9 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer9" name="othercancer9" type="text" value="@othercancer9">
+                            </td>
+
+                        </tr>
+                    }
+
+
+                }
+                @{
+                    if (kinshipnum9 != "D543")
+                    {
+                        <tr>
+                            <td>
+                                D543子女3:
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex9 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex9, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex9, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer9 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer9, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer9, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer9" name="othercancer9" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+
+                @{
+                    string kinshipnum10 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum10 = Convert.ToString(item1[2]);
+                    if (kinshipnum10 == "D544")
+                    {
+                        <tr>
+                            <td>
+
+                                D544子女4:
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex10 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex10, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex10, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer10 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer10, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer10, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer10 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer10" name="othercancer10" type="text" value="@othercancer10">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum10 != "D544")
+                    {
+                        <tr>
+                            <td>
+                                D544子女4:
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex10 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex10, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex10, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer10 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer10, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer10, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer10" name="othercancer10" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td>
+                        <label>二级亲属</label>
+                    </td>
+
+                    <td>
+
+                    <td></td>
+                    <td></td>
+
+                </tr>
+
+                @{
+                    string kinshipnum11 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum11 = Convert.ToString(item1[2]);
+                    if (kinshipnum11 == "D551")
+                    {
+                        <tr>
+                            @{
+                                string kinship11 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D551二级亲属1:<input class="form-control text-box single-line" data-val="true" id="kinship11" name="kinship11" type="text" value="@kinship11" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex11 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex11, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex11, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer11 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer11, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer11, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer11 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer11" name="othercancer11" type="text" value="@othercancer11">
+                            </td>
+
+                        </tr>
+                    }
+
+
+                }
+                @{
+                    if (kinshipnum11 != "D551")
+                    {
+                        <tr>
+                            <td>
+                                D551二级亲属1:
+                                <input class="form-control text-box single-line" data-val="true" id="kinship11" name="kinship11" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex11 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex11, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex11, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer11 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer11, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer11, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer11" name="othercancer11" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+                @{
+                    string kinshipnum12 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum12 = Convert.ToString(item1[2]);
+                    if (kinshipnum12 == "D552")
+                    {
+                        <tr>
+                            @{
+                                string kinship12 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D552二级亲属2:<input class="form-control text-box single-line" data-val="true" id="kinship12" name="kinship12" type="text" value="@kinship12" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex12 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex12, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex12, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer12 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer12, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer12, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer12 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer12" name="othercancer12" type="text" value="@othercancer12">
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                @{
+                    if (kinshipnum12 != "D552")
+                    {
+                        <tr>
+                            <td>
+                                D552二级亲属2:
+                                <input class="form-control text-box single-line" data-val="true" id="kinship12" name="kinship12" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex12 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex12, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex12, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer12 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer12, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer12, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer12" name="othercancer12" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+                @{
+                    string kinshipnum13 = "";
+                }
+                @foreach (DataRow item1 in Model.dt5.Rows)
+                {
+                    kinshipnum13 = Convert.ToString(item1[2]);
+                    if (kinshipnum13 == "D553")
+                    {
+                        <tr>
+                            @{
+                                string kinship13 = Convert.ToString(item1[3]);
+                            }
+                            <td>
+
+                                D553二级亲属3:<input class="form-control text-box single-line" data-val="true" id="kinship13" name="kinship13" type="text" value="@kinship13" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex13 = Convert.ToInt32(item1[4]);
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex13, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex13, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer13 = Convert.ToInt32(item1[5]);
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer13, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer13, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            @{
+                                string othercancer13 = Convert.ToString(item1[6]);
+                            }
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer13" name="othercancer13" type="text" value="@othercancer13">
+                            </td>
+
+                        </tr>
+                    }
+
+
+                }
+                @{
+                    if (kinshipnum13 != "D553")
+                    {
+                        <tr>
+                            <td>
+                                D553二级亲属3:
+                                <input class="form-control text-box single-line" data-val="true" id="kinship13" name="kinship13" type="text" value="" style="width:100px">
+
+                            </td>
+
+                            <td>
+                                @{
+                                    int cansersex13 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => cansersex13, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                                <label>@Html.RadioButtonFor(model => cansersex13, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                            </td>
+                            <td>
+                                @{
+                                    int Gastrolcancer13 = 0;
+                                }
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer13, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                                <label>@Html.RadioButtonFor(model => Gastrolcancer13, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                            </td>
+                            <td>
+                                <input class="form-control text-box single-line" data-val="true" id="othercancer13" name="othercancer13" type="text" value="">
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            </table>
+
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                <input type="submit" value="保存" class="btn btn-default" />|
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

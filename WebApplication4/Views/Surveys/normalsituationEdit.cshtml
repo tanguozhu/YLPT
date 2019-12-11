@@ -1,0 +1,356 @@
+﻿@model WebApplication4.Models.Surveys
+
+@{
+    ViewBag.Title = "normalsituationEdit";
+}
+
+@using System.Data;
+@using System;
+<h2>编辑</h2>
+<h4>A 调查者基本情况</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.num)
+    @Html.HiddenFor(model => model.phone)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.checkid)
+    @Html.HiddenFor(model => model.dt1)
+    @Html.HiddenFor(model => model.dt2)
+    @Html.HiddenFor(model => model.dt3)
+    @Html.HiddenFor(model => model.dt4)
+    @Html.HiddenFor(model => model.dt5)
+    @Html.HiddenFor(model => model.dt6)
+    @Html.HiddenFor(model => model.dt7)
+    @Html.HiddenFor(model => model.dt8)
+    @Html.HiddenFor(model => model.dt9)
+
+    <div>
+
+        <hr style="border:#000000 1px solid;" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @foreach (DataRow item in Model.dt1.Rows)
+        {
+            <div style="overflow-y:auto; overflow-x:auto;">
+
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名:</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" data-val="true" id="names" name="names" type="text" value="@Model.name" disabled="disabled">
+                    </div>
+                </div>
+
+                @{
+
+                    int sex0 = Convert.ToInt32(item[3]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别:</label>
+                    <div class="col-md-10">
+
+                        <label>@Html.RadioButtonFor(model => sex0, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+                        <label>@Html.RadioButtonFor(model => sex0, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+
+                    </div>
+                </div>
+
+                @{
+                    DateTime bi = Convert.ToDateTime(item[4]);
+
+                    string birth = "";
+
+                    birth = bi.ToString("yyyy-MM-dd");
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出生日期:</label>
+                    <div class="col-md-10" style="margin-bottom:8px">
+                        <input class="form-control" data-val="true" id="births" name="births" type="date" value="@birth">
+                    </div>
+                </div>
+
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份证号码:</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" data-val="true" id="identis" name="identis" type="text" value="@Model.num" disabled="disabled">
+                    </div>
+                </div>
+
+
+                @{
+                    int Nationalitys = Convert.ToInt32(item[5]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;民族:</label>
+                    <div class="col-md-10">
+                        <label>@Html.RadioButtonFor(model => Nationalitys, 1, new { htmlAttributes = new { @class = "form-control" } }) 汉族</label>
+                        <label>@Html.RadioButtonFor(model => Nationalitys, 2, new { htmlAttributes = new { @class = "form-control" } }) 回族</label>
+                        <label>@Html.RadioButtonFor(model => Nationalitys, 3, new { htmlAttributes = new { @class = "form-control" } }) 满族</label>
+                        <label>@Html.RadioButtonFor(model => Nationalitys, 4, new { htmlAttributes = new { @class = "form-control" } }) 其他</label>
+
+                    </div>
+                </div>
+                @{
+                    string Specificnation = Convert.ToString(item[6]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A51若为其他(族):</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" data-val="true" id="Specificnation" name="Specificnation" type="text" value="@Specificnation">
+                    </div>
+                </div>
+
+
+
+                @{
+                    int educations = Convert.ToInt32(item[7]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最高学历:</label>
+                    <div class="col-md-10">
+
+                        <label>@Html.RadioButtonFor(model => educations, 1, new { htmlAttributes = new { @class = "form-control" } }) 文盲</label>
+                        <label>@Html.RadioButtonFor(model => educations, 2, new { htmlAttributes = new { @class = "form-control" } }) 小学</label>
+                        <label>@Html.RadioButtonFor(model => educations, 3, new { htmlAttributes = new { @class = "form-control" } }) 初中</label>
+                        <label>@Html.RadioButtonFor(model => educations, 4, new { htmlAttributes = new { @class = "form-control" } }) 高中/中专</label>
+                        <label>@Html.RadioButtonFor(model => educations, 5, new { htmlAttributes = new { @class = "form-control" } }) 大专及以上</label>
+
+                    </div>
+                </div>
+
+
+
+                @{
+                    int professions = Convert.ToInt32(item[8]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职业:</label>
+                    <div class="col-md-10">
+                        <div class="col-sm-4" style="padding-left:0">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 1, new { htmlAttributes = new { @class = "form-control" } }) 国家机关、党群组织、企业、事业单位负责人</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 2, new { htmlAttributes = new { @class = "form-control" } }) 专业技术人员</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 3, new { htmlAttributes = new { @class = "form-control" } }) 办事人员和有关人员</label>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 4, new { htmlAttributes = new { @class = "form-control" } }) 商业、服务业人员</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 5, new { htmlAttributes = new { @class = "form-control" } }) 农、林、牧、渔、水利业生产人员</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 6, new { htmlAttributes = new { @class = "form-control" } }) 生产、运输设备操作人员及有关人员</label>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4" style="padding-left:0">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 7, new { htmlAttributes = new { @class = "form-control" } }) 军人</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 8, new { htmlAttributes = new { @class = "form-control" } }) 不便分类的其他从业人员</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => professions, 9, new { htmlAttributes = new { @class = "form-control" } }) 学生</label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                @{
+                    int maritalstatus = Convert.ToInt32(item[9]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;婚姻状况:</label>
+                    <div class="col-md-10">
+
+                        <label>@Html.RadioButtonFor(model => maritalstatus, 1, new { htmlAttributes = new { @class = "form-control" } }) 在婚</label>
+                        <label>@Html.RadioButtonFor(model => maritalstatus, 2, new { htmlAttributes = new { @class = "form-control" } }) 离婚</label>
+                        <label>@Html.RadioButtonFor(model => maritalstatus, 3, new { htmlAttributes = new { @class = "form-control" } }) 丧偶</label>
+                        <label>@Html.RadioButtonFor(model => maritalstatus, 4, new { htmlAttributes = new { @class = "form-control" } }) 分居</label>
+                        <label>@Html.RadioButtonFor(model => maritalstatus, 5, new { htmlAttributes = new { @class = "form-control" } }) 未婚</label>
+                        <label>@Html.RadioButtonFor(model => maritalstatus, 6, new { htmlAttributes = new { @class = "form-control" } }) 同居</label>
+
+                    </div>
+                </div>
+
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本人常用电话:</label>
+                    <div class="col-md-10" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="commomphones" name="commomphones" type="text" value="@Model.phone" disabled="disabled">
+                    </div>
+                </div>
+                @{
+                    string connect1 = Convert.ToString(item[11]);
+                }
+                <div class="col-md-8">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="connect1" name="connect1" type="text" value="@connect1">
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    string conphones1 = Convert.ToString(item[12]);
+                }
+                <div class="col-md-4">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="conphones1" name="conphones1" type="text" value="@conphones1">
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    string connect2 = Convert.ToString(item[13]);
+                }
+                <div class="col-md-8">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="connect2" name="connect2" type="text" value="@connect2">
+                        </div>
+                    </div>
+                </div>
+                @{
+                    string conphones2 = Convert.ToString(item[14]);
+                }
+                <div class="col-md-4">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="conphones2" name="conphones2" type="text" value="@conphones2">
+                        </div>
+                    </div>
+                </div>
+                @{
+                    string connect3 = Convert.ToString(item[15]);
+                }
+                <div class="col-md-8">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="connect3" name="connect3" type="text" value="@connect3">
+                        </div>
+                    </div>
+                </div>
+                @{
+                    string conphones3 = Convert.ToString(item[16]);
+                }
+                <div class="col-md-4">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="conphones3" name="conphones3" type="text" value="@conphones3">
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    int Currentresidences = Convert.ToInt32(item[17]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现居地:</label>
+                    <div class="col-md-10">
+
+                        <label>@Html.RadioButtonFor(model => Currentresidences, 1, new { htmlAttributes = new { @class = "form-control" } }) 农村</label>
+                        <label>@Html.RadioButtonFor(model => Currentresidences, 2, new { htmlAttributes = new { @class = "form-control" } }) 城市</label>
+
+                    </div>
+                </div>
+
+                @{
+                    string Rurals = Convert.ToString(item[18]);
+                }
+                <div class="col-md-8">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既往居住史:A101 农村(年):</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="Rurals" name="Rurals" type="text" value="@Rurals">
+                        </div>
+                    </div>
+                </div>
+                @{
+                    string Citys = Convert.ToString(item[19]);
+                }
+                <div class="col-md-4">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">A102 城市(年):</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="Citys" name="Citys" type="text" value="@Citys">
+                        </div>
+                    </div>
+                </div>
+                @{
+                    string peopletogethers = Convert.ToString(item[20]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家里几个人一起生活(包括自己):</label>
+                    <div class="col-md-8">
+                        <input class="form-control text-box single-line" data-val="true" id="peopletogethers" name="peopletogethers" type="text" value="@peopletogethers">
+                    </div>
+                </div>
+
+                @{
+                    int insurances = Convert.ToInt32(item[21]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前参加了哪一类医疗保健保险服务:</label>
+                    <div class="col-md-8">
+                        <div class="col-md-6">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => insurances, 1, new { htmlAttributes = new { @class = "form-control" } }) 城镇基本医疗保险（包括公费和劳保）</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => insurances, 3, new { htmlAttributes = new { @class = "form-control" } }) 商业医疗保险</label>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => insurances, 2, new { htmlAttributes = new { @class = "form-control" } }) 农村合作医疗</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => insurances, 4, new { htmlAttributes = new { @class = "form-control" } }) 无任何医疗保险</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                <input type="submit" value="保存" class="btn btn-default" />|
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,441 @@
+﻿@model WebApplication4.Models.Visit
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using System.Data;
+@using System;
+
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+
+<h2>查看就诊详情</h2>
+
+<div>
+
+    <hr style="border:#000000 1px solid;" />
+    @{
+        if (Model.detailid == 1)
+        {
+            <h3>
+                病人基本信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size:18px" href="/Visits/returnvisitCreate?id=@Model.Id&&checkid=@Model.Id&&refid=@Model.Id">复诊编辑</a>
+            </h3>
+        }
+        else
+        {
+            <h3>
+                病人基本信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size:18px" href="/Visits/returnvisitCreate?id=@Model.Id&&checkid=@Model.Id&&refid=@Model.Id">复诊新增</a>
+            </h3>
+        }
+    }
+
+    <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+
+        <div class="col-md-5">
+            <div>
+                @Html.DisplayNameFor(model => model.Name):
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.scannum):
+                @Html.DisplayFor(model => model.scannum)
+            </div>
+
+        </div>
+
+        <div class="col-md-5">
+            <div>
+                @Html.DisplayNameFor(model => model.Date):
+                @Html.DisplayFor(model => model.Date)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.VisitId):
+                @Html.DisplayFor(model => model.VisitId)
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<hr style="border:#000000 1px solid;" />
+
+<div>
+    <h3>
+        @if (webinsert == "0")
+        {
+            <span>检查信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        }
+        else if (webinsert == "1")
+        {
+            <span>检查信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/Gastroscopies/Create?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">胃镜检查新增</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/Gastroscopies/Createnianmo?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">胃粘膜血清检查新增</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/Gastroscopies/Createyoumen?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">幽门螺杆菌检查新增</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/Gastroscopies/CreateOther?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">其他检查新增</a>
+        }
+
+    </h3>
+
+    <div>
+        <table class="table" style="font-size:18px;padding:3px">
+            <tr>
+                <th style="border-top:0px solid #ff4136;width:30%">
+                    检查时间
+                </th>
+                <th style="border-top:0px solid #ff4136;width:30%">
+                    检查项目
+                </th>
+                <th style="border-top:0px solid #ff4136;width:40%">
+
+                </th>
+            </tr>
+            @foreach (DataRow item in Model.dt.Rows)
+            {
+                <tr>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            DateTime a = Convert.ToDateTime(item[1]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+                        @b
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+                        @item[2]
+                        @{
+                            string e = item[2].ToString();
+                        }
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            string c = item[0].ToString();
+                            int d = Convert.ToInt32(c);
+                            int detailid = Model.Id;
+                            if (e == "胃镜检查")
+                            {
+                                if (webmodify == "0")
+                                {
+
+                                }
+                                else if (webmodify == "1")
+                                {
+                                    <a href="/Gastroscopies/Edit/?id=@d&detailid=@detailid&rawid=@Model.Id">编辑 </a> <text>|</text>
+                                }
+
+                                <a href="/Visits/CheckDetails/@d?checkname=@e&refid=@d&detailid=@detailid">查看详情 </a>
+                                if (webdelete == "0")
+                                {
+
+                                }
+                                else if (webdelete == "1")
+                                {
+                                    <text>|</text>
+                                    <a href="/Visits/Delete/@d">删除</a>
+                                }
+
+                            }
+                            else if (e == "幽门螺杆菌检查")
+                            {
+                                if (webmodify == "0")
+                                {
+
+                                }
+                                else if (webmodify == "1")
+                                {
+                                    <a href="/Gastroscopies/Edityoumen/?id=@d&detailid=@detailid&rawid=@Model.Id">编辑 </a> <text>|</text>
+                                }
+
+                                <a href="/Visits/CheckDetails/@d?checkname=@e&refid=@d&detailid=@detailid">查看详情 </a>
+                                if (webdelete == "0")
+                                {
+
+                                }
+                                else if (webdelete == "1")
+                                {
+                                    <text>|</text>
+                                    <a href="/Visits/Delete/@d">删除</a>
+                                }
+                            }
+                            else if (e == "胃粘膜血清检查")
+                            {
+                                if (webmodify == "0")
+                                {
+
+                                }
+                                else if (webmodify == "1")
+                                {
+                                    <a href="/Gastroscopies/Editweinianmo/?id=@d&detailid=@detailid&rawid=@Model.Id">编辑 </a> <text>|</text>
+                                }
+
+                                <a href="/Visits/CheckDetails/@d?checkname=@e&refid=@d&detailid=@detailid">查看详情 </a>
+                                if (webdelete == "0")
+                                {
+
+                                }
+                                else if (webdelete == "1")
+                                {
+                                    <text>|</text>
+                                    <a href="/Visits/Delete/@d">删除</a>
+                                }
+                            }
+
+                            else
+                            {
+                                if (webmodify == "0")
+                                {
+
+                                }
+                                else if (webmodify == "1")
+                                {
+                                    <a href="/Gastroscopies/EditOther/?id=@d&detailid=@detailid&rawid=@Model.Id"> 编辑 </a> <text >|</text>
+                                }
+
+                                <a href="/Visits/CheckDetails/@d?checkname=@e&refid=@d&detailid=@detailid"> 查看详情 </a>
+
+                                if (webdelete == "0")
+                                {
+
+                                }
+                                else if (webdelete == "1")
+                                {
+                                    <text>|</text>
+                                    <a href="/Visits/Delete/@d">删除</a>
+                                }
+
+
+                            }
+                        }
+
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr style="border:#000000 1px solid;" />
+</div>
+
+<div>
+
+
+    <h3 style="margin-top:0">
+
+        @if (webinsert == "0")
+        {
+            <span>治疗方案&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        }
+        else if (webinsert == "1")
+        {
+            <span>治疗方案&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/Treatments/Create?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id&&name=0">幽门螺杆菌新增</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/Treatments/Create?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id&&name=1">其他治疗新增</a>
+        }
+
+
+    </h3>
+
+    <div>
+        <table class="table" style="font-size:18px;padding:3px">
+            <tr>
+                <th style="border-top:0px solid #ff4136;width:30%">
+                    治疗时间
+                </th>
+                <th style="border-top:0px solid #ff4136;width:30%">
+                    治疗项目
+                </th>
+                <th style="border-top:0px solid #ff4136;width:40%">
+
+                </th>
+            </tr>
+            @foreach (DataRow item in Model.getTreatment.Rows)
+            {
+                <tr>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            DateTime a = Convert.ToDateTime(item[1]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+                        @b
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            string c = item[2].ToString();
+                        }
+                        @if (c == "1")
+                        {
+
+                            @:其他治疗
+                        }
+                        else
+                        {
+
+                            @:幽门螺杆菌治疗
+                        }
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+
+
+                        @{
+                            string d = item[0].ToString();
+                            int e = Convert.ToInt32(d);
+
+                            
+
+                            if (webmodify == "0")
+                            {
+
+                            }
+                            else if (webmodify == "1")
+                            {
+                                <a href="/Treatments/Edit/?id=@e&refid=@Model.Id">编辑 </a> <text>|</text>
+                            }
+
+                            <a href="/Visits/TreatmentDetails/@e">查看详情 </a>
+
+                            if (webdelete == "0")
+                            {
+
+                            }
+                            else if (webdelete == "1")
+                            {
+                                <text>|</text>
+                            <a href="/Visits/Delete/@e">删除</a>
+                            }
+
+                        }
+
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr style="border:#000000 1px solid;" />
+</div>
+
+<div>
+    
+    <h3 style="margin-top:0">
+        @if (webinsert == "0")
+        {
+            <span>随访记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        }
+        else if (webinsert == "1")
+        {
+            <span>随访记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a style="font-size:18px" href="/FollowUps/Create?id=@Model.Id&&scannum=@Model.scannum&&refid=@Model.Id&&visit=@Model.VisitId">新增</a>
+        }
+
+    </h3>
+    <div>
+        <table class="table" style="font-size:18px;padding:3px">
+            <tr>
+                <th style="border-top:0px solid #ff4136;width:30%">
+                    随访时间
+                </th>
+                <th style="border-top:0px solid #ff4136;width:30%">
+                    随访内容
+                </th>
+                <th style="border-top:0px solid #ff4136;width:40%">
+
+                </th>
+            </tr>
+            @foreach (DataRow item in Model.followup.Rows)
+            {
+                <tr>
+                    <td style="border:#ffffff 0px solid;">
+                        @{
+                            DateTime a = Convert.ToDateTime(item[1]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+                        @b
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+
+                        @{
+                            string suifangget = item[2].ToString();
+                            string suifangset = "";
+                            if (suifangget.Length >= 10)
+                            {
+                                suifangset = suifangget.Substring(0, 10) + "...";
+                            }
+                            else
+                            {
+                                suifangset = suifangget;
+                            }
+
+                        }
+                        @suifangset
+
+                    </td>
+                    <td style="border:#ffffff 0px solid;">
+
+                        @{
+                            string getid = item[0].ToString();
+                            int inid = Convert.ToInt32(getid);
+
+
+                            if (webmodify == "0")
+                            {
+
+                            }
+                            else if (webmodify == "1")
+                            {
+                                <a href="/FollowUps/Edit/?id=@inid&&refid=@Model.Id">编辑 </a> <text>|</text>
+                            }
+
+                            <a href="/FollowUps/Details/?id=@inid">查看详情 </a>
+
+                            if (webdelete == "0")
+                            {
+
+                            }
+                            else if (webdelete == "1")
+                            {
+                                <text>|</text>
+                                <a href="/FollowUps/Delete/?id=@inid&&refid=@Model.Id">删除</a>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr style="border:#000000 1px solid;" />
+</div>
+
+<div>
+    <p style="font-size:18px;padding:3px">
+        <a href="javascript:window.history.go(-1)">返回</a>
+    </p>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>

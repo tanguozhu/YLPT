@@ -1,0 +1,264 @@
+﻿@model WebApplication4.Models.Treatment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>编辑</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.refId)
+    @Html.HiddenFor(model => model.scannum)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.visit)
+    
+
+    @{
+        if (Model.name == 0)
+        {
+            <h3>治疗基本情况</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">感染及根除情况:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2">@Model.condition</textarea>
+
+                    @Html.ValidationMessageFor(model => model.condition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否感染:</label>
+                <div class="col-md-10">
+                    @if (Model.isInfected == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => model.isInfected, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } })无</label>
+                        <label>@Html.RadioButtonFor(model => model.isInfected, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => model.isInfected, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                        <label>@Html.RadioButtonFor(model => model.isInfected, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } })有</label>
+                    }
+
+                    @Html.ValidationMessageFor(model => model.isInfected, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否根除:</label>
+                <div class="col-md-10">
+                    @if (Model.isEradicated == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } })无</label>
+                        <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                        <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } })有</label>
+                    }
+
+                    @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <h3>方案</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">选择:</label>
+                <div class="col-md-10">
+                    @if (Model.Omeprazole == 1)
+                    {
+                        <input type="checkbox" name="Omeprazole" value="1" checked="checked" /><text>奥美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Omeprazole" value="1" /><text>奥美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Rabeprazole == 1)
+                    {
+                        <input type="checkbox" name="Rabeprazole" value="1" checked="checked" /><text>雷贝拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Rabeprazole" value="1" /><text>雷贝拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Esomeprazole == 1)
+                    {
+                        <input type="checkbox" name="Esomeprazole" value="1" checked="checked" /><text>埃索美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Esomeprazole" value="1" /><text>埃索美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Pantoprazole == 1)
+                    {
+                        <input type="checkbox" name="Pantoprazole" value="1" checked="checked" /><text>泮托拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Pantoprazole" value="1" /><text>泮托拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.OtherPPI == 1)
+                    {
+                        <input type="checkbox" name="OtherPPI" value="1" checked="checked" /><text>其他质子泵抑制剂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="OtherPPI" value="1" /><text>其他质子泵抑制剂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                </div>
+            </div>
+
+            <hr />
+            <h3>铋剂</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">选择:</label>
+                <div class="col-md-10">
+                    @if (Model.Amoxicillin == 1)
+                    {
+                        <input type="checkbox" name="Amoxicillin" value="1" checked="checked" /><text>阿莫西林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Amoxicillin" value="1" /><text>阿莫西林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.tetracycline == 1)
+                    {
+                        <input type="checkbox" name="tetracycline" value="1" checked="checked" /><text>四环素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="tetracycline" value="1" /><text>四环素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Levofloxacin == 1)
+                    {
+                        <input type="checkbox" name="Levofloxacin" value="1" checked="checked" /><text>左氧氟沙星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Levofloxacin" value="1" /><text>左氧氟沙星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Clarithromycin == 1)
+                    {
+                        <input type="checkbox" name="Clarithromycin" value="1" checked="checked" /><text>克拉霉素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Clarithromycin" value="1" /><text>克拉霉素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Furazolidone == 1)
+                    {
+                        <input type="checkbox" name="Furazolidone" value="1" checked="checked" /><text>呋喃唑酮 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Furazolidone" value="1" /><text>呋喃唑酮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Metronidazole == 1)
+                    {
+                        <input type="checkbox" name="Metronidazole" value="1" checked="checked" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Metronidazole" value="1" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                </div>
+            </div>
+
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.condition)
+            @Html.HiddenFor(model => model.isInfected)
+            @Html.HiddenFor(model => model.isEradicated)
+            @Html.HiddenFor(model => model.Omeprazole)
+            @Html.HiddenFor(model => model.Rabeprazole)
+            @Html.HiddenFor(model => model.Esomeprazole)
+            @Html.HiddenFor(model => model.Pantoprazole)
+            @Html.HiddenFor(model => model.OtherPPI)
+            @Html.HiddenFor(model => model.Amoxicillin)
+            @Html.HiddenFor(model => model.tetracycline)
+            @Html.HiddenFor(model => model.Levofloxacin)
+            @Html.HiddenFor(model => model.Clarithromycin)
+            @Html.HiddenFor(model => model.Furazolidone)
+            @Html.HiddenFor(model => model.Metronidazole)
+            
+            <h3>治疗基本情况</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="content" name="content" rows="2">@Model.content</textarea>
+
+                    @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    }
+    <hr />
+    <h3>疗程及服药情况</h3>
+    <div class="form-group" style="font-size:18px;padding:3px">
+        <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
+        <div class="col-md-10">
+
+            <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
+            <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
+            <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
+
+            @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px">
+        <label class="control-label col-md-2" style="padding-top:1px">是否按时服药:</label>
+        <div class="col-md-10">
+
+
+            <label>@Html.RadioButtonFor(model => model.isOnTime, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+            <label>@Html.RadioButtonFor(model => model.isOnTime, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+
+
+            @Html.ValidationMessageFor(model => model.isOnTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@model WebApplication4.Models.WebManger
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>确定删除</h2>
+
+
+<div>
+    <h4>该条管理者信息？</h4>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="font-size:18px;padding:3px">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回网页登录管理主页", "Index")
+        </div>
+    }
+</div>

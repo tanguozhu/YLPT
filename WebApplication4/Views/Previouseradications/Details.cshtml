@@ -1,0 +1,65 @@
+﻿@model WebApplication4.Models.Previouseradication
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>查看</h2>
+
+<div>
+    <h4>既往根除</h4>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            次数:
+        </dt>
+
+        <dd>
+            第 @Html.DisplayFor(model => model.Radicationtime)次
+        </dd>
+
+        <dt>
+            时间:
+        </dt>
+
+        <dd>
+           @{ 
+               DateTime a = Convert.ToDateTime(Model.Radicationdate);
+
+               string b = "";
+
+               b = a.ToString("yyyy-MM-dd");
+               }
+            @b
+        </dd>
+
+        <dt>
+            根除方案:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Radicationcase)
+        </dd>
+
+        <dt>
+            疗程:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course)
+        </dd>
+
+        <dt>
+            根除结果:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Result)
+        </dd>
+
+    </dl>
+</div>
+<p style="font-size:18px;padding:3px">
+    
+    <a href="javascript:window.history.go(-1)">返回</a>
+</p>

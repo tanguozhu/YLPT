@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication4.Models.Workflow>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>输入日志</h2>
+<hr />
+<div style="overflow-y:auto; overflow-x:auto;">
+
+    @{
+        string str = "";
+        str = "http://58.192.132.31:9010/pic/timg.jpg";
+        if (str == "http://58.192.132.31:9010/pic/timg.jpg")
+        {
+            <div>
+            <div class="col-md-3" style="padding-right:20px">
+                <div>
+                    <a class="navbar-brand">Show Log</a>
+                </div>
+            </div>
+            <div class="col-md-4" style="padding-right:0">
+                <div>
+                    <a class="navbar-brand" href="/Workflows/Details/1">Show Medical Path</a>
+                </div>
+            </div>
+            <div class="col-md-2" style="padding-left:0">
+                <div>
+                    <a class="navbar-brand" href="/Workflows/Create">Show Patient</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div>&#12288</div>
+            </div>
+            </div>
+            <div class="col-md-10">
+                <img src="@str" width="600" height="400" id="image">
+            </div>
+            <div class="col-md-2">
+                <div>&#12288</div>
+            </div>
+
+
+        }
+        else
+        {
+            <div class="col-md-3">
+                <div>
+                    <a class="navbar-brand">Please Enter Log First</a>
+                </div>
+            </div>
+        }
+    }
+
+
+</div>

@@ -1,0 +1,479 @@
+﻿@model WebApplication4.Models.Surveys
+
+@{
+    ViewBag.Title = "medicalhistoryEdit";
+}
+
+@using System.Data;
+@using System;
+<h2>编辑</h2>
+<h4>E 疾病史</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.num)
+    @Html.HiddenFor(model => model.phone)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.checkid)
+    @Html.HiddenFor(model => model.dt1)
+    @Html.HiddenFor(model => model.dt2)
+    @Html.HiddenFor(model => model.dt3)
+    @Html.HiddenFor(model => model.dt4)
+    @Html.HiddenFor(model => model.dt5)
+    @Html.HiddenFor(model => model.dt6)
+    @Html.HiddenFor(model => model.dt7)
+    @Html.HiddenFor(model => model.dt8)
+    @Html.HiddenFor(model => model.dt9)
+
+<div>
+
+    <hr style="border:#000000 1px solid;" />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+            <label class="control-label col-md-7" style="padding-top:1px;padding-left:0">E1&nbsp;&nbsp;&nbsp;&nbsp;您是否反复出现腹痛、纳差、饱胀、烧心或吞咽不畅等消化不良症状:</label>
+            <div class="col-md-5">
+                &nbsp;
+            </div>
+        </div>
+
+
+        <table class="table" style="font-size:18px;padding:3px">
+            <tr>
+                <th>
+                    临床症状&&评分
+                </th>
+
+                <th>
+                    1
+                </th>
+                <th>
+                    2
+                </th>
+                <th>
+                    3
+                </th>
+                <th>
+                    4
+                </th>
+
+            </tr>
+            @foreach (DataRow item in Model.dt7.Rows)
+            {
+                int symptomstype = Convert.ToInt32(item[2]);
+                if (symptomstype == 1)
+                {
+                    <tr>
+                        <td>
+                            疼痛
+                        </td>
+                        @{
+                            int tengtong = Convert.ToInt32(item[3]);
+                        }
+
+                        <td>
+                            @Html.RadioButtonFor(model => tengtong, 1, new { htmlAttributes = new { @class = "form-control" } }) 无疼痛感觉
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => tengtong, 2, new { htmlAttributes = new { @class = "form-control" } }) 轻度疼痛，不影响日常生活和工作，不需服药
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => tengtong, 3, new { htmlAttributes = new { @class = "form-control" } }) 疼痛明显，部分影响日常生活和工作，或需服药
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => tengtong, 4, new { htmlAttributes = new { @class = "form-control" } }) 疼痛严重，必须全休，服药或进食无效
+                        </td>
+
+                    </tr>
+                }
+                else if (symptomstype == 2)
+                {
+                    <tr>
+                        <td>
+                            烧灼感
+                        </td>
+
+                        @{
+                            int zhuoshao = Convert.ToInt32(item[3]);
+                        }
+
+                        <td>
+                            @Html.RadioButtonFor(model => zhuoshao, 1, new { htmlAttributes = new { @class = "form-control" } }) 无烧灼感
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => zhuoshao, 2, new { htmlAttributes = new { @class = "form-control" } }) 偶有不适
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => zhuoshao, 3, new { htmlAttributes = new { @class = "form-control" } }) 频繁不适，持续时间长
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => zhuoshao, 4, new { htmlAttributes = new { @class = "form-control" } }) 持续不适，用抗酸药只能短暂缓解
+                        </td>
+
+                    </tr>
+                }
+                else if (symptomstype == 3)
+                {
+                    <tr>
+                        <td>
+                            反酸
+                        </td>
+
+                        @{
+                            int fansuan = Convert.ToInt32(item[3]);
+                        }
+
+                        <td>
+                            @Html.RadioButtonFor(model => fansuan, 1, new { htmlAttributes = new { @class = "form-control" } }) 无反酸
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => fansuan, 2, new { htmlAttributes = new { @class = "form-control" } }) 偶有反酸
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => fansuan, 3, new { htmlAttributes = new { @class = "form-control" } }) 一天1到2次反酸
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => fansuan, 4, new { htmlAttributes = new { @class = "form-control" } }) 一天数次反酸
+                        </td>
+
+                    </tr>
+                }
+                else if (symptomstype == 4)
+                {
+                    <tr>
+                        <td>
+                            恶心呕吐
+                        </td>
+
+                        @{
+                            int exinotu = Convert.ToInt32(item[3]);
+                        }
+
+                        <td>
+                            @Html.RadioButtonFor(model => exinotu, 1, new { htmlAttributes = new { @class = "form-control" } }) 不恶心
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => exinotu, 2, new { htmlAttributes = new { @class = "form-control" } }) 偶有且短暂
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => exinotu, 3, new { htmlAttributes = new { @class = "form-control" } }) 频繁恶心，有呕吐
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => exinotu, 4, new { htmlAttributes = new { @class = "form-control" } }) 持续恶心，频繁呕吐
+                        </td>
+
+                    </tr>
+                }
+                else if (symptomstype == 5)
+                {
+                    <tr>
+                        <td>
+                            嗳气
+                        </td>
+
+                        @{
+                            int aiqi = Convert.ToInt32(item[3]);
+                        }
+
+                        <td>
+                            @Html.RadioButtonFor(model => aiqi, 1, new { htmlAttributes = new { @class = "form-control" } }) 无嗳气
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => aiqi, 2, new { htmlAttributes = new { @class = "form-control" } }) 偶有嗳气
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => aiqi, 3, new { htmlAttributes = new { @class = "form-control" } }) 频繁嗳气
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => aiqi, 4, new { htmlAttributes = new { @class = "form-control" } }) 持续嗳气，影响活动
+                        </td>
+
+                    </tr>
+                }
+                else if (symptomstype == 6)
+                {
+                    <tr>
+                        <td>
+                            腹胀
+                        </td>
+
+                        @{
+                            int fuzhang = Convert.ToInt32(item[3]);
+                        }
+
+                        <td>
+                            @Html.RadioButtonFor(model => fuzhang, 1, new { htmlAttributes = new { @class = "form-control" } }) 无腹胀
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => fuzhang, 2, new { htmlAttributes = new { @class = "form-control" } }) 偶有不适
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => fuzhang, 3, new { htmlAttributes = new { @class = "form-control" } }) 腹胀明显，影响活动
+                        </td>
+                        <td>
+                            @Html.RadioButtonFor(model => fuzhang, 4, new { htmlAttributes = new { @class = "form-control" } }) 腹胀严重，影响活动
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </table>
+
+        @foreach (DataRow item in Model.dt6.Rows)
+        {
+            int Numendoscopy = Convert.ToInt32(item[2]);
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">E2&nbsp;&nbsp;&nbsp;&nbsp;本次之前，您接受过内镜检查的次数是(次):</label>
+                <div class="col-md-7" style="margin-bottom:8px">
+                    <input class="form-control text-box single-line" data-val="true" id="Numendoscopy" name="Numendoscopy" type="text" value="@Numendoscopy">
+                </div>
+            </div>
+            int numofhps = Convert.ToInt32(item[3]);
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接受过HP检测次数是:</label>
+                <div class="col-md-7" style="margin-bottom:8px">
+                    <input class="form-control text-box single-line" data-val="true" id="numofhps" name="numofhps" type="text" value="@numofhps">
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">E3&nbsp;&nbsp;&nbsp;&nbsp;是否患有以下慢性病:</label>
+                <div class="col-md-7" style="margin-bottom:8px">
+                    &nbsp;&nbsp;
+                </div>
+            </div>
+
+
+
+            int hyperts = Convert.ToInt32(item[4]);
+            DateTime time1s = Convert.ToDateTime(item[5]);
+            string t1s=time1s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E31&nbsp;&nbsp;&nbsp;&nbsp;高血压:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => hyperts, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => hyperts, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time1s" name="time1s" type="date" value="@t1s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            int Hyperlipidemia = Convert.ToInt32(item[6]);
+            DateTime time2s = Convert.ToDateTime(item[7]);
+            string t2s = time2s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E32&nbsp;&nbsp;&nbsp;&nbsp;高血脂:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => Hyperlipidemia, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => Hyperlipidemia, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time2s" name="time2s" type="date" value="@t2s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            int codisease = Convert.ToInt32(item[8]);
+            DateTime time3s = Convert.ToDateTime(item[9]);
+            string t3s = time3s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E33&nbsp;&nbsp;&nbsp;&nbsp;冠心病:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => codisease, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => codisease, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time3s" name="time3s" type="date" value="@t3s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            int apoplexy = Convert.ToInt32(item[10]);
+            DateTime time4s = Convert.ToDateTime(item[11]);
+            string t4s = time4s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E34&nbsp;&nbsp;&nbsp;&nbsp;脑卒中:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => apoplexy, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => apoplexy, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time4s" name="time4s" type="date" value="@t4s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            int Diabetes = Convert.ToInt32(item[12]);
+            DateTime time5s = Convert.ToDateTime(item[13]);
+            string t5s = time5s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E35&nbsp;&nbsp;&nbsp;&nbsp;糖尿病:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => Diabetes, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => Diabetes, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time5s" name="time5s" type="date" value="@t5s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            int chronichepatitis = Convert.ToInt32(item[14]);
+            DateTime time6s = Convert.ToDateTime(item[15]);
+            string t6s = time6s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-6" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E36&nbsp;&nbsp;&nbsp;&nbsp;慢性肝炎(乙肝/丙肝):</label>
+                    <div class="col-md-6">
+
+                        <label>@Html.RadioButtonFor(model => chronichepatitis, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => chronichepatitis, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time6s" name="time6s" type="date" value="@t6s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            int Pulmonarytuberculosis = Convert.ToInt32(item[16]);
+            DateTime time7s = Convert.ToDateTime(item[17]);
+            string t7s = time7s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E37&nbsp;&nbsp;&nbsp;&nbsp;肺结核:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => Pulmonarytuberculosis, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => Pulmonarytuberculosis, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time7s" name="time7s" type="date" value="@t7s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            int othersbing = Convert.ToInt32(item[18]);
+            DateTime time8s = Convert.ToDateTime(item[19]);
+            string t8s = time8s.ToString("yyyy-MM-dd");
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="col-md-6">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E38&nbsp;&nbsp;&nbsp;&nbsp;其他:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => othersbing, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => othersbing, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control" data-val="true" id="time8s" name="time8s" type="date" value="@t8s">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+
+
+
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

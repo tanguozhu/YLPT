@@ -1,0 +1,666 @@
+﻿@model WebApplication4.Models.Visit
+
+@{
+    ViewBag.Title = "CheckDetails";
+}
+@using System.Data;
+@using System;
+
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+
+<h2>检查详情</h2>
+
+<div style="height:100%;overflow-y:auto; overflow-x:auto;">
+    @{
+        string num = "";
+        string checknames = "";
+    }
+    <hr />
+    <div>
+        <h3 style="margin-top:0px">检查结果</h3>
+        <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
+
+
+            @foreach (DataRow item in Model.getGastroscopies.Rows)
+            {
+                string checkname = Convert.ToString(item[4]);
+                num = Convert.ToString(item[7]);
+                checknames = Convert.ToString(item[4]);
+                if (Model.Checkname == "胃镜检查")
+                {
+                    <dt>
+                        检查项目:
+                    </dt>
+                    <dd>
+                        @item[4]
+                    </dd>
+                    <dt>
+                        检查日期:
+                    </dt>
+
+                    <dd>
+
+                        @{
+                            DateTime a = Convert.ToDateTime(item[3]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+
+                        @b
+                    </dd>
+
+                    <dt>
+                        内镜检查号:
+                    </dt>
+                    <dd>
+                        @item[5]
+                    </dd>
+                    <dt>
+                        胃镜结论:
+                    </dt>
+                    <dd>
+                        @item[6]
+                    </dd>
+                    <dt>
+                        病理号:
+                    </dt>
+                    <dd>
+                        @item[7]
+
+                    </dd>
+                    <dt>
+                        病理结论:
+                    </dt>
+                    <dd>
+                        @item[8]
+                    </dd>
+                    <dt>
+                        其他:
+                    </dt>
+                    <dd>
+                        @item[9]
+                    </dd>
+                }
+                else if (Model.Checkname == "幽门螺杆菌检查")
+                {
+                    <dt>
+                        检查项目:
+                    </dt>
+                    <dd>
+                        @item[4]
+                    </dd>
+                    <dt>
+                        检查日期:
+                    </dt>
+
+                    <dd>
+
+                        @{
+                            DateTime a = Convert.ToDateTime(item[3]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+
+                        @b
+                    </dd>
+                    <dt>
+                        方法:
+                    </dt>
+                    <dd>
+                        @item[6]
+                    </dd>
+                    <dt>
+                        结果:
+                    </dt>
+                    <dd>
+
+                        @{
+                            string oth = Convert.ToString(item[9]);
+                            string other = "";
+
+                            if (oth == "0")
+                            {
+                                other = "阴性";
+                            }
+                            else if (oth == "1")
+                            {
+                                other = "阳性";
+                            }
+
+                        }
+                        @other
+                    </dd>
+                }
+                else if (Model.Checkname == "胃粘膜血清检查")
+                {
+                    <dt>
+                        检查项目:
+                    </dt>
+                    <dd>
+                        @item[4]
+                    </dd>
+                    <dt>
+                        检查日期:
+                    </dt>
+
+                    <dd>
+
+                        @{
+                            DateTime a = Convert.ToDateTime(item[3]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+
+                        @b
+                    </dd>
+
+                }
+                else
+                {
+                    <dt>
+                        检查项目:
+                    </dt>
+                    <dd>
+                        @item[4]
+                    </dd>
+                    <dt>
+                        检查日期:
+                    </dt>
+
+                    <dd>
+
+                        @{
+                            DateTime a = Convert.ToDateTime(item[3]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+
+                        @b
+                    </dd>
+
+                    <dt>
+                        检查号:
+                    </dt>
+                    <dd>
+                        @item[5]
+                    </dd>
+                    <dt>
+                        检查结论:
+                    </dt>
+                    <dd>
+                        @item[6]
+                    </dd>
+
+
+                }
+
+            }
+        </dl>
+    </div>
+
+
+    @{
+        if (Model.Checkname == "胃粘膜血清检查" || Model.Checkname == "幽门螺杆菌检查")
+        {
+
+        }
+        else
+        {
+    <div style="overflow-y:auto; overflow-x:auto;">
+        <hr />
+        <h3>检查图片</h3>
+        @foreach (DataRow item1 in Model.getGastroscopies.Rows)
+        {
+
+            string i1 = Convert.ToString(item1[10]);
+            string i2 = Convert.ToString(item1[11]);
+            string i3 = Convert.ToString(item1[12]);
+            string i4 = Convert.ToString(item1[13]);
+            string i5 = Convert.ToString(item1[14]);
+
+            string i6 = Convert.ToString(item1[15]);
+            string i7 = Convert.ToString(item1[16]);
+            string i8 = Convert.ToString(item1[17]);
+
+            if (i1 == "" && i2 == "" && i3 == "" && i4 == "" && i5 == "" && i6 == "" && i7 == "" && i8 == "")
+            {
+                <div>暂时没有检查图片</div>
+            }
+            else
+            {
+                if (i1 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i1" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i2 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i2" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i3 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i3" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i4 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i4" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i5 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i5" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i6 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i6" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i7 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i7" width="100" height="100" class="pic">
+                    </div>
+                }
+                if (i8 != "")
+                {
+                    <div class="col-md-4">
+                        <img src="@i8" width="100" height="100" class="pic">
+                    </div>
+                }
+
+
+            }
+
+
+        }
+
+    </div>
+        }
+    }
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+        <div id="innerdiv" style="position:absolute;">
+            <img id="bigimg" style="border:5px solid #fff;" src="" />
+        </div>
+    </div>
+
+    @{
+        if (Model.Checkname == "胃镜检查")
+        {
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                @if (Model.Checkpathology == 0)
+                {
+                    if (webinsert == "0")
+                    {
+
+                    }
+                    else if (webinsert == "1")
+                    {
+                        <h3>病理诊断&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <a style="font-size:18px" href="/Pathologies/Create?id=@Model.refid&&num=@num&&refid=@Model.refid&&detailid=@Model.detailid">新增</a></h3>
+                    }
+
+                }
+                else
+                {
+                    if (webmodify == "0")
+                    {
+
+                    }
+                    else if (webmodify == "1")
+                    {
+                        <h3>病理诊断&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <a style="font-size:18px" href="/Pathologies/Edit?id=@Model.refid&&num=@num&&detailid=@Model.detailid">编辑</a></h3>
+                    }
+
+                }
+
+                @{
+                    int checkid = 0;
+
+                }
+                @foreach (DataRow item2 in Model.pathology.Rows)
+                {
+
+                    checkid = Convert.ToInt32(item2[0]);
+                    <h4>
+                        病理取材部位:
+                        @{
+                            int a = Convert.ToInt32(item2[2]);
+                            if (a == 0)
+                            {
+                                @:胃窦
+                            }
+                            else
+                            {
+                                @:胃角
+                            }
+                        }
+                    </h4>
+                    <div class="col-md-6">
+                        <div>
+                            急性炎:
+                            @{
+                                int b = Convert.ToInt32(item2[3]);
+                                if (b == 0)
+                                {
+                                    @:无
+                                }
+                                else if (b == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (b == 2)
+                                {
+                                    @:中
+                                }
+                                else if (b == 3)
+                                {
+                                    @:重
+                                }
+                                else if (b == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                        <div>
+                            慢性炎:
+                            @{
+                                int c = Convert.ToInt32(item2[4]);
+                                if (c == 0)
+                                {
+                                    @:无
+                                }
+                                else if (c == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (c == 2)
+                                {
+                                    @:中
+                                }
+                                else if (c == 3)
+                                {
+                                    @:重
+                                }
+                                else if (c == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                        <div>
+                            萎缩:
+                            @{
+                                int d = Convert.ToInt32(item2[5]);
+                                if (d == 0)
+                                {
+                                    @:无
+                                }
+                                else if (d == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (d == 2)
+                                {
+                                    @:中
+                                }
+                                else if (d == 3)
+                                {
+                                    @:重
+                                }
+                                else if (d == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                        <div>
+                            肠化:
+                            @{
+                                int e = Convert.ToInt32(item2[6]);
+                                if (e == 0)
+                                {
+                                    @:无
+                                }
+                                else if (e == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (e == 2)
+                                {
+                                    @:中
+                                }
+                                else if (e == 3)
+                                {
+                                    @:重
+                                }
+                                else if (e == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            急性炎:
+                            @{
+                                int f = Convert.ToInt32(item2[7]);
+                                if (f == 0)
+                                {
+                                    @:无
+                                }
+                                else if (f == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (f == 2)
+                                {
+                                    @:中
+                                }
+                                else if (f == 3)
+                                {
+                                    @:重
+                                }
+                                else if (f == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                        <div>
+                            慢性炎:
+                            @{
+                                int g = Convert.ToInt32(item2[8]);
+                                if (g == 0)
+                                {
+                                    @:无
+                                }
+                                else if (g == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (g == 2)
+                                {
+                                    @:中
+                                }
+                                else if (g == 3)
+                                {
+                                    @:重
+                                }
+                                else if (g == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                        <div>
+                            萎缩:
+                            @{
+                                int h = Convert.ToInt32(item2[9]);
+                                if (h == 0)
+                                {
+                                    @:无
+                                }
+                                else if (h == 1)
+                                {
+                                    @:轻
+                                }
+                                else if (h == 2)
+                                {
+                                    @:中
+                                }
+                                else if (h == 3)
+                                {
+                                    @:重
+                                }
+                                else if (h == 4)
+                                {
+                                    @:极重
+                                }
+                            }
+                        </div>
+                        <div>&#12288</div>
+                    </div>
+
+                }
+                @if (checkid == 0)
+                {
+                    <div>暂时没有病理诊断,请新增</div>
+                }
+            </div>
+        }
+
+    }
+
+
+    @{
+
+        if (Model.Checkname == "胃粘膜血清检查")
+        {
+            <div>
+                <hr />
+                <table class="table" style="font-size:18px;padding:3px">
+                    <tr>
+                        <th style="border-top:0px solid #ff4136;width:30%">
+                            检查项目
+                        </th>
+                        <th style="border-top:0px solid #ff4136;width:30%">
+                            检查结果
+                        </th>
+                        <th style="border-top:0px solid #ff4136;width:30%">
+                            检查时间
+                        </th>
+
+                    </tr>
+                    @foreach (DataRow item in Model.weiniaomo.Rows)
+                    {
+                        <tr>
+                            <td style="border:#ffffff 0px solid;">
+
+                                @item[2]
+                            </td>
+                            <td style="border:#ffffff 0px solid;">
+                                @item[3]
+                            </td>
+                            <td style="border:#ffffff 0px solid;">
+
+                                @{
+                                    DateTime a = Convert.ToDateTime(item[4]);
+
+                                    string b = "";
+
+                                    b = a.ToString("yyyy-MM-dd");
+                                }
+                                @b
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    }
+    <div>
+        <p style="font-size:18px;padding:3px">
+
+
+
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </p>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".pic").on("click", function () {
+            var _this = $(this);//将当前的pimg元素作为_this传入函数
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+        });
+    });
+    function imgShow(outerdiv, innerdiv, bigimg, _this) {
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+        $("<img/>").attr("src", src).on("load", function () {
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+            if (realHeight > windowH * scale) {//判断图片高度
+                imgHeight = windowH * scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight / realHeight * realWidth;//等比例缩放宽度
+                if (imgWidth > windowW * scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW * scale;//再对宽度进行缩放
+                }
+            } else if (realWidth > windowW * scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW * scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth / realWidth * realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width", imgWidth);//以最终的宽度对图片缩放
+            var w = (windowW - imgWidth) / 2;//计算图片与窗口左边距
+            var h = (windowH - imgHeight) / 2;//计算图片与窗口上边距
+            $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+        });
+        $(outerdiv).on("click", function () {//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }
+</script>
+
+

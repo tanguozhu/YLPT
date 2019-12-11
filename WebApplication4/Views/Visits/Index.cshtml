@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebApplication4.Models.Visit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>检查与治疗管理主页</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<p style="font-size:18px;padding:3px">
+    筛查号: @Html.TextBox("scannum")
+    身份证号: @Html.TextBox("Identinum")
+    <input type="submit" value="检索" />
+</p>
+}
+
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scannum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identinum)
+        </th>
+
+
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.scannum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identinum)
+            </td>
+
+
+           
+            <td>
+                <a href="/Visits/CheckAndTreatmentIndex?id=1&&scannum=@item.scannum&&identinum=@item.Identinum">查看</a> 
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

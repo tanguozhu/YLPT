@@ -1,0 +1,29 @@
+﻿@model WebApplication4.Models.BriefIntro
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>科室简介</h2>
+
+
+<div>
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto; width:70%;height:400px">
+
+        <div>@Html.Raw(HttpUtility.HtmlDecode(Model.Introduction))</div>
+        <img src="@Html.DisplayFor(model => model.Pic)" width="300" height="300" id="Pic">
+    </div>
+</div>
+<p style="font-size:25px">
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("编辑", "Edit", new { id = Model.Id })
+</p>
+
+
+<input type="hidden" name="id" id="id" value="1" />
+@{
+    int a = 1;
+    Model.Id = a;
+}
+<input type="hidden" name="Id" id="Id" value="@Model.Id" />

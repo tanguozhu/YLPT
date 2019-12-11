@@ -1,0 +1,266 @@
+﻿@model WebApplication4.Models.Surveys
+
+@{
+    ViewBag.Title = "physicalconditionsEdit";
+}
+
+@using System.Data;
+@using System;
+<h2>编辑</h2>
+<h4>B 身体状况</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.num)
+    @Html.HiddenFor(model => model.phone)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.checkid)
+    @Html.HiddenFor(model => model.dt1)
+    @Html.HiddenFor(model => model.dt2)
+    @Html.HiddenFor(model => model.dt3)
+    @Html.HiddenFor(model => model.dt4)
+    @Html.HiddenFor(model => model.dt5)
+    @Html.HiddenFor(model => model.dt6)
+    @Html.HiddenFor(model => model.dt7)
+    @Html.HiddenFor(model => model.dt8)
+    @Html.HiddenFor(model => model.dt9)
+    <div>
+
+        <hr style="border:#000000 1px solid;" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @foreach (DataRow item in Model.dt2.Rows)
+        {
+
+            <div style="overflow-y:auto; overflow-x:auto;">
+
+
+                @{
+                    int heights = Convert.ToInt32(item[2]);
+                }
+                <div class="col-md-8" style="padding-left:0">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">B1&nbsp;&nbsp;&nbsp;&nbsp;身高(cm):</label>
+                        <div class="col-md-9" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="heights" name="heights" type="text" value="@heights">
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    int weights = Convert.ToInt32(item[3]);
+                }
+                <div class="col-md-4">
+                    <div class="form-group" style="font-size:18px;padding:3px;">
+                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">体重(kg):</label>
+                        <div class="col-md-8" style="margin-bottom:8px">
+                            <input class="form-control text-box single-line" data-val="true" id="weights" name="weights" type="text" value="@weights">
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    int dropweights = Convert.ToInt32(item[4]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B11&nbsp;&nbsp;&nbsp;&nbsp;近半年体重是否下降:</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <label>@Html.RadioButtonFor(model => dropweights, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                        <label>@Html.RadioButtonFor(model => dropweights, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+                    </div>
+                </div>
+
+                @{
+                    int refweights = Convert.ToInt32(item[5]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B111&nbsp;&nbsp;&nbsp;&nbsp;若是，以前体重为(kg):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="refweights" name="refweights" type="text" value="@refweights">
+                    </div>
+                </div>
+
+                @{
+                    int bloods = Convert.ToInt32(item[6]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">B2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;血型:</label>
+                    <div class="col-md-10">
+
+                        <label>@Html.RadioButtonFor(model => bloods, 1, new { htmlAttributes = new { @class = "form-control" } }) A型</label>
+                        <label>@Html.RadioButtonFor(model => bloods, 2, new { htmlAttributes = new { @class = "form-control" } }) B型</label>
+                        <label>@Html.RadioButtonFor(model => bloods, 3, new { htmlAttributes = new { @class = "form-control" } }) AB型</label>
+                        <label>@Html.RadioButtonFor(model => bloods, 4, new { htmlAttributes = new { @class = "form-control" } }) O型</label>
+                        <label>@Html.RadioButtonFor(model => bloods, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
+
+                    </div>
+                </div>
+
+
+                @{
+                    int characters = Convert.ToInt32(item[7]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">B3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平时性格:</label>
+                    <div class="col-md-10">
+
+                        <label>@Html.RadioButtonFor(model => characters, 1, new { htmlAttributes = new { @class = "form-control" } }) 外向型</label>
+                        <label>@Html.RadioButtonFor(model => characters, 2, new { htmlAttributes = new { @class = "form-control" } }) 混合型</label>
+                        <label>@Html.RadioButtonFor(model => characters, 3, new { htmlAttributes = new { @class = "form-control" } }) 内向型</label>
+
+
+                    </div>
+                </div>
+
+                @{
+                    int Psychologicalstress = Convert.ToInt32(item[8]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">B4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平时工作时心理紧张(心理压力)程度:</label>
+                    <div class="col-md-8">
+
+
+                        <label>@Html.RadioButtonFor(model => Psychologicalstress, 1, new { htmlAttributes = new { @class = "form-control" } }) 不太紧张</label>
+
+                        <label>@Html.RadioButtonFor(model => Psychologicalstress, 3, new { htmlAttributes = new { @class = "form-control" } }) 适中</label>
+
+                        <label>@Html.RadioButtonFor(model => Psychologicalstress, 2, new { htmlAttributes = new { @class = "form-control" } }) 较紧张、压力大</label>
+
+
+
+                    </div>
+                </div>
+
+                @{
+                    int anxietys = Convert.ToInt32(item[9]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">B5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平时会时常感到焦虑:</label>
+                    <div class="col-md-8">
+
+
+                        <label>@Html.RadioButtonFor(model => anxietys, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => anxietys, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+
+                    </div>
+                </div>
+
+                @{
+                    int Sleepqualitys = Convert.ToInt32(item[10]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">B6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自觉每天的睡眠质量:</label>
+                    <div class="col-md-8">
+
+
+                        <label>@Html.RadioButtonFor(model => Sleepqualitys, 1, new { htmlAttributes = new { @class = "form-control" } }) 好</label>
+
+                        <label>@Html.RadioButtonFor(model => Sleepqualitys, 2, new { htmlAttributes = new { @class = "form-control" } }) 一般</label>
+                        <label>@Html.RadioButtonFor(model => Sleepqualitys, 3, new { htmlAttributes = new { @class = "form-control" } }) 差</label>
+
+
+                    </div>
+                </div>
+
+                @{
+                    int HPs = Convert.ToInt32(item[11]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">B7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;曾经是否感染幽门螺杆菌(HP):</label>
+                    <div class="col-md-8">
+
+
+                        <label>@Html.RadioButtonFor(model => HPs, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => HPs, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+                        <label>@Html.RadioButtonFor(model => HPs, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
+
+
+                    </div>
+                </div>
+
+
+                @{
+                    int isacceptHP = Convert.ToInt32(item[12]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B71&nbsp;&nbsp;&nbsp;&nbsp;若是，是否接受抗菌治疗:</label>
+                    <div class="col-md-8">
+
+                        <label>@Html.RadioButtonFor(model => isacceptHP, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                        <label>@Html.RadioButtonFor(model => isacceptHP, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+                        <label>@Html.RadioButtonFor(model => isacceptHP, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
+
+                    </div>
+                </div>
+
+
+                @{
+                    int HPtreatment = Convert.ToInt32(item[13]);
+                }
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B711&nbsp;&nbsp;&nbsp;&nbsp;若接受治疗，具体治疗方案:</label>
+                    <div class="col-md-8">
+                        <div class="col-sm-4" style="padding-left:0">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 1, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+甲硝唑+克拉霉素</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 2, new { htmlAttributes = new { @class = "form-control" } }) PPI+铋剂+甲硝唑+四环素</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 3, new { htmlAttributes = new { @class = "form-control" } }) PPI+克拉霉素+阿莫西林/甲硝唑</label>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 4, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+甲硝唑</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 5, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+左氧氟沙星</label>
+                            </div>
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 6, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+克拉霉素+铋剂</label>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4" style="padding-left:0">
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 7, new { htmlAttributes = new { @class = "form-control" } }) 其他</label>
+                            </div>
+
+                            <div>
+                                <label>@Html.RadioButtonFor(model => HPtreatment, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                <input type="submit" value="保存" class="btn btn-default" />|
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

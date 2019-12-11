@@ -1,0 +1,137 @@
+﻿@model WebApplication4.Models.DocManger
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+<h2>查看</h2>
+
+<div>
+    <h4>医生详情</h4>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+        <dd>
+            @if (Model.Sex == 1)
+            {
+                @:男
+            }
+            else
+            {
+                @:女
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+
+        </dt>
+
+        <dd>
+            @if (Model.Position == 0)
+            {
+                @:住院医师
+            }
+            else if (Model.Position == 1)
+            {
+                @:主治医师
+            }
+            else if (Model.Position == 2)
+            {
+                @:副主任医师
+            }
+            else if (Model.Position == 3)
+            {
+                @:主任医师
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Goodat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Goodat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Introduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <div style="overflow-y:auto; overflow-x:auto;">
+                @if (Model.Image == "")
+                {
+                    <text>暂时没有头像</text>
+                }
+                else
+                {
+                    <img src="@Html.DisplayFor(model => model.Image)" width="150" height="150" id="image">
+                }
+            </div>
+        </dd>
+
+
+
+    </dl>
+</div>
+<p style="font-size:18px;padding:3px">
+    @if (webmodify == "0")
+    {
+        @Html.ActionLink("返回医生信息列表", "Index");
+    }
+    else if (webmodify == "1")
+    {
+        
+        @Html.ActionLink("编辑", "Edit", new { id = Model.Id });
+        <span>|</span>
+        @Html.ActionLink("返回医生信息列表", "Index");
+    }
+
+</p>

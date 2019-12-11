@@ -1,0 +1,118 @@
+﻿@model WebApplication4.Models.Visit
+
+@{
+    ViewBag.Title = "CheckAndTreatmentIndex";
+}
+@using System.Data;
+@using System;
+<h2>病人就诊页</h2>
+@{
+    string wusername = Convert.ToString(@User.Identity.Name);
+    string[] sArray = wusername.Split('.');
+
+    string webusername = sArray[0];
+    string webuserkind = sArray[1];
+
+    string webmodify = sArray[2];
+    string webdelete = sArray[3];
+    string webinsert = sArray[4];
+}
+
+
+@if (Model.scannum != "")
+{
+<p>
+    @{
+        string a = Model.scannum;
+        string str = "window.location.href= '/Visits/Create?id=1&&scannum=" + a + "&&identinum=" + Model.Identinum + "'";
+        if (webinsert == "0")
+        {
+
+        }
+        else if (webinsert == "1")
+        {
+            <button type="button" class="btn btn-primary btn-lg" style="font-size: 16px" onclick="@str">
+                <span class="glyphicon glyphicon-plus"></span>新建就诊
+            </button>
+        }
+    }
+
+
+</p>
+
+    <table class="table" style="font-size:18px;padding:3px">
+        <tr>
+            <th style="border-top:0px solid #ff4136;">
+                @Html.DisplayNameFor(model => model.VisitId)
+            </th>
+            <th style="border-top:0px solid #ff4136;">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+
+        </tr>
+
+        @foreach (DataRow item in Model.getVisit.Rows)
+        {
+            <tr>
+                <td style="border:#ffffff 0px solid;">
+                    @item[1]
+                </td>
+                <td style="border:#ffffff 0px solid;">
+                    @{
+                        DateTime aa = Convert.ToDateTime(item[2]);
+
+                        string b = "";
+
+                        b = aa.ToString("yyyy-MM-dd");
+                    }
+                    @b
+                </td>
+
+                <td style="border:#ffffff 0px solid;">
+                    @{
+                        int iid = Convert.ToInt32(item[0]);
+                    }
+
+                    @if (webmodify == "0")
+                    {
+
+                    }
+                    else if (webmodify == "1")
+                    {
+                        @Html.ActionLink("编辑", "Edit", new { id = iid });
+                        <span>|</span>
+                    }
+
+                    @Html.ActionLink("查看详情", "Details", new { id = iid })
+
+                    @if (webdelete == "0")
+                    {
+
+                    }
+                    else if (webdelete == "1")
+                    {
+                        <span>|</span>
+                        @Html.ActionLink("删除", "Delete", new { id = iid });
+
+                    }
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h4>请先创建筛查号</h4>
+}
+
+
+<div>
+    <p style="font-size:18px;padding:3px">
+
+        <a href="javascript:window.history.go(-1)">返回</a>
+    </p>
+</div>

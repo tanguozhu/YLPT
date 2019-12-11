@@ -1,0 +1,88 @@
+﻿@model WebApplication4.Models.ReturnVisit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ReturnVisit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.scannum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scannum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identinum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identinum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.returnvisit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.returnvisit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.returnvisitcontent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.returnvisitcontent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.returnvisitdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.returnvisitdate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

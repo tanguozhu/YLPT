@@ -1,0 +1,117 @@
+﻿@model WebApplication4.Models.WebManger
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>查看</h2>
+
+<div>
+    <h4>网页管理者详情</h4>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            角色权限
+        </dt>
+
+        <dd>
+            @{
+                string wmanger = "";
+                if (Model.webkind == 0)
+                {
+                    wmanger = "普通管理员";
+                }
+                else if (Model.webkind == 1)
+                {
+                    wmanger = "超级管理员";
+                }
+            }
+            @wmanger
+        </dd>
+
+        <dt>
+            修改权限
+        </dt>
+
+        <dd>
+            @{
+                string modif = "";
+                if (Model.modify == 0)
+                {
+                    modif = "无";
+                }
+                else if (Model.modify == 1)
+                {
+                    modif = "有";
+                }
+            }
+            @modif
+        </dd>
+
+        <dt>
+            删除权限
+        </dt>
+
+        <dd>
+            @{
+                string delet = "";
+                if (Model.delete == 0)
+                {
+                    delet = "无";
+                }
+                else if (Model.delete == 1)
+                {
+                    delet = "有";
+                }
+            }
+            @delet
+        </dd>
+
+        <dt>
+            新增权限
+        </dt>
+
+        <dd>
+            @{
+                string inser = "";
+                if (Model.insert == 0)
+                {
+                    inser = "无";
+                }
+                else if (Model.insert == 1)
+                {
+                    inser = "有";
+                }
+            }
+            @inser
+        </dd>
+    </dl>
+</div>
+<p style="font-size:18px;padding:3px">
+    @Html.ActionLink("编辑", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("返回网页登录管理列表", "Index")
+</p>

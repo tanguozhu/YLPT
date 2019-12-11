@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication4.Models.PopSciinManger>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>科普信息管理主页</h2>
+
+<p>
+    <button type="button" class="btn btn-primary btn-lg" style="font-size: 16px" onclick="window.location.href='/PopSciinMangers/Create'">
+        <span class="glyphicon glyphicon-plus"></span>新建科普信息
+    </button>
+
+</p>
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("查看详情", "Details", new { id = item.Id }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

@@ -1,0 +1,29 @@
+﻿@model WebApplication4.Models.PopSciinManger
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>确定删除</h2>
+
+<div>
+    <h4>该条科普信息</h4>
+    <hr />
+   
+    <h3>@Model.Title</h3>
+    <div style="overflow-y:auto; overflow-x:auto; width:70%;height:400px">
+
+        <div>@Html.Raw(HttpUtility.HtmlDecode(Model.Introduction))</div>
+        <img src="@Html.DisplayFor(model => model.Imag)" width="150" height="150" id="Imag">
+
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="font-size:18px;padding:3px">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回科普信息列表", "Index")
+        </div>
+    }
+</div>

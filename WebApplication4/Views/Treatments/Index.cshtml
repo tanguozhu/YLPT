@@ -1,0 +1,153 @@
+﻿@model IEnumerable<WebApplication4.Models.Treatment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.scannum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.visit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.condition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isInfected)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isEradicated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Omeprazole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rabeprazole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Esomeprazole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pantoprazole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherPPI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amoxicillin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tetracycline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Levofloxacin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clarithromycin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Furazolidone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Metronidazole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.treatTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isOnTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.scannum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.visit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.condition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isInfected)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isEradicated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Omeprazole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rabeprazole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Esomeprazole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pantoprazole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherPPI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amoxicillin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tetracycline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Levofloxacin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clarithromycin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Furazolidone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Metronidazole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.treatTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isOnTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.content)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

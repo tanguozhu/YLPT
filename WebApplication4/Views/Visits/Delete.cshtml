@@ -1,0 +1,55 @@
+﻿@model WebApplication4.Models.Visit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>确定删除</h2>
+
+
+<div>
+    <h3>该条记录?</h3>
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+
+       
+            <div>
+                @Html.DisplayNameFor(model => model.Name):
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.scannum):
+                @Html.DisplayFor(model => model.scannum)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.VisitId):
+                @Html.DisplayFor(model => model.VisitId)
+            </div>
+        
+            <div>
+                身份证号:
+                @Html.DisplayFor(model => model.Identinum)
+            </div>
+       
+            <div>
+                @Html.DisplayNameFor(model => model.Date):
+                @Html.DisplayFor(model => model.Date)
+            </div>
+            
+        
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="font-size:18px;padding:3px">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    }
+</div>

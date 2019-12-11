@@ -1,0 +1,45 @@
+﻿@model WebApplication4.Models.FollowUp
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>确定删除</h2>
+@Html.HiddenFor(model => model.refid)
+@Html.HiddenFor(model => model.scannum)
+@Html.HiddenFor(model => model.visit)
+<div>
+    <h3>该条记录?</h3>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            随访时间:
+        </dt>
+
+        <dd>
+            @{
+                string a = Model.date.ToString("yyyy-MM-dd");
+            }
+            @a
+        </dd>
+
+        <dt>
+            随访内容:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="font-size:18px;padding:3px">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    }
+</div>

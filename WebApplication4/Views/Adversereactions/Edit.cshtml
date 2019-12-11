@@ -1,0 +1,828 @@
+﻿@model WebApplication4.Models.Adversereactions
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>编辑</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.treatmentid)
+    @Html.HiddenFor(model => model.type0)
+    @Html.HiddenFor(model => model.type1)
+    @Html.HiddenFor(model => model.type2)
+    @Html.HiddenFor(model => model.type3)
+    @Html.HiddenFor(model => model.type4)
+    @Html.HiddenFor(model => model.type5)
+    @Html.HiddenFor(model => model.type6)
+
+<div class="form-horizontal">
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+        <h3>头晕</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime0 = Convert.ToDateTime(Model.type0.Rows[0][3]);
+                string dt = beginTime0.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime0" name="beginTime0" type="date" value="@dt">
+                </div>
+            </div>
+
+            @{
+                string lastTime0 = Convert.ToString(Model.type0.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime0" name="lastTime0" type="text" value="@lastTime0">
+                </div>
+            </div>
+
+            @{
+                string degree0 = Convert.ToString(Model.type0.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree0" name="degree0" type="text" value="@degree0">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed0 = Convert.ToString(Model.type0.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed0" name="relationshipWithMed0" type="text" value="@relationshipWithMed0">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment0 = Convert.ToInt32(Model.type0.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment0 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment0, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment0, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment0, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment0, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+            @{
+                string frequency0 = Convert.ToString(Model.type0.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency0" name="frequency0" type="text" value="@frequency0">
+                </div>
+            </div>
+
+            @{
+                string ending0 = Convert.ToString(Model.type0.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending0" name="ending0" type="text" value="@ending0">
+                </div>
+            </div>
+            @{
+                string effectToMed0 = Convert.ToString(Model.type0.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed0" name="effectToMed0" type="text" value="@effectToMed0">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>恶心</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime1 = Convert.ToDateTime(Model.type1.Rows[0][3]);
+                string dt1 = beginTime1.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime1" name="beginTime1" type="date" value="@dt1">
+                </div>
+            </div>
+
+            @{
+                string lastTime1 = Convert.ToString(Model.type1.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime1" name="lastTime1" type="text" value="@lastTime1">
+                </div>
+            </div>
+
+            @{
+                string degree1 = Convert.ToString(Model.type1.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree1" name="degree1" type="text" value="@degree1">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed1 = Convert.ToString(Model.type1.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed1" name="relationshipWithMed1" type="text" value="@relationshipWithMed1">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment1 = Convert.ToInt32(Model.type1.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment1 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment1, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment1, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment1, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment1, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+
+
+            @{
+                string frequency1 = Convert.ToString(Model.type1.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency1" name="frequency1" type="text" value="@frequency1">
+                </div>
+            </div>
+
+            @{
+                string ending1 = Convert.ToString(Model.type1.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending1" name="ending1" type="text" value="@ending1">
+                </div>
+            </div>
+
+            @{
+                string effectToMed1 = Convert.ToString(Model.type1.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed1" name="effectToMed1" type="text" value="@effectToMed1">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <hr />
+
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>呕吐</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime2 = Convert.ToDateTime(Model.type2.Rows[0][3]);
+                string dt2 = beginTime2.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime2" name="beginTime2" type="date" value="@dt2">
+                </div>
+            </div>
+
+            @{
+                string lastTime2 = Convert.ToString(Model.type2.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime2" name="lastTime2" type="text" value="@lastTime2">
+                </div>
+            </div>
+
+            @{
+                string degree2 = Convert.ToString(Model.type2.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree2" name="degree2" type="text" value="@degree2">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed2 = Convert.ToString(Model.type2.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed2" name="relationshipWithMed2" type="text" value="@relationshipWithMed2">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment2 = Convert.ToInt32(Model.type2.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment2 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment2, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment2, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment2, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment2, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+
+
+            @{
+                string frequency2 = Convert.ToString(Model.type2.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency2" name="frequency2" type="text" value="@frequency2">
+                </div>
+            </div>
+
+            @{
+                string ending2 = Convert.ToString(Model.type2.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending2" name="ending2" type="text" value="@ending2">
+                </div>
+            </div>
+
+            @{
+                string effectToMed2 = Convert.ToString(Model.type2.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed2" name="effectToMed2" type="text" value="@effectToMed2">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>腹痛</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime3 = Convert.ToDateTime(Model.type3.Rows[0][3]);
+                string dt3 = beginTime3.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime3" name="beginTime3" type="date" value="@dt3">
+                </div>
+            </div>
+
+            @{
+                string lastTime3 = Convert.ToString(Model.type3.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime3" name="lastTime3" type="text" value="@lastTime3">
+                </div>
+            </div>
+
+            @{
+                string degree3 = Convert.ToString(Model.type3.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree3" name="degree3" type="text" value="@degree3">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed3 = Convert.ToString(Model.type3.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed3" name="relationshipWithMed3" type="text" value="@relationshipWithMed3">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment3 = Convert.ToInt32(Model.type3.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment3 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment3, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment3, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment3, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment3, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+
+
+            @{
+                string frequency3 = Convert.ToString(Model.type3.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency3" name="frequency3" type="text" value="@frequency3">
+                </div>
+            </div>
+
+            @{
+                string ending3 = Convert.ToString(Model.type3.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending3" name="ending3" type="text" value="@ending3">
+                </div>
+            </div>
+
+            @{
+                string effectToMed3 = Convert.ToString(Model.type3.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed3" name="effectToMed3" type="text" value="@effectToMed3">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>腹泻</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime4 = Convert.ToDateTime(Model.type4.Rows[0][3]);
+                string dt4 = beginTime4.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime4" name="beginTime4" type="date" value="@dt4">
+                </div>
+            </div>
+
+            @{
+                string lastTime4 = Convert.ToString(Model.type4.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime4" name="lastTime4" type="text" value="@lastTime4">
+                </div>
+            </div>
+
+            @{
+                string degree4 = Convert.ToString(Model.type4.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree4" name="degree4" type="text" value="@degree4">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed4 = Convert.ToString(Model.type4.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed4" name="relationshipWithMed4" type="text" value="@relationshipWithMed4">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment4 = Convert.ToInt32(Model.type4.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment4 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment4, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment4, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment4, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment4, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+
+
+            @{
+                string frequency4 = Convert.ToString(Model.type4.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency4" name="frequency4" type="text" value="@frequency4">
+                </div>
+            </div>
+
+            @{
+                string ending4 = Convert.ToString(Model.type4.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending4" name="ending4" type="text" value="@ending4">
+                </div>
+            </div>
+
+            @{
+                string effectToMed4 = Convert.ToString(Model.type4.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed4" name="effectToMed4" type="text" value="@effectToMed4">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>皮疹</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime5 = Convert.ToDateTime(Model.type5.Rows[0][3]);
+                string dt5 = beginTime5.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime5" name="beginTime5" type="date" value="@dt5">
+                </div>
+            </div>
+
+            @{
+                string lastTime5 = Convert.ToString(Model.type5.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime5" name="lastTime5" type="text" value="@lastTime5">
+                </div>
+            </div>
+
+            @{
+                string degree5 = Convert.ToString(Model.type5.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree5" name="degree5" type="text" value="@degree5">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed5 = Convert.ToString(Model.type5.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed5" name="relationshipWithMed5" type="text" value="@relationshipWithMed5">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment5 = Convert.ToInt32(Model.type5.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment5 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment5, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment5, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment5, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment5, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+
+
+            @{
+                string frequency5 = Convert.ToString(Model.type5.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency5" name="frequency5" type="text" value="@frequency5">
+                </div>
+            </div>
+
+            @{
+                string ending5 = Convert.ToString(Model.type5.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending5" name="ending5" type="text" value="@ending5">
+                </div>
+            </div>
+
+            @{
+                string effectToMed5 = Convert.ToString(Model.type5.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed5" name="effectToMed5" type="text" value="@effectToMed5">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr />
+    <div style="overflow-y:auto; overflow-x:auto;">
+
+        <h3>其他</h3>
+        <div class="col-md-6">
+
+            @{
+                DateTime beginTime6 = Convert.ToDateTime(Model.type6.Rows[0][3]);
+                string dt6 = beginTime6.ToString("yyyy-MM-dd");
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-val="true" id="beginTime6" name="beginTime6" type="date" value="@dt6">
+                </div>
+            </div>
+
+            @{
+                string lastTime6 = Convert.ToString(Model.type6.Rows[0][4]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="lastTime6" name="lastTime6" type="text" value="@lastTime6">
+                </div>
+            </div>
+
+            @{
+                string degree6 = Convert.ToString(Model.type6.Rows[0][5]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">程度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="degree6" name="degree6" type="text" value="@degree6">
+                </div>
+            </div>
+
+
+
+
+            @{
+                string relationshipWithMed6 = Convert.ToString(Model.type6.Rows[0][9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">与用药的关系:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="relationshipWithMed6" name="relationshipWithMed6" type="text" value="@relationshipWithMed6">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left:0">
+
+            @{
+                int isNeedTreatment6 = Convert.ToInt32(Model.type6.Rows[0][7]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">需否治疗:</label>
+                <div class="col-md-10">
+                    @if (isNeedTreatment6 == 0)
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment6, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment6, 1, new { htmlAttributes = new { @class = "form-control" } }) 需要</label>
+                    }
+                    else
+                    {
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment6, 0, new { htmlAttributes = new { @class = "form-control" } }) 不需要</label>
+                        <label>@Html.RadioButtonFor(model => isNeedTreatment6, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } }) 需要</label>
+                    }
+                </div>
+            </div>
+
+
+
+
+            @{
+                string frequency6 = Convert.ToString(Model.type6.Rows[0][6]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">频度:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="frequency6" name="frequency6" type="text" value="@frequency6">
+                </div>
+            </div>
+
+            @{
+                string ending6 = Convert.ToString(Model.type6.Rows[0][10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">结局:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="ending6" name="ending6" type="text" value="@ending6">
+                </div>
+            </div>
+
+            @{
+                string effectToMed6 = Convert.ToString(Model.type6.Rows[0][8]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">对药物的影响:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" id="effectToMed6" name="effectToMed6" type="text" value="@effectToMed6">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    @{
+        string id0 = Convert.ToString(Model.type0.Rows[0][0]);
+        string id1 = Convert.ToString(Model.type1.Rows[0][0]);
+        string id2 = Convert.ToString(Model.type2.Rows[0][0]);
+        string id3 = Convert.ToString(Model.type3.Rows[0][0]);
+        string id4 = Convert.ToString(Model.type4.Rows[0][0]);
+        string id5 = Convert.ToString(Model.type5.Rows[0][0]);
+        string id6 = Convert.ToString(Model.type6.Rows[0][0]);
+    }
+    <div class="form-group" style="font-size:18px;padding:3px;display:none">
+
+        <input class="form-control text-box single-line" data-val="true" id="id0" name="id0" type="text" value="@id0">
+        <input class="form-control text-box single-line" data-val="true" id="id1" name="id1" type="text" value="@id1">
+        <input class="form-control text-box single-line" data-val="true" id="id2" name="id2" type="text" value="@id2">
+        <input class="form-control text-box single-line" data-val="true" id="id3" name="id3" type="text" value="@id3">
+        <input class="form-control text-box single-line" data-val="true" id="id4" name="id4" type="text" value="@id4">
+        <input class="form-control text-box single-line" data-val="true" id="id5" name="id5" type="text" value="@id5">
+        <input class="form-control text-box single-line" data-val="true" id="id6" name="id6" type="text" value="@id6">
+
+    </div>
+
+
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

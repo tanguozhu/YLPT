@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebApplication4.Models.WebManger>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using PagedList
+@using PagedList.Mvc
+
+<h2>网页管理员账号主页</h2>
+
+<p>
+   
+    <button type="button" class="btn btn-primary btn-lg" style="font-size: 16px" onclick="window.location.href='/WebMangers/Create'">
+        <span class="glyphicon glyphicon-plus"></span>新建网页管理员账号
+    </button>
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p style="font-size:18px;padding:3px">
+        账号: @Html.TextBox("Account")
+        姓名: @Html.TextBox("Name")
+        <input type="submit" value="检索" />
+    </p>
+}
+
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>角色权限</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @{ 
+                string a = "";
+                if (item.webkind==0)
+                {
+                    a = "普通管理员";
+                }
+                else if (item.webkind == 1)
+                {
+                    a = "超级管理员";
+                }
+            }
+
+            @a
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("查看详情", "Details", new { id = item.Id }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

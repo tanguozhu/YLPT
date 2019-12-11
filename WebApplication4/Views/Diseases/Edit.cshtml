@@ -1,0 +1,165 @@
+﻿@model WebApplication4.Models.Disease
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>编辑</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>病史</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+
+    <div class="form-group">
+        
+
+        <label class="control-label col-md-2" style="padding-top:1px">疾病史:</label>
+        <div  class="col-md-10">
+            @if (Model.DiseaseId == 0)
+            {
+                <label>@Html.RadioButtonFor(model => model.DiseaseId, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } })无</label>
+                <label>@Html.RadioButtonFor(model => model.DiseaseId, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+            }
+            else
+            {
+                <label>@Html.RadioButtonFor(model => model.DiseaseId, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.DiseaseId, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } })有</label>
+            }
+
+            @Html.ValidationMessageFor(model => model.DiseaseId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">病种:</label>
+        <div class="col-md-10">
+            @if (Model.Cardiovascular == 1)
+            {
+                <input type="checkbox" name="Cardiovascular" value="1" checked="checked" /><text>心血管</text>
+            }
+            else
+            {
+                <input type="checkbox" name="Cardiovascular" value="1" /><text>心血管</text>
+            }
+            @if (Model.Breathing == 1)
+            {
+                <input type="checkbox" name="Breathing" value="1" checked="checked" /><text>呼吸</text>
+            }
+            else
+            {
+                <input type="checkbox" name="Breathing" value="1" /><text>呼吸</text>
+            }
+            @if (Model.URM == 1)
+            {
+                <input type="checkbox" name="URM" value="1" checked="checked" /><text>泌尿、生殖、代谢</text>
+            }
+            else
+            {
+                <input type="checkbox" name="URM" value="1" /><text>泌尿、生殖、代谢</text>
+            }
+            @if (Model.SportsOthers == 1)
+            {
+                <input type="checkbox" name="SportsOthers" value="1" checked="checked" /><text>运动及其它</text>
+            }
+            else
+            {
+                <input type="checkbox" name="SportsOthers" value="1" /><text>运动及其它</text>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
+        <div class="col-md-10">
+            <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="Specific" name="Specific" rows="2">@Model.Specific</textarea>
+            
+            @Html.ValidationMessageFor(model => model.Specific, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">消化系统肿瘤家族史:</label>
+        <div class="col-md-10">
+            @if (Model.Gastric == 0)
+            {
+                <label>@Html.RadioButtonFor(model => model.Gastric, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } })无</label>
+                <label>@Html.RadioButtonFor(model => model.Gastric, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+            }
+            else
+            {
+                <label>@Html.RadioButtonFor(model => model.Gastric, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.Gastric, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } })有</label>
+            }
+
+            @Html.ValidationMessageFor(model => model.Gastric, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
+        <div class="col-md-10">
+            <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="Specificgastric" name="Specificgastric" rows="2">@Model.Specificgastric</textarea>
+            
+            @Html.ValidationMessageFor(model => model.Specificgastric, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">药物过敏史:</label>
+        <div class="col-md-10">
+            @if (Model.Allergy == 0)
+            {
+                <label>@Html.RadioButtonFor(model => model.Allergy, 0, new { htmlAttributes = new { @class = "form-control", @checked = true } })无</label>
+                <label>@Html.RadioButtonFor(model => model.Allergy, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+            }
+            else
+            {
+                <label>@Html.RadioButtonFor(model => model.Allergy, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.Allergy, 1, new { htmlAttributes = new { @class = "form-control", @checked = true } })有</label>
+            }
+
+            @Html.ValidationMessageFor(model => model.Allergy, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
+        <div class="col-md-10">
+            <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="Specificallergy" name="Specificallergy" rows="2">@Model.Specificallergy</textarea>
+            
+            @Html.ValidationMessageFor(model => model.Specificallergy, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    
+
+    
+    
+    <hr />
+    <div>
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="提交" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+            <div  style="display:none">
+                @Html.EditorFor(model => model.RefId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RefId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

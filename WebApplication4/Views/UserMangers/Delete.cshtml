@@ -1,0 +1,83 @@
+﻿@model WebApplication4.Models.UserManger
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>确定删除</h2>
+
+
+<div>
+    <h4>该条病人信息？</h4>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;padding:3px">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.pnickname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pnickname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identinum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identinum)
+        </dd>
+        <dt>
+            筛查号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scannum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @if (Model.Image == "")
+            {
+                <text>暂时没有头像</text>
+            }
+            else
+            {
+                <img src="@Html.DisplayFor(model => model.Image)" width="150" height="150" id="image">
+            }
+
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="font-size:18px;padding:3px">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回病人信息列表", "Index")
+        </div>
+    }
+</div>

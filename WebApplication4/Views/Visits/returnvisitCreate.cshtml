@@ -1,0 +1,123 @@
+﻿@model WebApplication4.Models.Visit
+
+@{
+    /**/
+
+    ViewBag.Title = "returnvisitCreate";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.detailid)
+    @Html.HiddenFor(model => model.Checkpathology)
+    @Html.HiddenFor(model => model.refid)
+
+    if (Model.Checkpathology == 1)
+    {
+        <h2>编辑</h2>
+        <div>
+            <h4>复诊信息</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            @{
+                int rv = 1;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">是否需要复诊:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => rv, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                    <label>@Html.RadioButtonFor(model => rv, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                </div>
+            </div>
+
+            @{
+                string rvtime = Model.Date;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">复诊时间:</label>
+                <div class="col-md-10" style="margin-bottom:8px">
+                    <input class="form-control" data-val="true" id="rvtime" name="rvtime" type="date" value="@rvtime">
+                </div>
+            </div>
+
+            @{
+                string rvcon = Model.Name;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">复诊内容:</label>
+                <div class="col-md-10">
+                    <textarea htmlattributes="{ class = white-space:pre-wrap }" style="height:150px;width:400px" id="rvcon" name="rvcon" >@rvcon</textarea>
+
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:20px">
+                <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                    <input type="submit" value="保存" class="btn btn-default" />|
+                    <a href="javascript:window.history.go(-1)">返回</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+
+    {
+        <h2>新建</h2>
+        <div>
+            <h4>复诊信息</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            @{
+                int rv = 2;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">是否需要复诊:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => rv, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                    <label>@Html.RadioButtonFor(model => rv, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">复诊时间:</label>
+                <div class="col-md-10" style="margin-bottom:8px">
+                    <input class="form-control" data-val="true" id="rvtime" name="rvtime" type="date" value="">
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">复诊内容:</label>
+                <div class="col-md-10">
+                    <textarea htmlattributes="{ class = white-space:pre-wrap }" style="height:150px;width:400px" id="rvcon" name="rvcon"></textarea>
+
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:20px">
+                <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                    <input type="submit" value="保存" class="btn btn-default" />|
+                    <a href="javascript:window.history.go(-1)">返回</a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

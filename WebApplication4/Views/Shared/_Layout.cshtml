@@ -1,0 +1,239 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 后台管理系统</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+
+        .panel-group {
+            max-height: 770px;
+            overflow: auto;
+        }
+
+        .leftMenu {
+            margin: 10px;
+            margin-top: 5px;
+        }
+
+            .leftMenu .panel-heading {
+                font-size: 14px;
+                padding-left: 20px;
+                height: 36px;
+                line-height: 36px;
+                color: white;
+                position: relative;
+                cursor: pointer;
+            }
+                /*转成手形图标*/
+                .leftMenu .panel-heading span {
+                    position: absolute;
+                    right: 10px;
+                    top: 12px;
+                }
+
+            .leftMenu .menu-item-left {
+                padding: 2px;
+                background: transparent;
+                border: 1px solid transparent;
+                border-radius: 6px;
+            }
+
+                .leftMenu .menu-item-left:hover {
+                    background: #C4E3F3;
+                    border: 1px solid #1E90FF;
+                }
+
+        #menu {
+        }
+
+            #menu ul {
+                padding: 0px
+            }
+
+            #menu li {
+                border-top: 1px solid rgba(255,255,255,0.08);
+            }
+
+                #menu li a, #menu li span {
+                    display: block;
+                    padding: 2em 1.5em;
+                    text-align: center;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    color: rgba(255,255,255,0.5);
+                }
+
+                #menu li:hover a, #menu li.active a, #menu li.active span {
+                }
+
+            #menu .current_page_item a {
+                background: #2980b9;
+                color: rgba(255,255,255,1);
+            }
+
+            #menu .icon {
+            }
+    </style>
+
+</head>
+
+
+<body style="display:block;position:absolute;left:0px;top:0px;width:100%;height:100%;overflow:hidden;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom:0">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="navbar-brand">后台管理系统</a>
+                }
+                else
+                {
+                    @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Logout", "Home", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        string wusername = Convert.ToString(@User.Identity.Name);
+                        string[] sArray = wusername.Split('.');
+
+                        string webusername = sArray[0];
+                        string webuserkind = sArray[1];
+
+                        string webmodify = sArray[2];
+                        string webdelete = sArray[3];
+                        string webinsert = sArray[4];
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:;">Hello, @webusername</a></li>
+                    @if (webuserkind == "0")
+                    {
+                        <li><a href="javascript:;">(普通管理员)</a></li>
+                    }
+                    else if (webuserkind == "1")
+                    {
+                        <li><a href="javascript:;">(超级管理员)</a></li>
+                    }
+                    <li><a href="javascript:;" id="logout">退出系统</a></li>
+                </ul>
+
+                    }
+
+                }
+                else
+                {
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("登录", "Login", "Home")</li>
+                    </ul>
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="width:100%;height:100%;margin-right:0;margin-left:0">
+        @if (User.Identity.IsAuthenticated)
+        {
+            string wusername = Convert.ToString(@User.Identity.Name);
+            string[] sArray = wusername.Split('.');
+
+            string webusername = sArray[0];
+            string webuserkind = sArray[1];
+
+            string webmodify = sArray[2];
+            string webdelete = sArray[3];
+            string webinsert = sArray[4];
+            <div class="col-md-2" style="background-color:#2a2a2a;padding:0px;height:100%">
+                <div>
+                    <div id="logo">
+                        <img src="" alt="" />
+                        <h1 style="text-align: center;"><a href="/Students">主页</a></h1>
+                    </div>
+                    <div id="menu">
+                        <ul>
+                            @if (webuserkind == "0")
+                            {
+                                <li class="current_page_item"><a href="/UserMangers">病人信息管理</a></li>
+                                <li class="current_page_item"><a href="/Visits">检查与治疗</a></li>
+                                <li class="current_page_item"><a href="/ReturnVisits">今日复查</a></li>
+                                <li class="current_page_item"><a href="/DocMangers">医生账号管理</a></li>
+                            }
+                            else if (webuserkind == "1")
+                            {
+                                <li class="current_page_item"><a href="/UserMangers">病人信息管理</a></li>
+                                <li class="current_page_item"><a href="/Visits">检查与治疗</a></li>
+                                <li class="current_page_item"><a href="/ReturnVisits">今日复查</a></li>
+                                <li class="current_page_item"><a href="/DocMangers">医生账号管理</a></li>
+                                <li class="current_page_item"><a href="/WebMangers">网页管理员账号管理</a></li>
+                                <li class="current_page_item"><a href="/BriefIntroes">医科联盟简介管理</a></li>
+                                <li class="current_page_item"><a href="/PopSciinMangers">科普信息管理</a></li>
+                                
+
+
+                            }
+
+
+                        </ul>
+                    </div>
+                </div>
+                <footer style=" position: absolute;bottom: 0;left:12%">
+                    <p style="color: rgba(255,255,255,0.5);">&copy; @DateTime.Now.Year - 扬州大学信息工程学院</p>
+                </footer>
+            </div>
+            <div style="height:100%;padding:0;overflow-y:auto; overflow-x:auto;background:url(http://114.116.228.193:9010/pic/bgpic/contentbg.png) repeat-x bottom  right ;  background-attachment:fixed; " class="col-md-10">
+                <div class="container body-content;" style="height:100%;padding:0;margin-left:8%">
+                    <div style="height:5%"></div>
+                    @RenderBody()
+
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div style="height:100%">
+                <div class="container body-content;" style="height:100%;width:100%;padding:0;background-image:url()">
+                    @RenderBody()
+
+
+                </div>
+            </div>
+
+        }
+
+
+    </div>
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+
+            $('#logout').click(function () {
+                $('#logoutForm').submit();
+            });
+        });
+    </script>
+</body>
+
+</html>

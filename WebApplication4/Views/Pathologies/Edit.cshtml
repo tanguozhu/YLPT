@@ -1,0 +1,248 @@
+﻿@model WebApplication4.Models.Pathology
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>编辑</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>病理</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id2)
+    @Html.HiddenFor(model => model.id1)
+    @Html.HiddenFor(model => model.part)
+    @Html.HiddenFor(model => model.part1)
+    @Html.HiddenFor(model => model.pathologynum)
+    @Html.HiddenFor(model => model.detailid)
+
+    <div class="col-md-6">
+        <h4>病理取材位置:胃窦</h4>
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">慢性炎:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.chronic, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.chronic, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.chronic, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.chronic, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.chronic, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.chronic, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">急性炎:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.acute, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.acute, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.acute, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.acute, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.acute, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.acute, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">萎缩:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.atrophy, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.atrophy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">肠化:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.intestinal, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.intestinal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">非典型增生:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.dysplasia, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.dysplasia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">淋巴滤泡:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.lymphoid, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.lymphoid, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+                @Html.ValidationMessageFor(model => model.lymphoid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">小凹上皮增生:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.pitepithelial, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.pitepithelial, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+                @Html.ValidationMessageFor(model => model.pitepithelial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">黏膜肌增生:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.Mucosal, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.Mucosal, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+                @Html.ValidationMessageFor(model => model.Mucosal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>病理取材位置:胃角</h4>
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">慢性炎:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.chronic1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.chronic1, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.chronic1, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.chronic1, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.chronic1, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.chronic1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">急性炎:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.acute1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.acute1, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.acute1, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.acute1, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.acute1, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.acute1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">萎缩:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.atrophy1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy1, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy1, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy1, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.atrophy1, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.atrophy1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">肠化:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.intestinal1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal1, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal1, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal1, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.intestinal1, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.intestinal1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">非典型增生:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.dysplasia1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia1, 1, new { htmlAttributes = new { @class = "form-control" } })轻</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia1, 2, new { htmlAttributes = new { @class = "form-control" } })中</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia1, 3, new { htmlAttributes = new { @class = "form-control" } })重</label>
+                <label>@Html.RadioButtonFor(model => model.dysplasia1, 4, new { htmlAttributes = new { @class = "form-control" } })极重</label>
+                @Html.ValidationMessageFor(model => model.dysplasia1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">淋巴滤泡:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.lymphoid1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.lymphoid1, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+                @Html.ValidationMessageFor(model => model.lymphoid1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">小凹上皮增生:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.pitepithelial1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.pitepithelial1, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+                @Html.ValidationMessageFor(model => model.pitepithelial1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">黏膜肌增生:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.Mucosal1, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                <label>@Html.RadioButtonFor(model => model.Mucosal1, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+                @Html.ValidationMessageFor(model => model.Mucosal1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+
+        </div>
+    </div>
+</div>
+    }
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
