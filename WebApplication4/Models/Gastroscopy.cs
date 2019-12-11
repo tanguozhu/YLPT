@@ -36,6 +36,7 @@ namespace WebApplication4.Models
         public string Pic7 { get; set; }
         public string Pic8 { get; set; }
 
+        public int isfollowup { get; set; }
         public DataTable getweinianmo;
         
 
