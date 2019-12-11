@@ -47,34 +47,26 @@
 
                     </dd>
                     <dt>
-                        感染及根除情况:
+                        治疗时间:
                     </dt>
 
                     <dd>
-                        @item[4]
-                    </dd>
-                    <dt>
-                        是否感染:
-                    </dt>
-                    <dd>
                         @{
-                            int isInfected = Convert.ToInt32(item[6]);
-                            if (isInfected == 0)
-                            {
-                                @:否
-                            }
-                            else
-                            {
-                                @:是
-                            }
+                            DateTime a = Convert.ToDateTime(item[5]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
                         }
+                        @b
                     </dd>
+
                     <dt>
                         是否根除:
                     </dt>
                     <dd>
                         @{
-                            int isEradicated = Convert.ToInt32(item[7]);
+                            int isEradicated = Convert.ToInt32(item[11]);
                             if (isEradicated == 0)
                             {
                                 @:否
@@ -86,18 +78,20 @@
                         }
                     </dd>
                 </dl>
-            </div>
 
+            </div>
+            <hr />
+            <h3>方案</h3>
             <div style="overflow-y:auto; overflow-x:auto;">
-                <hr />
-                <h3>方案</h3>
+                
+                <h4>质子泵抑制剂</h4>
                 @foreach (DataRow item1 in Model.getTreatmentDetails.Rows)
                 {
-                    int i1 = Convert.ToInt32(item1[8]);
-                    int i2 = Convert.ToInt32(item1[9]);
-                    int i3 = Convert.ToInt32(item1[10]);
-                    int i4 = Convert.ToInt32(item1[11]);
-                    int i5 = Convert.ToInt32(item1[12]);
+                    int i1 = Convert.ToInt32(item1[6]);
+                    int i2 = Convert.ToInt32(item1[7]);
+                    int i3 = Convert.ToInt32(item1[8]);
+                    int i4 = Convert.ToInt32(item1[9]);
+                    int i5 = Convert.ToInt32(item1[10]);
 
                     if (i1 == 0 && i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0)
                     {
@@ -143,17 +137,37 @@
 
             <div style="overflow-y:auto; overflow-x:auto;">
                 <hr />
-                <h3>铋剂</h3>
+                @{
+                    int biji = Convert.ToInt32(item[12]);
+                    string ba = "";
+                    if (biji == 0)
+                    {
+                        ba = "否";
+                    }
+                    else
+                    {
+                        ba = "是";
+                    }
+                }
+                <h4>铋剂:@ba</h4>
+
+
+            </div>
+
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                <h4>抗生素</h4>
                 @foreach (DataRow item2 in Model.getTreatmentDetails.Rows)
                 {
-                    int i1 = Convert.ToInt32(item2[13]);
-                    int i2 = Convert.ToInt32(item2[14]);
-                    int i3 = Convert.ToInt32(item2[15]);
-                    int i4 = Convert.ToInt32(item2[16]);
-                    int i5 = Convert.ToInt32(item2[17]);
-                    int i6 = Convert.ToInt32(item2[18]);
+                    int i1 = Convert.ToInt32(item2[12]);
+                    int i2 = Convert.ToInt32(item2[13]);
+                    int i3 = Convert.ToInt32(item2[14]);
+                    int i4 = Convert.ToInt32(item2[15]);
+                    int i5 = Convert.ToInt32(item2[16]);
+                    int i6 = Convert.ToInt32(item2[17]);
+                    string i7 = Convert.ToString(item2[20]);
 
-                    if (i1 == 0 && i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0 && i6 == 0)
+                    if (i1 == 0 && i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0 && i6 == 0 && i7 == "")
                     {
                         <div>暂时没有选择铋剂</div>
                     }
@@ -195,6 +209,12 @@
                                 甲硝唑
                             </div>
                         }
+                        if (i7 != "")
+                        {
+                            <div class="col-md-2">
+                                其他抗生素:@i7
+                            </div>
+                        }
                     }
 
                 }
@@ -222,7 +242,7 @@
                         具体:
                     </dt>
                     <dd>
-                        @item[21]
+                        @item[20]
                     </dd>
                 </dl>
             </div>
@@ -244,7 +264,7 @@
                     疗程:
                 </dt>
                 <dd>
-                    @item[19]
+                    @item[18]
 
                 </dd>
                 <dt>
@@ -253,7 +273,7 @@
 
                 <dd>
                     @{
-                        int isOnTime = Convert.ToInt32(item[20]);
+                        int isOnTime = Convert.ToInt32(item[19]);
                         if (isOnTime == 0)
                         {
                             @:否
@@ -308,7 +328,7 @@
                     {
                         <h3>
                             药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            
+
                         </h3>
                     }
                     else if (webmodify == "1")

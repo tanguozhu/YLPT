@@ -30,6 +30,7 @@ namespace WebApplication4.Models
         public int isOnTime { get; set; }
         public string content { get; set; }
 		public int biji { get; set; }
-		public int isfollowup { get; set; }
+        public int isEradicated { get; set; }
+        public int isfollowup { get; set; }
 	}
 }

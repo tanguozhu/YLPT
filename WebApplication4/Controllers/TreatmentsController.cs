@@ -89,11 +89,12 @@ namespace WebApplication4.Controllers
                 if (treatment.name==0)
                 {
                     sql = " INSERT INTO treatment (visit,scannum,name,conditions,time,Omeprazole,Rabeprazole,Esomeprazole," +
-						"Pantoprazole,OtherPPI,biji,Amoxicillin,tetracycline,Levofloxacin,Clarithromycin,Furazolidone,Metronidazole,treatTime,isOnTime,isfollowup)VALUES(" + 
+                        "Pantoprazole,OtherPPI,biji,Amoxicillin,tetracycline,Levofloxacin,Clarithromycin,Furazolidone,Metronidazole,treatTime,isOnTime,isEradicated,isfollowup)VALUES(" + 
                         "'" + treatment.visit + "','" + treatment.scannum + "'," +treatment.name  + ",'"+treatment.condition+"','"+treatment.time+"'," +
 						"" + treatment.Omeprazole + "," + treatment.Rabeprazole + "," + treatment.Esomeprazole + ","+treatment.Pantoprazole + "," +
 	  "" + treatment.OtherPPI + ","+treatment.biji+"," + treatment.Amoxicillin + "," + treatment.tetracycline + "," + treatment.Levofloxacin + "," +
-   ""+treatment.Clarithromycin + "," + treatment.Furazolidone + "," + treatment.Metronidazole + "," + treatment.treatTime + "," + treatment.isOnTime + ",0 )";
+   ""+treatment.Clarithromycin + "," + treatment.Furazolidone + "," + treatment.Metronidazole + "," + treatment.treatTime + "," + treatment.isOnTime + "," + 
+   treatment.isEradicated + ",0 )";
                 }
                 else
                 {
@@ -140,7 +141,7 @@ namespace WebApplication4.Controllers
                         treatment.time = reader.GetDateTime("time");
 
                         //treatment.isInfected = reader.GetInt32("isInfected");
-                        //treatment.isEradicated = reader.GetInt32("isEradicated");
+                        treatment.isEradicated = reader.GetInt32("isEradicated");
                         treatment.Omeprazole = reader.GetInt32("Omeprazole");
                         treatment.Rabeprazole = reader.GetInt32("Rabeprazole");
                         treatment.Esomeprazole = reader.GetInt32("Esomeprazole");
@@ -196,7 +197,7 @@ namespace WebApplication4.Controllers
 						"conditions='" + treatment.condition + "',time='" + treatment.time + "',Omeprazole=" + treatment.Omeprazole + ",Omeprazole=" + treatment.Omeprazole + ",Rabeprazole=" + treatment.Rabeprazole + "," +
 	  "Esomeprazole=" + treatment.Esomeprazole + ",Pantoprazole=" + treatment.Pantoprazole + ",OtherPPI=" + treatment.OtherPPI + ",Amoxicillin=" + treatment.Amoxicillin + ",tetracycline=" + treatment.tetracycline + "," +
    "Levofloxacin=" + treatment.Levofloxacin + ",Clarithromycin=" + treatment.Clarithromycin + ",Furazolidone=" + treatment.Furazolidone + ",Metronidazole=" + treatment.Metronidazole + ",treatTime=" + treatment.treatTime + "," +
-   "isOnTime=" + treatment.isOnTime + ",isfollowup=" + treatment.isfollowup + ",biji=" + treatment.biji + " where id=" + treatment.Id + "";
+   "isOnTime=" + treatment.isOnTime + ",isfollowup=" + treatment.isfollowup + ",biji=" + treatment.biji + ",isEradicated=" + treatment.isEradicated + " where id=" + treatment.Id + "";
 					//sql = "UPDATE treatment set conditions='"+treatment.condition+"',time='"+treatment.time+ "',isInfected="+treatment.isInfected+ ",isEradicated="+
      //                   treatment.isEradicated + ",Omeprazole=" + treatment.Omeprazole + ",Omeprazole=" + treatment.Omeprazole + ",Rabeprazole=" + treatment.Rabeprazole +
      //                   ",Esomeprazole=" + treatment.Esomeprazole+ ",Pantoprazole=" + treatment.Pantoprazole + ",OtherPPI=" + treatment.OtherPPI + ",Amoxicillin=" + treatment.Amoxicillin+
