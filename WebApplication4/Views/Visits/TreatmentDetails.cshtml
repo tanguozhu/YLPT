@@ -83,7 +83,7 @@
             <hr />
             <h3>方案</h3>
             <div style="overflow-y:auto; overflow-x:auto;">
-                
+
                 <h4>质子泵抑制剂</h4>
                 @foreach (DataRow item1 in Model.getTreatmentDetails.Rows)
                 {
@@ -222,7 +222,7 @@
             </div>
 
         }
-        else
+        else if (name == 1)
         {
             <div>
                 <h3 style="margin-top:0px">治疗基本情况</h3>
@@ -247,252 +247,382 @@
                 </dl>
             </div>
         }
+        else if (name == 2)
+        {
+            <div>
+                <h3 style="margin-top:0px">治疗基本情况</h3>
+                <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
+
+                    <dt>
+                        治疗内容:
+                    </dt>
+                    <dd>
+                        @{
+                            string othert = "手术治疗";
+
+                        }
+                        @othert
+                    </dd>
+                    <dt>
+                        手术方案:
+                    </dt>
+                    <dd>
+                        @item[4]
+                    </dd>
+                    <dt>
+                        术后病理:
+                    </dt>
+                    <dd>
+                        @item[21]
+                    </dd>
+                </dl>
+            </div>
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                <h3>手术图片</h3>
+                @foreach (DataRow itemshoushu in Model.getTreatmentDetails.Rows)
+                {
+
+                    string i1 = Convert.ToString(itemshoushu[22]);
+                    string i2 = Convert.ToString(itemshoushu[23]);
+                    string i3 = Convert.ToString(itemshoushu[24]);
+
+
+                    if (i1 == "" && i2 == "" && i3 == "")
+                    {
+                        <div>暂时没有手术图片</div>
+                    }
+                    else
+                    {
+                        if (i1 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i1" width="100" height="100" class="pic">
+                            </div>
+                        }
+                        if (i2 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i2" width="100" height="100" class="pic">
+                            </div>
+                        }
+                        if (i3 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i3" width="100" height="100" class="pic">
+                            </div>
+                        }
+
+
+
+                    }
+
+
+                }
+
+            </div>
+        }
+        <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+            <div id="innerdiv" style="position:absolute;">
+                <img id="bigimg" style="border:5px solid #fff;" src="" />
+            </div>
+        </div>
+        if (name == 0 || name == 1)
+        {
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                <h3>疗程及服药情况</h3>
+                <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
+
+                    @foreach (DataRow item3 in Model.getTreatmentDetails.Rows)
+                    {
+                        <dt>
+                            疗程:
+                        </dt>
+                        <dd>
+                            @item3[19]
+
+                        </dd>
+                        <dt>
+                            是否按时服药:
+                        </dt>
+
+                        <dd>
+                            @{
+                                int isOnTime = Convert.ToInt32(item3[20]);
+                                if (isOnTime == 0)
+                                {
+                                    @:否
+                                }
+                                else
+                                {
+                                    @:是
+                                }
+                            }
+                        </dd>
+                    }
+                </dl>
+
+            </div>
+
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+
+                <div>
+                    @{
+                        int checkid = 0;
+                        foreach (DataRow itemid in Model.getadverseraction.Rows)
+                        {
+                            checkid = Convert.ToInt32(itemid[0]);
+                            break;
+                        }
+                        if (checkid == 0)
+                        {
+                            if (webinsert == "0")
+                            {
+                                <h3>
+                                    药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                </h3>
+                                <h4>暂时没有药物不良反应请新增</h4>
+                            }
+                            else if (webinsert == "1")
+                            {
+                                <h3>
+                                    药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a style="font-size:18px" href="/Adversereactions/Create?id=@Model.Id&&treatmentid=@treatmentid">新增</a>
+                                </h3>
+                                <h4>暂时没有药物不良反应请新增</h4>
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            if (webmodify == "0")
+                            {
+                                <h3>
+                                    药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                </h3>
+                            }
+                            else if (webmodify == "1")
+                            {
+                                <h3>
+                                    药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a style="font-size:18px" href="/Adversereactions/Edit?id=@Model.Id&&treatmentid=@treatmentid">编辑</a>
+                                </h3>
+                            }
+
+                            <table class="table" style="font-size:18px;padding:3px">
+                                <tr>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        何种类型
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        发生时间
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        持续时间
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        程度
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        频度
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        需否治疗
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        对用药影响
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        与用药的关系
+                                    </th>
+                                    <th style="border-top:0px solid #ff4136;">
+                                        结局
+                                    </th>
+                                </tr>
+                                @foreach (DataRow item4 in Model.getadverseraction.Rows)
+                                {
+                                    <tr>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @{
+                                                int type = Convert.ToInt32(item4[2]);
+                                                string stype = "";
+                                                if (type == 0)
+                                                {
+                                                    stype = "头晕";
+                                                }
+                                                else if (type == 1)
+                                                {
+                                                    stype = "恶心";
+                                                }
+                                                else if (type == 2)
+                                                {
+                                                    stype = "呕吐";
+                                                }
+                                                else if (type == 3)
+                                                {
+                                                    stype = "腹痛";
+                                                }
+                                                else if (type == 4)
+                                                {
+                                                    stype = "腹泻";
+                                                }
+                                                else if (type == 5)
+                                                {
+                                                    stype = "皮疹";
+                                                }
+                                                else if (type == 6)
+                                                {
+                                                    stype = "其他";
+                                                }
+                                            }
+                                            @stype
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @{
+                                                DateTime a = Convert.ToDateTime(item4[3]);
+
+                                                string b = "";
+
+                                                b = a.ToString("yyyy-MM-dd");
+                                            }
+                                            @b
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @{
+                                                string chixushijian = item4[4].ToString();
+                                                string chixushijianset = "";
+                                                if (chixushijian.Length >= 10)
+                                                {
+                                                    chixushijianset = chixushijian.Substring(0, 8) + "...";
+                                                }
+                                                else
+                                                {
+                                                    chixushijianset = chixushijian;
+                                                }
+
+                                            }
+                                            @chixushijianset
+
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @item4[5]
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @{
+                                                string pindu = item4[6].ToString();
+                                                string pinduset = "";
+                                                if (pindu.Length >= 10)
+                                                {
+                                                    pinduset = pindu.Substring(0, 8) + "...";
+                                                }
+                                                else
+                                                {
+                                                    pinduset = pindu;
+                                                }
+
+                                            }
+                                            @pinduset
+
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @{
+                                                int zhiliao = Convert.ToInt32(item4[7]);
+                                                string szhiliao = "";
+                                                if (zhiliao == 0)
+                                                {
+                                                    szhiliao = "不需要";
+                                                }
+                                                else if (zhiliao == 1)
+                                                {
+                                                    szhiliao = "需要";
+                                                }
+                                            }
+                                            @szhiliao
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @item4[8]
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @item4[9]
+                                        </td>
+                                        <td style="border:#ffffff 0px solid;">
+                                            @item4[10]
+                                        </td>
+
+                                    </tr>
+                                }
+                            </table>
+                        }
+
+                    }
+
+                </div>
+
+            </div>
+
+        }
     }
 
 
 
 
 
-    <div style="overflow-y:auto; overflow-x:auto;">
-        <hr />
-        <h3>疗程及服药情况</h3>
-        <dl class="dl-horizontal" style="font-size:18px;padding:0px;margin:0px">
 
-            @foreach (DataRow item in Model.getTreatmentDetails.Rows)
-            {
-                <dt>
-                    疗程:
-                </dt>
-                <dd>
-                    @item[19]
-
-                </dd>
-                <dt>
-                    是否按时服药:
-                </dt>
-
-                <dd>
-                    @{
-                        int isOnTime = Convert.ToInt32(item[20]);
-                        if (isOnTime == 0)
-                        {
-                            @:否
-                        }
-                        else
-                        {
-                            @:是
-                        }
-                    }
-                </dd>
-            }
-        </dl>
-
-    </div>
-
-    <div style="overflow-y:auto; overflow-x:auto;">
-        <hr />
-
-        <div>
-            @{
-                int checkid = 0;
-                foreach (DataRow itemid in Model.getadverseraction.Rows)
-                {
-                    checkid = Convert.ToInt32(itemid[0]);
-                    break;
-                }
-                if (checkid == 0)
-                {
-                    if (webinsert == "0")
-                    {
-                        <h3>
-                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                        </h3>
-                        <h4>暂时没有药物不良反应请新增</h4>
-                    }
-                    else if (webinsert == "1")
-                    {
-                        <h3>
-                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a style="font-size:18px" href="/Adversereactions/Create?id=@Model.Id&&treatmentid=@treatmentid">新增</a>
-                        </h3>
-                        <h4>暂时没有药物不良反应请新增</h4>
-                    }
-
-
-
-                }
-                else
-                {
-                    if (webmodify == "0")
-                    {
-                        <h3>
-                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                        </h3>
-                    }
-                    else if (webmodify == "1")
-                    {
-                        <h3>
-                            药物不良反应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a style="font-size:18px" href="/Adversereactions/Edit?id=@Model.Id&&treatmentid=@treatmentid">编辑</a>
-                        </h3>
-                    }
-
-                    <table class="table" style="font-size:18px;padding:3px">
-                        <tr>
-                            <th style="border-top:0px solid #ff4136;">
-                                何种类型
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                发生时间
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                持续时间
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                程度
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                频度
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                需否治疗
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                对用药影响
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                与用药的关系
-                            </th>
-                            <th style="border-top:0px solid #ff4136;">
-                                结局
-                            </th>
-                        </tr>
-                        @foreach (DataRow item in Model.getadverseraction.Rows)
-                        {
-                            <tr>
-                                <td style="border:#ffffff 0px solid;">
-                                    @{
-                                        int type = Convert.ToInt32(item[2]);
-                                        string stype = "";
-                                        if (type == 0)
-                                        {
-                                            stype = "头晕";
-                                        }
-                                        else if (type == 1)
-                                        {
-                                            stype = "恶心";
-                                        }
-                                        else if (type == 2)
-                                        {
-                                            stype = "呕吐";
-                                        }
-                                        else if (type == 3)
-                                        {
-                                            stype = "腹痛";
-                                        }
-                                        else if (type == 4)
-                                        {
-                                            stype = "腹泻";
-                                        }
-                                        else if (type == 5)
-                                        {
-                                            stype = "皮疹";
-                                        }
-                                        else if (type == 6)
-                                        {
-                                            stype = "其他";
-                                        }
-                                    }
-                                    @stype
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @{
-                                        DateTime a = Convert.ToDateTime(item[3]);
-
-                                        string b = "";
-
-                                        b = a.ToString("yyyy-MM-dd");
-                                    }
-                                    @b
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @{
-                                        string chixushijian = item[4].ToString();
-                                        string chixushijianset = "";
-                                        if (chixushijian.Length >= 10)
-                                        {
-                                            chixushijianset = chixushijian.Substring(0, 8) + "...";
-                                        }
-                                        else
-                                        {
-                                            chixushijianset = chixushijian;
-                                        }
-
-                                    }
-                                    @chixushijianset
-
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @item[5]
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @{
-                                        string pindu = item[6].ToString();
-                                        string pinduset = "";
-                                        if (pindu.Length >= 10)
-                                        {
-                                            pinduset = pindu.Substring(0, 8) + "...";
-                                        }
-                                        else
-                                        {
-                                            pinduset = pindu;
-                                        }
-
-                                    }
-                                    @pinduset
-
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @{
-                                        int zhiliao = Convert.ToInt32(item[7]);
-                                        string szhiliao = "";
-                                        if (zhiliao == 0)
-                                        {
-                                            szhiliao = "不需要";
-                                        }
-                                        else if (zhiliao == 1)
-                                        {
-                                            szhiliao = "需要";
-                                        }
-                                    }
-                                    @szhiliao
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @item[8]
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @item[9]
-                                </td>
-                                <td style="border:#ffffff 0px solid;">
-                                    @item[10]
-                                </td>
-
-                            </tr>
-                        }
-                    </table>
-                }
-
-            }
-
-        </div>
-
-    </div>
 
     <p style="font-size:18px;padding:3px">
 
         <a href="javascript:window.history.go(-1)">返回</a>
     </p>
 </div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".pic").on("click", function () {
+            var _this = $(this);//将当前的pimg元素作为_this传入函数
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+        });
+    });
+    function imgShow(outerdiv, innerdiv, bigimg, _this) {
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+        $("<img/>").attr("src", src).on("load", function () {
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+            if (realHeight > windowH * scale) {//判断图片高度
+                imgHeight = windowH * scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight / realHeight * realWidth;//等比例缩放宽度
+                if (imgWidth > windowW * scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW * scale;//再对宽度进行缩放
+                }
+            } else if (realWidth > windowW * scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW * scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth / realWidth * realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width", imgWidth);//以最终的宽度对图片缩放
+            var w = (windowW - imgWidth) / 2;//计算图片与窗口左边距
+            var h = (windowH - imgHeight) / 2;//计算图片与窗口上边距
+            $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+        });
+        $(outerdiv).on("click", function () {//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }
+</script>
 
