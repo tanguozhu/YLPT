@@ -258,7 +258,8 @@
 
     $('#myModal').on('click', function () {
         //$('#sub').click();
-        $('#CreateForm').submit();
+        window.location.href = "/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name";
+        $('#sub').click();
     });
 
 </script>

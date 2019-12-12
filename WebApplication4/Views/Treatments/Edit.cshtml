@@ -183,7 +183,7 @@
                         <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
                         <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
 
-                        <button class="btn btn-info" id="myModal" style="display:none" href="/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name">再来一次检查</button>
+                        <button class="btn btn-info" id="myModal" style="display:none" >保存并再来一次检查</button>
                         @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -283,6 +283,7 @@
         }
 
 
+
     });
     $("input:radio[name$=isEradicated]:checked").on('change', function () {//当chooseImage的值改变时，执行此函数
         var b = $("input:radio[name$=isEradicated]:checked").val();
@@ -299,6 +300,7 @@
 
     $('#myModal').on('click', function () {
         //$('#sub').click();
+        window.location.href = "/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name";
         $('#EditForm').submit();
     });
 
