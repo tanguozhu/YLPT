@@ -7,7 +7,7 @@
 <h2>新建</h2>
 
 
-@using (Html.BeginForm(new { id = "CreateForm" }))
+@using (Html.BeginForm("Create", "Treatments", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -252,7 +252,7 @@
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px">手术方案:</label>
                 <div class="col-md-10">
-                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2">@Model.condition</textarea>
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2"></textarea>
 
                     @Html.ValidationMessageFor(model => model.condition, "", new { @class = "text-danger" })
                 </div>

@@ -81,48 +81,42 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Treatment treatment)
         {
-			string result = "";
-			string result1 = "";
-			string result2 = "";
-			
-			HttpPostedFileBase files = Request.Files["filename"];
-			HttpPostedFileBase files1 = Request.Files["filename1"];
-			HttpPostedFileBase files2 = Request.Files["filename2"];
-			
+            if (treatment.name == 2)
+            {
 
-			result = SaveImage(files);
-			result1 = SaveImage(files1);
-			result2 = SaveImage(files2);
-		
+                string result = "";
+                string result1 = "";
+                string result2 = "";
 
-			if (result != "error")
-			{
-				treatment.pic1 = result;
-			}
+                HttpPostedFileBase files = Request.Files["filename"];
+                HttpPostedFileBase files1 = Request.Files["filename1"];
+                HttpPostedFileBase files2 = Request.Files["filename2"];
+
+
+                result = SaveImage(files);
+                result1 = SaveImage(files1);
+                result2 = SaveImage(files2);
+
+
+                if (result != "error")
+                {
+                    treatment.pic1 = result;
+                }
+
+                if (result1 != "error")
+                {
+                    treatment.pic2 = result1;
+                }
+                if (result2 != "error")
+                {
+                    treatment.pic3 = result2;
+                }
+            }
 			
-			if (result1 != "error")
-			{
-				treatment.pic2 = result1;
-			}
-			if (result2 != "error")
-			{
-				treatment.pic3 = result2;
-			}
 			
 			if (ModelState.IsValid)
             {
-				if (treatment.pic1 == "1")
-				{
-					treatment.pic1 = "";
-				}
-				if (treatment.pic2 == "1")
-				{
-					treatment.pic2 = "";
-				}
-				if (treatment.pic3 == "1")
-				{
-					treatment.pic3 = "";
-				}
+				
 				string a = Request.Form["refId"];
 				//string c= Request.Form["content"];
 				int b = Convert.ToInt32(a);
