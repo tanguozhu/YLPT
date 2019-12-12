@@ -81,9 +81,49 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Treatment treatment)
         {
-            if (ModelState.IsValid)
+			string result = "";
+			string result1 = "";
+			string result2 = "";
+			
+			HttpPostedFileBase files = Request.Files["filename"];
+			HttpPostedFileBase files1 = Request.Files["filename1"];
+			HttpPostedFileBase files2 = Request.Files["filename2"];
+			
+
+			result = SaveImage(files);
+			result1 = SaveImage(files1);
+			result2 = SaveImage(files2);
+		
+
+			if (result != "error")
+			{
+				treatment.pic1 = result;
+			}
+			
+			if (result1 != "error")
+			{
+				treatment.pic2 = result1;
+			}
+			if (result2 != "error")
+			{
+				treatment.pic3 = result2;
+			}
+			
+			if (ModelState.IsValid)
             {
-                string a = Request.Form["refId"];
+				if (treatment.pic1 == "1")
+				{
+					treatment.pic1 = "";
+				}
+				if (treatment.pic2 == "1")
+				{
+					treatment.pic2 = "";
+				}
+				if (treatment.pic3 == "1")
+				{
+					treatment.pic3 = "";
+				}
+				string a = Request.Form["refId"];
 				//string c= Request.Form["content"];
 				int b = Convert.ToInt32(a);
                 string sql = "";
@@ -97,13 +137,19 @@ namespace WebApplication4.Controllers
    ""+treatment.Clarithromycin + "," + treatment.Furazolidone + "," + treatment.Metronidazole + "," + treatment.treatTime + "," + treatment.isOnTime + "," + 
    treatment.isEradicated + ",0 ,'"+treatment.content+"')";
                 }
-                else
-                {
+				else if (treatment.name == 1)
+				{
                     sql = " INSERT INTO treatment (visit,scannum,name,time,treatTime,isOnTime,content)VALUES(" +
                         "'" + treatment.visit + "','" + treatment.scannum + "'," + treatment.name + ",'"  + treatment.time + "'," +
                           treatment.treatTime + "," + treatment.isOnTime + ",'"+treatment.content+"' )";
                 }
-                MySqlConnection mysql = getMySqlConnection();
+				else 
+				{
+					sql = " INSERT INTO treatment (visit,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup)VALUES(" +
+						"'" + treatment.visit + "','" + treatment.scannum + "'," + treatment.condition + ",'" + treatment.time + "'," +
+						  treatment.content + "," + treatment.pic1 + "," + treatment.pic2 + "," + treatment.pic3 + ",'" + treatment.isfollowup + "' )";
+				}
+				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
@@ -158,12 +204,12 @@ namespace WebApplication4.Controllers
                         treatment.isOnTime = reader.GetInt32("isOnTime");
 						treatment.biji = reader.GetInt32("biji");
 						treatment.isfollowup = reader.GetInt32("isfollowup");
-
-
-
+						
 						treatment.content = reader.GetString("content");
-
-                    }
+						treatment.pic1 = reader.GetString("pic1");
+						treatment.pic2 = reader.GetString("pic2");
+						treatment.pic3 = reader.GetString("pic3");
+					}
                 }
 
 
@@ -206,12 +252,17 @@ namespace WebApplication4.Controllers
      //                   ",Furazolidone=" + treatment.Furazolidone+ ",Metronidazole=" + treatment.Metronidazole + ",treatTime=" + treatment.treatTime + ",isOnTime=" + treatment.isOnTime+
      //                   " where id="+ treatment.Id;
                 }
-                else
-                {
+                else if (checkname ==1)
+				{
                     sql= "UPDATE treatment set time='" + treatment.time +  "',treatTime=" + treatment.treatTime + ",isOnTime=" + treatment.isOnTime+
                         ",content='" + treatment.content+"' where id="+treatment.Id;
                 }
-                MySqlConnection mysql = getMySqlConnection();
+				else 
+				{
+					sql = "UPDATE treatment set time='" + treatment.time + "',pic1=" + treatment.pic1 + ",pic2=" + treatment.pic2 + ",pic3=" + treatment.pic3 + "," +
+						"isfollowup=" + treatment.isfollowup +",content='" + treatment.content + "',condition='" + treatment.condition+"' where id=" + treatment.Id;
+				}
+				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
@@ -268,5 +319,37 @@ namespace WebApplication4.Controllers
 
             return mySqlCommand;
         }
-    }
+		public string SaveImage(HttpPostedFileBase getfile)
+		{
+			string result = "";
+			HttpPostedFileBase files = getfile;
+			//docManger.File = Request.Files["filename"];
+			string fileName = files.FileName;
+
+			string fileFormat = fileName.Split('.')[fileName.Split('.').Length - 1]; // 以“.”截取，获取“.”后面的文件后缀
+			Regex imageFormat = new Regex(@"^(bmp)|(png)|(gif)|(jpg)|(jpeg)"); // 验证文件后缀的表达式（这段可以限制上传文件类型）
+			Console.WriteLine(Server.MapPath("~/"));
+
+			if (string.IsNullOrEmpty(fileName) || !imageFormat.IsMatch(fileFormat)) // 验证后缀，判断文件是否是所要上传的格式
+			{
+				result = "error";
+			}
+			else
+			{
+				string timeStamp = DateTime.Now.Ticks.ToString(); // 获取当前时间的string类型
+				string firstFileName = timeStamp.Substring(0, timeStamp.Length - 4); // 通过截取获得文件名
+				string imageStr = "pic/"; // 获取保存附件的项目文件夹
+				string uploadPath = Server.MapPath("~/" + imageStr); // 将项目路径与文件夹合并
+				string pictureFormat = fileName.Split('.')[fileName.Split('.').Length - 1];// 设置文件格式
+				string fileNames = firstFileName + "." + fileFormat;// 设置完整（文件名+文件格式） 
+				string saveFile = uploadPath + fileNames;//文件路径
+				files.SaveAs(saveFile);// 保存文件
+									   // 如果单单是上传，不用保存路径的话，下面这行代码就不需要写了！
+				result = "http://localhost:53028/" + imageStr + fileNames;// 设置数据库保存的路径
+
+
+			}
+			return result;
+		}
+	}
 }
