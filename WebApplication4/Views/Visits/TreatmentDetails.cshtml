@@ -159,12 +159,12 @@
                 <h4>抗生素</h4>
                 @foreach (DataRow item2 in Model.getTreatmentDetails.Rows)
                 {
-                    int i1 = Convert.ToInt32(item2[12]);
-                    int i2 = Convert.ToInt32(item2[13]);
-                    int i3 = Convert.ToInt32(item2[14]);
-                    int i4 = Convert.ToInt32(item2[15]);
-                    int i5 = Convert.ToInt32(item2[16]);
-                    int i6 = Convert.ToInt32(item2[17]);
+                    int i1 = Convert.ToInt32(item2[13]);
+                    int i2 = Convert.ToInt32(item2[14]);
+                    int i3 = Convert.ToInt32(item2[15]);
+                    int i4 = Convert.ToInt32(item2[16]);
+                    int i5 = Convert.ToInt32(item2[17]);
+                    int i6 = Convert.ToInt32(item2[18]);
                     string i7 = Convert.ToString(item2[21]);
 
                     if (i1 == 0 && i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0 && i6 == 0 && i7 == "")
@@ -264,7 +264,7 @@
                     疗程:
                 </dt>
                 <dd>
-                    @item[18]
+                    @item[19]
 
                 </dd>
                 <dt>
@@ -273,7 +273,7 @@
 
                 <dd>
                     @{
-                        int isOnTime = Convert.ToInt32(item[19]);
+                        int isOnTime = Convert.ToInt32(item[20]);
                         if (isOnTime == 0)
                         {
                             @:否

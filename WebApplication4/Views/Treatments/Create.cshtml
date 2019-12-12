@@ -56,6 +56,7 @@
                     </div>*@
 
                 <h3>方案</h3>
+                Model.time = DateTime.Now;
                 <div class="form-group" style="font-size:18px;padding:3px">
                     <div class="form-group" style="font-size:18px;padding:3px">
                         <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
@@ -109,7 +110,7 @@
 
                         <input type="checkbox" name="Metronidazole" value="1" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
 
-                        <input type="text" /><text>其他</text>
+                        <input type="text" id="content" name="content"/><text>其他</text>
                     </div>
                 </div>
 
@@ -257,7 +258,8 @@
 
     $('#myModal').on('click', function () {
         //$('#sub').click();
-        $('#CreateForm').submit();
+        window.location.href = "/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name";
+        $('#sub').click();
     });
 
 </script>
