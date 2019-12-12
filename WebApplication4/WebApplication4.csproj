@@ -183,6 +183,7 @@
     <Compile Include="Controllers\FollowUpsController.cs" />
     <Compile Include="Controllers\GastroscopiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OperateTreatmentsController.cs" />
     <Compile Include="Controllers\PathologiesController.cs" />
     <Compile Include="Controllers\PopSciinMangersController.cs" />
     <Compile Include="Controllers\PreviouseradicationsController.cs" />
@@ -218,6 +219,8 @@
     <Compile Include="Models\Gastroscopy.cs" />
     <Compile Include="Models\GastroscopyDbContext.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\OperateTreatment.cs" />
+    <Compile Include="Models\OperateTreatmentDbContext.cs" />
     <Compile Include="Models\Pathology.cs" />
     <Compile Include="Models\PathologyDbContext.cs" />
     <Compile Include="Models\PopSciinManger.cs" />
@@ -398,6 +401,11 @@
     <Content Include="Views\Gastroscopies\Edityoumen.cshtml" />
     <Content Include="Views\Gastroscopies\Createnianmo.cshtml" />
     <Content Include="Views\Gastroscopies\Editweinianmo.cshtml" />
+    <Content Include="Views\OperateTreatments\Create.cshtml" />
+    <Content Include="Views\OperateTreatments\Delete.cshtml" />
+    <Content Include="Views\OperateTreatments\Details.cshtml" />
+    <Content Include="Views\OperateTreatments\Edit.cshtml" />
+    <Content Include="Views\OperateTreatments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pic\" />

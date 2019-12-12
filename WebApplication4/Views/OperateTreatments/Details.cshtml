@@ -1,0 +1,90 @@
+﻿@model WebApplication4.Models.OperateTreatment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OperateTreatment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.visit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.visit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scannum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scannum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.conditions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.conditions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pic1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pic1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pic2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pic2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isfollowup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isfollowup)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

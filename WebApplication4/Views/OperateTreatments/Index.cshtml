@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication4.Models.OperateTreatment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.visit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scannum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.conditions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pic1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pic2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isfollowup)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.visit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.scannum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.conditions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pic1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pic2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isfollowup)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
