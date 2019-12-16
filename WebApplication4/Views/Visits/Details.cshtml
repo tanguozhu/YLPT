@@ -365,7 +365,7 @@
                     随访时间
                 </th>
                 <th style="border-top:0px solid #ff4136;width:30%">
-                    随访内容
+                    下次随访时间
                 </th>
                 <th style="border-top:0px solid #ff4136;width:40%">
 
@@ -376,7 +376,7 @@
                 <tr>
                     <td style="border:#ffffff 0px solid;">
                         @{
-                            DateTime a = Convert.ToDateTime(item[1]);
+                            DateTime a = Convert.ToDateTime(item[3]);
 
                             string b = "";
 
@@ -385,21 +385,14 @@
                         @b
                     </td>
                     <td style="border:#ffffff 0px solid;">
-
                         @{
-                            string suifangget = item[2].ToString();
-                            string suifangset = "";
-                            if (suifangget.Length >= 10)
-                            {
-                                suifangset = suifangget.Substring(0, 10) + "...";
-                            }
-                            else
-                            {
-                                suifangset = suifangget;
-                            }
+                            DateTime c = Convert.ToDateTime(item[4]);
 
+                            string d = "";
+
+                            d = a.ToString("yyyy-MM-dd");
                         }
-                        @suifangset
+                        @d
 
                     </td>
                     <td style="border:#ffffff 0px solid;">

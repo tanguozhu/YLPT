@@ -171,7 +171,7 @@ namespace WebApplication4.Controllers
                         visit.Date = b.ToString("yyyy-MM-dd");
                         visit.VisitId = reader.GetString("visitId");
 
-                        visit.detailid = checkreturnvisit(visit.Id);//检测是否有复诊
+                        //visit.detailid = checkreturnvisit(visit.Id);//检测是否有复诊
 
                         DataSet ds = GetSet(visit.scannum, visit.VisitId);
                         visit.dt = ds.Tables[0];
@@ -603,7 +603,7 @@ namespace WebApplication4.Controllers
         {
             MySqlConnection mysql = getMySqlConnection();
             string sql;
-            sql = "select id,date,content from followup where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by date desc;";
+            sql = "select * from followup where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by date desc;";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);

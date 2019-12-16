@@ -238,6 +238,8 @@ namespace WebApplication4.Controllers
             }
             base.Dispose(disposing);
         }
+
+
         private static MySqlConnection getMySqlConnection()
         {
             MySqlConnection mysql = new MySqlConnection(ConfigurationManager.ConnectionStrings["defalutconnection"].ConnectionString);
