@@ -50,7 +50,7 @@ namespace WebApplication4.Controllers
             treatment.name = name;
             if (name == 0)
             {
-                treatment.content = "1";
+                //treatment.content = "1";
                 //treatment.isEradicated = 1;
             }
             else
@@ -59,6 +59,7 @@ namespace WebApplication4.Controllers
                 // treatment.isInfected = 0;
                 //treatment.isEradicated = 0;
                 treatment.Omeprazole = 0;
+                treatment.isEradicated = 2;
                 treatment.Rabeprazole = 0;
                 treatment.Esomeprazole = 0;
                 treatment.Pantoprazole = 0;
@@ -139,9 +140,9 @@ namespace WebApplication4.Controllers
                 }
 				else 
 				{
-					sql = " INSERT INTO treatment (visit,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup)VALUES(" +
-						"'" + treatment.visit + "','" + treatment.scannum + "'," + treatment.condition + ",'" + treatment.time + "'," +
-						  treatment.content + "," + treatment.pic1 + "," + treatment.pic2 + "," + treatment.pic3 + ",'" + treatment.isfollowup + "' )";
+					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup)VALUES(" +
+						"'" + treatment.visit + "',"+ treatment.name+",'" + treatment.scannum + "','" + treatment.condition + "','" + treatment.time + "','" +
+						  treatment.content + "','" + treatment.pic1 + "','" + treatment.pic2 + "','" + treatment.pic3 + "'," + treatment.isfollowup + " )";
 				}
 				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -149,7 +150,10 @@ namespace WebApplication4.Controllers
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();
                 mysql.Close();
-                return RedirectToAction("Details/"+b, "Visits");
+                
+                return RedirectToAction("Details/" + b, "Visits");
+               
+                
             }
 
             return View(treatment);
@@ -262,7 +266,8 @@ namespace WebApplication4.Controllers
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();
                 mysql.Close();
-                return RedirectToAction("Details/"+b, "Visits");
+               
+                return RedirectToAction("Details/" + b, "Visits");
             }
             return View(treatment);
         }

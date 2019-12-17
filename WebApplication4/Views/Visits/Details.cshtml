@@ -30,14 +30,14 @@
         {
             <h3>
                 病人基本信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a style="font-size:18px" href="/Visits/returnvisitCreate?id=@Model.Id&&checkid=@Model.Id&&refid=@Model.Id">复诊编辑</a>
+                @*<a style="font-size:18px" href="/Visits/returnvisitCreate?id=@Model.Id&&checkid=@Model.Id&&refid=@Model.Id">复诊编辑</a>*@
             </h3>
         }
         else
         {
             <h3>
                 病人基本信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a style="font-size:18px" href="/Visits/returnvisitCreate?id=@Model.Id&&checkid=@Model.Id&&refid=@Model.Id">复诊新增</a>
+                @*<a style="font-size:18px" href="/Visits/returnvisitCreate?id=@Model.Id&&checkid=@Model.Id&&refid=@Model.Id">复诊新增</a>*@
             </h3>
         }
     }
@@ -361,70 +361,119 @@
     <div>
         <table class="table" style="font-size:18px;padding:3px">
             <tr>
-                <th style="border-top:0px solid #ff4136;width:30%">
+                <th style="border-top:0px solid #ff4136;width:20%">
+                    随访次数
+                </th>
+                <th style="border-top:0px solid #ff4136;width:20%">
                     随访时间
                 </th>
-                <th style="border-top:0px solid #ff4136;width:30%">
-                    下次随访时间
+                <th style="border-top:0px solid #ff4136;width:20%">
+                    随访内容
                 </th>
                 <th style="border-top:0px solid #ff4136;width:40%">
-
+                    下次随访时间
                 </th>
+               
             </tr>
             @foreach (DataRow item in Model.followup.Rows)
             {
-                <tr>
-                    <td style="border:#ffffff 0px solid;">
-                        @{
-                            DateTime a = Convert.ToDateTime(item[3]);
+            <tr>
+                <td style="border:#ffffff 0px solid;">
+                   第 @item[5] 次
+                </td>
+                <td style="border:#ffffff 0px solid;">
+                    @{
+                        DateTime a = Convert.ToDateTime(item[3]);
 
-                            string b = "";
+                        string b = "";
 
-                            b = a.ToString("yyyy-MM-dd");
+                        b = a.ToString("yyyy-MM-dd");
+                    }
+                    @b
+                </td>
+                <td style="border:#ffffff 0px solid;">
+                    @{
+                        int treid;
+                        int gasid;
+                        if (item[7] == DBNull.Value)
+                        {
+                            treid = 0;
                         }
-                        @b
-                    </td>
-                    <td style="border:#ffffff 0px solid;">
-                        @{
-                            DateTime c = Convert.ToDateTime(item[4]);
-
-                            string d = "";
-
-                            d = a.ToString("yyyy-MM-dd");
+                        else
+                        {
+                            treid = Convert.ToInt32(item[7]);
                         }
-                        @d
 
-                    </td>
-                    <td style="border:#ffffff 0px solid;">
-
-                        @{
-                            string getid = item[0].ToString();
-                            int inid = Convert.ToInt32(getid);
-
-
-                            if (webmodify == "0")
-                            {
-
-                            }
-                            else if (webmodify == "1")
-                            {
-                                <a href="/FollowUps/Edit/?id=@inid&&refid=@Model.Id">编辑 </a> <text>|</text>
-                            }
-
-                            <a href="/FollowUps/Details/?id=@inid">查看详情 </a>
-
-                            if (webdelete == "0")
-                            {
-
-                            }
-                            else if (webdelete == "1")
-                            {
-                                <text>|</text>
-                                <a href="/FollowUps/Delete/?id=@inid&&refid=@Model.Id">删除</a>
-                            }
+                        if (item[8] == DBNull.Value)
+                        {
+                            gasid = 0;
                         }
-                    </td>
-                </tr>
+                        else
+                        {
+                            gasid = Convert.ToInt32(item[8]);
+                        }
+
+                        if (gasid == 0)
+                        {
+
+                        }
+                        else
+                        {
+                            <a href="/Visits/CheckDetails/@gasid?checkname=胃镜检查&refid=@gasid&detailid=1">胃镜检查</a>
+                        }
+
+                        if (treid == 0)
+                        {
+
+                        }
+                        else
+                        {
+                            <a href="/Visits/TreatmentDetails/@treid">手术治疗</a>
+                        }
+
+                    }
+                </td>
+                <td style="border:#ffffff 0px solid;">
+                    @{
+                        DateTime c = Convert.ToDateTime(item[4]);
+
+                        string d = "";
+
+                        d = a.ToString("yyyy-MM-dd");
+                    }
+                    @d
+
+                </td>
+                @*<td style="border:#ffffff 0px solid;">
+
+            @{
+                string getid = item[0].ToString();
+                int inid = Convert.ToInt32(getid);
+
+
+                if (webmodify == "0")
+                {
+
+                }
+                else if (webmodify == "1")
+                {
+                    <a href="/FollowUps/Edit/?id=@inid&&refid=@Model.Id">编辑 </a> <text>|</text>
+                }
+
+                <a href="/FollowUps/Details/?id=@inid">查看详情 </a>
+
+                if (webdelete == "0")
+                {
+
+                }
+                else if (webdelete == "1")
+                {
+                    <text>|</text>
+                    <a href="/FollowUps/Delete/?id=@inid&&refid=@Model.Id">删除</a>
+                }
+            }
+        </td>*@
+            </tr>
             }
         </table>
     </div>

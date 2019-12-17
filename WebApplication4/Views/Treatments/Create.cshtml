@@ -1,5 +1,4 @@
 ﻿@model WebApplication4.Models.Treatment
-
 @{
     ViewBag.Title = "Create";
 }
@@ -151,7 +150,7 @@
                     <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
                     <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
 
-                    <button class="btn btn-info" id="myModal" style="display:none" href="/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name">再来一次检查</button>
+                    <button class="btn btn-info" id="myModal" style="display:none" >请再次选择治疗方案</button>
                     @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -165,6 +164,7 @@
             @Html.HiddenFor(model => model.Rabeprazole)
             @Html.HiddenFor(model => model.Esomeprazole)
             @Html.HiddenFor(model => model.Pantoprazole)
+            @Html.HiddenFor(model => model.isEradicated)
             @Html.HiddenFor(model => model.OtherPPI)
             @Html.HiddenFor(model => model.Amoxicillin)
             @Html.HiddenFor(model => model.tetracycline)
@@ -231,6 +231,7 @@
             @Html.HiddenFor(model => model.Esomeprazole)
             @Html.HiddenFor(model => model.Pantoprazole)
             @Html.HiddenFor(model => model.OtherPPI)
+            @Html.HiddenFor(model => model.isEradicated)
             @Html.HiddenFor(model => model.Amoxicillin)
             @Html.HiddenFor(model => model.tetracycline)
             @Html.HiddenFor(model => model.Levofloxacin)
@@ -367,11 +368,7 @@
 
     });
 
-    $('#myModal').on('click', function () {
-        //$('#sub').click();
-        window.location.href = "/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name";
-        $('#sub').click();
-    });
+   
 
     $('#myModal1').click(function () {
         $("#my-img1").show();
