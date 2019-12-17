@@ -86,12 +86,13 @@ namespace WebApplication4.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 string a = Request.Form["refid"];
                 string b = Request.Form["visit"];
                 string c = Request.Form["scannum"];
                 MySqlConnection mysql = getMySqlConnection();
                 string sql = "";
-                sql = "INSERT INTO followup (visit,scannum,date,content)VALUES('" + b+"','" + c + "','" +
+                sql = "INSERT INTO followup (visit,scannum,date,nextdate,followupnum,gaschecknum,treid,gasid)VALUES('" + b+"','" + c + "','" +
                     followUp.date + "'," + "'" + followUp.content + "')";
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
@@ -239,6 +240,43 @@ namespace WebApplication4.Controllers
             base.Dispose(disposing);
         }
 
+
+        private void Insertgas(string checkname, string scannum, string visit, string checktime, string checknum, string conclusion, 
+            string pathologynum, string pathologyconclusion, string other, string Pic1, string Pic2, string Pic3, string Pic4,
+            string Pic5, string Pic6, string Pic7, string Pic8,int followupnum)
+        {
+
+            MySqlConnection mysql = getMySqlConnection();
+            string sql = " INSERT INTO gastroscopy (checkname,scannum,visit,checktime,checknum,conclusion,pathologynum,pathologyconclusion,other,pic1,pic2,pic3,pic4,pic5," +
+                "pic6,pic7,pic8,isfollowup,followupnum)" +
+                    "VALUES('" + checkname + "','" + scannum + "','" + visit + "','" + checktime + "','" + checknum + "','" + conclusion + "','" + pathologynum +
+                    "','" + pathologyconclusion + "','" + other + "','" + Pic1 + "','" + Pic2 + "','" +
+                    Pic3 + "','" + Pic4 + "','" + Pic5 + "','" + Pic6 + "','" +
+                    Pic7 + "','" + Pic8 + "'," + 1 + followupnum + " )";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+
+        }
+
+        private void Inserttre(string visit, string name, string scannum, string conditions, string time, string content,
+            string pic1, string pic2, string pic3, int followupnum)
+        {
+
+            MySqlConnection mysql = getMySqlConnection();
+            string sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3," +
+                "isfollowup,followupnum)VALUES(" +
+                        "'" + visit + "'," + name + ",'" + scannum + "','" + conditions + "','" + time + "','" +
+                          content + "','" + pic1 + "','" + pic2 + "','" + pic3 + "'," + 1 + followupnum + " )";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+
+        }
 
         private static MySqlConnection getMySqlConnection()
         {
