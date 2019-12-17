@@ -13,6 +13,13 @@ namespace WebApplication4.Models
         public string visit;
         public string scannum;
         public DateTime date { get; set; }
+        public DateTime nextdate { get; set; }
+        public int followupnum { get; set; }
+        public string gaschecknum { get; set; }
+        public int treid { get; set; }
+        public int gasid { get; set; }
+        public DataTable gas;
+        public DataTable tre;
         public string content { get; set; }
     }
 }
