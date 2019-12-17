@@ -402,6 +402,51 @@ namespace WebApplication4.Controllers
             mysql.Close();
 
         }
+        
+        public int getcheck_id(string visit, string scannum, int followupnum)
+        {
+            string sql = "select id from gastroscopy where visit='" + visit + "' and scannum='" + scannum + "' followupnum=" + followupnum + "";
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataTable dt = new DataTable();
+            command.Fill(dt);
+            int check_id = (int)dt.Rows[0][0];
+            return check_id;
+
+        }
+        public string getcheck_num(string visit, string scannum, int followupnum)
+        {
+            string sql = "select checknum from gastroscopy where visit='" + visit + "' and scannum='" + scannum + "' followupnum=" + followupnum + "";
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataTable dt = new DataTable();
+            command.Fill(dt);
+            string check_num = (string)dt.Rows[0][0];
+            return check_num;
+        }
+        public int gettreat_id(string visit, string scannum, int followupnum)
+        {
+            string sql = "select id from treatment where visit='" + visit + "' and scannum='" + scannum + "' followupnum=" + followupnum + "";
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataTable dt = new DataTable();
+            command.Fill(dt);
+            int treat_id = (int)dt.Rows[0][0];
+            return treat_id;
+        }
+
 
         private static MySqlConnection getMySqlConnection()
         {
