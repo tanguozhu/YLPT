@@ -56,7 +56,7 @@
 </style>
 @using System.Data;
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "FollowUps", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.refid)

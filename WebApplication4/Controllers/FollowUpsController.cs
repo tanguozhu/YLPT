@@ -88,15 +88,15 @@ namespace WebApplication4.Controllers
             string a = Request.Form["refid"];
             string b = Request.Form["visit"];
             string c = Request.Form["scannum"];
-            //插入gas表
-            string dt = Request.Form["dt"];
-            string Checknum = Request.Form["Checknum"];
-            string Conclusion = Request.Form["Conclusion"];
-            string Pathologynum = Request.Form["Pathologynum"];
-            string Pathologyconclusion = Request.Form["Pathologyconclusion"];
-            string Other = Request.Form["Other"];
-            {
-                string result = "";
+
+			{ //插入gas表
+				string dt = Request.Form["dt"];
+				string Checknum = Request.Form["Checknum"];
+				string Conclusion = Request.Form["Conclusion"];
+				string Pathologynum = Request.Form["Pathologynum"];
+				string Pathologyconclusion = Request.Form["Pathologyconclusion"];
+				string Other = Request.Form["Other"];
+				string result = "";
                 string result1 = "";
                 string result2 = "";
                 string result3 = "";
@@ -134,8 +134,6 @@ namespace WebApplication4.Controllers
                 {
                     pic1 = result;
                 }
-
-
                 if (result1 != "error")
                 {
                     pic2 = result1;
@@ -164,15 +162,20 @@ namespace WebApplication4.Controllers
                 {
                     pic8 = result7;
                 }
-            }
+
+				Insertgas("胃镜检查",c, b, dt, Checknum,  Conclusion,Pathologynum, Pathologyconclusion, Other, pic1,  pic2,  pic3,  pic4,pic5,pic6,pic7, pic8, followUp.followupnum);
 
 
-            //插入tre表
-            string time1 = Request.Form["time1"];
-            string condition = Request.Form["condition"];
-            string content1 = Request.Form["content1"];
+			}
+
+
+          
             {
-                string results = "";
+				//插入tre表
+				string time1 = Request.Form["time1"];
+				string condition = Request.Form["condition"];
+				string content1 = Request.Form["content1"];
+				string results = "";
                 string results1 = "";
                 string results2 = "";
                 string pics1 = "";
@@ -203,15 +206,17 @@ namespace WebApplication4.Controllers
                 {
                     pics3 = results2;
                 }
-            }
+				Inserttre(b, 2, c, condition, time1, content1,pics1,  pics2, pics3, followUp.followupnum);
 
-            //gaschecknum获取
+			}
 
-            //treid获取
-
-            //gasid获取
-
-            if (ModelState.IsValid)
+			//gaschecknum获取
+			followUp.gaschecknum=getcheck_num(b,c, followUp.followupnum);
+			//treid获取
+			followUp.treid=gettreat_id(b, c, followUp.followupnum);
+			//gasid获取
+			followUp.gasid=getcheck_id(b, c, followUp.followupnum);
+			if (ModelState.IsValid)
             {
                
                 MySqlConnection mysql = getMySqlConnection();
@@ -375,9 +380,8 @@ namespace WebApplication4.Controllers
             string sql = " INSERT INTO gastroscopy (checkname,scannum,visit,checktime,checknum,conclusion,pathologynum,pathologyconclusion,other,pic1,pic2,pic3,pic4,pic5," +
                 "pic6,pic7,pic8,isfollowup,followupnum)" +
                     "VALUES('" + checkname + "','" + scannum + "','" + visit + "','" + checktime + "','" + checknum + "','" + conclusion + "','" + pathologynum +
-                    "','" + pathologyconclusion + "','" + other + "','" + Pic1 + "','" + Pic2 + "','" +
-                    Pic3 + "','" + Pic4 + "','" + Pic5 + "','" + Pic6 + "','" +
-                    Pic7 + "','" + Pic8 + "'," + 1 + followupnum + " )";
+                    "','" + pathologyconclusion + "','" + other + "','" + Pic1 + "','" + Pic2 + "','" +Pic3 + "','" + Pic4 + "','" + Pic5 + "'," +
+					"'" + Pic6 + "','" +Pic7 + "','" + Pic8 + "',1,"+ followupnum + " )";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
@@ -386,7 +390,7 @@ namespace WebApplication4.Controllers
 
         }
 
-        private void Inserttre(string visit, string name, string scannum, string conditions, string time, string content,
+        private void Inserttre(string visit, int name, string scannum, string conditions, string time, string content,
             string pic1, string pic2, string pic3, int followupnum)
         {
 
@@ -394,7 +398,7 @@ namespace WebApplication4.Controllers
             string sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3," +
                 "isfollowup,followupnum)VALUES(" +
                         "'" + visit + "'," + name + ",'" + scannum + "','" + conditions + "','" + time + "','" +
-                          content + "','" + pic1 + "','" + pic2 + "','" + pic3 + "'," + 1 + followupnum + " )";
+                          content + "','" + pic1 + "','" + pic2 + "','" + pic3 + "',1," + followupnum + "  )";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
@@ -405,7 +409,7 @@ namespace WebApplication4.Controllers
         
         public int getcheck_id(string visit, string scannum, int followupnum)
         {
-            string sql = "select id from gastroscopy where visit='" + visit + "' and scannum='" + scannum + "' followupnum=" + followupnum + "";
+            string sql = "select id from gastroscopy where visit='" + visit + "' and scannum='" + scannum + "' and followupnum=" + followupnum + "";
             MySqlConnection mysql = getMySqlConnection();
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
@@ -420,7 +424,7 @@ namespace WebApplication4.Controllers
         }
         public string getcheck_num(string visit, string scannum, int followupnum)
         {
-            string sql = "select checknum from gastroscopy where visit='" + visit + "' and scannum='" + scannum + "' followupnum=" + followupnum + "";
+            string sql = "select checknum from gastroscopy where visit='" + visit + "' and scannum='" + scannum + "' and followupnum=" + followupnum + "";
             MySqlConnection mysql = getMySqlConnection();
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
@@ -434,7 +438,7 @@ namespace WebApplication4.Controllers
         }
         public int gettreat_id(string visit, string scannum, int followupnum)
         {
-            string sql = "select id from treatment where visit='" + visit + "' and scannum='" + scannum + "' followupnum=" + followupnum + "";
+            string sql = "select id from treatment where visit='" + visit + "' and scannum='" + scannum + "' and followupnum=" + followupnum + "";
             MySqlConnection mysql = getMySqlConnection();
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
