@@ -490,6 +490,8 @@ namespace WebApplication4.Controllers
             return mySqlCommand;
         }
 
+
+
         public static DataSet GetGastroscopy(int id)
         {
             MySqlConnection mysql = getMySqlConnection();
@@ -597,6 +599,52 @@ namespace WebApplication4.Controllers
             DataSet ds = new DataSet();
             command.Fill(ds);
             return ds;
+        }
+
+        public string Get_gastroscopy_followuptime(string visit, string scannum, string checkname, int isfollowup)
+        {
+            string sql = "SELECT followuptime FROM `gastroscopy` where visit='" + visit + "' and scannum='" + scannum + "' and checkname='" + checkname + "' " +
+                "and isfollowup=1  ORDER BY checktime desc LIMIT 1";
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataTable dt = new DataTable();
+            command.Fill(dt);
+            string followuptime = (string)dt.Rows[0][0];
+            return followuptime;
+        }
+
+        public string Get_treatment_followuptime(string visit, string scannum, int name, int isfollowup)
+        {
+            string sql = "SELECT followuptime FROM `treatment` where visit='" + visit + "' and scannum='" + scannum + "' and name=" + name  +
+                            "and isfollowup=1  ORDER BY checktime desc LIMIT 1";
+
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataTable dt = new DataTable();
+            command.Fill(dt);
+            string youmen_treat_time = (string)dt.Rows[0][0];
+            return youmen_treat_time;
+        }
+
+        public void UpdateFollowUp(string scannum, string VisitID,int weijing_check,string weijing_check_time,
+            int weinianmo_check, string weinianmo_check_time, int youmen_check, string youmen_check_time,
+            int other_check, string other_check_time, int youmen_treat, string youmen_treat_time,
+            int operater_treat, string operater_treat_time, int other_treat, string other_treat_time)
+        {
+            MySqlConnection mysql = getMySqlConnection();
+            string sql;
+            sql = "update followup set weijing_check=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ;";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
         }
 
         public static DataSet GetFollowUp(string scannum, string VisitID)
