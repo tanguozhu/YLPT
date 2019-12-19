@@ -58,9 +58,12 @@
                 </div>*@
 
             <h3>方案</h3>
-            Model.time = DateTime.Now;
+
             <div class="form-group" style="font-size:18px;padding:3px">
                 <div class="form-group" style="font-size:18px;padding:3px">
+                    @{
+                        Model.time = DateTime.Now;
+                    }
                     <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                     <div class="col-md-10">
                         @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
@@ -120,13 +123,23 @@
                 <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
                 <div class="col-md-10">
 
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14天</label>
 
                     @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">其他疗法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2"></textarea>
+
+                    @Html.ValidationMessageFor(model => model.condition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <hr />
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px">是否按时服药:</label>
@@ -150,10 +163,33 @@
                     <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
                     <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
 
-                    <button class="btn btn-info" id="myModal" style="display:none" >请再次选择治疗方案</button>
+
                     @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否需要复查:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                    <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+
+                    @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                @{
+                    Model.time = DateTime.Now;
+                }
+                <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
 
         }
         else if (Model.name == 1)
@@ -267,12 +303,38 @@
                 </div>
             </div>
 
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">术后并发症:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.biji, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check(0)" }) 无</label>
+                    <label>@Html.RadioButtonFor(model => model.biji, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check(1)" }) 有</label>
+
+
+                    @Html.ValidationMessageFor(model => model.biji, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">&nbsp;</label>
+                <div class="col-md-10">
+
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px;display:none" id="bingfa" name="bingfa" rows="2"></textarea>
+                    @Html.ValidationMessageFor(model => model.bingfa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div>
                 <input type="button" value="添加图片" class="btn btn-info" id="myModal1" />
                 <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
                 <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
                 <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
-
+                <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
 
                 <div>
 
@@ -312,7 +374,70 @@
                             <input type="button" value="修改" id="btn6" style="display:none" />
                         </div>
                     </div>
+                    <div class="col-sm-2" id="col4" style="padding-left:0">
+                        <div>
+                            <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img4" style="display:none" />
+                            <img src="#" id="cb4" height="100" width="100" style="display:none" class="pic" />
+                            <input type="file" name="filename3" id="filename3" style="display:none" />
+                        </div>
+                        <div>
+                            <input type="button" value="移除" id="btn7" style="display:none" />&nbsp;&nbsp;
+                            <input type="button" value="修改" id="btn8" style="display:none" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2" id="col5" style="padding-left:0">
+                        <div>
+                            <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img5" style="display:none" />
+                            <img src="#" id="cb5" height="100" width="100" style="display:none" class="pic" />
+                            <input type="file" name="filename4" id="filename4" style="display:none" />
+                        </div>
+                        <div>
+                            <input type="button" value="移除" id="btn9" style="display:none" />&nbsp;&nbsp;
+                            <input type="button" value="修改" id="btn10" style="display:none" />
+                        </div>
+                    </div>
 
+                    <div class="col-sm-2" id="col6" style="padding-left:0">
+                        <div>
+                            <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img6" style="display:none" />
+                            <img src="#" id="cb6" height="100" width="100" style="display:none" class="pic" />
+                            <input type="file" name="filename5" id="filename5" style="display:none" />
+                        </div>
+                        <div>
+                            <input type="button" value="移除" id="btn11" style="display:none" />&nbsp;&nbsp;
+                            <input type="button" value="修改" id="btn12" style="display:none" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2" id="col7" style="padding-left:0">
+                        <div>
+                            <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img7" style="display:none" />
+                            <img src="#" id="cb7" height="100" width="100" style="display:none" class="pic" />
+                            <input type="file" name="filename6" id="filename6" style="display:none" />
+                        </div>
+                        <div>
+                            <input type="button" value="移除" id="btn13" style="display:none" />&nbsp;&nbsp;
+                            <input type="button" value="修改" id="btn14" style="display:none" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2" id="col8" style="padding-left:0">
+                        <div>
+                            <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img8" style="display:none" />
+                            <img src="#" id="cb8" height="100" width="100" style="display:none" class="pic" />
+                            <input type="file" name="filename7" id="filename7" style="display:none" />
+                        </div>
+                        <div>
+                            <input type="button" value="移除" id="btn15" style="display:none" />&nbsp;&nbsp;
+                            <input type="button" value="修改" id="btn16" style="display:none" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-2" id="col9">
+                        &nbsp;&nbsp;
+                    </div>
 
 
                 </div>
@@ -348,28 +473,20 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script type="text/javascript">
-  
-    $('#isEradicated').on('change', function () {//当chooseImage的值改变时，执行此函数
-        var a = $("input:radio[name$=isEradicated]:checked").val();
-        console.log(a);
-        if (a == 0) {
-            $("#myModal").show();
-        } 
-       
-       
-    });
-    $("input:radio[name$=isEradicated]:checked").on('change', function () {//当chooseImage的值改变时，执行此函数
-        var b = $("input:radio[name$=isEradicated]:checked").val();
-        console.log(b);
-        if (b == 1) {
-            $("#myModal").hide();
-        }
-        
 
-    });
+    function check(val) {
+        var dom = $("#bingfa");
+        if (val == 1) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+
 
    
-
+    //动态添加
     $('#myModal1').click(function () {
         $("#my-img1").show();
         $("#myModal1").hide();
@@ -386,8 +503,34 @@
         $("#myModal4").show();
     });
     $('#myModal4').click(function () {
-        alert("最多只能添加三张图片");
+        $("#my-img4").show();
+        $("#myModal4").hide();
+        $("#myModal5").show();
     });
+    $('#myModal5').click(function () {
+        $("#my-img5").show();
+        $("#myModal5").hide();
+        $("#myModal6").show();
+    });
+    $('#myModal6').click(function () {
+        $("#my-img6").show();
+        $("#myModal6").hide();
+        $("#myModal7").show();
+    });
+    $('#myModal7').click(function () {
+        $("#my-img7").show();
+        $("#myModal7").hide();
+        $("#myModal8").show();
+    });
+    $('#myModal8').click(function () {
+        $("#my-img8").show();
+        $("#myModal8").hide();
+        $("#myModal9").show();
+    });
+    $('#myModal9').click(function () {
+        alert("最多只能添加8张图片");
+    });
+
     //图片放大缩小
     $(function () {
         $(".pic").on("click", function () {
@@ -448,6 +591,37 @@
         });
 
     });
+    $(document).ready(function () {
+        $('#my-img4').on('click', function () {
+            $('#filename3').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img5').on('click', function () {
+            $('#filename4').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img6').on('click', function () {
+            $('#filename5').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img7').on('click', function () {
+            $('#filename6').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img8').on('click', function () {
+            $('#filename7').click();
+        });
+
+    });
+
 
     $('#filename').on('change', function () {//当chooseImage的值改变时，执行此函数
         $("#cb1").show();
@@ -557,6 +731,180 @@
     });
 
 
+    $('#filename3').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb4").show();
+        $("#my-img4").hide();
+        $("#btn7").show();
+        $("#btn8").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb4').attr('src', src);
+        }
+    });
+    $('#btn7').on('click', function () {
+        $('#cb4').attr('src', "");
+        $('#cb4').hide();
+        $('#btn7').hide();
+        $('#btn8').hide();
+        $("#my-img4").show();
+        var file = document.getElementById('filename3');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn8').on('click', function () {
+            $('#filename3').click();
+        });
+
+    });
+
+    $('#filename4').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb5").show();
+        $("#my-img5").hide();
+        $("#btn9").show();
+        $("#btn10").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb5').attr('src', src);
+        }
+    });
+    $('#btn9').on('click', function () {
+        $('#cb5').attr('src', "");
+        $('#cb5').hide();
+        $('#btn9').hide();
+        $('#btn10').hide();
+        $("#my-img5").show();
+        var file = document.getElementById('filename4');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn10').on('click', function () {
+            $('#filename4').click();
+        });
+
+    });
+
+    $('#filename5').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb6").show();
+        $("#my-img6").hide();
+        $("#btn11").show();
+        $("#btn12").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb6').attr('src', src);
+        }
+    });
+    $('#btn11').on('click', function () {
+        $('#cb6').attr('src', "");
+        $('#cb6').hide();
+        $('#btn11').hide();
+        $('#btn12').hide();
+        $("#my-img6").show();
+        var file = document.getElementById('filename5');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn12').on('click', function () {
+            $('#filename5').click();
+        });
+
+    });
+
+    $('#filename6').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb7").show();
+        $("#my-img7").hide();
+        $("#btn13").show();
+        $("#btn14").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb7').attr('src', src);
+        }
+    });
+    $('#btn13').on('click', function () {
+        $('#cb7').attr('src', "");
+        $('#cb7').hide();
+        $('#btn13').hide();
+        $('#btn14').hide();
+        $("#my-img7").show();
+        var file = document.getElementById('filename6');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn14').on('click', function () {
+            $('#filename6').click();
+        });
+
+    });
+
+    $('#filename7').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb8").show();
+        $("#my-img8").hide();
+        $("#btn15").show();
+        $("#btn16").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb8').attr('src', src);
+        }
+    });
+    $('#btn15').on('click', function () {
+        $('#cb8').attr('src', "");
+        $('#cb8').hide();
+        $('#btn15').hide();
+        $('#btn16').hide();
+        $("#my-img8").show();
+        var file = document.getElementById('filename7');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn16').on('click', function () {
+            $('#filename7').click();
+        });
+
+    });
 
 
    

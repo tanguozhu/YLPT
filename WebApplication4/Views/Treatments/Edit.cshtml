@@ -7,215 +7,36 @@
 <h2>编辑</h2>
 
 
-@using (Html.BeginForm(new { id = "EditForm" }))
+@using (Html.BeginForm("Edit", "Treatments", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.refId)
-        @Html.HiddenFor(model => model.scannum)
-        @Html.HiddenFor(model => model.name)
-        @Html.HiddenFor(model => model.visit)
-
-
-        @{
-            if (Model.name == 0)
-            {
-               
-
-                <h3>方案</h3>
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <div class="form-group" style="font-size:18px;padding:3px">
-                        <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <label class="control-label col-md-2" style="padding-top:1px">质子泵抑制剂:</label>
-                    <div class="col-md-10">
-                        @if (Model.Omeprazole == 1)
-                        {
-                            <input type="checkbox" name="Omeprazole" value="1" checked="checked" /><text>奥美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Omeprazole" value="1" /><text>奥美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Rabeprazole == 1)
-                        {
-                            <input type="checkbox" name="Rabeprazole" value="1" checked="checked" /><text>雷贝拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Rabeprazole" value="1" /><text>雷贝拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Esomeprazole == 1)
-                        {
-                            <input type="checkbox" name="Esomeprazole" value="1" checked="checked" /><text>埃索美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Esomeprazole" value="1" /><text>埃索美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Pantoprazole == 1)
-                        {
-                            <input type="checkbox" name="Pantoprazole" value="1" checked="checked" /><text>泮托拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Pantoprazole" value="1" /><text>泮托拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.OtherPPI == 1)
-                        {
-                            <input type="checkbox" name="OtherPPI" value="1" checked="checked" /><text>其他质子泵抑制剂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="OtherPPI" value="1" /><text>其他质子泵抑制剂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                    </div>
-                </div>
-                
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">铋剂:</label>
-                    <div class="col-md-10">
-
-                        <label>@Html.RadioButtonFor(model => model.biji, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-                        <label>@Html.RadioButtonFor(model => model.biji, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.refId)
+    @Html.HiddenFor(model => model.scannum)
+    @Html.HiddenFor(model => model.name)
+    @Html.HiddenFor(model => model.visit)
+    @Html.HiddenFor(model => model.pic1)
+    @Html.HiddenFor(model => model.pic2)
+    @Html.HiddenFor(model => model.pic3)
+    @Html.HiddenFor(model => model.pic4)
+    @Html.HiddenFor(model => model.pic5)
+    @Html.HiddenFor(model => model.pic6)
+    @Html.HiddenFor(model => model.pic7)
+    @Html.HiddenFor(model => model.pic8)
 
 
-                        @Html.ValidationMessageFor(model => model.biji, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">抗生素:</label>
-                    <div class="col-md-10">
-                        @if (Model.Amoxicillin == 1)
-                        {
-                            <input type="checkbox" name="Amoxicillin" value="1" checked="checked" /><text>阿莫西林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Amoxicillin" value="1" /><text>阿莫西林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.tetracycline == 1)
-                        {
-                            <input type="checkbox" name="tetracycline" value="1" checked="checked" /><text>四环素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="tetracycline" value="1" /><text>四环素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Levofloxacin == 1)
-                        {
-                            <input type="checkbox" name="Levofloxacin" value="1" checked="checked" /><text>左氧氟沙星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Levofloxacin" value="1" /><text>左氧氟沙星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Clarithromycin == 1)
-                        {
-                            <input type="checkbox" name="Clarithromycin" value="1" checked="checked" /><text>克拉霉素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Clarithromycin" value="1" /><text>克拉霉素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Furazolidone == 1)
-                        {
-                            <input type="checkbox" name="Furazolidone" value="1" checked="checked" /><text>呋喃唑酮 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Furazolidone" value="1" /><text>呋喃唑酮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-                        @if (Model.Metronidazole == 1)
-                        {
-                            <input type="checkbox" name="Metronidazole" value="1" checked="checked" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </text>
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="Metronidazole" value="1" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                        }
-
-                        <input type="text" name="content" id="content"  value="@Model.content"/><text>其他</text>
-                    </div>
-                </div>
-
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
-                    <div class="col-md-10">
-
-                        <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
-                        <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
-                        <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
-
-                        @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">是否按时服药:</label>
-                    <div class="col-md-10">
+    @{
+        if (Model.name == 0)
+        {
 
 
-                        <label>@Html.RadioButtonFor(model => model.isOnTime, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-                        <label>@Html.RadioButtonFor(model => model.isOnTime, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-
-
-
-                        @Html.ValidationMessageFor(model => model.isOnTime, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">是否根除:</label>
-                    <div class="col-md-10">
-
-                        <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
-                        <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
-
-                        <button class="btn btn-info" id="myModal" style="display:none" >保存并再来一次检查</button>
-                        @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-            }
-            else
-            {
-                @Html.HiddenFor(model => model.condition)
-
-                @Html.HiddenFor(model => model.isEradicated)
-                @Html.HiddenFor(model => model.Omeprazole)
-                @Html.HiddenFor(model => model.Rabeprazole)
-                @Html.HiddenFor(model => model.Esomeprazole)
-                @Html.HiddenFor(model => model.Pantoprazole)
-                @Html.HiddenFor(model => model.OtherPPI)
-                @Html.HiddenFor(model => model.Amoxicillin)
-                @Html.HiddenFor(model => model.tetracycline)
-                @Html.HiddenFor(model => model.Levofloxacin)
-                @Html.HiddenFor(model => model.Clarithromycin)
-                @Html.HiddenFor(model => model.Furazolidone)
-                @Html.HiddenFor(model => model.Metronidazole)
-
-                <h3>治疗基本情况</h3>
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
-                    <div class="col-md-10">
-                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="content" name="content" rows="2">@Model.content</textarea>
-
-                        @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            <h3>方案</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
                 <div class="form-group" style="font-size:18px;padding:3px">
                     <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                     <div class="col-md-10">
@@ -223,44 +44,687 @@
                         @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <hr />
-                <h3>疗程及服药情况</h3>
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
-                    <div class="col-md-10">
-
-                        <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
-                        <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
-                        <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
-
-                        @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
-                    </div>
+                <label class="control-label col-md-2" style="padding-top:1px">质子泵抑制剂:</label>
+                <div class="col-md-10">
+                    @if (Model.Omeprazole == 1)
+                    {
+                        <input type="checkbox" name="Omeprazole" value="1" checked="checked" /><text>奥美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Omeprazole" value="1" /><text>奥美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Rabeprazole == 1)
+                    {
+                        <input type="checkbox" name="Rabeprazole" value="1" checked="checked" /><text>雷贝拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Rabeprazole" value="1" /><text>雷贝拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Esomeprazole == 1)
+                    {
+                        <input type="checkbox" name="Esomeprazole" value="1" checked="checked" /><text>埃索美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Esomeprazole" value="1" /><text>埃索美拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Pantoprazole == 1)
+                    {
+                        <input type="checkbox" name="Pantoprazole" value="1" checked="checked" /><text>泮托拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Pantoprazole" value="1" /><text>泮托拉唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.OtherPPI == 1)
+                    {
+                        <input type="checkbox" name="OtherPPI" value="1" checked="checked" /><text>其他质子泵抑制剂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="OtherPPI" value="1" /><text>其他质子泵抑制剂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
                 </div>
-
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">是否按时服药:</label>
-                    <div class="col-md-10">
-
-
-                        <label>@Html.RadioButtonFor(model => model.isOnTime, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
-                        <label>@Html.RadioButtonFor(model => model.isOnTime, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
-
-
-
-
-                        @Html.ValidationMessageFor(model => model.isOnTime, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            }
-        }
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
-                <input type="submit" value="保存" class="btn btn-default"  id="subbtn" name="subbtn"/><text id="gang" name="gang">|</text>
-                <a href="javascript:window.history.go(-1)" id="alink" name="alink">返回</a>
             </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">铋剂:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.biji, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+                    <label>@Html.RadioButtonFor(model => model.biji, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+
+
+                    @Html.ValidationMessageFor(model => model.biji, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">抗生素:</label>
+                <div class="col-md-10">
+                    @if (Model.Amoxicillin == 1)
+                    {
+                        <input type="checkbox" name="Amoxicillin" value="1" checked="checked" /><text>阿莫西林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Amoxicillin" value="1" /><text>阿莫西林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.tetracycline == 1)
+                    {
+                        <input type="checkbox" name="tetracycline" value="1" checked="checked" /><text>四环素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="tetracycline" value="1" /><text>四环素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Levofloxacin == 1)
+                    {
+                        <input type="checkbox" name="Levofloxacin" value="1" checked="checked" /><text>左氧氟沙星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Levofloxacin" value="1" /><text>左氧氟沙星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Clarithromycin == 1)
+                    {
+                        <input type="checkbox" name="Clarithromycin" value="1" checked="checked" /><text>克拉霉素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Clarithromycin" value="1" /><text>克拉霉素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Furazolidone == 1)
+                    {
+                        <input type="checkbox" name="Furazolidone" value="1" checked="checked" /><text>呋喃唑酮 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Furazolidone" value="1" /><text>呋喃唑酮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+                    @if (Model.Metronidazole == 1)
+                    {
+                        <input type="checkbox" name="Metronidazole" value="1" checked="checked" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </text>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Metronidazole" value="1" /><text>甲硝唑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                    }
+
+                    <input type="text" name="content" id="content" value="@Model.content" /><text>其他</text>
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14天</label>
+
+                    @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">其他疗法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2">@Model.condition</textarea>
+
+                    @Html.ValidationMessageFor(model => model.condition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否按时服药:</label>
+                <div class="col-md-10">
+
+
+                    <label>@Html.RadioButtonFor(model => model.isOnTime, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+                    <label>@Html.RadioButtonFor(model => model.isOnTime, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+
+
+
+                    @Html.ValidationMessageFor(model => model.isOnTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否根除:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                    <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+
+                    @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        }
+        else if (Model.name == 1)
+        {
+            @Html.HiddenFor(model => model.condition)
+
+            @Html.HiddenFor(model => model.isEradicated)
+            @Html.HiddenFor(model => model.Omeprazole)
+            @Html.HiddenFor(model => model.Rabeprazole)
+            @Html.HiddenFor(model => model.Esomeprazole)
+            @Html.HiddenFor(model => model.Pantoprazole)
+            @Html.HiddenFor(model => model.OtherPPI)
+            @Html.HiddenFor(model => model.Amoxicillin)
+            @Html.HiddenFor(model => model.tetracycline)
+            @Html.HiddenFor(model => model.Levofloxacin)
+            @Html.HiddenFor(model => model.Clarithromycin)
+            @Html.HiddenFor(model => model.Furazolidone)
+            @Html.HiddenFor(model => model.Metronidazole)
+
+            <h3>治疗基本情况</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="content" name="content" rows="2">@Model.content</textarea>
+
+                    @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <h3>疗程及服药情况</h3>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
+
+                    @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否按时服药:</label>
+                <div class="col-md-10">
+
+
+                    <label>@Html.RadioButtonFor(model => model.isOnTime, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
+                    <label>@Html.RadioButtonFor(model => model.isOnTime, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
+
+
+
+
+                    @Html.ValidationMessageFor(model => model.isOnTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else if (Model.name == 2)
+        {
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">手术方案:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2">@Model.condition</textarea>
+
+                    @Html.ValidationMessageFor(model => model.condition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">术后病理:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="content" name="content" rows="2">@Model.content</textarea>
+
+                    @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">术后并发症:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.biji, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check(0)" }) 无</label>
+                    <label>@Html.RadioButtonFor(model => model.biji, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check(1)" }) 有</label>
+
+
+                    @Html.ValidationMessageFor(model => model.biji, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">&nbsp;</label>
+                <div class="col-md-10">
+
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px;display:none" id="bingfa" name="bingfa" rows="2">@Model.bingfa</textarea>
+                    @Html.ValidationMessageFor(model => model.bingfa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                @{
+                    if (Model.pic1 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+                    if (Model.pic1 != "" && Model.pic2 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+
+                    if (Model.pic2 != "" && Model.pic3 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+
+                    if (Model.pic3 != "" && Model.pic4 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+                    if (Model.pic4 != "" && Model.pic5 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+                    if (Model.pic5 != "" && Model.pic6 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+                    if (Model.pic6 != "" && Model.pic7 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+                    if (Model.pic7 != "" && Model.pic8 == "")
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                        </div>
+                    }
+                    if (Model.pic8 != "" )
+                    {
+                        <div>
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                            <input type="button" value="添加图片" class="btn btn-info" id="myModal9"  />
+                        </div>
+                    }
+                }
+                
+                <div>
+
+                    @{
+                        if (Model.pic1 == "")
+                        {
+                            <div class="col-sm-2" id="col1" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img1" />
+                                    <img src="#" id="cb1" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename" id="filename" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn1" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn2" style="display:none" />
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col1" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img1" style="display:none" />
+                                    <img src="@Model.pic1" id="cb1" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename" id="filename" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn1" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn2" />
+
+                                </div>
+                            </div>
+                        }
+                    }
+                    @{
+                        if (Model.pic2 == "")
+                        {
+                            <div class="col-sm-2" id="col2" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img2" style="display:none" />
+                                    <img src="#" id="cb2" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename1" id="filename1" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn3" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn4" style="display:none" />
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col2" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img2" style="display:none" />
+                                    <img src="@Model.pic2" id="cb2" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename1" id="filename1" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn3" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn4" />
+
+                                </div>
+                            </div>
+                        }
+                    }
+                    @{
+                        if (Model.pic3 == "")
+                        {
+                            <div class="col-sm-2" id="col3" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img3" style="display:none" />
+                                    <img src="#" id="cb3" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename2" id="filename2" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn5" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn6" style="display:none" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col3" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img3" style="display:none" />
+                                    <img src="@Model.pic3" id="cb3" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename2" id="filename2" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn5" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn6" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @{
+                        if (Model.pic4 == "")
+                        {
+                            <div class="col-sm-2" id="col4" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img4" style="display:none" />
+                                    <img src="#" id="cb4" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename3" id="filename3" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn7" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn8" style="display:none" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col4" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img4" style="display:none" />
+                                    <img src="@Model.pic4" id="cb4" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename3" id="filename3" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn7" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn8" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @{
+                        if (Model.pic5 == "")
+                        {
+                            <div class="col-sm-2" id="col5" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img5" style="display:none" />
+                                    <img src="#" id="cb5" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename4" id="filename4" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn9" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn10" style="display:none" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col5" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img5" style="display:none" />
+                                    <img src="@Model.pic5" id="cb5" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename4" id="filename4" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn9" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn10" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @{
+                        if (Model.pic6 == "")
+                        {
+                            <div class="col-sm-2" id="col6" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img6" style="display:none" />
+                                    <img src="#" id="cb6" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename5" id="filename5" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn11" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn12" style="display:none" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col6" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img6" style="display:none" />
+                                    <img src="@Model.pic6" id="cb6" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename5" id="filename5" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn11" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn12" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @{
+                        if (Model.pic7 == "")
+                        {
+                            <div class="col-sm-2" id="col7" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img7" style="display:none" />
+                                    <img src="#" id="cb7" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename6" id="filename6" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn13" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn14" style="display:none" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col7" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img7" style="display:none" />
+                                    <img src="@Model.pic7" id="cb7" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename6" id="filename6" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn13" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn14" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @{
+                        if (Model.pic8 == "")
+                        {
+                            <div class="col-sm-2" id="col8" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img8" style="display:none" />
+                                    <img src="#" id="cb8" height="100" width="100" style="display:none" class="pic" />
+                                    <input type="file" name="filename7" id="filename7" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn15" style="display:none" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn16" style="display:none" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2" id="col8" style="padding-left:0">
+                                <div>
+                                    <img height="100" width="100" src="http://114.116.228.193:9010/pic/plus.jpg" id="my-img8" style="display:none" />
+                                    <img src="@Model.pic8" id="cb8" height="100" width="100" class="pic" />
+                                    <input type="file" name="filename7" id="filename7" style="display:none" />
+                                </div>
+                                <div>
+                                    <input type="button" value="移除" id="btn15" />&nbsp;&nbsp;
+                                    <input type="button" value="修改" id="btn16" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="col-sm-2" id="col9">
+                        &nbsp;&nbsp;
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+                <div id="innerdiv" style="position:absolute;">
+                    <img id="bigimg" style="border:5px solid #fff;" src="" />
+                </div>
+            </div>
+        }
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" id="subbtn" name="subbtn" /><text id="gang" name="gang">|</text>
+            <a href="javascript:window.history.go(-1)" id="alink" name="alink">返回</a>
         </div>
     </div>
+</div>
 }
 
 
@@ -269,39 +733,432 @@
 }
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 
-    $('#isEradicated').on('change', function () {//当chooseImage的值改变时，执行此函数
-        var a = $("input:radio[name$=isEradicated]:checked").val();
-        console.log(a);
-        if (a == 0) {
-            $("#myModal").show();
-            $("#subbtn").hide();
-            $("#gang").hide();
-            $("#alink").hide();
-
+    function check(val) {
+        var dom = $("#bingfa");
+        if (val == 1) {
+            dom.show();
         }
-
-
-
-    });
-    $("input:radio[name$=isEradicated]:checked").on('change', function () {//当chooseImage的值改变时，执行此函数
-        var b = $("input:radio[name$=isEradicated]:checked").val();
-        console.log(b);
-        if (b == 1) {
-            $("#myModal").hide();
-            $("#subbtn").show();
-            $("#gang").show();
-            $("#alink").show();
+        else {
+            dom.hide();
         }
+    }
 
+    $('#myModal1').click(function () {
+        $("#my-img1").show();
+        $("#myModal1").hide();
+        $("#myModal2").show();
+    });
+    $('#myModal2').click(function () {
+        $("#my-img2").show();
+        $("#myModal2").hide();
+        $("#myModal3").show();
+    });
+    $('#myModal3').click(function () {
+        $("#my-img3").show();
+        $("#myModal3").hide();
+        $("#myModal4").show();
+    });
+    $('#myModal4').click(function () {
+        $("#my-img4").show();
+        $("#myModal4").hide();
+        $("#myModal5").show();
+    });
+    $('#myModal5').click(function () {
+        $("#my-img5").show();
+        $("#myModal5").hide();
+        $("#myModal6").show();
+    });
+    $('#myModal6').click(function () {
+        $("#my-img6").show();
+        $("#myModal6").hide();
+        $("#myModal7").show();
+    });
+    $('#myModal7').click(function () {
+        $("#my-img7").show();
+        $("#myModal7").hide();
+        $("#myModal8").show();
+    });
+    $('#myModal8').click(function () {
+        $("#my-img8").show();
+        $("#myModal8").hide();
+        $("#myModal9").show();
+    });
+    $('#myModal9').click(function () {
+        alert("最多只能添加8张图片");
+    });
+
+    $(document).ready(function () {
+        $('#my-img1').on('click', function () {
+            $('#filename').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img2').on('click', function () {
+            $('#filename1').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img3').on('click', function () {
+            $('#filename2').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img4').on('click', function () {
+            $('#filename3').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img5').on('click', function () {
+            $('#filename4').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img6').on('click', function () {
+            $('#filename5').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img7').on('click', function () {
+            $('#filename6').click();
+        });
+
+    });
+    $(document).ready(function () {
+        $('#my-img8').on('click', function () {
+            $('#filename7').click();
+        });
 
     });
 
-    $('#myModal').on('click', function () {
-        //$('#sub').click();
-        window.location.href = "/Treatments/Create?id=@Model.refId&&scannum=@Model.scannum&&visit=@Model.visit&&refid=@Model.refId&&name=@Model.name";
-        $('#EditForm').submit();
+    
+   
+
+    $('#filename').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb1").show();
+        $("#my-img1").hide();
+        $("#btn1").show();
+        $("#btn2").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb1').attr('src', src);
+        }
     });
+    $('#btn1').on('click', function () {
+        $('#cb1').attr('src', "");
+        $('#cb1').hide();
+        $('#btn1').hide();
+        $('#btn2').hide();
+        $("#my-img1").show();
+    });
+    $(document).ready(function () {
+        $('#btn2').on('click', function () {
+            $('#filename').click();
+        });
+
+    });
+
+    $('#filename1').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb2").show();
+        $("#my-img2").hide();
+        $("#btn3").show();
+        $("#btn4").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb2').attr('src', src);
+        }
+    });
+    $('#btn3').on('click', function () {
+        $('#cb2').attr('src', "");
+        $('#cb2').hide();
+        $('#btn3').hide();
+        $('#btn4').hide();
+        $("#my-img2").show();
+        var file = document.getElementById('filename1');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn4').on('click', function () {
+            $('#filename1').click();
+        });
+
+    });
+
+
+    $('#filename2').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb3").show();
+        $("#my-img3").hide();
+        $("#btn5").show();
+        $("#btn6").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb3').attr('src', src);
+        }
+    });
+    $('#btn5').on('click', function () {
+        $('#cb3').attr('src', "");
+        $('#cb3').hide();
+        $('#btn5').hide();
+        $('#btn6').hide();
+        $("#my-img3").show();
+        var file = document.getElementById('filename2');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn6').on('click', function () {
+            $('#filename2').click();
+        });
+
+    });
+
+
+    $('#filename3').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb4").show();
+        $("#my-img4").hide();
+        $("#btn7").show();
+        $("#btn8").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb4').attr('src', src);
+        }
+    });
+    $('#btn7').on('click', function () {
+        $('#cb4').attr('src', "");
+        $('#cb4').hide();
+        $('#btn7').hide();
+        $('#btn8').hide();
+        $("#my-img4").show();
+        var file = document.getElementById('filename3');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn8').on('click', function () {
+            $('#filename3').click();
+        });
+
+    });
+
+    $('#filename4').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb5").show();
+        $("#my-img5").hide();
+        $("#btn9").show();
+        $("#btn10").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb5').attr('src', src);
+        }
+    });
+    $('#btn9').on('click', function () {
+        $('#cb5').attr('src', "");
+        $('#cb5').hide();
+        $('#btn9').hide();
+        $('#btn10').hide();
+        $("#my-img5").show();
+        var file = document.getElementById('filename4');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn10').on('click', function () {
+            $('#filename4').click();
+        });
+
+    });
+
+    $('#filename5').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb6").show();
+        $("#my-img6").hide();
+        $("#btn11").show();
+        $("#btn12").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb6').attr('src', src);
+        }
+    });
+    $('#btn11').on('click', function () {
+        $('#cb6').attr('src', "");
+        $('#cb6').hide();
+        $('#btn11').hide();
+        $('#btn12').hide();
+        $("#my-img6").show();
+        var file = document.getElementById('filename5');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn12').on('click', function () {
+            $('#filename5').click();
+        });
+
+    });
+
+    $('#filename6').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb7").show();
+        $("#my-img7").hide();
+        $("#btn13").show();
+        $("#btn14").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb7').attr('src', src);
+        }
+    });
+    $('#btn13').on('click', function () {
+        $('#cb7').attr('src', "");
+        $('#cb7').hide();
+        $('#btn13').hide();
+        $('#btn14').hide();
+        $("#my-img7").show();
+        var file = document.getElementById('filename6');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn14').on('click', function () {
+            $('#filename6').click();
+        });
+
+    });
+
+    $('#filename7').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb8").show();
+        $("#my-img8").hide();
+        $("#btn15").show();
+        $("#btn16").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb8').attr('src', src);
+        }
+    });
+    $('#btn15').on('click', function () {
+        $('#cb8').attr('src', "");
+        $('#cb8').hide();
+        $('#btn15').hide();
+        $('#btn16').hide();
+        $("#my-img8").show();
+        var file = document.getElementById('filename7');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn16').on('click', function () {
+            $('#filename7').click();
+        });
+
+    });
+
+    $(function () {
+        $(".pic").on("click", function () {
+            var _this = $(this);//将当前的pimg元素作为_this传入函数
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+        });
+    });
+    function imgShow(outerdiv, innerdiv, bigimg, _this) {
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+        $("<img/>").attr("src", src).on("load", function () {
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+            if (realHeight > windowH * scale) {//判断图片高度
+                imgHeight = windowH * scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight / realHeight * realWidth;//等比例缩放宽度
+                if (imgWidth > windowW * scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW * scale;//再对宽度进行缩放
+                }
+            } else if (realWidth > windowW * scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW * scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth / realWidth * realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width", imgWidth);//以最终的宽度对图片缩放
+            var w = (windowW - imgWidth) / 2;//计算图片与窗口左边距
+            var h = (windowH - imgHeight) / 2;//计算图片与窗口上边距
+            $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+        });
+        $(outerdiv).on("click", function () {//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }
 
 </script>

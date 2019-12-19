@@ -88,15 +88,28 @@ namespace WebApplication4.Controllers
                 string result = "";
                 string result1 = "";
                 string result2 = "";
-
+                string result3 = "";
+                string result4 = "";
+                string result5 = "";
+                string result6 = "";
+                string result7 = "";
                 HttpPostedFileBase files = Request.Files["filename"];
                 HttpPostedFileBase files1 = Request.Files["filename1"];
                 HttpPostedFileBase files2 = Request.Files["filename2"];
-
+                HttpPostedFileBase files3 = Request.Files["filename3"];
+                HttpPostedFileBase files4 = Request.Files["filename4"];
+                HttpPostedFileBase files5 = Request.Files["filename5"];
+                HttpPostedFileBase files6 = Request.Files["filename6"];
+                HttpPostedFileBase files7 = Request.Files["filename7"];
 
                 result = SaveImage(files);
                 result1 = SaveImage(files1);
                 result2 = SaveImage(files2);
+                result3 = SaveImage(files3);
+                result4 = SaveImage(files4);
+                result5 = SaveImage(files5);
+                result6 = SaveImage(files6);
+                result7 = SaveImage(files7);
 
 
                 if (result != "error")
@@ -111,6 +124,26 @@ namespace WebApplication4.Controllers
                 if (result2 != "error")
                 {
                     treatment.pic3 = result2;
+                }
+                if (result3 != "error")
+                {
+                    treatment.pic4 = result3;
+                }
+                if (result4 != "error")
+                {
+                    treatment.pic5 = result4;
+                }
+                if (result5 != "error")
+                {
+                    treatment.pic6 = result5;
+                }
+                if (result6 != "error")
+                {
+                    treatment.pic7 = result6;
+                }
+                if (result7 != "error")
+                {
+                    treatment.pic8 = result7;
                 }
             }
 			
@@ -140,9 +173,11 @@ namespace WebApplication4.Controllers
                 }
 				else 
 				{
-					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup)VALUES(" +
+					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup,biji,pic4,pic5,pic6,pic7,pic8)VALUES(" +
 						"'" + treatment.visit + "',"+ treatment.name+",'" + treatment.scannum + "','" + treatment.condition + "','" + treatment.time + "','" +
-						  treatment.content + "','" + treatment.pic1 + "','" + treatment.pic2 + "','" + treatment.pic3 + "'," + treatment.isfollowup + " )";
+						  treatment.content + "','" + treatment.pic1 + "','" + treatment.pic2 + "','" + treatment.pic3 + "'," + treatment.isfollowup +
+                          "," + treatment.biji + ",'" + treatment.pic4 + "','" + treatment.pic5 + "','" + treatment.pic6 + "','" + treatment.pic7 +
+                          "','" + treatment.pic8 +"')";
 				}
 				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -185,29 +220,76 @@ namespace WebApplication4.Controllers
                         treatment.condition = reader.GetString("conditions");
                         treatment.time = reader.GetDateTime("time");
 
+                        if (treatment.name==0)
+                        {
+                            treatment.isEradicated = reader.GetInt32("isEradicated");
+                            treatment.Omeprazole = reader.GetInt32("Omeprazole");
+                            treatment.Rabeprazole = reader.GetInt32("Rabeprazole");
+                            treatment.Esomeprazole = reader.GetInt32("Esomeprazole");
+                            treatment.Pantoprazole = reader.GetInt32("Pantoprazole");
+                            treatment.OtherPPI = reader.GetInt32("OtherPPI");
+                            treatment.Amoxicillin = reader.GetInt32("Amoxicillin");
+                            treatment.tetracycline = reader.GetInt32("tetracycline");
+                            treatment.Levofloxacin = reader.GetInt32("Levofloxacin");
+                            treatment.Clarithromycin = reader.GetInt32("Clarithromycin");
+                            treatment.Furazolidone = reader.GetInt32("Furazolidone");
+                            treatment.Metronidazole = reader.GetInt32("Metronidazole");
+                            treatment.treatTime = reader.GetInt32("treatTime");
+                            treatment.isOnTime = reader.GetInt32("isOnTime");
+                            treatment.biji = reader.GetInt32("biji");
+                        }
+                        else if (treatment.name == 1)
+                        {
+                            treatment.isEradicated = 2;
+                            treatment.Omeprazole = 2;
+                            treatment.Rabeprazole = 2;
+                            treatment.Esomeprazole = 2;
+                            treatment.Pantoprazole = 2;
+                            treatment.OtherPPI = 2;
+                            treatment.Amoxicillin = 2;
+                            treatment.tetracycline = 2;
+                            treatment.Levofloxacin = 2;
+                            treatment.Clarithromycin = 2;
+                            treatment.Furazolidone = 2;
+                            treatment.Metronidazole = 2;
+                            treatment.treatTime = reader.GetInt32("treatTime");
+                            treatment.isOnTime = reader.GetInt32("isOnTime");
+                            treatment.biji = reader.GetInt32("biji");
+                        }
+                        else if(treatment.name == 2)
+                        {
+                            treatment.isEradicated = 2;
+                            treatment.Omeprazole = 2;
+                            treatment.Rabeprazole = 2;
+                            treatment.Esomeprazole = 2;
+                            treatment.Pantoprazole = 2;
+                            treatment.OtherPPI = 2;
+                            treatment.Amoxicillin = 2;
+                            treatment.tetracycline = 2;
+                            treatment.Levofloxacin = 2;
+                            treatment.Clarithromycin = 2;
+                            treatment.Furazolidone = 2;
+                            treatment.Metronidazole = 2;
+                            treatment.treatTime = 2;
+                            treatment.isOnTime = 2;
+                            treatment.biji = reader.GetInt32("biji");
+                        }
+
                         //treatment.isInfected = reader.GetInt32("isInfected");
-                        treatment.isEradicated = reader.GetInt32("isEradicated");
-                        treatment.Omeprazole = reader.GetInt32("Omeprazole");
-                        treatment.Rabeprazole = reader.GetInt32("Rabeprazole");
-                        treatment.Esomeprazole = reader.GetInt32("Esomeprazole");
-                        treatment.Pantoprazole = reader.GetInt32("Pantoprazole");
-                        treatment.OtherPPI = reader.GetInt32("OtherPPI");
-                        treatment.Amoxicillin = reader.GetInt32("Amoxicillin");
-                        treatment.tetracycline = reader.GetInt32("tetracycline");
-                        treatment.Levofloxacin = reader.GetInt32("Levofloxacin");
-                        treatment.Clarithromycin = reader.GetInt32("Clarithromycin");
-                        treatment.Furazolidone = reader.GetInt32("Furazolidone");
-                        treatment.Metronidazole = reader.GetInt32("Metronidazole");
-                        treatment.treatTime = reader.GetInt32("treatTime");
-                        treatment.isOnTime = reader.GetInt32("isOnTime");
-						treatment.biji = reader.GetInt32("biji");
+                       
 						treatment.isfollowup = reader.GetInt32("isfollowup");
 						
 						treatment.content = reader.GetString("content");
 						treatment.pic1 = reader.GetString("pic1");
 						treatment.pic2 = reader.GetString("pic2");
 						treatment.pic3 = reader.GetString("pic3");
-					}
+                        treatment.pic4 = reader.GetString("pic4");
+                        treatment.pic5 = reader.GetString("pic5");
+                        treatment.pic6 = reader.GetString("pic6");
+                        treatment.pic7 = reader.GetString("pic7");
+                        treatment.pic8 = reader.GetString("pic8");
+                        
+                    }
                 }
 
 

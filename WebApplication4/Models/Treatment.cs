@@ -32,9 +32,18 @@ namespace WebApplication4.Models
 		public int biji { get; set; }
         public int isEradicated { get; set; }
         public int isfollowup { get; set; }
-		public string pic1 { get; set; }
+        public string bingfa { get; set; }
+        public string pic1 { get; set; }
 
 		public string pic2 { get; set; }
 		public string pic3 { get; set; }
-	}
+        public string pic4 { get; set; }
+
+        public string pic5 { get; set; }
+        public string pic6 { get; set; }
+        public string pic7 { get; set; }
+
+        public string pic8 { get; set; }
+        
+    }
 }

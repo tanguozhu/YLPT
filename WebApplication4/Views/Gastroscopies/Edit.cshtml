@@ -84,15 +84,136 @@
 
 
         <div>
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
-            <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+            @{
+                if (Model.Pic1 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+                if (Model.Pic1 != "" && Model.Pic2 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+
+                if (Model.Pic2 != "" && Model.Pic3 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+
+                if (Model.Pic3 != "" && Model.Pic4 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+                if (Model.Pic4 != "" && Model.Pic5 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+                if (Model.Pic5 != "" && Model.Pic6 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+                if (Model.Pic6 != "" && Model.Pic7 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+                if (Model.Pic7 != "" && Model.Pic8 == "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" style="display:none" />
+                    </div>
+                }
+                if (Model.Pic8 != "")
+                {
+                    <div>
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal1" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal2" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal3" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal4" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal5" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal6" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal7" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal8" style="display:none" />
+                        <input type="button" value="添加图片" class="btn btn-info" id="myModal9" />
+                    </div>
+                }
+            }
 
             <div>
 
@@ -441,41 +562,49 @@
 
     });
 
-    if ($("cb1").val()=="") {
+    $('#myModal1').click(function () {
         $("#my-img1").show();
-    }
-    else if ($("cb1").val() != "" && $("cb2").val() == "") {
+        $("#myModal1").hide();
+        $("#myModal2").show();
+    });
+    $('#myModal2').click(function () {
         $("#my-img2").show();
-    }
-    
-
-    if ($("cb2").val() != "" && $("cb3").val()=="") {
+        $("#myModal2").hide();
+        $("#myModal3").show();
+    });
+    $('#myModal3').click(function () {
         $("#my-img3").show();
-    }
-    
-    if ($("cb3").val() != "" && $("cb4").val() == "") {
+        $("#myModal3").hide();
+        $("#myModal4").show();
+    });
+    $('#myModal4').click(function () {
         $("#my-img4").show();
-    }
-
-    if ($("cb4").val() != "" && $("cb5").val() == "") {
+        $("#myModal4").hide();
+        $("#myModal5").show();
+    });
+    $('#myModal5').click(function () {
         $("#my-img5").show();
-    }
-
-    if ($("cb5").val() != "" && $("cb6").val() == "") {
+        $("#myModal5").hide();
+        $("#myModal6").show();
+    });
+    $('#myModal6').click(function () {
         $("#my-img6").show();
-    }
-
-    if ($("cb6").val() != "" && $("cb7").val() == "") {
+        $("#myModal6").hide();
+        $("#myModal7").show();
+    });
+    $('#myModal7').click(function () {
         $("#my-img7").show();
-    }
-
-    if ($("cb7").val() != "" && $("cb8").val() == "") {
+        $("#myModal7").hide();
+        $("#myModal8").show();
+    });
+    $('#myModal8').click(function () {
         $("#my-img8").show();
-    }
-
-    if ($("cb8").val() != "" ) {
-        $("#my-img9").show();
-    }
+        $("#myModal8").hide();
+        $("#myModal9").show();
+    });
+    $('#myModal9').click(function () {
+        alert("最多只能添加8张图片");
+    });
 
     $('#filename').on('change', function () {//当chooseImage的值改变时，执行此函数
         $("#cb1").show();
@@ -504,6 +633,254 @@
     $(document).ready(function () {
         $('#btn2').on('click', function () {
             $('#filename').click();
+        });
+
+    });
+
+
+    $('#filename1').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb2").show();
+        $("#my-img2").hide();
+        $("#btn3").show();
+        $("#btn4").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb2').attr('src', src);
+        }
+    });
+    $('#btn3').on('click', function () {
+        $('#cb2').attr('src', "");
+        $('#cb2').hide();
+        $('#btn3').hide();
+        $('#btn4').hide();
+        $("#my-img2").show();
+        var file = document.getElementById('filename1');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn4').on('click', function () {
+            $('#filename1').click();
+        });
+
+    });
+
+
+    $('#filename2').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb3").show();
+        $("#my-img3").hide();
+        $("#btn5").show();
+        $("#btn6").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb3').attr('src', src);
+        }
+    });
+    $('#btn5').on('click', function () {
+        $('#cb3').attr('src', "");
+        $('#cb3').hide();
+        $('#btn5').hide();
+        $('#btn6').hide();
+        $("#my-img3").show();
+        var file = document.getElementById('filename2');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn6').on('click', function () {
+            $('#filename2').click();
+        });
+
+    });
+
+
+    $('#filename3').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb4").show();
+        $("#my-img4").hide();
+        $("#btn7").show();
+        $("#btn8").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb4').attr('src', src);
+        }
+    });
+    $('#btn7').on('click', function () {
+        $('#cb4').attr('src', "");
+        $('#cb4').hide();
+        $('#btn7').hide();
+        $('#btn8').hide();
+        $("#my-img4").show();
+        var file = document.getElementById('filename3');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn8').on('click', function () {
+            $('#filename3').click();
+        });
+
+    });
+
+    $('#filename4').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb5").show();
+        $("#my-img5").hide();
+        $("#btn9").show();
+        $("#btn10").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb5').attr('src', src);
+        }
+    });
+    $('#btn9').on('click', function () {
+        $('#cb5').attr('src', "");
+        $('#cb5').hide();
+        $('#btn9').hide();
+        $('#btn10').hide();
+        $("#my-img5").show();
+        var file = document.getElementById('filename4');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn10').on('click', function () {
+            $('#filename4').click();
+        });
+
+    });
+
+    $('#filename5').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb6").show();
+        $("#my-img6").hide();
+        $("#btn11").show();
+        $("#btn12").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb6').attr('src', src);
+        }
+    });
+    $('#btn11').on('click', function () {
+        $('#cb6').attr('src', "");
+        $('#cb6').hide();
+        $('#btn11').hide();
+        $('#btn12').hide();
+        $("#my-img6").show();
+        var file = document.getElementById('filename5');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn12').on('click', function () {
+            $('#filename5').click();
+        });
+
+    });
+
+    $('#filename6').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb7").show();
+        $("#my-img7").hide();
+        $("#btn13").show();
+        $("#btn14").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb7').attr('src', src);
+        }
+    });
+    $('#btn13').on('click', function () {
+        $('#cb7').attr('src', "");
+        $('#cb7').hide();
+        $('#btn13').hide();
+        $('#btn14').hide();
+        $("#my-img7").show();
+        var file = document.getElementById('filename6');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn14').on('click', function () {
+            $('#filename6').click();
+        });
+
+    });
+
+    $('#filename7').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb8").show();
+        $("#my-img8").hide();
+        $("#btn15").show();
+        $("#btn16").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb8').attr('src', src);
+        }
+    });
+    $('#btn15').on('click', function () {
+        $('#cb8').attr('src', "");
+        $('#cb8').hide();
+        $('#btn15').hide();
+        $('#btn16').hide();
+        $("#my-img8").show();
+        var file = document.getElementById('filename7');
+        file.value = ''; //虽然file的value值不能设为有内容的字符，但是可以设置为空字符
+        //或者
+        file.outerHTML = file.outerHTML; //重新初始化了file的html
+    });
+    $(document).ready(function () {
+        $('#btn16').on('click', function () {
+            $('#filename7').click();
         });
 
     });

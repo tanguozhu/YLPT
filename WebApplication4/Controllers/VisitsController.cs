@@ -557,7 +557,7 @@ namespace WebApplication4.Controllers
         {
             MySqlConnection mysql = getMySqlConnection();
             string sql;
-            sql = "select id,time,name from treatment where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by time desc;";
+            sql = "select id,time,name,isEradicated from treatment where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by time desc;";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
@@ -603,7 +603,7 @@ namespace WebApplication4.Controllers
         {
             MySqlConnection mysql = getMySqlConnection();
             string sql;
-            sql = "select * from followup where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by date desc;";
+            sql = "select * from followup where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ;";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);

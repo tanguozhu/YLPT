@@ -221,6 +221,17 @@
 
             </div>
 
+            <div style="overflow-y:auto; overflow-x:auto;">
+                <hr />
+                @{
+                    string conditions = Convert.ToString(item[4]);
+                    
+                }
+                <h4>其他疗法:@conditions</h4>
+
+
+            </div>
+
         }
         else if (name == 1)
         {
@@ -275,6 +286,34 @@
                     <dd>
                         @item[21]
                     </dd>
+                    <dt>
+                        术后并发症:
+                    </dt>
+                    <dd>
+                        @{
+                            int a = Convert.ToInt32(item[12]);
+                            string juti = Convert.ToString(item[26]);
+                            string b = "";
+                            string c = "";
+                            if (a == 0)
+                            {
+                                b = "否";
+                            }
+                            else
+                            {
+                                b = "是";
+                                c = juti;
+                            }
+                        }
+                        @b
+                    </dd>
+                    <dt>
+                        
+                    </dt>
+                    <dd>
+                       
+                        @c
+                    </dd>
                 </dl>
             </div>
             <div style="overflow-y:auto; overflow-x:auto;">
@@ -286,9 +325,14 @@
                     string i1 = Convert.ToString(itemshoushu[22]);
                     string i2 = Convert.ToString(itemshoushu[23]);
                     string i3 = Convert.ToString(itemshoushu[24]);
+                    string i4 = Convert.ToString(itemshoushu[27]);
+                    string i5 = Convert.ToString(itemshoushu[28]);
+                    string i6 = Convert.ToString(itemshoushu[29]);
+                    string i7 = Convert.ToString(itemshoushu[30]);
+                    string i8 = Convert.ToString(itemshoushu[31]);
 
 
-                    if (i1 == "" && i2 == "" && i3 == "")
+                    if (i1 == "" && i2 == "" && i3 == "" && i4 == "" && i5 == "" && i6 == "" && i7 == "" && i8 == "")
                     {
                         <div>暂时没有手术图片</div>
                     }
@@ -312,7 +356,36 @@
                                 <img src="@i3" width="100" height="100" class="pic">
                             </div>
                         }
-
+                        if (i4 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i4" width="100" height="100" class="pic">
+                            </div>
+                        }
+                        if (i5 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i5" width="100" height="100" class="pic">
+                            </div>
+                        }
+                        if (i6 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i6" width="100" height="100" class="pic">
+                            </div>
+                        }
+                        if (i7 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i7" width="100" height="100" class="pic">
+                            </div>
+                        }
+                        if (i8 != "")
+                        {
+                            <div class="col-md-4">
+                                <img src="@i8" width="100" height="100" class="pic">
+                            </div>
+                        }
 
 
                     }
@@ -340,7 +413,7 @@
                             疗程:
                         </dt>
                         <dd>
-                            @item3[19]
+                            @item3[19] 天
 
                         </dd>
                         <dt>

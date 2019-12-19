@@ -162,8 +162,16 @@ namespace WebApplication4.Controllers
                 {
                     pic8 = result7;
                 }
+                if (Checknum==""&&Conclusion=="")
+                {
 
-				Insertgas("胃镜检查",c, b, dt, Checknum,  Conclusion,Pathologynum, Pathologyconclusion, Other, pic1,  pic2,  pic3,  pic4,pic5,pic6,pic7, pic8, followUp.followupnum);
+                }
+                else
+                {
+                    Insertgas("胃镜检查", c, b, dt, Checknum, Conclusion, Pathologynum, Pathologyconclusion, Other, 
+                        pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8, followUp.followupnum);
+                }
+				
 
 
 			}
@@ -206,7 +214,15 @@ namespace WebApplication4.Controllers
                 {
                     pics3 = results2;
                 }
-				Inserttre(b, 2, c, condition, time1, content1,pics1,  pics2, pics3, followUp.followupnum);
+                if (condition==""&& content1=="")
+                {
+
+                }
+                else
+                {
+                    Inserttre(b, 2, c, condition, time1, content1, pics1, pics2, pics3, followUp.followupnum);
+                }
+				
 
 			}
 
