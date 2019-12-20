@@ -601,55 +601,204 @@ namespace WebApplication4.Controllers
             return ds;
         }
 
-        public string Get_gastroscopy_followuptime(string visit, string scannum, string checkname, int isfollowup)
+        public string Get_gastroscopy_followuptime(string visit, string scannum, string checkname)
         {
             string sql = "SELECT followuptime FROM `gastroscopy` where visit='" + visit + "' and scannum='" + scannum + "' and checkname='" + checkname + "' " +
                 "and isfollowup=1  ORDER BY checktime desc LIMIT 1";
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-            mySqlCommand.ExecuteNonQuery();
-            mysql.Close();
-            DataTable dt = new DataTable();
-            command.Fill(dt);
-            string followuptime = (string)dt.Rows[0][0];
-            return followuptime;
+			mysql.Open();
+			MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+			string gastroscopy_followuptime = "";
+			MySqlDataReader reader = mySqlCommand.ExecuteReader();
+			try
+			{
+				while (reader.Read())
+				{
+					if (reader.HasRows)
+					{
+						gastroscopy_followuptime = reader.GetString("followuptime");
+
+					}
+				}
+
+
+			}
+			catch
+			{
+				return "";
+			}
+			finally
+			{
+				mysql.Close();
+			}
+
+			
+			return gastroscopy_followuptime;
         }
 
-        public string Get_treatment_followuptime(string visit, string scannum, int name, int isfollowup)
+		public string Get_gastroscopy_followuptime_other(string visit, string scannum)
+		{
+			string sql = "SELECT followuptime FROM `gastroscopy` where visit='" + visit + "' and scannum='" + scannum + "' and checkname!='胃镜检查' " +
+				"and checkname!='幽门螺杆菌检查' and checkname!='胃黏膜血清检查' and isfollowup=1  ORDER BY checktime desc LIMIT 1";
+			MySqlConnection mysql = getMySqlConnection();
+			mysql.Open();
+			MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+			string gastroscopy_followuptime_other = "";
+			MySqlDataReader reader = mySqlCommand.ExecuteReader();
+			try
+			{
+				while (reader.Read())
+				{
+					if (reader.HasRows)
+					{
+						gastroscopy_followuptime_other = reader.GetString("followuptime");
+
+					}
+				}
+
+
+			}
+			catch
+			{
+				return "";
+			}
+			finally
+			{
+				mysql.Close();
+			}
+
+
+			return gastroscopy_followuptime_other;
+		}
+
+		public string Get_treatment_followuptime(string visit, string scannum, int name)
         {
-            string sql = "SELECT followuptime FROM `treatment` where visit='" + visit + "' and scannum='" + scannum + "' and name=" + name  +
-                            "and isfollowup=1  ORDER BY checktime desc LIMIT 1";
+            string sql = "SELECT followuptime FROM `treatment` where visit='" + visit + "' and scannum='" + scannum + "' and `name`="+ name+" and isfollowup=1  ORDER BY time desc LIMIT 1";
 
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-            mySqlCommand.ExecuteNonQuery();
-            mysql.Close();
-            DataTable dt = new DataTable();
-            command.Fill(dt);
-            string youmen_treat_time = (string)dt.Rows[0][0];
-            return youmen_treat_time;
-        }
+			mysql.Open();
+			MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+			string treatment_followuptime = "";
+			MySqlDataReader reader = mySqlCommand.ExecuteReader();
+			try
+			{
+				while (reader.Read())
+				{
+					if (reader.HasRows)
+					{
+						treatment_followuptime = reader.GetString("followuptime");
 
-        public void UpdateFollowUp(string scannum, string VisitID,int weijing_check,string weijing_check_time,
-            int weinianmo_check, string weinianmo_check_time, int youmen_check, string youmen_check_time,
-            int other_check, string other_check_time, int youmen_treat, string youmen_treat_time,
-            int operater_treat, string operater_treat_time, int other_treat, string other_treat_time)
-        {
-            MySqlConnection mysql = getMySqlConnection();
-            string sql;
-            sql = "update followup set weijing_check=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ;";
-            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-            mysql.Open();
-            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-            mySqlCommand.ExecuteNonQuery();
-            mysql.Close();
-        }
+					}
+				}
 
-        public static DataSet GetFollowUp(string scannum, string VisitID)
+
+			}
+			catch
+			{
+				return "";
+			}
+			finally
+			{
+				mysql.Close();
+			}
+
+
+			return treatment_followuptime;
+		}
+
+		public void UpdateFollowUp(string scannum, string VisitID)
+		{
+			string weijing_check_time = Get_gastroscopy_followuptime(VisitID, scannum, "胃镜检查");
+			string weinianmo_check_time = Get_gastroscopy_followuptime(VisitID, scannum, "胃黏膜血清检查");
+			string youmen_check_time = Get_gastroscopy_followuptime(VisitID, scannum, "幽门螺杆菌检查");
+			string other_check_time = Get_gastroscopy_followuptime_other(VisitID, scannum);
+			string youmen_treat_time = Get_treatment_followuptime(VisitID, scannum, 0);
+			string other_treat_time = Get_treatment_followuptime(VisitID, scannum, 1);
+			string operater_treat_time = Get_treatment_followuptime(VisitID, scannum, 2);
+
+			if (weijing_check_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set weijing_check=1,weijing_check_time='" + weijing_check_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+			if (weinianmo_check_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set weinianmo_check=1,weinianmo_check_time='" + weinianmo_check_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+			if (youmen_check_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set youmen_check=1,youmen_check_time='" + youmen_check_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+			if (other_check_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set other_check=1,other_check_time='" + other_check_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+			if (youmen_treat_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set youmen_treat=1,youmen_treat_time='" + youmen_treat_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+			if (other_treat_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set other_treat=1,other_treat_time='" + other_treat_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+			if (operater_treat_time != "")
+			{
+				MySqlConnection mysql = getMySqlConnection();
+				mysql.Open();
+				string sql = "update followup set operater_treat=1,operater_treat_time='" + operater_treat_time + "' " +
+					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+				mySqlCommand.ExecuteNonQuery();
+				mysql.Close();
+			}
+		}
+
+        public DataSet GetFollowUp(string scannum, string VisitID)
         {
-            MySqlConnection mysql = getMySqlConnection();
+			UpdateFollowUp(scannum,VisitID);
+			MySqlConnection mysql = getMySqlConnection();
             string sql;
             sql = "select * from followup where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ;";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
