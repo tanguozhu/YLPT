@@ -174,11 +174,11 @@ namespace WebApplication4.Controllers
                 }
 				else 
 				{
-					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup,biji,pic4,pic5,pic6,pic7,pic8,followuptime)VALUES(" +
+					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup,biji,pic4,pic5,pic6,pic7,pic8,followuptime,bingfa)VALUES(" +
 						"'" + treatment.visit + "',"+ treatment.name+",'" + treatment.scannum + "','" + treatment.condition + "','" + treatment.time + "','" +
 						  treatment.content + "','" + treatment.pic1 + "','" + treatment.pic2 + "','" + treatment.pic3 + "'," + treatment.isfollowup +
                           "," + treatment.biji + ",'" + treatment.pic4 + "','" + treatment.pic5 + "','" + treatment.pic6 + "','" + treatment.pic7 +
-                          "','" + treatment.pic8 + "','" + treatment.followuptime + "')";
+                          "','" + treatment.pic8 + "','" + treatment.followuptime +"','" + treatment.bingfa + "')";
 				}
 				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -342,9 +342,10 @@ namespace WebApplication4.Controllers
                 }
 				else 
 				{
-					sql = "UPDATE treatment set time='" + treatment.time + "',pic1=" + treatment.pic1 + ",pic2=" + treatment.pic2 + ",pic3=" + treatment.pic3 + "," +
-						"isfollowup=" + treatment.isfollowup +",content='" + treatment.content + "',condition='" + treatment.condition+
-                        "',isfollowup=" + treatment.isfollowup + ",followuptime='" + treatment.followuptime + "'where id=" + treatment.Id;
+					sql = "UPDATE treatment set time='" + treatment.time + "',pic1='" + treatment.pic1 + "',pic2='" + treatment.pic2 + "',pic3='" + treatment.pic3 + "'," +
+						"content='" + treatment.content + "',conditions='" + treatment.condition+ "',pic4='" + treatment.pic4 + "',pic5='" + treatment.pic5 + 
+                        "',pic6='" + treatment.pic6 + "'," + "pic7='" + treatment.pic7 + "',pic8='" + treatment.pic8  + "',biji=" + treatment.biji +
+                        ",isfollowup=" + treatment.isfollowup + ",followuptime='" + treatment.followuptime + "',bingfa='" + treatment.bingfa + "'where id=" + treatment.Id;
 				}
 				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
