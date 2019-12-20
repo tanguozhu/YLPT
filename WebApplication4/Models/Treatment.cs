@@ -32,6 +32,7 @@ namespace WebApplication4.Models
 		public int biji { get; set; }
         public int isEradicated { get; set; }
         public int isfollowup { get; set; }
+        public DateTime followuptime { get; set; }
         public string bingfa { get; set; }
         public string pic1 { get; set; }
 

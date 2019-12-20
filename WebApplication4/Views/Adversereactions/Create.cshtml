@@ -25,15 +25,16 @@
     <div style="overflow-y:auto; overflow-x:auto;">
         <h3>头晕</h3>
         <div class="col-md-6">
-
-
+            @{
+                DateTime beginTime0 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime0" name="beginTime0" type="date" value="">
+                    @Html.TextBoxFor(Model => beginTime0, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    
                 </div>
             </div>
-
 
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
@@ -105,11 +106,14 @@
 
         <h3>恶心</h3>
         <div class="col-md-6">
-
+            @{
+                DateTime beginTime1 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime1" name="beginTime1" type="date" value="">
+                    
+                    @Html.TextBoxFor(Model => beginTime1, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
             </div>
 
@@ -186,15 +190,16 @@
 
         <h3>呕吐</h3>
         <div class="col-md-6">
-
+            @{
+                DateTime beginTime2 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime2" name="beginTime2" type="date" value="">
+
+                    @Html.TextBoxFor(Model => beginTime2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
             </div>
-
-
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
                 <div class="col-md-10">
@@ -267,14 +272,16 @@
         <h3>腹痛</h3>
         <div class="col-md-6">
 
+            @{
+                DateTime beginTime3 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime3" name="beginTime3" type="date" value="">
+
+                    @Html.TextBoxFor(Model => beginTime3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
             </div>
-
-
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
                 <div class="col-md-10">
@@ -351,13 +358,16 @@
         <div class="col-md-6">
 
 
+            @{
+                DateTime beginTime4 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime4" name="beginTime4" type="date" value="">
+
+                    @Html.TextBoxFor(Model => beginTime4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
             </div>
-
 
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
@@ -434,13 +444,16 @@
         <h3>皮疹</h3>
         <div class="col-md-6">
 
+            @{
+                DateTime beginTime5 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime5" name="beginTime5" type="date" value="">
+
+                    @Html.TextBoxFor(Model => beginTime5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
             </div>
-
 
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>
@@ -514,15 +527,18 @@
 
         <h3>其他</h3>
         <div class="col-md-6">
-
-
+            @{
+                DateTime beginTime6 = DateTime.Now;
+            }
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
                 <div class="col-md-10">
-                    <input class="form-control" data-val="true" id="beginTime6" name="beginTime6" type="date" value="">
+
+                    @Html.TextBoxFor(Model => beginTime6, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
             </div>
 
+           
 
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">持续时间:</label>

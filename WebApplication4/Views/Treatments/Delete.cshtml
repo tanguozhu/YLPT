@@ -4,189 +4,21 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>删除</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>确定删除该条记录?</h3>
 <div>
-    <h4>Treatment</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.scannum)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.scannum)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.visit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.visit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.condition)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.condition)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isInfected)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isInfected)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isEradicated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isEradicated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Omeprazole)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Omeprazole)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rabeprazole)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rabeprazole)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Esomeprazole)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Esomeprazole)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pantoprazole)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pantoprazole)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OtherPPI)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OtherPPI)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Amoxicillin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amoxicillin)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tetracycline)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tetracycline)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Levofloxacin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Levofloxacin)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Clarithromycin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Clarithromycin)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Furazolidone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Furazolidone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Metronidazole)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Metronidazole)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.treatTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.treatTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isOnTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isOnTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.content)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.refId)
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color" style="font-size:18px;padding:3px">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回病人信息列表", "Index")
         </div>
     }
 </div>
