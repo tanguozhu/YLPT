@@ -461,7 +461,7 @@ namespace WebApplication4.Controllers
         {
             Visit visit = new Visit();
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand("DELETE FROM visits where id=" + id, mysql);
+            MySqlCommand mySqlCommand = getSqlCommand("SET FOREIGN_KEY_CHECKS=0;DELETE FROM visits where id=" + id, mysql);
             mysql.Open();
             MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
             mySqlCommand.ExecuteNonQuery();
@@ -544,7 +544,7 @@ namespace WebApplication4.Controllers
             MySqlConnection mysql = getMySqlConnection();
             
             string sql;
-            sql = "select id,checktime,checkname from gastroscopy where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID+ "' ORDER by checktime desc;";
+            sql = "select id,checktime,checkname,isfollowup from gastroscopy where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID+ "' ORDER by checktime desc;";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
@@ -559,7 +559,7 @@ namespace WebApplication4.Controllers
         {
             MySqlConnection mysql = getMySqlConnection();
             string sql;
-            sql = "select id,time,name,isEradicated from treatment where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by time desc;";
+            sql = "select id,time,name,isEradicated,isfollowup from treatment where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + VisitID + "' ORDER by time desc;";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);

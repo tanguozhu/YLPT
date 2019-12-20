@@ -158,26 +158,27 @@ namespace WebApplication4.Controllers
                 if (treatment.name==0)
                 {
                     sql = " INSERT INTO treatment (visit,scannum,name,conditions,time,Omeprazole,Rabeprazole,Esomeprazole," +
-                        "Pantoprazole,OtherPPI,biji,Amoxicillin,tetracycline,Levofloxacin,Clarithromycin,Furazolidone,Metronidazole,treatTime,isOnTime,isEradicated,isfollowup,content)VALUES(" + 
+                        "Pantoprazole,OtherPPI,biji,Amoxicillin,tetracycline,Levofloxacin,Clarithromycin,Furazolidone,Metronidazole,treatTime,isOnTime,isEradicated,isfollowup,content,followuptime)VALUES(" + 
                         "'" + treatment.visit + "','" + treatment.scannum + "'," +treatment.name  + ",'"+treatment.condition+"','"+treatment.time+"'," +
 						"" + treatment.Omeprazole + "," + treatment.Rabeprazole + "," + treatment.Esomeprazole + ","+treatment.Pantoprazole + "," +
 	  "" + treatment.OtherPPI + ","+treatment.biji+"," + treatment.Amoxicillin + "," + treatment.tetracycline + "," + treatment.Levofloxacin + "," +
    ""+treatment.Clarithromycin + "," + treatment.Furazolidone + "," + treatment.Metronidazole + "," + treatment.treatTime + "," + treatment.isOnTime + "," + 
-   treatment.isEradicated + ",0 ,'"+treatment.content+"')";
+   treatment.isEradicated + ",'"+treatment.isfollowup+",'" + treatment.content+"','"+treatment.followuptime + "')";
                 }
 				else if (treatment.name == 1)
 				{
-                    sql = " INSERT INTO treatment (visit,scannum,name,time,treatTime,isOnTime,content)VALUES(" +
+                    sql = " INSERT INTO treatment (visit,scannum,name,time,treatTime,isOnTime,content,isfollowup,followuptime)VALUES(" +
                         "'" + treatment.visit + "','" + treatment.scannum + "'," + treatment.name + ",'"  + treatment.time + "'," +
-                          treatment.treatTime + "," + treatment.isOnTime + ",'"+treatment.content+"' )";
+                          treatment.treatTime + "," + treatment.isOnTime + ",'"+treatment.content+"'," + treatment.isfollowup + ",'" + 
+                          treatment.followuptime + "')";
                 }
 				else 
 				{
-					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup,biji,pic4,pic5,pic6,pic7,pic8)VALUES(" +
+					sql = " INSERT INTO treatment (visit,name,scannum,conditions,time,content,pic1,pic2,pic3,isfollowup,biji,pic4,pic5,pic6,pic7,pic8,followuptime)VALUES(" +
 						"'" + treatment.visit + "',"+ treatment.name+",'" + treatment.scannum + "','" + treatment.condition + "','" + treatment.time + "','" +
 						  treatment.content + "','" + treatment.pic1 + "','" + treatment.pic2 + "','" + treatment.pic3 + "'," + treatment.isfollowup +
                           "," + treatment.biji + ",'" + treatment.pic4 + "','" + treatment.pic5 + "','" + treatment.pic6 + "','" + treatment.pic7 +
-                          "','" + treatment.pic8 +"')";
+                          "','" + treatment.pic8 + "','" + treatment.followuptime + "')";
 				}
 				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -219,6 +220,8 @@ namespace WebApplication4.Controllers
                         treatment.name = reader.GetInt32("name");
                         treatment.condition = reader.GetString("conditions");
                         treatment.time = reader.GetDateTime("time");
+                        treatment.isfollowup = reader.GetInt32("isfollowup");
+                        treatment.followuptime = reader.GetDateTime("followuptime");
 
                         if (treatment.name==0)
                         {
@@ -277,7 +280,6 @@ namespace WebApplication4.Controllers
 
                         //treatment.isInfected = reader.GetInt32("isInfected");
                        
-						treatment.isfollowup = reader.GetInt32("isfollowup");
 						
 						treatment.content = reader.GetString("content");
 						treatment.pic1 = reader.GetString("pic1");
@@ -324,7 +326,8 @@ namespace WebApplication4.Controllers
 						"conditions='" + treatment.condition + "',time='" + treatment.time + "',Omeprazole=" + treatment.Omeprazole + ",Omeprazole=" + treatment.Omeprazole + ",Rabeprazole=" + treatment.Rabeprazole + "," +
 	  "Esomeprazole=" + treatment.Esomeprazole + ",Pantoprazole=" + treatment.Pantoprazole + ",OtherPPI=" + treatment.OtherPPI + ",Amoxicillin=" + treatment.Amoxicillin + ",tetracycline=" + treatment.tetracycline + "," +
    "Levofloxacin=" + treatment.Levofloxacin + ",Clarithromycin=" + treatment.Clarithromycin + ",Furazolidone=" + treatment.Furazolidone + ",Metronidazole=" + treatment.Metronidazole + ",treatTime=" + treatment.treatTime + "," +
-   "isOnTime=" + treatment.isOnTime + ",isfollowup=" + treatment.isfollowup + ",biji=" + treatment.biji + ",isEradicated=" + treatment.isEradicated + ",content='"+treatment.content+"' where id=" + treatment.Id + "";
+   "isOnTime=" + treatment.isOnTime + ",isfollowup=" + treatment.isfollowup + ",biji=" + treatment.biji + ",isEradicated=" + treatment.isEradicated + 
+   ",content='"+treatment.content+ "',isfollowup=" + treatment.isfollowup + ",followuptime='" + treatment.followuptime + "'where id=" + treatment.Id + "";
 					//sql = "UPDATE treatment set conditions='"+treatment.condition+"',time='"+treatment.time+ "',isInfected="+treatment.isInfected+ ",isEradicated="+
      //                   treatment.isEradicated + ",Omeprazole=" + treatment.Omeprazole + ",Omeprazole=" + treatment.Omeprazole + ",Rabeprazole=" + treatment.Rabeprazole +
      //                   ",Esomeprazole=" + treatment.Esomeprazole+ ",Pantoprazole=" + treatment.Pantoprazole + ",OtherPPI=" + treatment.OtherPPI + ",Amoxicillin=" + treatment.Amoxicillin+
@@ -335,12 +338,13 @@ namespace WebApplication4.Controllers
                 else if (checkname ==1)
 				{
                     sql= "UPDATE treatment set time='" + treatment.time +  "',treatTime=" + treatment.treatTime + ",isOnTime=" + treatment.isOnTime+
-                        ",content='" + treatment.content+"' where id="+treatment.Id;
+                        ",content='" + treatment.content+ "',isfollowup=" + treatment.isfollowup + ",followuptime='" + treatment.followuptime+ "' where id=" +treatment.Id;
                 }
 				else 
 				{
 					sql = "UPDATE treatment set time='" + treatment.time + "',pic1=" + treatment.pic1 + ",pic2=" + treatment.pic2 + ",pic3=" + treatment.pic3 + "," +
-						"isfollowup=" + treatment.isfollowup +",content='" + treatment.content + "',condition='" + treatment.condition+"' where id=" + treatment.Id;
+						"isfollowup=" + treatment.isfollowup +",content='" + treatment.content + "',condition='" + treatment.condition+
+                        "',isfollowup=" + treatment.isfollowup + ",followuptime='" + treatment.followuptime + "'where id=" + treatment.Id;
 				}
 				MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -355,17 +359,11 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Treatments/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id,int refid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Treatment treatment = db.Treatments.Find(id);
-            if (treatment == null)
-            {
-                return HttpNotFound();
-            }
+           
+            Treatment treatment = new Treatment();
+            treatment.refId = refid;
             return View(treatment);
         }
 
@@ -374,10 +372,20 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Treatment treatment = db.Treatments.Find(id);
-            db.Treatments.Remove(treatment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            string a = Request.Form["refId"];
+            int b = Convert.ToInt32(a);
+            
+            string sql = "";
+            sql = "SET FOREIGN_KEY_CHECKS=0;DELETE FROM treatment where id=" + id;
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+
+            return RedirectToAction("Details/" + b, "Visits");
+           
         }
 
         protected override void Dispose(bool disposing)

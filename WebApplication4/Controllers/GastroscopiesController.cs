@@ -1067,17 +1067,11 @@ namespace WebApplication4.Controllers
 
 
         // GET: Gastroscopies/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id,int refid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Gastroscopy gastroscopy = db.Gastroscopies.Find(id);
-            if (gastroscopy == null)
-            {
-                return HttpNotFound();
-            }
+           
+            Gastroscopy gastroscopy = new Gastroscopy();
+            gastroscopy.PastId = refid;
             return View(gastroscopy);
         }
 
@@ -1086,10 +1080,19 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Gastroscopy gastroscopy = db.Gastroscopies.Find(id);
-            db.Gastroscopies.Remove(gastroscopy);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            string a = Request.Form["PastId"];
+            int b = Convert.ToInt32(a);
+
+            string sql = "";
+            sql = "SET FOREIGN_KEY_CHECKS=0;DELETE FROM gastroscopy where id=" + id;
+            MySqlConnection mysql = getMySqlConnection();
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+
+            return RedirectToAction("Details/" + b, "Visits");
         }
 
         protected override void Dispose(bool disposing)

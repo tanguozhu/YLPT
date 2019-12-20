@@ -77,6 +77,38 @@
                             }
                         }
                     </dd>
+                    <dt>
+                        是否需要复查:
+                    </dt>
+                    <dd>
+                        @{
+                            int isfollowup = Convert.ToInt32(item[25]);
+                            if (isfollowup == 0)
+                            {
+                                @:否
+                            }
+                            else
+                            {
+                                @:是
+                            }
+                        }
+                    </dd>
+                    @{
+                        if (isfollowup == 1)
+                        {
+                            DateTime followuptime = Convert.ToDateTime(item[32]);
+
+                            string fo = "";
+
+                            fo = followuptime.ToString("yyyy-MM-dd");
+                            <dt>
+                                复查时间:
+                            </dt>
+                            <dd>
+                               @fo
+                            </dd>
+                        }
+                    }
                 </dl>
 
             </div>
@@ -255,6 +287,38 @@
                     <dd>
                         @item[20]
                     </dd>
+                    <dt>
+                        是否需要复查:
+                    </dt>
+                    <dd>
+                        @{
+                            int isfollowup = Convert.ToInt32(item[25]);
+                            if (isfollowup == 0)
+                            {
+                                @:否
+                            }
+                            else
+                            {
+                                @:是
+                            }
+                        }
+                    </dd>
+                    @{
+                        if (isfollowup == 1)
+                        {
+                            DateTime followuptime = Convert.ToDateTime(item[32]);
+
+                            string fo = "";
+
+                            fo = followuptime.ToString("yyyy-MM-dd");
+                            <dt>
+                                复查时间:
+                            </dt>
+                            <dd>
+                                @fo
+                            </dd>
+                        }
+                    }
                 </dl>
             </div>
         }
@@ -308,12 +372,44 @@
                         @b
                     </dd>
                     <dt>
-                        
+
                     </dt>
                     <dd>
-                       
+
                         @c
                     </dd>
+                    <dt>
+                        是否需要复查:
+                    </dt>
+                    <dd>
+                        @{
+                            int isfollowup = Convert.ToInt32(item[25]);
+                            if (isfollowup == 0)
+                            {
+                                @:否
+                            }
+                            else
+                            {
+                                @:是
+                            }
+                        }
+                    </dd>
+                    @{
+                        if (isfollowup == 1)
+                        {
+                            DateTime followuptime = Convert.ToDateTime(item[32]);
+
+                            string fo = "";
+
+                            fo = followuptime.ToString("yyyy-MM-dd");
+                            <dt>
+                                复查时间:
+                            </dt>
+                            <dd>
+                                @fo
+                            </dd>
+                        }
+                    }
                 </dl>
             </div>
             <div style="overflow-y:auto; overflow-x:auto;">

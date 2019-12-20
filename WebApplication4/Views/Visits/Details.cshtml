@@ -121,13 +121,26 @@
                         @b
                     </td>
                     <td style="border:#ffffff 0px solid;">
-                        @item[2]
+
                         @{
                             string e = item[2].ToString();
+                            int isfollowup = Convert.ToInt32(item[3]);
+                            string ee = "(需要复查)";
+                            if (isfollowup == 1)
+                            {
+                                @e
+                                @ee
+                            }
+                            else
+                            {
+                                @e
+                            }
                         }
+
                     </td>
                     <td style="border:#ffffff 0px solid;">
                         @{
+
                             string c = item[0].ToString();
                             int d = Convert.ToInt32(c);
                             int detailid = Model.Id;
@@ -150,7 +163,7 @@
                                 else if (webdelete == "1")
                                 {
                                     <text>|</text>
-                                    <a href="/Visits/Delete/@d">删除</a>
+                                    <a href="/Gastroscopies/Delete/?id=@d&&refid=@Model.Id">删除</a>
                                 }
 
                             }
@@ -173,7 +186,7 @@
                                 else if (webdelete == "1")
                                 {
                                     <text>|</text>
-                                    <a href="/Visits/Delete/@d">删除</a>
+                                <a href="/Gastroscopies/Delete/?id=@d&&refid=@Model.Id">删除</a>
                                 }
                             }
                             else if (e == "胃黏膜血清检查")
@@ -195,7 +208,7 @@
                                 else if (webdelete == "1")
                                 {
                                     <text>|</text>
-                                    <a href="/Visits/Delete/@d">删除</a>
+                                <a href="/Gastroscopies/Delete/?id=@d&&refid=@Model.Id">删除</a>
                                 }
                             }
 
@@ -219,7 +232,7 @@
                                 else if (webdelete == "1")
                                 {
                                     <text>|</text>
-                                    <a href="/Visits/Delete/@d">删除</a>
+                                <a href="/Gastroscopies/Delete/?id=@d&&refid=@Model.Id">删除</a>
                                 }
 
 
@@ -285,6 +298,7 @@
                     </td>
                     <td style="border:#ffffff 0px solid;">
                         @{
+                            int isfollowup = Convert.ToInt32(item[4]);
                             string c = item[2].ToString();
                             int genchu = 2;
                             if (item[3] == DBNull.Value)
@@ -298,22 +312,51 @@
                         }
                         @if (c == "1")
                         {
+                            if (isfollowup == 0)
+                            {
+                                @:其他治疗
+                            }
+                            else
+                            {
+                                @:其他治疗(需要复查)
+                            }
 
-                            @:其他治疗
                         }
                         else if (c == "0" && genchu == 1)
                         {
+                            if (isfollowup == 0)
+                            {
+                                @:幽门螺杆菌治疗
+                            }
+                            else
+                            {
+                                @:幽门螺杆菌治疗(需要复查)
+                            }
 
-                            @:幽门螺杆菌治疗
                         }
                         else if (c == "0" && genchu == 0)
                         {
-                            @:幽门螺杆菌治疗(未根除)
+                            if (isfollowup == 0)
+                            {
+                                @:幽门螺杆菌治疗(未根除)
+                            }
+                            else
+                            {
+                                @:幽门螺杆菌治疗(未根除)(需要复查)
+                            }
+
                         }
                         else if (c == "2")
                         {
+                            if (isfollowup == 0)
+                            {
+                                @:手术治疗
+                            }
+                            else
+                            {
+                                @:手术治疗(需要复查)
+                            }
 
-                            @:手术治疗
                         }
                     </td>
                     <td style="border:#ffffff 0px solid;">
@@ -343,7 +386,7 @@
                             else if (webdelete == "1")
                             {
                                 <text>|</text>
-                            <a href="/Visits/Delete/@e">删除</a>
+                            <a href="/Treatments/Delete/?id=@e&refid=@Model.Id">删除</a>
                             }
 
                         }
@@ -365,110 +408,114 @@
        
 
     </h3>
-    <div>
-        <table class="table" style="font-size:18px;padding:3px">
-            <tr>
-                <th style="border-top:0px solid #ff4136;width:100%">
-                    复查内容
-                </th>
-               
-               
-            </tr>
+    <div style="font-size:18px;padding:3px">
+        
+          
             @foreach (DataRow item in Model.followup.Rows)
             {
-            <tr>
-                <td style="border:#ffffff 0px solid;">
-                    @{
-                        int weijing_check = Convert.ToInt32(item[3]);
-                        string b = "";
-                        string weijing_check_time = "";
-                        if (weijing_check == 1)
-                        {
-                            DateTime a = Convert.ToDateTime(item[4]);
-                            weijing_check_time = a.ToString("yyyy-MM-dd");
-                            b = "胃镜检查" + "(" + weijing_check_time + ") ";
-                        }
+            
+                    <div>
+                        @{
+                            int weijing_check = Convert.ToInt32(item[3]);
+                            string b = "";
+                            string weijing_check_time = "";
+                            if (weijing_check == 1)
+                            {
+                                DateTime a = Convert.ToDateTime(item[4]);
+                                weijing_check_time = a.ToString("yyyy-MM-dd");
+                                b = "胃镜检查" + "(" + weijing_check_time + ") ";
+                            }
 
-                    }
-                    @b
-                    @{
-                        int weinianmo_check = Convert.ToInt32(item[5]);
-                        string c = "";
-                        string weinianmo_check_time = "";
-                        if (weinianmo_check == 1)
-                        {
-                            DateTime d = Convert.ToDateTime(item[6]);
-                            weinianmo_check_time = d.ToString("yyyy-MM-dd");
-                            c = "胃粘膜血清检查" + "(" + weijing_check_time + ") ";
                         }
-                    }
-                    @c
-                    @{
-                        int youmen_check = Convert.ToInt32(item[7]);
-                        string e = "";
-                        string youmen_check_time = "";
-                        if (youmen_check == 1)
-                        {
-                            DateTime f = Convert.ToDateTime(item[8]);
-                            youmen_check_time = f.ToString("yyyy-MM-dd");
-                            e = "幽门螺杆菌检查" + "(" + weijing_check_time + ") ";
+                        @b
+                    </div>
+                    <div>
+                        @{
+                            int weinianmo_check = Convert.ToInt32(item[5]);
+                            string c = "";
+                            string weinianmo_check_time = "";
+                            if (weinianmo_check == 1)
+                            {
+                                DateTime d = Convert.ToDateTime(item[6]);
+                                weinianmo_check_time = d.ToString("yyyy-MM-dd");
+                                c = "胃粘膜血清检查" + "(" + weijing_check_time + ") ";
+                            }
                         }
-                    }
-                    @e
-                    @{
-                        int other_check = Convert.ToInt32(item[9]);
-                        string g = "";
-                        string other_check_time = "";
-                        if (other_check == 1)
-                        {
-                            DateTime h = Convert.ToDateTime(item[10]);
-                            other_check_time = h.ToString("yyyy-MM-dd");
-                            g = "其他检查检查" + "(" + weijing_check_time + ") ";
+                        @c
+                    </div>
+                    <div>
+                        @{
+                            int youmen_check = Convert.ToInt32(item[7]);
+                            string e = "";
+                            string youmen_check_time = "";
+                            if (youmen_check == 1)
+                            {
+                                DateTime f = Convert.ToDateTime(item[8]);
+                                youmen_check_time = f.ToString("yyyy-MM-dd");
+                                e = "幽门螺杆菌检查" + "(" + weijing_check_time + ") ";
+                            }
                         }
-                    }
-                    @g
-                    @{
-                        int youmen_treat = Convert.ToInt32(item[11]);
-                        string i = "";
-                        string youmen_treat_time = "";
-                        if (youmen_treat == 1)
-                        {
-                            DateTime j = Convert.ToDateTime(item[12]);
-                            youmen_treat_time = j.ToString("yyyy-MM-dd");
-                            i = "幽门螺杆菌治疗" + "(" + weijing_check_time + ") ";
+                        @e
+                    </div>
+                    <div>
+                        @{
+                            int other_check = Convert.ToInt32(item[9]);
+                            string g = "";
+                            string other_check_time = "";
+                            if (other_check == 1)
+                            {
+                                DateTime h = Convert.ToDateTime(item[10]);
+                                other_check_time = h.ToString("yyyy-MM-dd");
+                                g = "其他检查检查" + "(" + weijing_check_time + ") ";
+                            }
                         }
-                    }
-                    @i
-                    @{
-                        int operater_treat = Convert.ToInt32(item[13]);
-                        string k = "";
-                        string operater_treat_time = "";
-                        if (operater_treat == 1)
-                        {
-                            DateTime l = Convert.ToDateTime(item[14]);
-                            operater_treat_time = l.ToString("yyyy-MM-dd");
-                            k = "手术治疗" + "(" + weijing_check_time + ") ";
+                        @g
+                    </div>
+                    <div>
+                        @{
+                            int youmen_treat = Convert.ToInt32(item[11]);
+                            string i = "";
+                            string youmen_treat_time = "";
+                            if (youmen_treat == 1)
+                            {
+                                DateTime j = Convert.ToDateTime(item[12]);
+                                youmen_treat_time = j.ToString("yyyy-MM-dd");
+                                i = "幽门螺杆菌治疗" + "(" + weijing_check_time + ") ";
+                            }
                         }
-                    }
-                    @k
-                    @{
-                        int other_treat = Convert.ToInt32(item[15]);
-                        string m = "";
-                        string other_treat_time = "";
-                        if (other_treat == 1)
-                        {
-                            DateTime n = Convert.ToDateTime(item[16]);
-                            other_treat_time = n.ToString("yyyy-MM-dd");
-                            m = "幽门螺杆菌治疗" + "(" + weijing_check_time + ") ";
+                        @i
+                    </div>
+                    <div>
+                        @{
+                            int operater_treat = Convert.ToInt32(item[13]);
+                            string k = "";
+                            string operater_treat_time = "";
+                            if (operater_treat == 1)
+                            {
+                                DateTime l = Convert.ToDateTime(item[14]);
+                                operater_treat_time = l.ToString("yyyy-MM-dd");
+                                k = "手术治疗" + "(" + weijing_check_time + ") ";
+                            }
                         }
-                    }
-                    @m
-                </td>
-               
-             
-            </tr>
+                        @k
+                    </div>
+                    <div>
+                        @{
+                            int other_treat = Convert.ToInt32(item[15]);
+                            string m = "";
+                            string other_treat_time = "";
+                            if (other_treat == 1)
+                            {
+                                DateTime n = Convert.ToDateTime(item[16]);
+                                other_treat_time = n.ToString("yyyy-MM-dd");
+                                m = "幽门螺杆菌治疗" + "(" + weijing_check_time + ") ";
+                            }
+                        }
+                        @m
+                    </div>
+                 
             }
-        </table>
+       
     </div>
     <hr style="border:#000000 1px solid;" />
 </div>

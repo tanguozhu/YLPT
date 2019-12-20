@@ -28,34 +28,7 @@
         if (Model.name == 0)
         {
 
-            @*<div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">感染及根除情况:</label>
-                    <div class="col-md-10">
-                        <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="condition" name="condition" rows="2">@Model.condition</textarea>
 
-                        @Html.ValidationMessageFor(model => model.condition, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group" style="font-size:18px;padding:3px">
-                    <label class="control-label col-md-2" style="padding-top:1px">是否感染:</label>
-                    <div class="col-md-10">
-
-                        <label>@Html.RadioButtonFor(model => model.isInfected, 0, new { htmlAttributes = new { @class = "form-control" } })无</label>
-                        <label>@Html.RadioButtonFor(model => model.isInfected, 1, new { htmlAttributes = new { @class = "form-control" } })有</label>
-
-
-                        @Html.ValidationMessageFor(model => model.isInfected, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
             <h3>方案</h3>
 
@@ -167,26 +140,26 @@
                     @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            Model.isfollowup = 0;
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px">是否需要复查:</label>
                 <div class="col-md-10">
 
-                    <label>@Html.RadioButtonFor(model => model.isEradicated, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
-                    <label>@Html.RadioButtonFor(model => model.isEradicated, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+                    <label>@Html.RadioButtonFor(model => model.isfollowup, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(0)" }) 否</label>
+                    <label>@Html.RadioButtonFor(model => model.isfollowup, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(1)" }) 是</label>
 
 
-                    @Html.ValidationMessageFor(model => model.isEradicated, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.isfollowup, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group" style="font-size:18px;padding:3px">
+            <div class="form-group" style="font-size:18px;padding:3px;display:none" id="fucha" name="fucha">
                 @{
-                    Model.time = DateTime.Now;
+                    Model.followuptime = DateTime.Now;
                 }
                 <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(Model => Model.time, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(Model => Model.followuptime, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.followuptime, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -257,6 +230,30 @@
                     @Html.ValidationMessageFor(model => model.isOnTime, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            Model.isfollowup = 0;
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否需要复查:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.isfollowup, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(0)" }) 否</label>
+                    <label>@Html.RadioButtonFor(model => model.isfollowup, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(1)" }) 是</label>
+
+
+                    @Html.ValidationMessageFor(model => model.isfollowup, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px;display:none" id="fucha" name="fucha">
+                @{
+                    Model.followuptime = DateTime.Now;
+                }
+                <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.followuptime, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.followuptime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
         }
         else if (Model.name == 2)
         {
@@ -322,6 +319,29 @@
 
                     <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px;display:none" id="bingfa" name="bingfa" rows="2"></textarea>
                     @Html.ValidationMessageFor(model => model.bingfa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            Model.isfollowup = 0;
+            <div class="form-group" style="font-size:18px;padding:3px">
+                <label class="control-label col-md-2" style="padding-top:1px">是否需要复查:</label>
+                <div class="col-md-10">
+
+                    <label>@Html.RadioButtonFor(model => model.isfollowup, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(0)" }) 否</label>
+                    <label>@Html.RadioButtonFor(model => model.isfollowup, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(1)" }) 是</label>
+
+
+                    @Html.ValidationMessageFor(model => model.isfollowup, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="font-size:18px;padding:3px;display:none" id="fucha" name="fucha">
+                @{
+                    Model.followuptime = DateTime.Now;
+                }
+                <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.followuptime, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.followuptime, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -483,7 +503,15 @@
             dom.hide();
         }
     }
-
+    function check1(val) {
+        var dom = $("#fucha");
+        if (val == 1) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
 
    
     //动态添加
