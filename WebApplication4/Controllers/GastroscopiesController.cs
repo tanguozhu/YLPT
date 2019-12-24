@@ -55,8 +55,7 @@ namespace WebApplication4.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Checktime,Visit,scannum,Other,Checkname,Checktime," +
-            "Checknum,Conclusion,Pathologynum,Pathologyconclusion,Pic1,Pic2,Pic3,Pic4,Pic5")] Gastroscopy gastroscopy)
+        public ActionResult Create( Gastroscopy gastroscopy)
         {
             string result = "";
             string result1 = "";
@@ -164,11 +163,12 @@ namespace WebApplication4.Controllers
                     gastroscopy.Pic8 = "";
                 }
 
-                sql = " INSERT INTO gastroscopy (checkname,scannum,visit,checktime,checknum,conclusion,pathologynum,pathologyconclusion,other,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,isfollowup)" +
+                sql = " INSERT INTO gastroscopy (checkname,scannum,visit,checktime,checknum,conclusion,pathologynum,pathologyconclusion,other,pic1,pic2,pic3," +
+                    "pic4,pic5,pic6,pic7,pic8,isfollowup,followuptime)" +
                     "VALUES('" +c+"','"+ a + "','" + b + "','" + d + "','" + gastroscopy.Checknum + "','" + gastroscopy.Conclusion + "','" + gastroscopy.Pathologynum +
                     "','" + gastroscopy.Pathologyconclusion + "','" + gastroscopy.Other + "','" + gastroscopy.Pic1 + "','" + gastroscopy.Pic2 + "','" +
                     gastroscopy.Pic3 + "','" + gastroscopy.Pic4 + "','" + gastroscopy.Pic5 + "','" + gastroscopy.Pic6 + "','" + 
-                    gastroscopy.Pic7 + "','" + gastroscopy.Pic8+ "',"+ 0 + " )";
+                    gastroscopy.Pic7 + "','" + gastroscopy.Pic8+ "',"+ gastroscopy.isfollowup+ ",'"+ gastroscopy.followuptime+"')";
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
@@ -204,17 +204,26 @@ namespace WebApplication4.Controllers
             string result2 = "";
             string result3 = "";
             string result4 = "";
+            string result5 = "";
+            string result6 = "";
+            string result7 = "";
             HttpPostedFileBase files = Request.Files["filename"];
             HttpPostedFileBase files1 = Request.Files["filename1"];
             HttpPostedFileBase files2 = Request.Files["filename2"];
             HttpPostedFileBase files3 = Request.Files["filename3"];
             HttpPostedFileBase files4 = Request.Files["filename4"];
+            HttpPostedFileBase files5 = Request.Files["filename5"];
+            HttpPostedFileBase files6 = Request.Files["filename6"];
+            HttpPostedFileBase files7 = Request.Files["filename7"];
 
             result = SaveImage(files);
             result1 = SaveImage(files1);
             result2 = SaveImage(files2);
             result3 = SaveImage(files3);
             result4 = SaveImage(files4);
+            result5 = SaveImage(files5);
+            result6 = SaveImage(files6);
+            result7 = SaveImage(files7);
 
             if (result != "error")
             {
@@ -235,7 +244,19 @@ namespace WebApplication4.Controllers
             }
             if (result4 != "error")
             {
-                gastroscopy.Pic2 = result4;
+                gastroscopy.Pic5 = result4;
+            }
+            if (result5 != "error")
+            {
+                gastroscopy.Pic6 = result5;
+            }
+            if (result6 != "error")
+            {
+                gastroscopy.Pic7 = result6;
+            }
+            if (result7 != "error")
+            {
+                gastroscopy.Pic8 = result7;
             }
 
 
@@ -248,7 +269,9 @@ namespace WebApplication4.Controllers
                 string e = Request.Form["PastId"];
 
                string g= Request.Form["Checkname"];
+                string h = Request.Form["isfollowup"];
 
+                string i = Request.Form["followuptime"];
 
                 MySqlConnection mysql = getMySqlConnection();
                 string sql = "";
@@ -272,10 +295,25 @@ namespace WebApplication4.Controllers
                 {
                     gastroscopy.Pic5 = "";
                 }
+                if (gastroscopy.Pic6 == "1")
+                {
+                    gastroscopy.Pic6 = "";
+                }
+                if (gastroscopy.Pic7 == "1")
+                {
+                    gastroscopy.Pic7 = "";
+                }
+                if (gastroscopy.Pic8 == "1")
+                {
+                    gastroscopy.Pic8 = "";
+                }
 
-                sql = " INSERT INTO gastroscopy (checkname,scannum,visit,checktime,checknum,conclusion,pic1,pic2,pic3,pic4,pic5)" +
-                    "VALUES('" + gastroscopy.Checkname + "','" + a + "','" + b + "','" + d + "','" + gastroscopy.Checknum + "','" + gastroscopy.Conclusion + "','"  + gastroscopy.Pic1 + "','" + gastroscopy.Pic2 + "','" +
-                    gastroscopy.Pic3 + "','" + gastroscopy.Pic4 + "','" + gastroscopy.Pic5 + "')";
+                sql = " INSERT INTO gastroscopy (checkname,scannum,visit,checktime,checknum,conclusion,pic1,pic2,pic3,pic4," +
+                    "pic5,pic6,pic7,pic8,isfollowup,followuptime)" +
+                    "VALUES('" + gastroscopy.Checkname + "','" + a + "','" + b + "','" + d + "','" + gastroscopy.Checknum + "','" + gastroscopy.Conclusion + "','"  
+                    + gastroscopy.Pic1 + "','" + gastroscopy.Pic2 + "','" +
+                    gastroscopy.Pic3 + "','" + gastroscopy.Pic4 + "','" + gastroscopy.Pic5 + "','" + gastroscopy.Pic6 + "','" +
+                    gastroscopy.Pic7 + "','" + gastroscopy.Pic8 + "'," + Convert.ToInt32(h) + ",'" + i + "')";
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
@@ -322,8 +360,9 @@ namespace WebApplication4.Controllers
                 string sql = "";
                
 
-                sql = " INSERT INTO gastroscopy (checknum,checkname,scannum,visit,checktime,conclusion,other)" +
-                    "VALUES('" + gastroscopy.Checknum + "','" + g + "','" + a + "','" + b + "','" + d + "','" + gastroscopy.Conclusion + "','" + f +  "')";
+                sql = " INSERT INTO gastroscopy (checknum,checkname,scannum,visit,checktime,conclusion,other,isfollowup,followuptime)" +
+                    "VALUES('" + gastroscopy.Checknum + "','" + g + "','" + a + "','" + b + "','" + d + "','" + 
+                    gastroscopy.Conclusion + "','" + f +"',"+ gastroscopy.isfollowup + ",'" + gastroscopy.followuptime + "')";
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
@@ -363,7 +402,7 @@ namespace WebApplication4.Controllers
                 string d = Request.Form["dt"];
                 string e = Request.Form["PastId"];
 
-                string g = "胃粘膜血清检查";
+                string g = "胃黏膜血清检查";
                 
 
                 string check1= Request.Form["check1"];
@@ -391,8 +430,9 @@ namespace WebApplication4.Controllers
 
                 int num = Checkweinianmo(a,b);
                 num = num + 1;
-                sql = " INSERT INTO gastroscopy (checknum,checkname,scannum,visit,checktime,weinianmonum)" +
-                    "VALUES('" + gastroscopy.Checknum + "','" + g + "','" + a + "','" + b + "','"+d+"'," + num + ")";
+                sql = " INSERT INTO gastroscopy (checknum,checkname,scannum,visit,checktime,weinianmonum,isfollowup,followuptime)" +
+                    "VALUES('" + gastroscopy.Checknum + "','" + g + "','" + a + "','" + b + "','"+d+"'," + num +","+
+                    gastroscopy.isfollowup + ",'" + gastroscopy.followuptime + "')";
 
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
@@ -490,6 +530,8 @@ namespace WebApplication4.Controllers
                         gastroscopy.Pic6 = reader.GetString("pic6");
                         gastroscopy.Pic7 = reader.GetString("pic7");
                         gastroscopy.Pic8 = reader.GetString("pic8");
+                        gastroscopy.isfollowup = reader.GetInt32("isfollowup");
+                        gastroscopy.followuptime = reader.GetDateTime("followuptime");
 
                     }
                 }
@@ -586,6 +628,8 @@ namespace WebApplication4.Controllers
                 string g = Request.Form["Other"];
                 string d = Request.Form["dt"];
                 string e = Request.Form["PastId"];
+                string f = Request.Form["isfollowup"];
+                string h = Request.Form["followuptime"];
                 string pic1= Request.Form["Pic1"];
                 string pic2 = Request.Form["Pic2"];
                 string pic3 = Request.Form["Pic3"];
@@ -633,9 +677,10 @@ namespace WebApplication4.Controllers
                 string sql = "";
 
                 sql = "UPDATE  gastroscopy set checktime='"+d+"',checknum='"+gastroscopy.Checknum+ "',conclusion='"+gastroscopy.Conclusion+ "',pathologyconclusion='"+gastroscopy.Pathologyconclusion+
-                    "',pathologynum='" +gastroscopy.Pathologynum+ "',other='"+gastroscopy.Other+ "',pic1='"+gastroscopy.Pic1+"',pic2='"+gastroscopy.Pic2+ 
+                    "',pathologynum='" +gastroscopy.Pathologynum+ "',other='"+g+ "',pic1='"+gastroscopy.Pic1+"',pic2='"+gastroscopy.Pic2+ 
                     "',pic3='" + gastroscopy.Pic3 + "',pic4='" + gastroscopy.Pic4 + "',pic5='" + gastroscopy.Pic5 +
                     "',pic6='" + gastroscopy.Pic6 + "',pic7='" + gastroscopy.Pic7 + "',pic8='" + gastroscopy.Pic8+
+                    "',isfollowup=" + Convert.ToInt32(f) + ",followuptime='" + h +
                     "'where id=" +gastroscopy.Id;
 
                
@@ -685,7 +730,11 @@ namespace WebApplication4.Controllers
                         gastroscopy.Pic3 = reader.GetString("pic3");
                         gastroscopy.Pic4 = reader.GetString("pic4");
                         gastroscopy.Pic5 = reader.GetString("pic5");
-
+                        gastroscopy.Pic6 = reader.GetString("pic6");
+                        gastroscopy.Pic7 = reader.GetString("pic7");
+                        gastroscopy.Pic8 = reader.GetString("pic8");
+                        gastroscopy.isfollowup = reader.GetInt32("isfollowup");
+                        gastroscopy.followuptime = reader.GetDateTime("followuptime");
                     }
                 }
 
@@ -716,19 +765,28 @@ namespace WebApplication4.Controllers
             string result2 = "";
             string result3 = "";
             string result4 = "";
+            string result5 = "";
+            string result6 = "";
+            string result7 = "";
             HttpPostedFileBase files = Request.Files["filename"];
             HttpPostedFileBase files1 = Request.Files["filename1"];
             HttpPostedFileBase files2 = Request.Files["filename2"];
             HttpPostedFileBase files3 = Request.Files["filename3"];
             HttpPostedFileBase files4 = Request.Files["filename4"];
+            HttpPostedFileBase files5 = Request.Files["filename5"];
+            HttpPostedFileBase files6 = Request.Files["filename6"];
+            HttpPostedFileBase files7 = Request.Files["filename7"];
 
             result = SaveImage(files);
             result1 = SaveImage(files1);
             result2 = SaveImage(files2);
             result3 = SaveImage(files3);
             result4 = SaveImage(files4);
+            result5 = SaveImage(files5);
+            result6 = SaveImage(files6);
+            result7 = SaveImage(files7);
 
-            if (result !="error")
+            if (result != "error")
             {
                 gastroscopy.Pic1 = result;
             }
@@ -747,7 +805,19 @@ namespace WebApplication4.Controllers
             }
             if (result4 != "error")
             {
-                gastroscopy.Pic2 = result4;
+                gastroscopy.Pic5 = result4;
+            }
+            if (result5 != "error")
+            {
+                gastroscopy.Pic6 = result5;
+            }
+            if (result6 != "error")
+            {
+                gastroscopy.Pic7 = result6;
+            }
+            if (result7 != "error")
+            {
+                gastroscopy.Pic8 = result7;
             }
 
 
@@ -759,11 +829,16 @@ namespace WebApplication4.Controllers
                 string g = Request.Form["Checkname"];
                 string d = Request.Form["dt"];
                 string e = Request.Form["PastId"];
+                string f = Request.Form["isfollowup"];
+                string h = Request.Form["followuptime"];
                 string pic1 = Request.Form["Pic1"];
                 string pic2 = Request.Form["Pic2"];
                 string pic3 = Request.Form["Pic3"];
                 string pic4 = Request.Form["Pic4"];
                 string pic5 = Request.Form["Pic5"];
+                string pic6 = Request.Form["Pic6"];
+                string pic7 = Request.Form["Pic7"];
+                string pic8 = Request.Form["Pic8"];
                 if (gastroscopy.Pic1 == null)
                 {
                     gastroscopy.Pic1 = pic1;
@@ -784,6 +859,19 @@ namespace WebApplication4.Controllers
                 {
                     gastroscopy.Pic5 = pic5;
                 }
+                if (gastroscopy.Pic6 == null)
+                {
+                    gastroscopy.Pic6 = pic6;
+                }
+                if (gastroscopy.Pic7 == null)
+                {
+                    gastroscopy.Pic7 = pic7;
+                }
+                if (gastroscopy.Pic8 == null)
+                {
+                    gastroscopy.Pic8 = pic8;
+                }
+
 
 
 
@@ -792,7 +880,10 @@ namespace WebApplication4.Controllers
 
                 sql = "UPDATE  gastroscopy set checktime='" + d + "',checknum='" + gastroscopy.Checknum + "',conclusion='" + gastroscopy.Conclusion +  
                     "',checkname='" + g +  "',pic1='" + gastroscopy.Pic1 + "',pic2='" + gastroscopy.Pic2 +
-                    "',pic3='" + gastroscopy.Pic3 + "',pic4='" + gastroscopy.Pic4 + "',pic5='" + gastroscopy.Pic5 + "'where id=" + gastroscopy.Id;
+                    "',pic3='" + gastroscopy.Pic3 + "',pic4='" + gastroscopy.Pic4 + "',pic5='" + gastroscopy.Pic5 +
+                    "',pic6='" + gastroscopy.Pic6 + "',pic7='" + gastroscopy.Pic7 + "',pic8='" + gastroscopy.Pic8 +
+                    "',isfollowup=" + Convert.ToInt32(f) + ",followuptime='" + h +
+                    "'where id=" + gastroscopy.Id;
 
 
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -836,7 +927,8 @@ namespace WebApplication4.Controllers
                         gastroscopy.Conclusion = reader.GetString("conclusion");
                         
                         gastroscopy.Other = reader.GetString("other");
-                      
+                        gastroscopy.isfollowup = reader.GetInt32("isfollowup");
+                        gastroscopy.followuptime = reader.GetDateTime("followuptime");
 
                     }
                 }
@@ -873,15 +965,17 @@ namespace WebApplication4.Controllers
                 string g = Request.Form["isInfected"];
                 string d = Request.Form["dt"];
                 string e = Request.Form["PastId"];
-               
-              
+                string f = Request.Form["isfollowup"];
+                string h = Request.Form["followuptime"];
+
 
                 MySqlConnection mysql = getMySqlConnection();
                 string sql = "";
 
                 sql = "UPDATE  gastroscopy set checktime='" + d  + "',conclusion='" + gastroscopy.Conclusion +
                     "',checknum='" + gastroscopy.Checknum +
-                    "',other='" + g  + "'where id=" + gastroscopy.Id;
+                    "',other='" + g  + "',isfollowup=" + Convert.ToInt32(f) + ",followuptime='" + h + 
+                    "'where id=" + gastroscopy.Id;
 
 
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
@@ -921,6 +1015,9 @@ namespace WebApplication4.Controllers
                         gastroscopy.Visit = reader.GetString("visit");
                         gastroscopy.Checkname = reader.GetString("checkname");
                         gastroscopy.dt = reader.GetDateTime("checktime");
+                        gastroscopy.isfollowup = reader.GetInt32("isfollowup");
+                        gastroscopy.followuptime = reader.GetDateTime("followuptime");
+
 
                     }
                 }
@@ -958,8 +1055,9 @@ namespace WebApplication4.Controllers
                 string d = Request.Form["dt"];
                 string e = Request.Form["PastId"];
 
-                string g = "胃粘膜血清检查";
-
+                string g = "胃黏膜血清检查";
+                string f = Request.Form["isfollowup"];
+                string h = Request.Form["followuptime"];
                 string id1 = Request.Form["id1"];
                 string check1 = Request.Form["check1"];
                 string result1 = Request.Form["result1"];
@@ -991,7 +1089,8 @@ namespace WebApplication4.Controllers
                 string sql = "";
 
                 sql = "UPDATE  gastroscopy set checktime='" + d +
-                    "',checknum='" + gastroscopy.Checknum +
+                    "',checknum='" + gastroscopy.Checknum + "',isfollowup=" + Convert.ToInt32(f) +
+                    ",followuptime='" + h +
                      "' where id=" + gastroscopy.Id;
                 MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
                 mysql.Open();
@@ -1149,7 +1248,7 @@ namespace WebApplication4.Controllers
             return result;
         }
 
-        //插入胃粘膜血清
+        //插入胃黏膜血清检查
         private void Insertweinianmo(int gasid, string check, string result, string checktime)
         {
 
@@ -1163,14 +1262,14 @@ namespace WebApplication4.Controllers
             mysql.Close();
 
         }
-        //得到胃粘膜血清一次就诊中最高的次数
+        //得到胃黏膜血清检查一次就诊中最高的次数
         private int Checkweinianmo(string scannum, string visit)
         {
             int a = 0;
             int i = 0;
             int[] b = new int[10];
             MySqlConnection mysql = getMySqlConnection();
-            string sql = "select weinianmonum from gastroscopy where checkname= '胃粘膜血清检查' and scannum= '" +
+            string sql = "select weinianmonum from gastroscopy where checkname= '胃黏膜血清检查' and scannum= '" +
                 scannum + "' and visit= '" + visit + "'" ;
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
@@ -1213,13 +1312,13 @@ namespace WebApplication4.Controllers
             }
             return a;
         }
-        //得到就诊表胃粘膜血清检查的id
+        //得到就诊表胃黏膜血清检查的id
         private int Getgasid(string scannum, string visit ,int weinianmonum)
         {
             int a = 0;
             
             MySqlConnection mysql = getMySqlConnection();
-            string sql = "select id from gastroscopy where checkname= '胃粘膜血清检查' and scannum= '" +
+            string sql = "select id from gastroscopy where checkname= '胃黏膜血清检查' and scannum= '" +
                 scannum + "' and visit= '" + visit + "' and weinianmonum="+ weinianmonum;
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
@@ -1266,7 +1365,7 @@ namespace WebApplication4.Controllers
             command.Fill(dt);
             return dt;
         }
-        //跟新胃粘膜血清
+        //跟新胃黏膜血清检查
         private void Updateweinianmo(int id, string check, string result, string checktime)
         {
 

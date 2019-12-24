@@ -27,17 +27,11 @@
             就诊
         </th>
         <th>
-            就诊时间
+            今日复查内容
         </th>
+        
         <th>
-            复查内容
-        </th>
-        <th>
-            复查时间
-        </th>
 
-        <th>
-            
         </th>
     </tr>
 
@@ -57,31 +51,59 @@
         <td>
             @Html.DisplayFor(modelItem => item.VisitId)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
+       
         <td>
             @{
-                string getresult = item.returnvisitcontent.ToString();
                 string setresult = "";
-                if (getresult.Length >= 10)
+
+                if (item.weijing_check==1&&(item.weijing_check_time.ToString("yyyy-MM-dd")==
+                    DateTime.Now.ToString("yyyy-MM-dd")))
                 {
-                    setresult = getresult.Substring(0, 10) + "...";
-                }
-                else
-                {
-                    setresult = getresult;
+                    setresult = setresult + "胃镜检查" + "(" + item.weijing_check_time.ToString("yyyy-MM-dd") + ") ";
                 }
 
+                if (item.weinianmo_check == 1 && (item.weinianmo_check_time.ToString("yyyy-MM-dd") ==
+                   DateTime.Now.ToString("yyyy-MM-dd")))
+                {
+                    setresult = setresult + " 胃粘膜血清检查" + "(" + item.weinianmo_check_time.ToString("yyyy-MM-dd") + ") ";
+                }
+
+                if (item.youmen_check == 1 && (item.youmen_check_time.ToString("yyyy-MM-dd") ==
+                   DateTime.Now.ToString("yyyy-MM-dd")))
+                {
+                    setresult = setresult + "幽门螺杆菌检查" + "(" + item.youmen_check_time.ToString("yyyy-MM-dd") + ") ";
+                }
+
+                if (item.other_check == 1 && (item.other_check_time.ToString("yyyy-MM-dd") ==
+                   DateTime.Now.ToString("yyyy-MM-dd")))
+                {
+                    setresult = setresult + "其他检查" + "(" + item.other_check_time.ToString("yyyy-MM-dd") + ") ";
+                }
+
+                if (item.youmen_treat == 1 && (item.youmen_treat_time.ToString("yyyy-MM-dd") ==
+                   DateTime.Now.ToString("yyyy-MM-dd")))
+                {
+                    setresult = setresult + "幽门螺杆菌治疗" + "(" + item.youmen_treat_time.ToString("yyyy-MM-dd") + ") ";
+                }
+
+                if (item.operater_treat == 1 && (item.operater_treat_time.ToString("yyyy-MM-dd") ==
+                   DateTime.Now.ToString("yyyy-MM-dd")))
+                {
+                    setresult = setresult + "手术治疗" + "(" + item.operater_treat_time.ToString("yyyy-MM-dd") + ") ";
+                }
+
+                if (item.other_treat == 1 && (item.other_treat_time.ToString("yyyy-MM-dd") ==
+                  DateTime.Now.ToString("yyyy-MM-dd")))
+                {
+                    setresult = setresult + "其他治疗" + "(" + item.other_treat_time.ToString("yyyy-MM-dd") + ")";
+                }
             }
             @setresult
 
 
             
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.returnvisitdate)
-        </td>
+       
         <td>
             @Html.ActionLink("查看详情", "Details", new { id = item.Id }) 
         </td>

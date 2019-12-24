@@ -13,246 +13,283 @@
     @Html.HiddenFor(model => model.scannum)
     @Html.HiddenFor(model => model.Visit)
     @Html.HiddenFor(model => model.PastId)
-<div class="form-horizontal">
-    <h4>胃粘膜血清检查</h4>
-    <hr />
-    <div class="form-group">
-        @{
-            Model.dt = DateTime.Now;
-        }
-        <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
-        <div class="col-md-10">
-            @Html.TextBoxFor(Model => Model.dt, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.dt, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2" style="padding-top:1px">检查号:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Checknum, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Checknum, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div style="margin-bottom:10px">
-        <div>
-            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal1" />
-            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal2" style="display:none" />
-            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal3" style="display:none" />
-            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal4" style="display:none" />
-            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal5" style="display:none" />
-            <input type="button" value="添加检查项目" class="btn btn-info" id="myModal6" style="display:none" />
-        </div>
-
-    </div>
-
-    <div id="div1" style="display:none;overflow-y:auto;width:100%">
+    <div class="form-horizontal">
+        <h4>胃粘膜血清检查</h4>
         <hr />
-        @{
-            string check1 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => check1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => check1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            string result1 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
-            <div class="col-md-10">
-                <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result1" name="result1" rows="2"></textarea>
-
-                @Html.ValidationMessageFor(model => result1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            DateTime dt1 = DateTime.Now;
-        }
-        <div class="form-group">
-
+        <div class="form-group" style="font-size:18px;padding:3px">
+            @{
+                Model.dt = DateTime.Now;
+            }
             <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(Model => dt1, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                @Html.ValidationMessageFor(model => dt1, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(Model => Model.dt, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.dt, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="form-group" style="font-size:18px;padding:3px">
+            <label class="control-label col-md-2" style="padding-top:1px">检查号:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Checknum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Checknum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @{
+            Model.isfollowup = 0;
+        }
+        <div class="form-group" style="font-size:18px;padding:3px">
+            <label class="control-label col-md-2" style="padding-top:1px">是否需要复查:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => model.isfollowup, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(0)" }) 否</label>
+                <label>@Html.RadioButtonFor(model => model.isfollowup, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(1)" }) 是</label>
+
+
+                @Html.ValidationMessageFor(model => model.isfollowup, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group" style="font-size:18px;padding:3px;" id="fucha" name="fucha">
+            @{
+                Model.followuptime = DateTime.Now;
+            }
+            <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(Model => Model.followuptime, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.followuptime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="margin-bottom:10px">
+            <div>
+                <input type="button" value="添加检查项目" class="btn btn-info" id="myModal1" />
+                <input type="button" value="添加检查项目" class="btn btn-info" id="myModal2" style="display:none" />
+                <input type="button" value="添加检查项目" class="btn btn-info" id="myModal3" style="display:none" />
+                <input type="button" value="添加检查项目" class="btn btn-info" id="myModal4" style="display:none" />
+                <input type="button" value="添加检查项目" class="btn btn-info" id="myModal5" style="display:none" />
+                <input type="button" value="添加检查项目" class="btn btn-info" id="myModal6" style="display:none" />
+            </div>
+
+        </div>
+
+        <div id="div1" style="display:none;overflow-y:auto;width:100%">
+            <hr />
+            @{
+                string check1 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => check1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => check1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                string result1 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result1" name="result1" rows="2"></textarea>
+
+                    @Html.ValidationMessageFor(model => result1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                DateTime dt1 = DateTime.Now;
+            }
+            <div class="form-group">
+
+                <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => dt1, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => dt1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div id="div2" style="display:none;overflow-y:auto;width:100%">
+            <hr />
+            @{
+                string check2 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                string result2 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2"></textarea>
+
+                    @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                DateTime dt2 = DateTime.Now;
+            }
+            <div class="form-group">
+
+                <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div id="div3" style="display:none;overflow-y:auto;width:100%">
+            <hr />
+            @{
+                string check3 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                string result3 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2"></textarea>
+
+                    @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                DateTime dt3 = DateTime.Now;
+            }
+            <div class="form-group">
+
+                <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div id="div4" style="display:none;overflow-y:auto;width:100%">
+            <hr />
+            @{
+                string check4 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                string result4 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2"></textarea>
+
+                    @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                DateTime dt4 = DateTime.Now;
+            }
+            <div class="form-group">
+
+                <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div id="div5" style="display:none;overflow-y:auto;width:100%">
+            <hr />
+            @{
+                string check5 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                string result5 = "";
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
+                <div class="col-md-10">
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2"></textarea>
+
+                    @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @{
+                DateTime dt5 = DateTime.Now;
+            }
+            <div class="form-group">
+
+                <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                <input type="submit" value="保存" class="btn btn-default" />|
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </div>
+        </div>
     </div>
-    <div id="div2" style="display:none;overflow-y:auto;width:100%">
-        <hr />
-        @{
-            string check2 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => check2, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => check2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            string result2 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
-            <div class="col-md-10">
-                <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result2" name="result2" rows="2"></textarea>
-
-                @Html.ValidationMessageFor(model => result2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            DateTime dt2 = DateTime.Now;
-        }
-        <div class="form-group">
-
-            <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(Model => dt2, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                @Html.ValidationMessageFor(model => dt2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-    </div>
-    <div id="div3" style="display:none;overflow-y:auto;width:100%">
-        <hr />
-        @{
-            string check3 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => check3, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => check3, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            string result3 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
-            <div class="col-md-10">
-                <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result3" name="result3" rows="2"></textarea>
-
-                @Html.ValidationMessageFor(model => result3, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            DateTime dt3 = DateTime.Now;
-        }
-        <div class="form-group">
-
-            <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(Model => dt3, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                @Html.ValidationMessageFor(model => dt3, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-    </div>
-    <div id="div4" style="display:none;overflow-y:auto;width:100%">
-        <hr />
-        @{
-            string check4 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => check4, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => check4, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            string result4 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
-            <div class="col-md-10">
-                <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result4" name="result4" rows="2"></textarea>
-
-                @Html.ValidationMessageFor(model => result4, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            DateTime dt4 = DateTime.Now;
-        }
-        <div class="form-group">
-
-            <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(Model => dt4, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                @Html.ValidationMessageFor(model => dt4, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-    </div>
-    <div id="div5" style="display:none;overflow-y:auto;width:100%">
-        <hr />
-        @{
-            string check5 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:3px">检查项目:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => check5, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => check5, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            string result5 = "";
-        }
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:1px">方法:</label>
-            <div class="col-md-10">
-                <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="result5" name="result5" rows="2"></textarea>
-
-                @Html.ValidationMessageFor(model => result5, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @{
-            DateTime dt5 = DateTime.Now;
-        }
-        <div class="form-group">
-
-            <label class="control-label col-md-2" style="padding-top:1px">检查时间:</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(Model => dt5, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                @Html.ValidationMessageFor(model => dt5, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-    </div>
-
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
-            <input type="submit" value="保存" class="btn btn-default" />|
-            <a href="javascript:window.history.go(-1)">返回</a>
-        </div>
-    </div>
-</div>
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 <script type="text/javascript">
+    function check1(val) {
+        var dom = $("#fucha");
+        if (val == 1) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
 
     $('#myModal1').click(function () {
         $("#div1").show();
@@ -285,6 +322,3 @@
 
 </script>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

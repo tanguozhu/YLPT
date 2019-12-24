@@ -163,7 +163,7 @@ namespace WebApplication4.Controllers
 						"" + treatment.Omeprazole + "," + treatment.Rabeprazole + "," + treatment.Esomeprazole + ","+treatment.Pantoprazole + "," +
 	  "" + treatment.OtherPPI + ","+treatment.biji+"," + treatment.Amoxicillin + "," + treatment.tetracycline + "," + treatment.Levofloxacin + "," +
    ""+treatment.Clarithromycin + "," + treatment.Furazolidone + "," + treatment.Metronidazole + "," + treatment.treatTime + "," + treatment.isOnTime + "," + 
-   treatment.isEradicated + ",'"+treatment.isfollowup+",'" + treatment.content+"','"+treatment.followuptime + "')";
+   treatment.isEradicated + ","+treatment.isfollowup+",'" + treatment.content+"','"+treatment.followuptime + "')";
                 }
 				else if (treatment.name == 1)
 				{
@@ -243,6 +243,7 @@ namespace WebApplication4.Controllers
                         }
                         else if (treatment.name == 1)
                         {
+                            treatment.bingfa = "";
                             treatment.isEradicated = 2;
                             treatment.Omeprazole = 2;
                             treatment.Rabeprazole = 2;
@@ -257,7 +258,8 @@ namespace WebApplication4.Controllers
                             treatment.Metronidazole = 2;
                             treatment.treatTime = reader.GetInt32("treatTime");
                             treatment.isOnTime = reader.GetInt32("isOnTime");
-                            treatment.biji = reader.GetInt32("biji");
+                            //treatment.biji = reader.GetInt32("biji");
+                            treatment.content = reader.GetString("content");
                         }
                         else if(treatment.name == 2)
                         {
@@ -314,6 +316,7 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( Treatment treatment)
         {
+           
             if (ModelState.IsValid)
             {
                 string a = Request.Form["refId"];
@@ -342,7 +345,66 @@ namespace WebApplication4.Controllers
                 }
 				else 
 				{
-					sql = "UPDATE treatment set time='" + treatment.time + "',pic1='" + treatment.pic1 + "',pic2='" + treatment.pic2 + "',pic3='" + treatment.pic3 + "'," +
+                    string result = "";
+                    string result1 = "";
+                    string result2 = "";
+                    string result3 = "";
+                    string result4 = "";
+                    string result5 = "";
+                    string result6 = "";
+                    string result7 = "";
+                    HttpPostedFileBase files = Request.Files["filename"];
+                    HttpPostedFileBase files1 = Request.Files["filename1"];
+                    HttpPostedFileBase files2 = Request.Files["filename2"];
+                    HttpPostedFileBase files3 = Request.Files["filename3"];
+                    HttpPostedFileBase files4 = Request.Files["filename4"];
+                    HttpPostedFileBase files5 = Request.Files["filename5"];
+                    HttpPostedFileBase files6 = Request.Files["filename6"];
+                    HttpPostedFileBase files7 = Request.Files["filename7"];
+
+                    result = SaveImage(files);
+                    result1 = SaveImage(files1);
+                    result2 = SaveImage(files2);
+                    result3 = SaveImage(files3);
+                    result4 = SaveImage(files4);
+                    result5 = SaveImage(files5);
+                    result6 = SaveImage(files6);
+                    result7 = SaveImage(files7);
+
+                    if (result != "error")
+                    {
+                        treatment.pic1 = result;
+                    }
+
+                    if (result1 != "error")
+                    {
+                        treatment.pic2 = result1;
+                    }
+                    if (result2 != "error")
+                    {
+                        treatment.pic3 = result2;
+                    }
+                    if (result3 != "error")
+                    {
+                        treatment.pic4 = result3;
+                    }
+                    if (result4 != "error")
+                    {
+                        treatment.pic5 = result4;
+                    }
+                    if (result5 != "error")
+                    {
+                        treatment.pic6 = result5;
+                    }
+                    if (result6 != "error")
+                    {
+                        treatment.pic7 = result6;
+                    }
+                    if (result7 != "error")
+                    {
+                        treatment.pic8 = result7;
+                    }
+                    sql = "UPDATE treatment set time='" + treatment.time + "',pic1='" + treatment.pic1 + "',pic2='" + treatment.pic2 + "',pic3='" + treatment.pic3 + "'," +
 						"content='" + treatment.content + "',conditions='" + treatment.condition+ "',pic4='" + treatment.pic4 + "',pic5='" + treatment.pic5 + 
                         "',pic6='" + treatment.pic6 + "'," + "pic7='" + treatment.pic7 + "',pic8='" + treatment.pic8  + "',biji=" + treatment.biji +
                         ",isfollowup=" + treatment.isfollowup + ",followuptime='" + treatment.followuptime + "',bingfa='" + treatment.bingfa + "'where id=" + treatment.Id;

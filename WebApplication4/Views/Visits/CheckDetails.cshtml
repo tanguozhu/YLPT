@@ -92,6 +92,43 @@
                     <dd>
                         @item[9]
                     </dd>
+                    int aaa = Convert.ToInt32(item[18]);
+
+                    if (aaa == 1)
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            是
+                        </dd>
+                        <dt>
+                            复查时间:
+                        </dt>
+                        <dd>
+                            @{
+                                DateTime ft = Convert.ToDateTime(item[19]);
+
+                                string fte = "";
+
+                                fte = ft.ToString("yyyy-MM-dd");
+                            }
+
+                            @fte
+                        </dd>
+                    }
+                    else
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            否
+                        </dd>
+                    }
+
                 }
                 else if (Model.Checkname == "幽门螺杆菌检查")
                 {
@@ -100,6 +137,12 @@
                     </dt>
                     <dd>
                         @item[4]
+                    </dd>
+                    <dt>
+                        检查号:
+                    </dt>
+                    <dd>
+                        @item[5]
                     </dd>
                     <dt>
                         检查日期:
@@ -144,14 +187,56 @@
                         }
                         @other
                     </dd>
+                    int aaa = Convert.ToInt32(item[18]);
+
+                    if (aaa == 1)
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            是
+                        </dd>
+                        <dt>
+                            复查时间:
+                        </dt>
+                        <dd>
+                            @{
+                                DateTime ft = Convert.ToDateTime(item[19]);
+
+                                string fte = "";
+
+                                fte = ft.ToString("yyyy-MM-dd");
+                            }
+
+                            @fte
+                        </dd>
+                    }
+                    else
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            否
+                        </dd>
+                    }
                 }
-                else if (Model.Checkname == "胃粘膜血清检查")
+                else if (Model.Checkname == "胃黏膜血清检查")
                 {
                     <dt>
                         检查项目:
                     </dt>
                     <dd>
                         @item[4]
+                    </dd>
+                    <dt>
+                        检查号:
+                    </dt>
+                    <dd>
+                        @item[5]
                     </dd>
                     <dt>
                         检查日期:
@@ -169,6 +254,42 @@
 
                         @b
                     </dd>
+                    int aaa = Convert.ToInt32(item[18]);
+
+                    if (aaa == 1)
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            是
+                        </dd>
+                        <dt>
+                            复查时间:
+                        </dt>
+                        <dd>
+                            @{
+                                DateTime ft = Convert.ToDateTime(item[19]);
+
+                                string fte = "";
+
+                                fte = ft.ToString("yyyy-MM-dd");
+                            }
+
+                            @fte
+                        </dd>
+                    }
+                    else
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            否
+                        </dd>
+                    }
 
                 }
                 else
@@ -178,6 +299,12 @@
                     </dt>
                     <dd>
                         @item[4]
+                    </dd>
+                    <dt>
+                        检查号:
+                    </dt>
+                    <dd>
+                        @item[5]
                     </dd>
                     <dt>
                         检查日期:
@@ -208,7 +335,42 @@
                     <dd>
                         @item[6]
                     </dd>
+                    int aaa = Convert.ToInt32(item[18]);
 
+                    if (aaa == 1)
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            是
+                        </dd>
+                        <dt>
+                            复查时间:
+                        </dt>
+                        <dd>
+                            @{
+                                DateTime ft = Convert.ToDateTime(item[19]);
+
+                                string fte = "";
+
+                                fte = ft.ToString("yyyy-MM-dd");
+                            }
+
+                            @fte
+                        </dd>
+                    }
+                    else
+                    {
+                        <dt>
+                            是否需要复查:
+                        </dt>
+
+                        <dd>
+                            否
+                        </dd>
+                    }
 
                 }
 
@@ -218,7 +380,7 @@
 
 
     @{
-        if (Model.Checkname == "胃粘膜血清检查" || Model.Checkname == "幽门螺杆菌检查")
+        if (Model.Checkname == "胃黏膜血清检查" || Model.Checkname == "幽门螺杆菌检查")
         {
 
         }
@@ -563,7 +725,7 @@
 
     @{
 
-        if (Model.Checkname == "胃粘膜血清检查")
+        if (Model.Checkname == "胃黏膜血清检查")
         {
             <div>
                 <hr />

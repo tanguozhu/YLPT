@@ -109,6 +109,25 @@
             }
             @inser
         </dd>
+        <dt>
+            导出权限
+        </dt>
+
+        <dd>
+            @{
+                string daoc = "";
+                if (Model.daochu == 0)
+                {
+                    daoc = "无";
+                }
+                else if (Model.daochu == 1)
+                {
+                    daoc = "有";
+                }
+            }
+            @daoc
+        </dd>
+
     </dl>
 </div>
 <p style="font-size:18px;padding:3px">

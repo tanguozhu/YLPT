@@ -37,6 +37,7 @@ namespace WebApplication4.Models
         public string Pic8 { get; set; }
 
         public int isfollowup { get; set; }
+        public DateTime followuptime { get; set; }
         public DataTable getweinianmo;
         
 

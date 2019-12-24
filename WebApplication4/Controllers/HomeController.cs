@@ -44,8 +44,9 @@ namespace WebApplication4.Controllers
                 login.modify = Convert.ToInt32(a.Rows[0][5]);
                 login.delete = Convert.ToInt32(a.Rows[0][6]);
                 login.insert = Convert.ToInt32(a.Rows[0][7]);
+                login.daochu = Convert.ToInt32(a.Rows[0][8]);
                 FormsAuthentication.RedirectFromLoginPage(login.Name+"."+login.webkind+"."+login.modify+"."+login.delete+"."+
-                    login.insert,false);
+                    login.insert + "." + login.daochu, false);
                 //Response.Write("<script>alert('账号密码登录失败')</script>");
             }
             

@@ -27,5 +27,6 @@ namespace WebApplication4.Models
         public int modify { get; set; }
         public int delete { get; set; }
         public int insert { get; set; }
+        public int daochu { get; set; }
     }
 }

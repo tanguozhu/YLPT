@@ -85,7 +85,14 @@
             {
                 <input type="checkbox" name="insert" value="1" /><text>新增&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
             }
-           
+            @if (Model.daochu == 1)
+            {
+                <input type="checkbox" name="daochu" value="1" checked="checked" /><text>导出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            }
+            else
+            {
+                <input type="checkbox" name="daochu" value="1" /><text>导出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            }
         </div>
     </div>
 

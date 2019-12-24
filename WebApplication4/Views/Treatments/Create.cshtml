@@ -181,6 +181,7 @@
             @Html.HiddenFor(model => model.Clarithromycin)
             @Html.HiddenFor(model => model.Furazolidone)
             @Html.HiddenFor(model => model.Metronidazole)
+            @Html.HiddenFor(model => model.bingfa)
             @Html.HiddenFor(model => model.pic1)
             @Html.HiddenFor(model => model.pic2)
             @Html.HiddenFor(model => model.pic3)
@@ -189,7 +190,7 @@
             <div class="form-group" style="font-size:18px;padding:3px">
                 <label class="control-label col-md-2" style="padding-top:1px">具体:</label>
                 <div class="col-md-10">
-                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="content" name="content" rows="2">@Model.content</textarea>
+                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:100px;width:400px" id="content" name="content" rows="2"></textarea>
 
                     @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
                 </div>
@@ -209,9 +210,9 @@
                 <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
                 <div class="col-md-10">
 
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14天</label>
 
                     @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
                 </div>

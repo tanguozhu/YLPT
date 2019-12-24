@@ -85,7 +85,7 @@
             <span>检查信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <a style="font-size:18px" href="/Gastroscopies/Create?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">胃镜检查新增</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <a style="font-size:18px" href="/Gastroscopies/Createnianmo?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">胃粘膜血清检查新增</a>
+            <a style="font-size:18px" href="/Gastroscopies/Createnianmo?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">胃黏膜血清检查新增</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <a style="font-size:18px" href="/Gastroscopies/Createyoumen?id=@Model.Id&&scannum=@Model.scannum&&visit=@Model.VisitId&&refid=@Model.Id">幽门螺杆菌检查新增</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -438,7 +438,7 @@
                             {
                                 DateTime d = Convert.ToDateTime(item[6]);
                                 weinianmo_check_time = d.ToString("yyyy-MM-dd");
-                                c = "胃粘膜血清检查" + "(" + weijing_check_time + ") ";
+                                c = "胃粘膜血清检查" + "(" + weinianmo_check_time + ") ";
                             }
                         }
                         @c
@@ -466,7 +466,7 @@
                             {
                                 DateTime h = Convert.ToDateTime(item[10]);
                                 other_check_time = h.ToString("yyyy-MM-dd");
-                                g = "其他检查检查" + "(" + weijing_check_time + ") ";
+                                g = "其他检查" + "(" + other_check_time + ") ";
                             }
                         }
                         @g
@@ -480,7 +480,7 @@
                             {
                                 DateTime j = Convert.ToDateTime(item[12]);
                                 youmen_treat_time = j.ToString("yyyy-MM-dd");
-                                i = "幽门螺杆菌治疗" + "(" + weijing_check_time + ") ";
+                                i = "幽门螺杆菌治疗" + "(" + youmen_treat_time + ") ";
                             }
                         }
                         @i
@@ -494,7 +494,7 @@
                             {
                                 DateTime l = Convert.ToDateTime(item[14]);
                                 operater_treat_time = l.ToString("yyyy-MM-dd");
-                                k = "手术治疗" + "(" + weijing_check_time + ") ";
+                                k = "手术治疗" + "(" + operater_treat_time + ") ";
                             }
                         }
                         @k
@@ -508,7 +508,7 @@
                             {
                                 DateTime n = Convert.ToDateTime(item[16]);
                                 other_treat_time = n.ToString("yyyy-MM-dd");
-                                m = "幽门螺杆菌治疗" + "(" + weijing_check_time + ") ";
+                                m = "其他治疗" + "(" + other_treat_time + ") ";
                             }
                         }
                         @m

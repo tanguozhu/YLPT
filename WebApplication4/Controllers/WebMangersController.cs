@@ -45,6 +45,7 @@ namespace WebApplication4.Controllers
                         webmanger.modify = reader.GetInt32("modif");
                         webmanger.delete = reader.GetInt32("delet");
                         webmanger.insert = reader.GetInt32("inser");
+                        webmanger.daochu = reader.GetInt32("daochu");
                         listwebManger.Add(webmanger);
                         //db.WebMangers.Add(webmanger);
                         i=i+1;
@@ -118,6 +119,7 @@ namespace WebApplication4.Controllers
                         webmanger1.modify = reader.GetInt32("modif");
                         webmanger1.delete = reader.GetInt32("delet");
                         webmanger1.insert = reader.GetInt32("inser");
+                        webmanger1.daochu = reader.GetInt32("daochu");
                         listwebManger1.Add(webmanger1);
                         //db.WebMangers.Add(webmanger);
                         i = i + 1;
@@ -168,6 +170,7 @@ namespace WebApplication4.Controllers
                         webmanger.modify = reader.GetInt32("modif");
                         webmanger.delete = reader.GetInt32("delet");
                         webmanger.insert = reader.GetInt32("inser");
+                        webmanger.daochu = reader.GetInt32("daochu");
                     }
                 }
                 reader.Close();
@@ -203,8 +206,10 @@ namespace WebApplication4.Controllers
             if (ModelState.IsValid)
             {
                 MySqlConnection mysql = getMySqlConnection();
-                MySqlCommand mySqlCommand = getSqlCommand("INSERT INTO webmanger(account,password,name)VALUES" + "(" +
-                "\"" + webManger.Account + "\"" + "," + "\"" + webManger.Password + "\"" + "," +"\"" + webManger.Name + "\""+ ")", mysql);
+                MySqlCommand mySqlCommand = getSqlCommand("INSERT INTO webmanger(account,password,name,webkind,modif,delet,inser,daochu)" +
+                    "VALUES" + "('" + webManger.Account  + "','" + webManger.Password +  "','"  +
+                    webManger.Name+ "'," + webManger.webkind + ","  + webManger.modify + "," + 
+                    webManger.delete + "," + webManger.insert+ ","+ webManger.daochu + ")", mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();
@@ -242,6 +247,7 @@ namespace WebApplication4.Controllers
                         webManger.modify = reader.GetInt32("modif");
                         webManger.delete = reader.GetInt32("delet");
                         webManger.insert = reader.GetInt32("inser");
+                        webManger.daochu = reader.GetInt32("daochu");
                     }
                 }
                 reader.Close();
@@ -275,7 +281,7 @@ namespace WebApplication4.Controllers
                 MySqlCommand mySqlCommand = getSqlCommand("UPDATE webmanger set account=" + 
                 "'" + webManger.Account + "'" + ",password=" + "'" + webManger.Password + "'" + ",name=" + 
                 "'" + webManger.Name + "',webkind=" + webManger.webkind+ ",modif=" + webManger.modify+
-                ",delet=" + webManger.delete+ ",inser=" + webManger.insert
+                ",delet=" + webManger.delete+ ",inser=" + webManger.insert+ ",daochu=" + webManger.daochu
                 + " where id="+webManger.Id, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);

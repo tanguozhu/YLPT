@@ -152,6 +152,7 @@ namespace WebApplication4.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visit visit = new Visit();
+            
             MySqlConnection mysql = getMySqlConnection();
             MySqlCommand mySqlCommand = getSqlCommand("select user.name,visits.id," +
                 "visits.scannum,visits.visitId,visits.date from user,visits where user.scannum=visits.scannum and visits.id=" + id, mysql);
@@ -167,6 +168,7 @@ namespace WebApplication4.Controllers
                         visit.Name = reader.GetString("name");
                         
                         visit.scannum = reader.GetString("scannum");
+
                         DateTime b = reader.GetDateTime("date");
                         visit.Date = b.ToString("yyyy-MM-dd");
                         visit.VisitId = reader.GetString("visitId");
@@ -182,6 +184,8 @@ namespace WebApplication4.Controllers
 
                         DataSet dd = GetFollowUp(visit.scannum, visit.VisitId);
                         visit.followup = dd.Tables[0];
+
+                        UpdateFollowUp(visit.scannum,visit.VisitId);
                     }
                 }
 
@@ -256,14 +260,16 @@ namespace WebApplication4.Controllers
                 string a = Request.Form["scannum"];
                 string b = Request.Form["dateTime"];
                 string c = Request.Form["Identinum"];
-                int returnvisit = 2;
-                string returnvisitdate = DateTime.Now.ToString("yyyy-MM-dd");
+                //int returnvisit = 2;
+                
+                //string returnvisitdate = DateTime.Now.ToString("yyyy-MM-dd");
                 MySqlConnection mysql = getMySqlConnection();
-                MySqlCommand mySqlCommand = getSqlCommand(" INSERT INTO visits (identinum,scannum,visitId,date,returnvisit,returnvisitdate)VALUES('" + c+
-                    "','" + visit.scannum + "','" + visit.VisitId+"',"+"'"+b+"',"+ returnvisit+",'"+ returnvisitdate+"' )", mysql);
+                MySqlCommand mySqlCommand = getSqlCommand(" INSERT INTO visits (identinum,scannum,visitId,date)VALUES('" + c+
+                    "','" + visit.scannum + "','" + visit.VisitId+"',"+"'"+b+"' )", mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();
+                InsertFollowup(visit.VisitId, a);
                 mysql.Close();
                 return RedirectToAction("Index", "Visits");
             }
@@ -498,7 +504,7 @@ namespace WebApplication4.Controllers
             string sql="";
           
                 sql = "select id,visit,scannum,checktime,checkname,checknum,conclusion,pathologynum,pathologyconclusion," +
-               "other,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8 from gastroscopy where id=" + id;
+               "other,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,isfollowup,followuptime from gastroscopy where id=" + id;
 
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
@@ -570,6 +576,21 @@ namespace WebApplication4.Controllers
             return ds;
         }
 
+        public void InsertFollowup(string visit,string scannum)
+        {
+            MySqlConnection mysql = getMySqlConnection();
+            mysql.Open();
+            string dt = DateTime.Now.ToString("yyyy-MM-dd");
+            string sql = "INSERT INTO followup (visit,scannum,weijing_check,weijing_check_time," +
+                "weinianmo_check,weinianmo_check_time,youmen_check,youmen_check_time,other_check,other_check_time," +
+                "youmen_treat,youmen_treat_time,operater_treat,operater_treat_time,other_treat,other_treat_time)" +
+                "VALUES('"+visit+"','"+scannum+"',0,'"+dt+"',0,'"+dt+ "',0,'"  + dt + "',0,'" + dt + "',0,'" + 
+                dt + "',0,'" + dt + "',0,'" + dt+"')";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+        }
 
         public static DataSet GetTreatmentDetail(int id)
         {
@@ -726,7 +747,18 @@ namespace WebApplication4.Controllers
 				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
-			}
+            }
+            else if (weijing_check_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set weijing_check=0,weijing_check_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 			if (weinianmo_check_time != "")
 			{
 				MySqlConnection mysql = getMySqlConnection();
@@ -738,6 +770,17 @@ namespace WebApplication4.Controllers
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
 			}
+            else if (weinianmo_check_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set weinianmo_check=0,weinianmo_check_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 			if (youmen_check_time != "")
 			{
 				MySqlConnection mysql = getMySqlConnection();
@@ -749,6 +792,17 @@ namespace WebApplication4.Controllers
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
 			}
+            else if (youmen_check_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set youmen_check=0,youmen_check_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 			if (other_check_time != "")
 			{
 				MySqlConnection mysql = getMySqlConnection();
@@ -760,6 +814,17 @@ namespace WebApplication4.Controllers
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
 			}
+            else if (other_check_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set other_check=0,other_check_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 			if (youmen_treat_time != "")
 			{
 				MySqlConnection mysql = getMySqlConnection();
@@ -771,6 +836,17 @@ namespace WebApplication4.Controllers
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
 			}
+            else if (youmen_treat_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set youmen_treat=0,youmen_treat_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 			if (other_treat_time != "")
 			{
 				MySqlConnection mysql = getMySqlConnection();
@@ -782,6 +858,17 @@ namespace WebApplication4.Controllers
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
 			}
+            else if (other_treat_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set other_treat=0,other_treat_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 			if (operater_treat_time != "")
 			{
 				MySqlConnection mysql = getMySqlConnection();
@@ -793,6 +880,17 @@ namespace WebApplication4.Controllers
 				mySqlCommand.ExecuteNonQuery();
 				mysql.Close();
 			}
+            else if (operater_treat_time == "")
+            {
+                MySqlConnection mysql = getMySqlConnection();
+                mysql.Open();
+                string sql = "update followup set operater_treat=0,operater_treat_time='" + DateTime.Now + "' " +
+                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                mySqlCommand.ExecuteNonQuery();
+                mysql.Close();
+            }
 		}
 
         public DataSet GetFollowUp(string scannum, string VisitID)

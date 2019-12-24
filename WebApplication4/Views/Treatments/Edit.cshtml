@@ -242,7 +242,7 @@
         else if (Model.name == 1)
         {
             @Html.HiddenFor(model => model.condition)
-
+            @Html.HiddenFor(model => model.bingfa)
             @Html.HiddenFor(model => model.isEradicated)
             @Html.HiddenFor(model => model.Omeprazole)
             @Html.HiddenFor(model => model.Rabeprazole)
@@ -278,9 +278,9 @@
                 <label class="control-label col-md-2" style="padding-top:1px">疗程:</label>
                 <div class="col-md-10">
 
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7个疗程</label>
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10个疗程</label>
-                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14个疗程</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 7, new { htmlAttributes = new { @class = "form-control" } }) 7天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 10, new { htmlAttributes = new { @class = "form-control" } }) 10天</label>
+                    <label>@Html.RadioButtonFor(model => model.treatTime, 14, new { htmlAttributes = new { @class = "form-control" } }) 14天</label>
 
                     @Html.ValidationMessageFor(model => model.treatTime, "", new { @class = "text-danger" })
                 </div>
