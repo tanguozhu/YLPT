@@ -175,7 +175,7 @@ namespace WebApplication4.Controllers
                     files.SaveAs(saveFile);
                     // 如果单单是上传，不用保存路径的话，下面这行代码就不需要写了！
 
-                    result = "http://localhost:53028/" + imageStr + fileNames;// 设置数据库保存的路径
+                    result = "http://58.192.132.31:9011/" + imageStr + fileNames;// 设置数据库保存的路径
 
                     
 
