@@ -282,6 +282,20 @@
                         @othert
                     </dd>
                     <dt>
+                        治疗时间:
+                    </dt>
+
+                    <dd>
+                        @{
+                            DateTime a = Convert.ToDateTime(item[5]);
+
+                            string b = "";
+
+                            b = a.ToString("yyyy-MM-dd");
+                        }
+                        @b
+                    </dd>
+                    <dt>
                         具体:
                     </dt>
                     <dd>
@@ -337,6 +351,20 @@
 
                         }
                         @othert
+                    </dd>
+                    <dt>
+                        治疗时间:
+                    </dt>
+
+                    <dd>
+                        @{
+                            DateTime aaa = Convert.ToDateTime(item[5]);
+
+                            string bbb = "";
+
+                            bbb = aaa.ToString("yyyy-MM-dd");
+                        }
+                        @bbb
                     </dd>
                     <dt>
                         手术方案:

@@ -10,10 +10,10 @@ namespace WebApplication4.Models
         public int rawid;
         public int detailid;
         public string rawname;
-        public int Id2 { get; set; }
+        public int Id { get; set; }
         public string pathologynum;
 
-        public int part { get; set; }
+        public int idd { get; set; }
         public string parts { get; set; }
         public int chronic { get; set; }
         public int acute { get; set; }
@@ -25,7 +25,6 @@ namespace WebApplication4.Models
         public int Mucosal { get; set; }
 
         public int id1 { get; set; }
-        public int part1 { get; set; }
         public string parts1 { get; set; }
         public int chronic1 { get; set; }
         public int acute1 { get; set; }

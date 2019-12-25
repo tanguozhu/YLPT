@@ -128,9 +128,10 @@ namespace WebApplication4.Controllers
         /// <param name="nameList">DataTable中列名的中文对应表</param>
         /// <param name="strTitle">Excel表的标题</param>
         /// <returns>Excel文件名</returns>
-        public static void ExportDataToExcel(System.Data.DataTable dt, string xlsFileDir, Hashtable nameList, string strTitle)
+        public FileStreamResult ExportDataToExcel(System.Data.DataTable dt, string xlsFileDir, Hashtable nameList, string strTitle)
         {
-            if (dt == null) return;
+            
+           
 
             Microsoft.Office.Interop.Excel.ApplicationClass excel = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbooks workBooks = excel.Workbooks;
@@ -194,6 +195,10 @@ namespace WebApplication4.Controllers
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excel);
             excel = null;
             
+            var stream = System.IO.File.OpenRead(xlsFileDir+strFileName);//excel表转换成流
+            return File(stream, "application/vnd.android.package-archive", Path.GetFileName(xlsFileDir+strFileName));//进行浏览器下载
+
+
         }
 
         private List<SelectListItem> GetGenderList()

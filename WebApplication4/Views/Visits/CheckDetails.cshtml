@@ -20,7 +20,7 @@
 
 <h2>检查详情</h2>
 
-<div style="height:100%;overflow-y:auto; overflow-x:auto;">
+<div style="height:100%;">
     @{
         string num = "";
         string checknames = "";
@@ -62,13 +62,13 @@
                     </dd>
 
                     <dt>
-                        内镜检查号:
+                        检查号:
                     </dt>
                     <dd>
                         @item[5]
                     </dd>
                     <dt>
-                        胃镜结论:
+                        检查结论:
                     </dt>
                     <dd>
                         @item[6]
@@ -323,12 +323,7 @@
                         @b
                     </dd>
 
-                    <dt>
-                        检查号:
-                    </dt>
-                    <dd>
-                        @item[5]
-                    </dd>
+                  
                     <dt>
                         检查结论:
                     </dt>
@@ -512,17 +507,7 @@
                     checkid = Convert.ToInt32(item2[0]);
                     <h4>
                         病理取材部位:
-                        @{
-                            int a = Convert.ToInt32(item2[2]);
-                            if (a == 0)
-                            {
-                                @:胃窦
-                            }
-                            else
-                            {
-                                @:胃角
-                            }
-                        }
+                       @item2[2]
                     </h4>
                     <div class="col-md-6">
                         <div>
