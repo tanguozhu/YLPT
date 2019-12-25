@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    
+    
 }
 
 <h2>今日复查</h2>
@@ -9,106 +11,131 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+
+<p style="font-size:18px;padding:3px">
+    
+    日期: <input class="" data-val="true" data-val-date="字段 DateTime 必须是日期。"
+               data-val-required="DateTime 字段是必需的。" id="dt1" name="dt1" type="date" value="">
+    <input type="submit" value="检索" />
    
+</p>
 }
 
-<table class="table" style="font-size:15px;padding:3px">
-    <tr>
-        <th>
-            姓名
-        </th>
-        <th>
-            检查号
-        </th>
-        <th>
-            身份证号
-        </th>
-        <th>
-            就诊
-        </th>
-        <th>
-            今日复查内容
-        </th>
-        
-        <th>
 
-        </th>
-    </tr>
+        <table class="table" style="font-size:15px;padding:3px">
+            <tr>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    检查号
+                </th>
+                <th>
+                    身份证号
+                </th>
+                <th>
+                    就诊
+                </th>
+                <th>
+                    今日复查内容
+                </th>
 
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.scannum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Identinum)
-        </td>
+                <th>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.VisitId)
-        </td>
-       
-        <td>
-            @{
-                string setresult = "";
+                </th>
+            </tr>
 
-                if (item.weijing_check==1&&(item.weijing_check_time.ToString("yyyy-MM-dd")==
-                    DateTime.Now.ToString("yyyy-MM-dd")))
+            @foreach (var item in Model)
+            {
+                string dt = item.flag_time.ToString("yyyy-MM-dd");
+                if ((item.weijing_check_time.ToString("yyyy-MM-dd") != dt || item.weijing_check == 0) &&
+                    (item.weinianmo_check_time.ToString("yyyy-MM-dd") != dt || item.weinianmo_check == 0) &&
+                    (item.youmen_check_time.ToString("yyyy-MM-dd") != dt || item.youmen_check == 0) &&
+                    (item.other_check_time.ToString("yyyy-MM-dd") != dt || item.other_check == 0) &&
+                    (item.youmen_treat_time.ToString("yyyy-MM-dd") != dt || item.youmen_treat == 0) &&
+                    (item.operater_treat_time.ToString("yyyy-MM-dd") != dt || item.operater_treat == 0) &&
+                    (item.other_treat_time.ToString("yyyy-MM-dd") != dt || item.other_treat == 0)
+                    )
                 {
-                    setresult = setresult + "胃镜检查" + "(" + item.weijing_check_time.ToString("yyyy-MM-dd") + ") ";
+
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.scannum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Identinum)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VisitId)
+                        </td>
+
+                        <td>
+                            @{
+                                string setresult = "";
+
+                                if (item.weijing_check == 1 && (item.weijing_check_time.ToString("yyyy-MM-dd") ==
+                                    item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + "胃镜检查" + "(" + item.weijing_check_time.ToString("yyyy-MM-dd") + ") ";
+                                }
+
+                                if (item.weinianmo_check == 1 && (item.weinianmo_check_time.ToString("yyyy-MM-dd") ==
+                                   item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + " 胃粘膜血清检查" + "(" + item.weinianmo_check_time.ToString("yyyy-MM-dd") + ") ";
+                                }
+
+                                if (item.youmen_check == 1 && (item.youmen_check_time.ToString("yyyy-MM-dd") ==
+                                   item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + "幽门螺杆菌检查" + "(" + item.youmen_check_time.ToString("yyyy-MM-dd") + ") ";
+                                }
+
+                                if (item.other_check == 1 && (item.other_check_time.ToString("yyyy-MM-dd") ==
+                                   item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + "其他检查" + "(" + item.other_check_time.ToString("yyyy-MM-dd") + ") ";
+                                }
+
+                                if (item.youmen_treat == 1 && (item.youmen_treat_time.ToString("yyyy-MM-dd") ==
+                                   item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + "幽门螺杆菌治疗" + "(" + item.youmen_treat_time.ToString("yyyy-MM-dd") + ") ";
+                                }
+
+                                if (item.operater_treat == 1 && (item.operater_treat_time.ToString("yyyy-MM-dd") ==
+                                   item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + "手术治疗" + "(" + item.operater_treat_time.ToString("yyyy-MM-dd") + ") ";
+                                }
+
+                                if (item.other_treat == 1 && (item.other_treat_time.ToString("yyyy-MM-dd") ==
+                                  item.flag_time.ToString("yyyy-MM-dd")))
+                                {
+                                    setresult = setresult + "其他治疗" + "(" + item.other_treat_time.ToString("yyyy-MM-dd") + ")";
+                                }
+                            }
+                            @setresult
+
+
+
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("查看详情", "Details", new { id = item.Id })
+                        </td>
+                    </tr>
                 }
 
-                if (item.weinianmo_check == 1 && (item.weinianmo_check_time.ToString("yyyy-MM-dd") ==
-                   DateTime.Now.ToString("yyyy-MM-dd")))
-                {
-                    setresult = setresult + " 胃粘膜血清检查" + "(" + item.weinianmo_check_time.ToString("yyyy-MM-dd") + ") ";
-                }
-
-                if (item.youmen_check == 1 && (item.youmen_check_time.ToString("yyyy-MM-dd") ==
-                   DateTime.Now.ToString("yyyy-MM-dd")))
-                {
-                    setresult = setresult + "幽门螺杆菌检查" + "(" + item.youmen_check_time.ToString("yyyy-MM-dd") + ") ";
-                }
-
-                if (item.other_check == 1 && (item.other_check_time.ToString("yyyy-MM-dd") ==
-                   DateTime.Now.ToString("yyyy-MM-dd")))
-                {
-                    setresult = setresult + "其他检查" + "(" + item.other_check_time.ToString("yyyy-MM-dd") + ") ";
-                }
-
-                if (item.youmen_treat == 1 && (item.youmen_treat_time.ToString("yyyy-MM-dd") ==
-                   DateTime.Now.ToString("yyyy-MM-dd")))
-                {
-                    setresult = setresult + "幽门螺杆菌治疗" + "(" + item.youmen_treat_time.ToString("yyyy-MM-dd") + ") ";
-                }
-
-                if (item.operater_treat == 1 && (item.operater_treat_time.ToString("yyyy-MM-dd") ==
-                   DateTime.Now.ToString("yyyy-MM-dd")))
-                {
-                    setresult = setresult + "手术治疗" + "(" + item.operater_treat_time.ToString("yyyy-MM-dd") + ") ";
-                }
-
-                if (item.other_treat == 1 && (item.other_treat_time.ToString("yyyy-MM-dd") ==
-                  DateTime.Now.ToString("yyyy-MM-dd")))
-                {
-                    setresult = setresult + "其他治疗" + "(" + item.other_treat_time.ToString("yyyy-MM-dd") + ")";
-                }
             }
-            @setresult
 
+        </table>
 
-            
-        </td>
-       
-        <td>
-            @Html.ActionLink("查看详情", "Details", new { id = item.Id }) 
-        </td>
-    </tr>
-    }
-
-</table>
 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

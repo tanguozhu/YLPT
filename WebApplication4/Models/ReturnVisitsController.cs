@@ -25,7 +25,7 @@ namespace WebApplication4.Models
             string d = DateTime.Now.ToString("yyyy-MM-dd");
             List<ReturnVisit> listreturnvisits = new List<ReturnVisit>();
             MySqlConnection mysql = getMySqlConnection();
-            string sql = "SELECT `user` .`name`,`user`.phone,`user`.identinum,followup.visit,followup.scannum,followup.weijing_check," +
+            string sql = "SELECT `user` .`name`,`user`.phone,`user`.identinum,followup.id,followup.visit,followup.scannum,followup.weijing_check," +
         "followup.weijing_check_time,followup.weinianmo_check,followup.weinianmo_check_time,followup.youmen_check," +
         "followup.youmen_check_time,followup.other_check,followup.other_check_time,followup.youmen_treat," +
         "followup.youmen_treat_time,followup.operater_treat,followup.operater_treat_time,followup.other_treat," +
@@ -43,9 +43,9 @@ namespace WebApplication4.Models
                     if (reader.HasRows)
                     {
                         ReturnVisit returnVisit = new ReturnVisit();
-                        
+                        returnVisit.Id = reader.GetInt32("id");
                         returnVisit.Name = reader.GetString("name");
-                        
+                        returnVisit.flag_time = DateTime.Now;
                         returnVisit.VisitId = reader.GetString("visit");
                         returnVisit.scannum= reader.GetString("scannum");
                         returnVisit.Identinum = reader.GetString("identinum");
@@ -91,6 +91,81 @@ namespace WebApplication4.Models
             return View(data);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(DateTime dt1,int page = 1)
+        {
+            string d = dt1.ToString("yyyy-MM-dd");
+            List<ReturnVisit> listreturnvisits = new List<ReturnVisit>();
+            MySqlConnection mysql = getMySqlConnection();
+            string sql = "SELECT `user` .`name`,`user`.phone,`user`.identinum,followup.id,followup.visit,followup.scannum,followup.weijing_check," +
+        "followup.weijing_check_time,followup.weinianmo_check,followup.weinianmo_check_time,followup.youmen_check," +
+        "followup.youmen_check_time,followup.other_check,followup.other_check_time,followup.youmen_treat," +
+        "followup.youmen_treat_time,followup.operater_treat,followup.operater_treat_time,followup.other_treat," +
+        "followup.other_treat_time FROM `user`,followup WHERE`user`.scannum = followup.scannum AND(weijing_check_time ='" +
+        d + "'OR weinianmo_check_time = '" + d + "'OR youmen_check_time = '" + d + "'OR other_check_time = '" + d + "'OR youmen_treat_time ='" +
+        d + "'OR operater_treat_time = '" + d + "'OR other_treat_time = '" + d + "');";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+            try
+            {
+                while (reader.Read())
+                {
+                    if (reader.HasRows)
+                    {
+                        ReturnVisit returnVisit = new ReturnVisit();
+                        returnVisit.flag_time = dt1;
+                        returnVisit.Id = reader.GetInt32("id");
+                        returnVisit.Name = reader.GetString("name");
+
+                        returnVisit.VisitId = reader.GetString("visit");
+                        returnVisit.scannum = reader.GetString("scannum");
+                        returnVisit.Identinum = reader.GetString("identinum");
+
+                        returnVisit.weijing_check = reader.GetInt32("weijing_check");
+                        returnVisit.weijing_check_time = reader.GetDateTime("weijing_check_time");
+
+                        returnVisit.weinianmo_check = reader.GetInt32("weinianmo_check");
+                        returnVisit.weinianmo_check_time = reader.GetDateTime("weinianmo_check_time");
+
+                        returnVisit.youmen_check = reader.GetInt32("youmen_check");
+                        returnVisit.youmen_check_time = reader.GetDateTime("youmen_check_time");
+
+                        returnVisit.other_check = reader.GetInt32("other_check");
+                        returnVisit.other_check_time = reader.GetDateTime("other_check_time");
+
+                        returnVisit.operater_treat = reader.GetInt32("operater_treat");
+                        returnVisit.operater_treat_time = reader.GetDateTime("operater_treat_time");
+
+                        returnVisit.youmen_treat = reader.GetInt32("youmen_treat");
+                        returnVisit.youmen_treat_time = reader.GetDateTime("youmen_treat_time");
+
+                        returnVisit.other_treat = reader.GetInt32("other_treat");
+                        returnVisit.other_treat_time = reader.GetDateTime("other_treat_time");
+
+                        listreturnvisits.Add(returnVisit);
+
+                    }
+                }
+
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+            finally
+            {
+                mysql.Close();
+            }
+            const int pagesize = 8;
+            var data = listreturnvisits
+                 .OrderBy(p => p.Id).ToPagedList(page, pagesize);
+            return View(data);
+        }
+
+
         // GET: ReturnVisits/Details/5
         public ActionResult Details(int? id)
         {
@@ -101,11 +176,12 @@ namespace WebApplication4.Models
             ReturnVisit returnVisit = new ReturnVisit();
             MySqlConnection mysql = getMySqlConnection();
             string d = DateTime.Now.ToString("yyyy-MM-dd");
-            string sql = "SELECT `user` .`name`,`user`.phone,`user`.identinum,followup.visit,followup.scannum,followup.weijing_check," +
+            string sql = "SELECT `user` .`name`,`user`.phone,`user`.identinum,followup.id,followup.visit,followup.scannum,followup.weijing_check," +
         "followup.weijing_check_time,followup.weinianmo_check,followup.weinianmo_check_time,followup.youmen_check," +
         "followup.youmen_check_time,followup.other_check,followup.other_check_time,followup.youmen_treat," +
         "followup.youmen_treat_time,followup.operater_treat,followup.operater_treat_time,followup.other_treat," +
-        "followup.other_treat_time FROM `user`,followup WHERE`user`.scannum = followup.scannum";
+        "followup.other_treat_time FROM `user`,followup WHERE`user`.scannum = " +
+        "followup.scannum and followup.id="+id;
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
@@ -115,6 +191,7 @@ namespace WebApplication4.Models
                 {
                     if (reader.HasRows)
                     {
+                        returnVisit.Id = reader.GetInt32("id");
                         returnVisit.Name = reader.GetString("name");
 
                         returnVisit.VisitId = reader.GetString("visit");

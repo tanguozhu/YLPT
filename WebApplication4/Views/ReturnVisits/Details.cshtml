@@ -42,28 +42,155 @@
             @Html.DisplayFor(model => model.VisitId)
         </dd>
 
-        <dt>
-            就诊时间:
-        </dt>
+        @{
+            if (Model.weijing_check == 1)
+            {
+                <dt>
+                    胃镜检查:
+                </dt>
+                <dd>
+                    有(检查时间:@Model.weijing_check_time.ToString("yyyy-MM-dd"))
+                </dd>
+                
+            }
+            else
+            {
+                <dt>
+                    胃镜检查:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
+        @{
+            if (Model.weinianmo_check == 1)
+            {
+                <dt>
+                    胃黏膜血清检查:
+                </dt>
+                <dd>
+                    有(检查时间:@Model.weinianmo_check_time.ToString("yyyy-MM-dd"))
+                </dd>
+              
+            }
+            else
+            {
+                <dt>
+                    胃黏膜血清检查:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
+        @{
+            if (Model.youmen_check == 1)
+            {
+                <dt>
+                    幽门螺杆菌检查:
+                </dt>
+                <dd>
+                    有(检查时间:@Model.youmen_check_time.ToString("yyyy-MM-dd"))
+                </dd>
+              
+            }
+            else
+            {
+                <dt>
+                    幽门螺杆菌检查:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
+        @{
+            if (Model.other_check == 1)
+            {
+                <dt>
+                    其他检查:
+                </dt>
+                <dd>
+                    有(检查时间:@Model.other_check_time.ToString("yyyy-MM-dd"))
+                </dd>
+               
+            }
+            else
+            {
+                <dt>
+                    其他检查:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
+        @{
+            if (Model.youmen_treat == 1)
+            {
+                <dt>
+                    幽门螺杆菌治疗:
+                </dt>
+                <dd>
+                    有(治疗时间:@Model.youmen_treat_time.ToString("yyyy-MM-dd"))
+                </dd>
+              
+            }
+            else
+            {
+                <dt>
+                    幽门螺杆菌治疗:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+        @{
+            if (Model.operater_treat == 1)
+            {
+                <dt>
+                    手术治疗:
+                </dt>
+                <dd>
+                    有(治疗时间:@Model.operater_treat_time.ToString("yyyy-MM-dd"))
+                </dd>
+              
+            }
+            else
+            {
+                <dt>
+                    手术治疗:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
 
-        <dt>
-            复查内容:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.returnvisitcontent)
-        </dd>
-        <dt>
-            复查时间:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.returnvisitdate)
-        </dd>
+        @{
+            if (Model.other_treat == 1)
+            {
+                <dt>
+                    其他治疗:
+                </dt>
+                <dd>
+                    有(治疗时间:@Model.other_treat_time.ToString("yyyy-MM-dd"))
+                </dd>
+              
+            }
+            else
+            {
+                <dt>
+                    其他治疗:
+                </dt>
+                <dd>
+                    无
+                </dd>
+            }
+        }
     </dl>
 </div>
 <p style="font-size:18px;padding:3px">

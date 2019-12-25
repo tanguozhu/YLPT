@@ -19,6 +19,8 @@ namespace WebApplication4.Models
         [Display(Name = "姓名")]
         public string Name { get; set; }
 
+        public DateTime flag_time { get; set; }
+
         public int weijing_check { get; set; }
         public DateTime weijing_check_time { get; set; }
         public int weinianmo_check { get; set; }
