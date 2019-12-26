@@ -64,55 +64,56 @@ namespace WebApplication4.Controllers
                 pathology.pathologynum= Request.Form["pathologynum"];
                 string aa = Request.Form["detailid"];
                 int bb = Convert.ToInt32(aa);
-                if (pathology.parts == "")
+                if (pathology.parts == null)
                 {
 
                 }
-                else
+                else if (pathology.parts != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts, pathology.chronic, pathology.acute,
-                        pathology.atrophy, pathology.intestinal, pathology.dysplasia, pathology.lymphoid,
-                        pathology.pitepithelial,pathology.Mucosal);
+                       pathology.atrophy, pathology.intestinal, pathology.dysplasia, pathology.lymphoid,
+                       pathology.pitepithelial, pathology.Mucosal);
                 }
+               
 
-                if (pathology.parts1 == "")
+                if (pathology.parts1 == null)
                 {
 
                 }
-                else
+                else if(pathology.parts1 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts1, pathology.chronic1, pathology.acute1,
                         pathology.atrophy1, pathology.intestinal1, pathology.dysplasia1, pathology.lymphoid1,
                         pathology.pitepithelial1, pathology.Mucosal1);
                 }
 
-                if (pathology.parts2 == "")
+                if (pathology.parts2 == null)
                 {
 
                 }
-                else
+                else if (pathology.parts2 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts2, pathology.chronic2, pathology.acute2,
                         pathology.atrophy2, pathology.intestinal2, pathology.dysplasia2, pathology.lymphoid2,
                         pathology.pitepithelial2, pathology.Mucosal2);
                 }
 
-                if (pathology.parts3 == "")
+                if (pathology.parts3 == null)
                 {
 
                 }
-                else
+                else if (pathology.parts3 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts3, pathology.chronic3, pathology.acute3,
                         pathology.atrophy3, pathology.intestinal3, pathology.dysplasia3, pathology.lymphoid3,
                         pathology.pitepithelial3, pathology.Mucosal3);
                 }
 
-                if (pathology.parts4 == "")
+                if (pathology.parts4 == null)
                 {
 
                 }
-                else
+                else if(pathology.parts4 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts4, pathology.chronic4, pathology.acute4,
                         pathology.atrophy4, pathology.intestinal4, pathology.dysplasia4, pathology.lymphoid4,

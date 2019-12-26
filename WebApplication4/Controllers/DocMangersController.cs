@@ -32,7 +32,7 @@ namespace WebApplication4.Controllers
         {
             List<DocManger> listdocmanger = new List<DocManger>();
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand("select id,name,sex,position,goodat,introduction,phone,password,kind,isnew,Image from user where kind=1", mysql);
+            MySqlCommand mySqlCommand = getSqlCommand("select * from user where kind=1", mysql);
             mysql.Open();
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
             
@@ -58,6 +58,8 @@ namespace WebApplication4.Controllers
                         docmanger.Phone = reader.GetString("phone");
                         docmanger.Password = reader.GetString("password");
                         docmanger.Image = reader.GetString("Image");
+                        docmanger.gonghao = reader.GetString("gonghao");
+                        docmanger.danwei = reader.GetString("danwei");
                         listdocmanger.Add(docmanger);
                         
                     }
@@ -131,6 +133,8 @@ namespace WebApplication4.Controllers
                         docmanger.Phone = reader.GetString("phone");
                         docmanger.Password = reader.GetString("password");
                         docmanger.Image = reader.GetString("Image");
+                        docmanger.gonghao = reader.GetString("gonghao");
+                        docmanger.danwei = reader.GetString("danwei");
                         listdocmanger.Add(docmanger);
                         
                     }
@@ -161,7 +165,7 @@ namespace WebApplication4.Controllers
             }
             DocManger docManger = new DocManger();
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand("select id,name,sex,position,goodat,introduction,phone,password,kind,isnew,Image from user where kind=1 and id=" + id, mysql);
+            MySqlCommand mySqlCommand = getSqlCommand("select * from user where kind=1 and id=" + id, mysql);
             mysql.Open();
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
             try
@@ -182,7 +186,9 @@ namespace WebApplication4.Controllers
                         docManger.Phone = reader.GetString("phone");
                         docManger.Password = reader.GetString("password");
                         docManger.Image = reader.GetString("Image");
-                       
+                        docManger.gonghao = reader.GetString("gonghao");
+                        docManger.danwei = reader.GetString("danwei");
+
                     }
                 }
                 reader.Close();
@@ -254,13 +260,18 @@ namespace WebApplication4.Controllers
             //docManger.Image = SaveImage();
             docManger.Kind = "1";
             docManger.Isnew = "1";
+            string gong = Request.Form["gonghao"];
+            string dan = Request.Form["danwei"];
             if (ModelState.IsValid)
             {
                 MySqlConnection mysql = getMySqlConnection();
-                MySqlCommand mySqlCommand = getSqlCommand("INSERT INTO user(name,sex,phone,password,position,goodat,introduction,Image,kind,isnew)VALUES" + "(" +
-                "\"" + docManger.Name + "\"" + "," +  docManger.Sex  + "," + "\"" + docManger.Phone + "\""+ "," +
-                "\"" + docManger.Password + "\""+ ","+  docManger.Position + ","+"\"" + docManger.Goodat + "\"" + "," +
-                "\"" + docManger.Introduction + "\"" + "," + "\"" + docManger.Image + "\"" + "," + "\"" + docManger.Kind + "\"" + "," + "\"" + docManger.Isnew + "\"" + ")", mysql);
+                MySqlCommand mySqlCommand = getSqlCommand("INSERT INTO user(name,sex,phone,password,position,goodat," +
+                    "introduction,Image,kind,isnew,gonghao,danwei)VALUES" + "(" +
+                "'" + docManger.Name + "'" + "," +  docManger.Sex  + "," + "'" + docManger.Phone + "'"+ "," +
+                "'" + docManger.Password + "'" + ","+  docManger.Position + ","+ "'" + docManger.Goodat + "'" + "," +
+                "'" + docManger.Introduction + "'" + "," + "'" + docManger.Image + "'" + "," + "'" +
+                docManger.Kind + "'" + "," + "'" + docManger.Isnew + "','" + gong + "','" + dan +
+                "')", mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();
@@ -294,7 +305,7 @@ namespace WebApplication4.Controllers
             }
             DocManger docManger = new DocManger();
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand("select id,name,sex,position,goodat,introduction,phone,password,kind,isnew,Image from user where kind=1 and id=" + id, mysql);
+            MySqlCommand mySqlCommand = getSqlCommand("select * from user where kind=1 and id=" + id, mysql);
             mysql.Open();
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
             try
@@ -315,7 +326,8 @@ namespace WebApplication4.Controllers
                         docManger.Phone = reader.GetString("phone");
                         docManger.Password = reader.GetString("password");
                         docManger.Image = reader.GetString("Image");
-
+                        docManger.gonghao = reader.GetString("gonghao");
+                        docManger.danwei = reader.GetString("danwei");
                     }
                 }
                 reader.Close();
@@ -387,7 +399,9 @@ namespace WebApplication4.Controllers
                 MySqlCommand mySqlCommand = getSqlCommand(" UPDATE user set name=" + 
                 "\"" + docManger.Name + "\"" + ",sex=" +  docManger.Sex  + ",phone=" + "\"" + docManger.Phone + "\"" + ",password=" +
                 "\"" + docManger.Password + "\"" + ",position=" +  docManger.Position + ",goodat=" + "\"" + docManger.Goodat + "\"" + ",introduction=" +
-                "\"" + docManger.Introduction + "\"" + ",Image=" + "\"" + docManger.Image + "\"" +"where id=" +docManger.Id, mysql);
+                "\"" + docManger.Introduction + "\"" + ",Image=" + "\"" + docManger.Image + "\"" +
+                ",gonghao=" + "'" + docManger.gonghao + "'"+ ",danwei=" + "'" + docManger.danwei +
+                 "' where id=" +docManger.Id, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();
@@ -422,7 +436,7 @@ namespace WebApplication4.Controllers
             }
             DocManger docManger = new DocManger();
             MySqlConnection mysql = getMySqlConnection();
-            MySqlCommand mySqlCommand = getSqlCommand("select id,name,sex,position,goodat,introduction,phone,password,kind,isnew,Image from user where kind=1 and id=" + id, mysql);
+            MySqlCommand mySqlCommand = getSqlCommand("select * from user where kind=1 and id=" + id, mysql);
             mysql.Open();
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
             try
@@ -443,6 +457,8 @@ namespace WebApplication4.Controllers
                         docManger.Phone = reader.GetString("phone");
                         docManger.Password = reader.GetString("password");
                         docManger.Image = reader.GetString("Image");
+                        docManger.gonghao = reader.GetString("gonghao");
+                        docManger.danwei = reader.GetString("danwei");
 
                     }
                 }

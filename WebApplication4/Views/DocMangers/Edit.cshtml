@@ -11,134 +11,150 @@
     @Html.AntiForgeryToken()
 
 
-    <div class="form-horizontal">
-        <h4>医生信息</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.Kind)
-        @Html.HiddenFor(model => model.Isnew)
+<div class="form-horizontal">
+    <h4>医生信息</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Kind)
+    @Html.HiddenFor(model => model.Isnew)
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Sex,
-                      ViewBag.SexList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Sex,
+                  ViewBag.SexList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" style="padding-top:1px">职位:</label>
-            <div class="col-md-10">
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">职位:</label>
+        <div class="col-md-10">
 
-                <label>@Html.RadioButtonFor(model => model.Position, 0, new { htmlAttributes = new { @class = "form-control" } }) 住院医师</label>
-                <label>@Html.RadioButtonFor(model => model.Position, 1, new { htmlAttributes = new { @class = "form-control" } }) 主治医师</label>
-                <label>@Html.RadioButtonFor(model => model.Position, 2, new { htmlAttributes = new { @class = "form-control" } }) 副主任医师</label>
-                <label>@Html.RadioButtonFor(model => model.Position, 3, new { htmlAttributes = new { @class = "form-control" } }) 主任医师</label>
+            <label>@Html.RadioButtonFor(model => model.Position, 0, new { htmlAttributes = new { @class = "form-control" } }) 住院医师</label>
+            <label>@Html.RadioButtonFor(model => model.Position, 1, new { htmlAttributes = new { @class = "form-control" } }) 主治医师</label>
+            <label>@Html.RadioButtonFor(model => model.Position, 2, new { htmlAttributes = new { @class = "form-control" } }) 副主任医师</label>
+            <label>@Html.RadioButtonFor(model => model.Position, 3, new { htmlAttributes = new { @class = "form-control" } }) 主任医师</label>
 
-                @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
-            </div>
+            @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Goodat, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Goodat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Goodat, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">单位:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.danwei, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.danwei, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Introduction, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="col-md-10" style="padding-left:0">
-                    <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:150px;width:400px" id="Introduction" name="Introduction" rows="2">@Model.Introduction</textarea>
-                    @Html.ValidationMessageFor(model => model.Introduction, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">工号:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.gonghao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.gonghao, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2">选择头像</label>
-            <div class="col-md-10">
-                @{
-                    if (Model.Image == "")
-                    {
-                        <div>
-                            <img height="100" width="100" src="http://58.192.132.31:9010/pic/plus.jpg" id="my-img1">
-                            <img src="#" id="cb1" height="100" width="100" style="display:none" class="pic" />
-                            <input type="file" name="filename" id="filename" style="display:none" />
-                        </div>
-                        <div>
-                            <input type="button" id="btn1" value="移除" style="display:none" />&nbsp;&nbsp;
-                            <input type="button" id="btn2" value="修改" style="display:none" />
-
-                        </div>
-                    }
-                    else
-                    {
-                        <img height="100" width="100" src="http://58.192.132.31:9010/pic/plus.jpg" id="my-img1" style="display:none">
-                        <img src="@Model.Image" id="cb1" height="100" width="100" class="pic" />
-                        <input type="file" name="filename" id="filename" style="display:none" />
-                        <div>
-                            <input type="button" id="btn1" value="移除" />&nbsp;&nbsp;
-                            <input type="button" id="btn2" value="修改" />
-                        </div>
-                    }
-                }
-
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Goodat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Goodat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Goodat, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
-            <div id="innerdiv" style="position:absolute;">
-                <img id="bigimg" style="border:5px solid #fff;" src="" />
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <div class="col-md-10" style="display:none">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
-                <input type="submit" value="保存" class="btn btn-default" />
-                <a href="javascript:window.history.go(-1)">返回</a>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Introduction, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="col-md-10" style="padding-left:0">
+                <textarea cols="20" htmlattributes="{ class = white-space:pre-wrap }" style="height:150px;width:400px" id="Introduction" name="Introduction" rows="2">@Model.Introduction</textarea>
+                @Html.ValidationMessageFor(model => model.Introduction, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">选择头像</label>
+        <div class="col-md-10">
+            @{
+                if (Model.Image == "")
+                {
+                    <div>
+                        <img height="100" width="100" src="http://58.192.132.31:9010/pic/plus.jpg" id="my-img1">
+                        <img src="#" id="cb1" height="100" width="100" style="display:none" class="pic" />
+                        <input type="file" name="filename" id="filename" style="display:none" />
+                    </div>
+                    <div>
+                        <input type="button" id="btn1" value="移除" style="display:none" />&nbsp;&nbsp;
+                        <input type="button" id="btn2" value="修改" style="display:none" />
+
+                    </div>
+                }
+                else
+                {
+                    <img height="100" width="100" src="http://58.192.132.31:9010/pic/plus.jpg" id="my-img1" style="display:none">
+                    <img src="@Model.Image" id="cb1" height="100" width="100" class="pic" />
+                    <input type="file" name="filename" id="filename" style="display:none" />
+                    <div>
+                        <input type="button" id="btn1" value="移除" />&nbsp;&nbsp;
+                        <input type="button" id="btn2" value="修改" />
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+        <div id="innerdiv" style="position:absolute;">
+            <img id="bigimg" style="border:5px solid #fff;" src="" />
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-md-10" style="display:none">
+            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+</div>
 }   
 
 

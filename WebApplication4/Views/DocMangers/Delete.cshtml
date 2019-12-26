@@ -36,10 +36,41 @@
 
         <dt>
             @Html.DisplayNameFor(model => model.Position)
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Position)
+            @if (Model.Position == 0)
+            {
+                @:住院医师
+            }
+            else if (Model.Position == 1)
+            {
+                @:主治医师
+            }
+            else if (Model.Position == 2)
+            {
+                @:副主任医师
+            }
+            else if (Model.Position == 3)
+            {
+                @:主任医师
+            }
+        </dd>
+
+        <dt>
+            单位
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.danwei)
+        </dd>
+
+        <dt>
+            工号
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.gonghao)
         </dd>
 
         <dt>
@@ -63,7 +94,16 @@
         </dt>
 
         <dd>
-            <img src="@Html.DisplayFor(model => model.Image)" width="100" height="100" id="image">
+            <div style="overflow-y:auto; overflow-x:auto;">
+                @if (Model.Image == "")
+                {
+                    <text>暂时没有头像</text>
+                }
+                else
+                {
+                    <img src="@Html.DisplayFor(model => model.Image)" width="150" height="150" id="image">
+                }
+            </div>
         </dd>
 
     </dl>

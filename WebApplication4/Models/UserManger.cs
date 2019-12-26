@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebApplication4.Models
 {
-    public class UserManger 
+    public class UserManger
     {
         public int Id { get; set; }
 
@@ -19,7 +19,8 @@ namespace WebApplication4.Models
         public string Password { get; set; }
 
         [Display(Name = "手机号")]
-        [StringLength(100)]
+        [MinLength(11)]
+        [MaxLength(11)]
         public string Phone { get; set; }
 
         [Display(Name = "筛查号")]
@@ -28,6 +29,8 @@ namespace WebApplication4.Models
        
 
         [Display(Name = "身份证号")]
+        [MinLength(18)]
+        [MaxLength(18)]
         public string Identinum { get; set; }
         public int checkidentinum=2;
 

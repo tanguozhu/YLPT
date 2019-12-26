@@ -48,6 +48,23 @@
     </div>
 
     <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">单位:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.danwei, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.danwei, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">工号:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.gonghao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.gonghao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })

@@ -35,7 +35,7 @@ namespace WebApplication4.Models
 
         [Display(Name = "手机号")]
         [Required]
-        [StringLength(100)]
+        [StringLength(11, MinimumLength = 11)]
         public string Phone { get; set; }
 
         [Display(Name = "密码")]
@@ -44,6 +44,12 @@ namespace WebApplication4.Models
         public string Password { get; set; }
 
         public string Kind { get; set; }
+
+        public string gonghao { get; set; }
+
+        public string danwei { get; set; }
+
+
         public string Isnew { get; set; }
 
         [Display(Name = "图片")]
