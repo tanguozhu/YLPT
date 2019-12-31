@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebApplication4.Models.patient>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>主页</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            序号
+        </th>
+        <th>
+            分期
+        </th>
+        <th>
+            年龄
+        </th>
+        <th>
+            医保类型
+        </th>
+        <th>
+            身高
+        </th>
+        <th>
+            体重
+        </th>
+        <th>
+            病人体表面积
+        </th>
+        <th>
+            综合最优方案序号
+        </th>
+        <th>
+            费用预估值
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.insurance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bestcase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.feepredicate)
+        </td>
+        <td>
+
+            @Html.ActionLink("查看详情", "Details", new { id = item.id })
+        </td>
+    </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

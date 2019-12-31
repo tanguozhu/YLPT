@@ -22,5 +22,20 @@ namespace WebApplication4.Models
         public DataTable dt7;
         public DataTable dt8;
         public DataTable dt9;
+
+        public DataTable D51;
+        public DataTable D52;
+        public DataTable D531;
+        public DataTable D532;
+        public DataTable D533;
+        public DataTable D534;
+        public DataTable D541;
+        public DataTable D542;
+        public DataTable D543;
+        public DataTable D544;
+        public DataTable D551;
+        public DataTable D552;
+        public DataTable D553;
+
     }
 }

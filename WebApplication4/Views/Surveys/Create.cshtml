@@ -52,7 +52,7 @@
         <div class="form-group" style="font-size:18px;padding:3px;">
             <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出生日期:</label>
             <div class="col-md-10" style="margin-bottom:8px">
-                <input class="form-control" data-val="true" id="births" name="births" type="date" value="">
+                <input class="form-control" data-val="true" id="births" name="births" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
         </div>
 
@@ -171,66 +171,82 @@
 
         <div class="form-group" style="font-size:18px;padding:3px;">
             <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本人常用电话:</label>
-            <div class="col-md-10" style="margin-bottom:8px">
+            <div class="col-md-2" style="margin-bottom:8px">
                 <input class="form-control text-box single-line" data-val="true" id="commomphones" name="commomphones" type="text" value="@Model.phone" disabled="disabled">
-            </div>
-        </div>
 
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="connect1" name="connect1" type="text" value="">
-                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="conphones1" name="conphones1" type="text" value="">
-                </div>
-            </div>
-        </div>
+            <div class="col-md-8">
+                <div>
+                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal1" />
+                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal2" style="display:none" />
+                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal3" style="display:none" />
+                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal4" style="display:none" />
 
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="connect2" name="connect2" type="text" value="">
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="conphones2" name="conphones2" type="text" value="">
+        <div id="lianxi1" style="display:none">
+            <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="connect1" name="connect1" type="text" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="conphones1" name="conphones1" type="text" value="">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="connect3" name="connect3" type="text" value="">
+        <div id="lianxi2" style="display:none">
+            <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A93&nbsp;&nbsp;&nbsp;&nbsp;联系人2(关系):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="connect2" name="connect2" type="text" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A94&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="conphones2" name="conphones2" type="text" value="">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="conphones3" name="conphones3" type="text" value="">
+
+        <div id="lianxi3" style="display:none">
+            <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A95&nbsp;&nbsp;&nbsp;&nbsp;联系人3(关系):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="connect3" name="connect3" type="text" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A96&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="conphones3" name="conphones3" type="text" value="">
+                    </div>
                 </div>
             </div>
         </div>
+
 
         @{
             int Currentresidences = 0;
         }
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0;margin-top:50px">
             <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现居地:</label>
             <div class="col-md-10">
 
@@ -320,12 +336,12 @@
         <div class="form-group" style="font-size:18px;padding:3px;">
             <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B11&nbsp;&nbsp;&nbsp;&nbsp;近半年体重是否下降:</label>
             <div class="col-md-8" style="margin-bottom:8px">
-                <label>@Html.RadioButtonFor(model => dropweights, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
-                <label>@Html.RadioButtonFor(model => dropweights, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+                <label>@Html.RadioButtonFor(model => dropweights, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check(0)" }) 否</label>
+                <label>@Html.RadioButtonFor(model => dropweights, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check(1)" }) 是</label>
             </div>
         </div>
 
-        <div class="form-group" style="font-size:18px;padding:3px;">
+        <div class="form-group" style="font-size:18px;padding:3px;display:none" id="xiajiang">
             <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B111&nbsp;&nbsp;&nbsp;&nbsp;若是，以前体重为(kg):</label>
             <div class="col-md-8" style="margin-bottom:8px">
                 <input class="form-control text-box single-line" data-val="true" id="refweights" name="refweights" type="text" value="">
@@ -417,82 +433,84 @@
         </div>
 
         @{
-            int HPs = 2;
+            int HPs = 0;
         }
         <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
             <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">B7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;曾经是否感染幽门螺杆菌(HP):</label>
             <div class="col-md-8">
 
 
-                <label>@Html.RadioButtonFor(model => HPs, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                <label>@Html.RadioButtonFor(model => HPs, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(0)" }) 否</label>
 
-                <label>@Html.RadioButtonFor(model => HPs, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
-                <label>@Html.RadioButtonFor(model => HPs, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
+                <label>@Html.RadioButtonFor(model => HPs, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(1)" }) 是</label>
+                <label>@Html.RadioButtonFor(model => HPs, 9, new { htmlAttributes = new { @class = "form-control" }, onclick = "check1(9)" }) 不清楚</label>
 
 
             </div>
         </div>
 
+        <div id="kangjun" style="display:none">
+            @{
+                int isacceptHP = 0;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B71&nbsp;&nbsp;&nbsp;&nbsp;若是，是否接受抗菌治疗:</label>
+                <div class="col-md-8">
 
-        @{
-            int isacceptHP = 2;
-        }
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B71&nbsp;&nbsp;&nbsp;&nbsp;若是，是否接受抗菌治疗:</label>
-            <div class="col-md-8">
+                    <label>@Html.RadioButtonFor(model => isacceptHP, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check2(0)" }) 否</label>
 
-                <label>@Html.RadioButtonFor(model => isacceptHP, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
-
-                <label>@Html.RadioButtonFor(model => isacceptHP, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
-                <label>@Html.RadioButtonFor(model => isacceptHP, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
-
-            </div>
-        </div>
-
-
-        @{
-            int HPtreatment = 0;
-        }
-        <div class="form-group" style="font-size:18px;padding:3px;">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B711&nbsp;&nbsp;&nbsp;&nbsp;若接受治疗，具体治疗方案:</label>
-            <div class="col-md-8">
-                <div class="col-sm-4" style="padding-left:0">
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 1, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+甲硝唑+克拉霉素</label>
-                    </div>
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 2, new { htmlAttributes = new { @class = "form-control" } }) PPI+铋剂+甲硝唑+四环素</label>
-                    </div>
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 3, new { htmlAttributes = new { @class = "form-control" } }) PPI+克拉霉素+阿莫西林/甲硝唑</label>
-                    </div>
-
-                </div>
-                <div class="col-sm-4">
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 4, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+甲硝唑</label>
-                    </div>
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 5, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+左氧氟沙星</label>
-                    </div>
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 6, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+克拉霉素+铋剂</label>
-                    </div>
-
-                </div>
-                <div class="col-sm-4" style="padding-left:0">
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 7, new { htmlAttributes = new { @class = "form-control" } }) 其他</label>
-                    </div>
-
-                    <div>
-                        <label>@Html.RadioButtonFor(model => HPtreatment, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
-                    </div>
+                    <label>@Html.RadioButtonFor(model => isacceptHP, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check2(1)" }) 是</label>
+                    <label>@Html.RadioButtonFor(model => isacceptHP, 9, new { htmlAttributes = new { @class = "form-control" }, onclick = "check2(9)" }) 不清楚</label>
 
                 </div>
             </div>
 
+
+            @{
+                int HPtreatment = 1;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;display:none" id="ppi">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B711&nbsp;&nbsp;&nbsp;&nbsp;若接受治疗，具体治疗方案:</label>
+                <div class="col-md-8">
+                    <div class="col-sm-4" style="padding-left:0">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 1, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+甲硝唑+克拉霉素</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 2, new { htmlAttributes = new { @class = "form-control" } }) PPI+铋剂+甲硝唑+四环素</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 3, new { htmlAttributes = new { @class = "form-control" } }) PPI+克拉霉素+阿莫西林/甲硝唑</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 4, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+甲硝唑</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 5, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+左氧氟沙星</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 6, new { htmlAttributes = new { @class = "form-control" } }) PPI+阿莫西林+克拉霉素+铋剂</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4" style="padding-left:0">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 7, new { htmlAttributes = new { @class = "form-control" } }) 其他</label>
+                        </div>
+
+                        <div>
+                            <label>@Html.RadioButtonFor(model => HPtreatment, 9, new { htmlAttributes = new { @class = "form-control" } }) 不清楚</label>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
+     
 
     </div>
     <hr style="border:#000000 1px solid;" />
@@ -508,80 +526,81 @@
             <div class="col-md-10">
 
 
-                <label>@Html.RadioButtonFor(model => whetherSmoking, 1, new { htmlAttributes = new { @class = "form-control" } }) 从不</label>
+                <label>@Html.RadioButtonFor(model => whetherSmoking, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check3(1)" }) 从不</label>
 
-                <label>@Html.RadioButtonFor(model => whetherSmoking, 2, new { htmlAttributes = new { @class = "form-control" } }) 已戒烟(不吸烟三个月以上)</label>
-                <label>@Html.RadioButtonFor(model => whetherSmoking, 3, new { htmlAttributes = new { @class = "form-control" } }) 吸烟(每天>= 1支，持续6个月以上)</label>
+                <label>@Html.RadioButtonFor(model => whetherSmoking, 2, new { htmlAttributes = new { @class = "form-control" }, onclick = "check3(2)" }) 已戒烟(不吸烟三个月以上)</label>
+                <label>@Html.RadioButtonFor(model => whetherSmoking, 3, new { htmlAttributes = new { @class = "form-control" }, onclick = "check3(3)" }) 吸烟(每天>= 1支，持续6个月以上)</label>
 
 
             </div>
         </div>
 
+        <div id="xiyan" style="display:none">
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C11&nbsp;&nbsp;&nbsp;&nbsp;若吸烟</label>
+                <div class="col-md-8">
+                </div>
+            </div>
 
-
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C11&nbsp;&nbsp;&nbsp;&nbsp;若吸烟</label>
             <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C111&nbsp;&nbsp;&nbsp;每天吸烟量(只):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="smokingPerDay" name="smokingPerDay" type="text" value="">
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C111&nbsp;&nbsp;&nbsp;每天吸烟量(只):</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="smokingPerDay" name="smokingPerDay" type="text" value="">
+            <div class="col-md-4" style="padding-left:0">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C112&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                    <div class="col-md-7" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="regularSmoking" name="regularSmoking" type="text" value="">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4" style="padding-left:0">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C112&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
-                <div class="col-md-7" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="regularSmoking" name="regularSmoking" type="text" value="">
+        <div id="buxiyan" style="display:none">
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C12&nbsp;&nbsp;&nbsp;&nbsp;若已经戒烟</label>
+                <div class="col-md-8">
                 </div>
             </div>
-        </div>
 
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C12&nbsp;&nbsp;&nbsp;&nbsp;若已经戒烟</label>
             <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C121&nbsp;&nbsp;&nbsp;戒烟前每天吸烟量(只):</label>
+                    <div class="col-md-7" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="regularsmokingbefore" name="regularsmokingbefore" type="text" value="">
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="col-md-4" style="padding-left:0">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C122&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                    <div class="col-md-7" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="rgbefore" name="rgbefore" type="text" value="">
+                    </div>
+                </div>
+            </div>
 
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C121&nbsp;&nbsp;&nbsp;戒烟前每天吸烟量(只):</label>
-                <div class="col-md-7" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="regularsmokingbefore" name="regularsmokingbefore" type="text" value="">
+            <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C123&nbsp;&nbsp;&nbsp;戒烟年龄(岁):</label>
+                    <div class="col-md-8" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="smokingCessationAge" name="smokingCessationAge" type="text" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="padding-left:0">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C124&nbsp;&nbsp;&nbsp;&nbsp;戒烟年数(年):</label>
+                    <div class="col-md-7" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="yearsOfSmokingCessation" name="yearsOfSmokingCessation" type="text" value="">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4" style="padding-left:0">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C122&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
-                <div class="col-md-7" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="rgbefore" name="rgbefore" type="text" value="">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C123&nbsp;&nbsp;&nbsp;戒烟年龄(岁):</label>
-                <div class="col-md-8" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="smokingCessationAge" name="smokingCessationAge" type="text" value="">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" style="padding-left:0">
-            <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C124&nbsp;&nbsp;&nbsp;&nbsp;戒烟年数(年):</label>
-                <div class="col-md-7" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="yearsOfSmokingCessation" name="yearsOfSmokingCessation" type="text" value="">
-                </div>
-            </div>
-        </div>
-
+      
         @{
             int passiveSmoking = 2;
         }
@@ -608,90 +627,92 @@
             <div class="col-md-10">
                 <div class="col-sm-6">
                     <div>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 1, new { htmlAttributes = new { @class = "form-control" } }) 从不饮或几乎从不喝</label>
+                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(1)" }) 从不饮或几乎从不喝</label>
                     </div>
                     <div>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 2, new { htmlAttributes = new { @class = "form-control" } }) 只在特殊场合下（如喜庆、聚会或节假日）偶尔喝</label>
+                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 2, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(2)" }) 只在特殊场合下（如喜庆、聚会或节假日）偶尔喝</label>
                     </div>
                     <div>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 3, new { htmlAttributes = new { @class = "form-control" } }) 每个月都喝，但频度不到每周一次</label>
+                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 3, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(3)" }) 每个月都喝，但频度不到每周一次</label>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 4, new { htmlAttributes = new { @class = "form-control" } }) 1次/周</label>
+                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 4, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(4)" }) 1次/周</label>
                     </div>
                     <div>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 5, new { htmlAttributes = new { @class = "form-control" } }) 2-3次/周</label>
+                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 5, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(5)" }) 2-3次/周</label>
                     </div>
                     <div>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 6, new { htmlAttributes = new { @class = "form-control" } }) 4次及以上/周</label>
+                        <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 6, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(6)" }) 4次及以上/周</label>
                     </div>
                 </div>
             </div>
         </div>
+        <div id="yinjiu" style="display:none">
+            <div class="col-md-8">
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                    <label class="control-label col-md-6" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C21若饮酒,开始规律饮酒年龄(岁):</label>
+                    <div class="col-md-6" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="startRegularDrinkingAge" name="startRegularDrinkingAge" type="text" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="padding-left:0">
+                <div class="form-group" style="font-size:18px;padding:3px;">
+                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C22&nbsp;&nbsp;&nbsp;&nbsp;规律饮酒(年):</label>
+                    <div class="col-md-7" style="margin-bottom:8px">
+                        <input class="form-control text-box single-line" data-val="true" id="regularDrinking" name="regularDrinking" type="text" value="">
+                    </div>
+                </div>
+            </div>
 
-        <div class="col-md-8">
-            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                <label class="control-label col-md-6" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C21若饮酒,开始规律饮酒年龄(岁):</label>
-                <div class="col-md-6" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="startRegularDrinkingAge" name="startRegularDrinkingAge" type="text" value="">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" style="padding-left:0">
+
             <div class="form-group" style="font-size:18px;padding:3px;">
-                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C22&nbsp;&nbsp;&nbsp;&nbsp;规律饮酒(年):</label>
+                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(规律饮酒定义为每周至少喝一次及以上)</label>
                 <div class="col-md-7" style="margin-bottom:8px">
-                    <input class="form-control text-box single-line" data-val="true" id="regularDrinking" name="regularDrinking" type="text" value="">
+                    &nbsp;&nbsp;
+                </div>
+            </div>
+
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C23&nbsp;&nbsp;&nbsp;&nbsp;每次饮酒量(两):</label>
+                <div class="col-md-8" style="margin-bottom:8px">
+                    <input class="form-control text-box single-line" data-val="true" id="drinkingAmountEachTime" name="drinkingAmountEachTime" type="text" value="">
+                </div>
+            </div>
+
+            @{
+                int drinkingReaction = 1;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C24&nbsp;&nbsp;&nbsp;&nbsp;喝酒后会出现脸红、心跳加快及头晕等反应:</label>
+                <div class="col-md-7">
+                    <div class="col-sm-6">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => drinkingReaction, 1, new { htmlAttributes = new { @class = "form-control" } }) 喝上—两口就会出现</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => drinkingReaction, 2, new { htmlAttributes = new { @class = "form-control" } }) 少量饮酒后会出现</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => drinkingReaction, 3, new { htmlAttributes = new { @class = "form-control" } }) 大量饮酒后才会出现</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => drinkingReaction, 4, new { htmlAttributes = new { @class = "form-control" } }) 不会出现类似反应</label>
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
-
-
-        <div class="form-group" style="font-size:18px;padding:3px;">
-            <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(规律饮酒定义为每周至少喝一次及以上)</label>
-            <div class="col-md-7" style="margin-bottom:8px">
-                &nbsp;&nbsp;
-            </div>
-        </div>
-
-        <div class="form-group" style="font-size:18px;padding:3px;">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C23&nbsp;&nbsp;&nbsp;&nbsp;每次饮酒量(两):</label>
-            <div class="col-md-8" style="margin-bottom:8px">
-                <input class="form-control text-box single-line" data-val="true" id="drinkingAmountEachTime" name="drinkingAmountEachTime" type="text" value="">
-            </div>
-        </div>
-
-        @{
-            int drinkingReaction = 0;
-        }
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-            <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C24&nbsp;&nbsp;&nbsp;&nbsp;喝酒后会出现脸红、心跳加快及头晕等反应:</label>
-            <div class="col-md-7">
-                <div class="col-sm-6">
-                    <div>
-                        <label>@Html.RadioButtonFor(model => drinkingReaction, 1, new { htmlAttributes = new { @class = "form-control" } }) 喝上—两口就会出现</label>
-                    </div>
-                    <div>
-                        <label>@Html.RadioButtonFor(model => drinkingReaction, 2, new { htmlAttributes = new { @class = "form-control" } }) 少量饮酒后会出现</label>
-                    </div>
-
-                </div>
-                <div class="col-sm-6">
-                    <div>
-                        <label>@Html.RadioButtonFor(model => drinkingReaction, 3, new { htmlAttributes = new { @class = "form-control" } }) 大量饮酒后才会出现</label>
-                    </div>
-                    <div>
-                        <label>@Html.RadioButtonFor(model => drinkingReaction, 4, new { htmlAttributes = new { @class = "form-control" } }) 不会出现类似反应</label>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
+        
 
         <hr />
         <h4>饮食史</h4>
@@ -765,40 +786,42 @@
             <div class="col-md-7">
 
 
-                <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 1, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+                <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check5(1)" }) 否</label>
 
-                <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 2, new { htmlAttributes = new { @class = "form-control" } }) 是,但现在已不饮 </label>
-                <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 3, new { htmlAttributes = new { @class = "form-control" } }) 是,且现在仍在饮用</label>
+                <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 2, new { htmlAttributes = new { @class = "form-control" }, onclick = "check5(2)" }) 是,但现在已不饮 </label>
+                <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 3, new { htmlAttributes = new { @class = "form-control" }, onclick = "check5(3)" }) 是,且现在仍在饮用</label>
 
 
             </div>
         </div>
-
-        <div class="form-group" style="font-size:18px;padding:3px;">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C41&nbsp;&nbsp;&nbsp;&nbsp;经常饮茶年数(年):</label>
-            <div class="col-md-8" style="margin-bottom:8px">
-                <input class="form-control text-box single-line" data-val="true" id="yearsOfTeaDrinking" name="yearsOfTeaDrinking" type="text" value="">
-            </div>
-        </div>
-
-        @{
-            int strongOrLightTea = 0;
-        }
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C42&nbsp;&nbsp;&nbsp;&nbsp;喜欢喝浓茶还是淡茶:</label>
-            <div class="col-md-8">
-
-
-                <label>@Html.RadioButtonFor(model => strongOrLightTea, 1, new { htmlAttributes = new { @class = "form-control" } }) 淡茶</label>
-
-                <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 适中</label>
-
-                <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 浓茶</label>
-
-
+        <div id="yincha" style="display:none">
+            <div class="form-group" style="font-size:18px;padding:3px;">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C41&nbsp;&nbsp;&nbsp;&nbsp;经常饮茶年数(年):</label>
+                <div class="col-md-8" style="margin-bottom:8px">
+                    <input class="form-control text-box single-line" data-val="true" id="yearsOfTeaDrinking" name="yearsOfTeaDrinking" type="text" value="">
+                </div>
             </div>
 
+            @{
+                int strongOrLightTea = 1;
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C42&nbsp;&nbsp;&nbsp;&nbsp;喜欢喝浓茶还是淡茶:</label>
+                <div class="col-md-8">
+
+
+                    <label>@Html.RadioButtonFor(model => strongOrLightTea, 1, new { htmlAttributes = new { @class = "form-control" } }) 淡茶</label>
+
+                    <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 适中</label>
+
+                    <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 浓茶</label>
+
+
+                </div>
+
+            </div>
         </div>
+      
 
 
     </div>
@@ -844,436 +867,467 @@
             <label class="control-label col-md-7" style="padding-top:1px;padding-left:0">D5&nbsp;&nbsp;&nbsp;&nbsp;亲属中，有没有人曾经被医生诊断过患有消化道肿瘤或者其它肿瘤:</label>
             <div class="col-md-5">
 
-                <label>@Html.RadioButtonFor(model => hasTumor, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+                <label>@Html.RadioButtonFor(model => hasTumor, 0, new { htmlAttributes = new { @class = "form-control" }, onclick = "check6(0)" }) 无</label>
 
-                <label>@Html.RadioButtonFor(model => hasTumor, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                <label>@Html.RadioButtonFor(model => hasTumor, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check6(1)" }) 有</label>
 
             </div>
         </div>
 
-        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-            <label class="control-label col-md-10" style="padding-top:1px;padding-left:0"> 若有，请为各患病亲属填入疾病名称。注：其它肿瘤填肿瘤名称(无肿瘤填“无”，不清楚或不详填“不详”)</label>
-            <div class="col-md-2">
-                &nbsp;
+        <div id="zhongliu" style="display:none">
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-10" style="padding-top:1px;padding-left:0"> 若有，请为各患病亲属填入疾病名称。注：其它肿瘤填肿瘤名称(无肿瘤填“无”，不清楚或不详填“不详”)</label>
+                <div class="col-md-2">
+                    &nbsp;
+                </div>
             </div>
+
+            <table class="table" style="font-size:18px;padding:3px">
+                <tr>
+                    <th>
+                        亲属关系
+                    </th>
+
+                    <th>
+                        性别
+                    </th>
+                    <th>
+                        消化道肿瘤
+                    </th>
+                    <th>
+                        其他肿瘤
+                    </th>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        范例:某亲属
+                    </td>
+
+                    <td>
+                        女
+                    </td>
+                    <td>
+                        有
+                    </td>
+                    <td>
+                        无
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>一级亲属</label>
+                    </td>
+
+                    <td>
+                        
+                            <div>
+                                <input type="button" value="添加父母" class="btn btn-info" id="fumu" />
+                                <input type="button" value="添加父母" class="btn btn-info" id="fumu1" style="display:none" />
+                            </div>
+                       
+                    </td>
+                    <td>
+                        <div>
+                            <input type="button" value="添加同胞" class="btn btn-info" id="tongbao" />
+                            <input type="button" value="添加同胞" class="btn btn-info" id="tongbao1" style="display:none" />
+                            <input type="button" value="添加同胞" class="btn btn-info" id="tongbao2" style="display:none" />
+                            <input type="button" value="添加同胞" class="btn btn-info" id="tongbao3" style="display:none" />
+                            <input type="button" value="添加同胞" class="btn btn-info" id="tongbao4" style="display:none" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="button" value="添加子女" class="btn btn-info" id="zinv" />
+                            <input type="button" value="添加子女" class="btn btn-info" id="zinv1" style="display:none" />
+                            <input type="button" value="添加子女" class="btn btn-info" id="zinv2" style="display:none" />
+                            <input type="button" value="添加子女" class="btn btn-info" id="zinv3" style="display:none" />
+                            <input type="button" value="添加子女" class="btn btn-info" id="zinv4" style="display:none" />
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="fuqin" style="display:none">
+                    <td>
+                        D51父亲
+                    </td>
+
+                    <td>
+                        男
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer1 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer1, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer1, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer1" name="othercancer1" type="text" value="">
+                    </td>
+
+                </tr>
+                <tr id="muqin" style="display:none">
+                    <td>
+                        D52母亲
+                    </td>
+
+                    <td>
+                        女
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer2 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer2, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer2, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer2" name="othercancer2" type="text" value="">
+                    </td>
+
+                </tr>
+
+                <tr id="tb" style="display:none">
+                    <td>
+
+                        D531同胞1:<input class="form-control text-box single-line" data-val="true" id="kinship3" name="kinship3" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex3 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex3, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex3, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer3 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer3, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer3, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer3" name="othercancer3" type="text" value="">
+                    </td>
+
+                </tr>
+                <tr id="tb1" style="display:none">
+                    <td>
+                        D532同胞2:
+                        <input class="form-control text-box single-line" data-val="true" id="kinship4" name="kinship4" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex4 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex4, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex4, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer4 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer4, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer4, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer4" name="othercancer4" type="text" value="">
+                    </td>
+
+                </tr>
+
+                <tr id="tb2" style="display:none">
+                    <td>
+                        D533同胞3:
+                        <input class="form-control text-box single-line" data-val="true" id="kinship5" name="kinship5" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex5 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex5, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex5, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer5 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer5, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer5, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer5" name="othercancer5" type="text" value="">
+                    </td>
+
+                </tr>
+
+                <tr id="tb3" style="display:none">
+                    <td>
+                        D534同胞4:
+                        <input class="form-control text-box single-line" data-val="true" id="kinship6" name="kinship6" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex6 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex6, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex6, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer6 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer6, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer6, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer6" name="othercancer6" type="text" value="">
+                    </td>
+
+                </tr>
+
+                <tr id="zv" style="display:none">
+                    <td>
+                        D541子女1:
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex7 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex7, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex7, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer7 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer7, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer7, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer7" name="othercancer7" type="text" value="">
+                    </td>
+
+                </tr>
+
+                <tr id="zv1" style="display:none">
+                    <td>
+                        D542子女2:
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex8 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex8, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex8, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer8 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer8, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer8, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer8" name="othercancer8" type="text" value="">
+                    </td>
+
+                </tr>
+
+
+                <tr id="zv2" style="display:none">
+                    <td>
+                        D543子女3:
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex9 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex9, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex9, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer9 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer9, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer9, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer9" name="othercancer9" type="text" value="">
+                    </td>
+
+                </tr>
+                <tr id="zv3" style="display:none">
+                    <td>
+                        D544子女4:
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex10 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex10, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex10, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer10 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer10, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer10, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer10" name="othercancer10" type="text" value="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>二级亲属</label>
+                    </td>
+
+                    <td>
+                    
+                        <div>
+                            <input type="button" value="添加二级亲属" class="btn btn-info" id="erji" />
+                            <input type="button" value="添加二级亲属" class="btn btn-info" id="erji1" style="display:none" />
+                            <input type="button" value="添加二级亲属" class="btn btn-info" id="erji2" style="display:none" />
+                            <input type="button" value="添加二级亲属" class="btn btn-info" id="erji3" style="display:none" />
+                            
+                        </div>
+                   
+                    </td>
+
+                    <td></td>
+                    <td></td>
+
+                </tr>
+                <tr id="ej" style="display:none"> 
+                    <td>
+                        D551二级亲属1:
+                        <input class="form-control text-box single-line" data-val="true" id="kinship11" name="kinship11" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex11 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex11, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex11, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer11 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer11, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer11, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer11" name="othercancer11" type="text" value="">
+                    </td>
+
+                </tr>
+
+                <tr id="ej1" style="display:none">
+                    <td>
+                        D552二级亲属2:
+                        <input class="form-control text-box single-line" data-val="true" id="kinship12" name="kinship12" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex12 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex12, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex12, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer12 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer12, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer12, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer12" name="othercancer12" type="text" value="">
+                    </td>
+
+                </tr>
+                <tr id="ej2" style="display:none">
+                    <td>
+                        D553二级亲属3:
+                        <input class="form-control text-box single-line" data-val="true" id="kinship13" name="kinship13" type="text" value="" style="width:100px">
+
+                    </td>
+
+                    <td>
+                        @{
+                            int cansersex13 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => cansersex13, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
+
+                        <label>@Html.RadioButtonFor(model => cansersex13, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
+                    </td>
+                    <td>
+                        @{
+                            int Gastrolcancer13 = 0;
+                        }
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer13, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+
+                        <label>@Html.RadioButtonFor(model => Gastrolcancer13, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+                    </td>
+                    <td>
+                        <input class="form-control text-box single-line" data-val="true" id="othercancer13" name="othercancer13" type="text" value="">
+                    </td>
+
+                </tr>
+
+
+
+            </table>
         </div>
-
-        <table class="table" style="font-size:18px;padding:3px">
-            <tr>
-                <th>
-                    亲属关系
-                </th>
-
-                <th>
-                    性别
-                </th>
-                <th>
-                    消化道肿瘤
-                </th>
-                <th>
-                    其他肿瘤
-                </th>
-
-
-            </tr>
-
-            <tr>
-                <td>
-                    范例:某亲属
-                </td>
-
-                <td>
-                    女
-                </td>
-                <td>
-                    有
-                </td>
-                <td>
-                    无
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    <label>一级亲属</label>
-                </td>
-
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td>
-                    D51父亲
-                </td>
-
-                <td>
-                    男
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer1 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer1, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer1, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer1" name="othercancer1" type="text" value="">
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    D52母亲
-                </td>
-
-                <td>
-                    女
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer2 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer2, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer2, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer2" name="othercancer2" type="text" value="">
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-
-                    D531同胞1:<input class="form-control text-box single-line" data-val="true" id="kinship3" name="kinship3" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex3 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex3, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex3, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer3 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer3, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer3, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer3" name="othercancer3" type="text" value="">
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    D532同胞2:
-                    <input class="form-control text-box single-line" data-val="true" id="kinship4" name="kinship4" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex4 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex4, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex4, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer4 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer4, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer4, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer4" name="othercancer4" type="text" value="">
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    D533同胞3:
-                    <input class="form-control text-box single-line" data-val="true" id="kinship5" name="kinship5" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex5 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex5, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex5, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer5 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer5, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer5, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer5" name="othercancer5" type="text" value="">
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    D534同胞4:
-                    <input class="form-control text-box single-line" data-val="true" id="kinship6" name="kinship6" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex6 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex6, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex6, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer6 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer6, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer6, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer6" name="othercancer6" type="text" value="">
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    D541子女1:
-                </td>
-
-                <td>
-                    @{
-                        int cansersex7 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex7, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex7, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer7 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer7, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer7, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer7" name="othercancer7" type="text" value="">
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    D542子女2:
-                </td>
-
-                <td>
-                    @{
-                        int cansersex8 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex8, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex8, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer8 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer8, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer8, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer8" name="othercancer8" type="text" value="">
-                </td>
-
-            </tr>
-
-
-            <tr>
-                <td>
-                    D543子女3:
-                </td>
-
-                <td>
-                    @{
-                        int cansersex9 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex9, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex9, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer9 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer9, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer9, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer9" name="othercancer9" type="text" value="">
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    D544子女4:
-                </td>
-
-                <td>
-                    @{
-                        int cansersex10 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex10, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex10, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer10 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer10, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer10, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer10" name="othercancer10" type="text" value="">
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <label>二级亲属</label>
-                </td>
-
-                <td>
-
-                <td></td>
-                <td></td>
-
-            </tr>
-            <tr>
-                <td>
-                    D551二级亲属1:
-                    <input class="form-control text-box single-line" data-val="true" id="kinship11" name="kinship11" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex11 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex11, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex11, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer11 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer11, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer11, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer11" name="othercancer11" type="text" value="">
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    D552二级亲属2:
-                    <input class="form-control text-box single-line" data-val="true" id="kinship12" name="kinship12" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex12 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex12, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex12, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer12 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer12, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer12, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer12" name="othercancer12" type="text" value="">
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    D553二级亲属3:
-                    <input class="form-control text-box single-line" data-val="true" id="kinship13" name="kinship13" type="text" value="" style="width:100px">
-
-                </td>
-
-                <td>
-                    @{
-                        int cansersex13 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => cansersex13, 0, new { htmlAttributes = new { @class = "form-control" } }) 男</label>
-
-                    <label>@Html.RadioButtonFor(model => cansersex13, 1, new { htmlAttributes = new { @class = "form-control" } }) 女</label>
-                </td>
-                <td>
-                    @{
-                        int Gastrolcancer13 = 0;
-                    }
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer13, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-
-                    <label>@Html.RadioButtonFor(model => Gastrolcancer13, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-                </td>
-                <td>
-                    <input class="form-control text-box single-line" data-val="true" id="othercancer13" name="othercancer13" type="text" value="">
-                </td>
-
-            </tr>
-
-
-
-        </table>
-
-
-
-
-
-
+      
 
     </div>
 
@@ -1491,7 +1545,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time1s" name="time1s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time1s" name="time1s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1516,7 +1570,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time2s" name="time2s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time2s" name="time2s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1541,7 +1595,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time3s" name="time3s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time3s" name="time3s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1567,7 +1621,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time4s" name="time4s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time4s" name="time4s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1593,7 +1647,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time5s" name="time5s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time5s" name="time5s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1618,7 +1672,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time6s" name="time6s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time6s" name="time6s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1643,7 +1697,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time7s" name="time7s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time7s" name="time7s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1668,7 +1722,7 @@
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">发生时间:</label>
                     <div class="col-md-9" style="margin-bottom:8px">
-                        <input class="form-control" data-val="true" id="time8s" name="time8s" type="date" value="">
+                        <input class="form-control" data-val="true" id="time8s" name="time8s" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
             </div>
@@ -1840,7 +1894,7 @@
         <div class="form-group" style="font-size:18px;padding:3px;">
             <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">G3&nbsp;&nbsp;&nbsp;&nbsp;调查结束时间:</label>
             <div class="col-md-8" style="margin-bottom:8px">
-                <input class="form-control" data-val="true" id="surveyend" name="surveyend" type="date" value="">
+                <input class="form-control" data-val="true" id="surveyend" name="surveyend" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
         </div>
 
@@ -1884,3 +1938,177 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $('#myModal1').click(function () {
+        $("#lianxi1").show();
+        $("#myModal1").hide();
+        $("#myModal2").show();
+    });
+    $('#myModal2').click(function () {
+        $("#lianxi2").show();
+        $("#myModal2").hide();
+        $("#myModal3").show();
+    });
+    $('#myModal3').click(function () {
+        $("#lianxi3").show();
+        $("#myModal3").hide();
+        $("#myModal4").show();
+    });
+    $('#myModal4').click(function () {
+        alert("最多只能添加3个常用联系人");
+    });
+
+    function check(val) {
+        var dom = $("#xiajiang");
+        if (val == 1) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+    function check1(val) {
+        var dom = $("#kangjun");
+        if (val == 1) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+    function check2(val) {
+        var dom = $("#ppi");
+        if (val == 1) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+    function check3(val) {
+        var dom = $("#xiyan");
+        var dom1 = $("#buxiyan");
+        if (val == 2) {
+            dom1.show();
+            dom.hide();
+        }
+        else if (val == 3) {
+            dom.show();
+            dom1.hide();
+        }
+        else if (val == 1) {
+            dom.hide();
+            dom1.hide();
+        }
+    }
+    function check4(val) {
+        var dom = $("#yinjiu");
+        if (val == 4||val==5||val==6) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+    function check5(val) {
+        var dom = $("#yincha");
+        if (val == 2 || val == 3 ) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+    function check6(val) {
+        var dom = $("#zhongliu");
+        if (val == 1 ) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+
+    $('#fumu').click(function () {
+        $("#fuqin").show();
+        $("#muqin").show();
+        $("#fumu").hide();
+        $("#fumu1").show();
+    });
+    $('#fumu1').click(function () {
+        alert("不能继续添加");
+    });
+
+
+    $('#tongbao').click(function () {
+        $("#tb").show();
+        $("#tongbao").hide();
+        $("#tongbao1").show();
+    });
+    $('#tongbao1').click(function () {
+        $("#tb1").show();
+        $("#tongbao1").hide();
+        $("#tongbao2").show();
+    });
+    $('#tongbao2').click(function () {
+        $("#tb2").show();
+        $("#tongbao2").hide();
+        $("#tongbao3").show();
+    });
+    $('#tongbao3').click(function () {
+        $("#tb3").show();
+        $("#tongbao3").hide();
+        $("#tongbao4").show();
+    });
+    $('#tongbao4').click(function () {
+        alert("最多只能添加4个同胞");
+    });
+
+    $('#zinv').click(function () {
+        $("#zv").show();
+        $("#zinv").hide();
+        $("#zinv1").show();
+    });
+    $('#zinv1').click(function () {
+        $("#zv1").show();
+        $("#zinv1").hide();
+        $("#zinv2").show();
+    });
+    $('#zinv2').click(function () {
+        $("#zv2").show();
+        $("#zinv2").hide();
+        $("#zinv3").show();
+    });
+    $('#zinv3').click(function () {
+        $("#zv3").show();
+        $("#zinv3").hide();
+        $("#zinv4").show();
+    });
+    $('#zinv4').click(function () {
+        alert("最多只能添加4个子女");
+    });
+
+    $('#erji').click(function () {
+        $("#ej").show();
+        $("#erji").hide();
+        $("#erji1").show();
+    });
+    $('#erji1').click(function () {
+        $("#ej1").show();
+        $("#erji1").hide();
+        $("#erji2").show();
+    });
+    $('#erji2').click(function () {
+        $("#ej2").show();
+        $("#erji2").hide();
+        $("#erji3").show();
+    });
+   
+    $('#erji3').click(function () {
+        alert("最多只能添加3个二级亲属");
+    });
+</script>

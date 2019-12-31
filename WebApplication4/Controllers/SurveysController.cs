@@ -760,6 +760,19 @@ namespace WebApplication4.Controllers
             surveys.checkid = Checkid(num);
             surveys.dt4 = Getfamilyhistory(num);
             surveys.dt5 = Getrelationtumor(num);
+            surveys.D51 = Getrelationtumors(num, "D51");
+            surveys.D52 = Getrelationtumors(num, "D52");
+            surveys.D531 = Getrelationtumors(num, "D531");
+            surveys.D532 = Getrelationtumors(num, "D532");
+            surveys.D533 = Getrelationtumors(num, "D533");
+            surveys.D534 = Getrelationtumors(num, "D534");
+            surveys.D541 = Getrelationtumors(num, "D541");
+            surveys.D542 = Getrelationtumors(num, "D542");
+            surveys.D543 = Getrelationtumors(num, "D543");
+            surveys.D544 = Getrelationtumors(num, "D544");
+            surveys.D551 = Getrelationtumors(num, "D551");
+            surveys.D552 = Getrelationtumors(num, "D552");
+            surveys.D553 = Getrelationtumors(num, "D553");
             return View(surveys);
         }
         // POST: Surveys/physicalconditions/5
@@ -1320,7 +1333,7 @@ namespace WebApplication4.Controllers
         {
             MySqlConnection mysql = getMySqlConnection();
             string sql;
-            sql = "select * from physicalconditions where identinum='" + identinum + "'";
+            sql = "select * from physicalconditions where identinum='" + identinum + "';";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
@@ -1330,6 +1343,8 @@ namespace WebApplication4.Controllers
             command.Fill(dt);
             return dt;
         }
+
+
 
         private void Updatephysicalconditions(string identinum, int height, int weight, int dropweight,
         int refweight, int blood, int character, int Psychologicalstress, int anxiety, int Sleepquality, int HP, int isacceptHP, int HPtreatment)
@@ -1487,7 +1502,7 @@ namespace WebApplication4.Controllers
         {
             MySqlConnection mysql = getMySqlConnection();
             string sql;
-            sql = "select * from relationtumor where identinum='" + identinum + "'";
+            sql = "select * from relationtumor where identinum='" + identinum +"';";
             MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
             mysql.Open();
             MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
@@ -1497,6 +1512,24 @@ namespace WebApplication4.Controllers
             command.Fill(dt);
             return dt;
         }
+
+        private DataTable Getrelationtumors(string identinum, string kinshipnum)
+        {
+            MySqlConnection mysql = getMySqlConnection();
+            string sql;
+            sql = "select * from relationtumor where identinum='" + identinum +
+                "' and kinshipnum='" + kinshipnum + "';";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataTable dt = new DataTable();
+            command.Fill(dt);
+            return dt;
+        }
+
+
         private int Ckeckrelationtumor(string identinum,string kinshipnum)
         {
             int a=0;

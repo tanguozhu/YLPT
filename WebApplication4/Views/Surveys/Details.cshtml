@@ -44,286 +44,312 @@
             <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
                 @foreach (DataRow item in Model.dt1.Rows)
                 {
-                    <div class="col-md-6">
-                        <div>
-                            A1姓名:
-                            @item[2]
-                        </div>
-                        <div>
-                            A2性别:
-                            @{
-                                int sex = Convert.ToInt32(item[3]);
-                                string s = "";
-                                if (sex == 0)
-                                {
-                                    s = "男";
-                                }
-                                else
-                                {
-                                    s = "女";
-                                }
-                            }
-                            @s
-                        </div>
-                        <div>
-                            A3出生日期:
-                            @{
-                                DateTime bi = Convert.ToDateTime(item[4]);
-
-                                string birth = "";
-
-                                birth = bi.ToString("yyyy-MM-dd");
-                            }
-                            @birth
-                        </div>
-                        <div>
-                            A31年龄:
-                            @{
-                                DateTime age = Convert.ToDateTime(item[4]);
-
-                                int year;
-
-                                year = DateTime.Now.Year - age.Year;
-                            }
-                            @year 岁
-                        </div>
-                        <div>
-                            A4身份证号:
-                            @{
-                                string identi = Convert.ToString(item[1]);
-                            }
-                            @identi
-                        </div>
+                <div class="col-md-6">
+                    <div>
+                        A1姓名:
+                        @item[2]
+                    </div>
+                    <div>
+                        A2性别:
                         @{
-                            int mingzu = Convert.ToInt32(item[5]);
-                            if (mingzu == 4)
+                            int sex = Convert.ToInt32(item[3]);
+                            string s = "";
+                            if (sex == 0)
                             {
-                                string Specificnation = Convert.ToString(item[6]);
-                                <div>
-                                    A5民族:
-                                    @Specificnation
-                                </div>
+                                s = "男";
                             }
                             else
                             {
-                                <div>
-                                    A5民族:
-                                    @{
-
-                                        string ming = "";
-                                        if (mingzu == 1)
-                                        {
-                                            ming = "汉族";
-                                        }
-                                        else if (mingzu == 2)
-                                        {
-                                            ming = "回族";
-                                        }
-                                        else if (mingzu == 3)
-                                        {
-                                            ming = "满族";
-                                        }
-
-                                    }
-                                    @ming
-                                </div>
-
+                                s = "女";
                             }
+                        }
+                        @s
+                    </div>
+                    <div>
+                        A3出生日期:
+                        @{
+                            DateTime bi = Convert.ToDateTime(item[4]);
+
+                            string birth = "";
+
+                            birth = bi.ToString("yyyy-MM-dd");
+                        }
+                        @birth
+                    </div>
+                    <div>
+                        A31年龄:
+                        @{
+                            DateTime age = Convert.ToDateTime(item[4]);
+
+                            int year;
+
+                            year = DateTime.Now.Year - age.Year;
+                        }
+                        @year 岁
+                    </div>
+                    <div>
+                        A4身份证号:
+                        @{
+                            string identi = Convert.ToString(item[1]);
+                        }
+                        @identi
+                    </div>
+                    @{
+                        int mingzu = Convert.ToInt32(item[5]);
+                        if (mingzu == 4)
+                        {
+                            string Specificnation = Convert.ToString(item[6]);
+                            <div>
+                                A5民族:
+                                @Specificnation
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                A5民族:
+                                @{
+
+                                    string ming = "";
+                                    if (mingzu == 1)
+                                    {
+                                        ming = "汉族";
+                                    }
+                                    else if (mingzu == 2)
+                                    {
+                                        ming = "回族";
+                                    }
+                                    else if (mingzu == 3)
+                                    {
+                                        ming = "满族";
+                                    }
+
+                                }
+                                @ming
+                            </div>
 
                         }
 
-                        <div>
-                            A6最高学历:
-                            @{
-                                int education = Convert.ToInt32(item[7]);
-                                string edu = "";
-                                if (education == 1)
-                                {
-                                    edu = "文盲";
-                                }
-                                else if (education == 2)
-                                {
-                                    edu = "小学";
-                                }
-                                else if (education == 3)
-                                {
-                                    edu = "初中";
-                                }
-                                else if (education == 4)
-                                {
-                                    edu = "高中/中专";
-                                }
-                                else if (education == 5)
-                                {
-                                    edu = "大专及以上";
-                                }
+                    }
 
+                    <div>
+                        A6最高学历:
+                        @{
+                            int education = Convert.ToInt32(item[7]);
+                            string edu = "";
+                            if (education == 1)
+                            {
+                                edu = "文盲";
                             }
-                            @edu
-                        </div>
-                        <div>
-                            A7职业:
-                            @{
-                                int profession = Convert.ToInt32(item[8]);
-                                string pro = "";
-                                if (profession == 1)
-                                {
-                                    pro = "国家机关、党群组织、企业、事业单位负责人";
-                                }
-                                else if (profession == 2)
-                                {
-                                    pro = "专业技术人员";
-                                }
-                                else if (profession == 3)
-                                {
-                                    pro = "办事人员和有关人员";
-                                }
-                                else if (profession == 4)
-                                {
-                                    pro = "商业、服务业人员";
-                                }
-                                else if (profession == 5)
-                                {
-                                    pro = "农、林、牧、渔、水利业生产人员";
-                                }
-                                else if (profession == 6)
-                                {
-                                    pro = "生产、运输设备操作人员及有关人员";
-                                }
-                                else if (profession == 7)
-                                {
-                                    pro = "军人";
-                                }
-                                else if (profession == 8)
-                                {
-                                    pro = "不便分类的其他从业人员";
-                                }
-                                else if (profession == 9)
-                                {
-                                    pro = "学生";
-                                }
-
+                            else if (education == 2)
+                            {
+                                edu = "小学";
                             }
-                            @pro
-                        </div>
-                        <div>
-                            A8婚姻状况:
-                            @{
-                                int maritalstatus = Convert.ToInt32(item[9]);
-                                string mari = "";
-                                if (maritalstatus == 1)
-                                {
-                                    mari = "在婚";
-                                }
-                                else if (maritalstatus == 2)
-                                {
-                                    mari = "离婚";
-                                }
-                                else if (maritalstatus == 3)
-                                {
-                                    mari = "丧偶";
-                                }
-                                else if (maritalstatus == 4)
-                                {
-                                    mari = "分居";
-                                }
-                                else if (maritalstatus == 5)
-                                {
-                                    mari = "未婚";
-                                }
-                                else if (maritalstatus == 6)
-                                {
-                                    mari = "同居";
-                                }
-
+                            else if (education == 3)
+                            {
+                                edu = "初中";
                             }
-                            @mari
-                        </div>
-                        <div>
-                            A9本人常用电话:
-                            @item[10]
-                        </div>
-                        <div>
-                            A91联系人1(关系):
-                            @item[11]
-                        </div>
+                            else if (education == 4)
+                            {
+                                edu = "高中/中专";
+                            }
+                            else if (education == 5)
+                            {
+                                edu = "大专及以上";
+                            }
 
+                        }
+                        @edu
                     </div>
+                    <div>
+                        A7职业:
+                        @{
+                            int profession = Convert.ToInt32(item[8]);
+                            string pro = "";
+                            if (profession == 1)
+                            {
+                                pro = "国家机关、党群组织、企业、事业单位负责人";
+                            }
+                            else if (profession == 2)
+                            {
+                                pro = "专业技术人员";
+                            }
+                            else if (profession == 3)
+                            {
+                                pro = "办事人员和有关人员";
+                            }
+                            else if (profession == 4)
+                            {
+                                pro = "商业、服务业人员";
+                            }
+                            else if (profession == 5)
+                            {
+                                pro = "农、林、牧、渔、水利业生产人员";
+                            }
+                            else if (profession == 6)
+                            {
+                                pro = "生产、运输设备操作人员及有关人员";
+                            }
+                            else if (profession == 7)
+                            {
+                                pro = "军人";
+                            }
+                            else if (profession == 8)
+                            {
+                                pro = "不便分类的其他从业人员";
+                            }
+                            else if (profession == 9)
+                            {
+                                pro = "学生";
+                            }
 
-                    <div class="col-md-6">
-                        <div>
-                            A92电话:
-                            @item[12]
-                        </div>
-                        <div>
-                            A93联系人1(关系):
-                            @item[13]
-                        </div>
-                        <div>
-                            A94电话:
-                            @item[14]
-                        </div>
-                        <div>
-                            A95联系人1(关系):
-                            @item[15]
-                        </div>
-                        <div>
-                            A96电话:
-                            @item[16]
-                        </div>
-                        <div>
-                            A10现居地:
-                            @{
-                                int Currentresidence = Convert.ToInt32(item[17]);
-                                string curr = "";
-                                if (Currentresidence == 1)
-                                {
-                                    curr = "农村";
-                                }
-                                else
-                                {
-                                    curr = "城市";
-                                }
-                            }
-                            @curr
-                        </div>
-                        <div>
-                            A101农村:
-                            @item[18] 年
-                        </div>
-                        <div>
-                            A102城市:
-                            @item[19] 年
-                        </div>
-                        <div>
-                            A11家里几个人一起生活(包括自己):
-                            @item[20] 个
-                        </div>
-                        <div>
-                            A12目前参加了哪一类医疗保健保险服务:
-                            @{
-                                int insurance = Convert.ToInt32(item[21]);
-                                string ins = "";
-                                if (insurance == 1)
-                                {
-                                    ins = "城镇基本医疗保险(包括公费和劳保)";
-                                }
-                                else if (insurance == 2)
-                                {
-                                    ins = "农村合作医疗";
-                                }
-                                else if (insurance == 3)
-                                {
-                                    ins = "商业医疗保险";
-                                }
-                                else if (insurance == 4)
-                                {
-                                    ins = "无任何医疗保险";
-                                }
-                            }
-                            @ins
-                        </div>
+                        }
+                        @pro
                     </div>
+                    <div>
+                        A8婚姻状况:
+                        @{
+                            int maritalstatus = Convert.ToInt32(item[9]);
+                            string mari = "";
+                            if (maritalstatus == 1)
+                            {
+                                mari = "在婚";
+                            }
+                            else if (maritalstatus == 2)
+                            {
+                                mari = "离婚";
+                            }
+                            else if (maritalstatus == 3)
+                            {
+                                mari = "丧偶";
+                            }
+                            else if (maritalstatus == 4)
+                            {
+                                mari = "分居";
+                            }
+                            else if (maritalstatus == 5)
+                            {
+                                mari = "未婚";
+                            }
+                            else if (maritalstatus == 6)
+                            {
+                                mari = "同居";
+                            }
+
+                        }
+                        @mari
+                    </div>
+                    <div>
+                        A9本人常用电话:
+                        @item[10]
+                    </div>
+                    @{
+                        if (Convert.ToString(item[11]) != "")
+                        {
+
+                            <div>
+                                A91联系人1(关系):
+                                @item[11]
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+                <div class="col-md-6">
+                    @{
+                        if (Convert.ToString(item[11]) != "")
+                        {
+                            <div>
+                                A92电话:
+                                @item[12]
+                            </div>
+                        }
+                    }
+                    @{
+                        if (Convert.ToString(item[13]) != "")
+                        {
+
+                            <div>
+                                A93联系人2(关系):
+                                @item[13]
+                            </div>
+                            <div>
+                                A94电话:
+                                @item[14]
+                            </div>
+                        }
+                    }
+                    @{
+                        if (Convert.ToString(item[15]) != "")
+                        {
+
+                            <div>
+                                A95联系人1(关系):
+                                @item[15]
+                            </div>
+                            <div>
+                                A96电话:
+                                @item[16]
+                            </div>
+                        }
+                    }
+
+
+                    <div>
+                        A10现居地:
+                        @{
+                            int Currentresidence = Convert.ToInt32(item[17]);
+                            string curr = "";
+                            if (Currentresidence == 1)
+                            {
+                                curr = "农村";
+                            }
+                            else
+                            {
+                                curr = "城市";
+                            }
+                        }
+                        @curr
+                    </div>
+                    <div>
+                        A101农村:
+                        @item[18] 年
+                    </div>
+                    <div>
+                        A102城市:
+                        @item[19] 年
+                    </div>
+                    <div>
+                        A11家里几个人一起生活(包括自己):
+                        @item[20] 个
+                    </div>
+                    <div>
+                        A12目前参加了哪一类医疗保健保险服务:
+                        @{
+                            int insurance = Convert.ToInt32(item[21]);
+                            string ins = "";
+                            if (insurance == 1)
+                            {
+                                ins = "城镇基本医疗保险(包括公费和劳保)";
+                            }
+                            else if (insurance == 2)
+                            {
+                                ins = "农村合作医疗";
+                            }
+                            else if (insurance == 3)
+                            {
+                                ins = "商业医疗保险";
+                            }
+                            else if (insurance == 4)
+                            {
+                                ins = "无任何医疗保险";
+                            }
+                        }
+                        @ins
+                    </div>
+                </div>
                 }
 
 

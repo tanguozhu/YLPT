@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebApplication4.Models.LuJing>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using PagedList
+@using PagedList.Mvc
+
+<h2>可选诊疗方案</h2>
+
+<p>
+
+    <button type="button" class="btn btn-primary btn-lg" style="font-size: 16px" onclick="window.location.href=''">
+        <span class="glyphicon glyphicon-plus"></span>可选方案
+    </button>
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+}
+
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+        <th>
+            序号
+        </th>
+        <th>
+            方案路径
+        </th>
+        <th>
+            重复序列
+        </th>
+        <th>重复次数</th>
+        <th>住院天数</th>
+        <th>总金额(元)</th>
+        <th>自理金额(职工医保)</th>
+        <th>自理金额(新农合)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.scheme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rs_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hospital_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cost_all)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cost_town)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cost_country)
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Details", new { page }))

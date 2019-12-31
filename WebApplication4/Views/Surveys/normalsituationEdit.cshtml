@@ -189,83 +189,208 @@
 
                 <div class="form-group" style="font-size:18px;padding:3px;">
                     <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本人常用电话:</label>
-                    <div class="col-md-10" style="margin-bottom:8px">
+                    <div class="col-md-2" style="margin-bottom:8px">
                         <input class="form-control text-box single-line" data-val="true" id="commomphones" name="commomphones" type="text" value="@Model.phone" disabled="disabled">
                     </div>
+                    @{
+                        if (item[11] == DBNull.Value|| (Convert.ToString(item[11])==""))
+                        {
+                            <div class="col-md-8">
+                                <div>
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal1" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal2" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal3" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal4" style="display:none" />
+
+                                </div>
+                            </div>
+                        }
+                        else if ((item[11] != DBNull.Value || (Convert.ToString(item[11]) != ""))
+                            && (item[13] == DBNull.Value|| (Convert.ToString(item[13]) == "")))
+                        {
+                            <div class="col-md-8">
+                                <div>
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal1" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal2" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal3" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal4" style="display:none" />
+
+                                </div>
+                            </div>
+                        }
+                        else if (Convert.ToString(item[13]) != ""&& Convert.ToString(item[15]) == "")
+                        {
+                            <div class="col-md-8">
+                                <div>
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal1" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal2" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal3" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal4" style="display:none" />
+
+                                </div>
+                            </div>
+                        }
+                        else if (Convert.ToString(item[15]) != "")
+                        {
+                            <div class="col-md-8">
+                                <div>
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal1" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal2" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal3" style="display:none" />
+                                    <input type="button" value="添加联系人" class="btn btn-info" id="myModal4" />
+
+                                </div>
+                            </div>
+                        }
+                    }
+
                 </div>
                 @{
-                    string connect1 = Convert.ToString(item[11]);
-                }
-                <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="connect1" name="connect1" type="text" value="@connect1">
+                    if (Convert.ToString(item[11]) != "")
+                    {
+                        string connect1 = Convert.ToString(item[11]);
+                        string conphones1 = Convert.ToString(item[12]);
+                        <div id="lianxi1">
+                            <div class="col-md-8">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="connect1" name="connect1" type="text" value="@connect1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="conphones1" name="conphones1" type="text" value="@conphones1">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                    else
+                    {
+                        <div id="lianxi1" style="display:none">
+                            <div class="col-md-8">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="connect1" name="connect1" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="conphones1" name="conphones1" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
 
                 @{
-                    string conphones1 = Convert.ToString(item[12]);
-                }
-                <div class="col-md-4">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="conphones1" name="conphones1" type="text" value="@conphones1">
+                    if (Convert.ToString(item[13]) != "")
+                    {
+                        
+                        string connect2 = Convert.ToString(item[13]);
+                        string conphones2 = Convert.ToString(item[14]);
+                        <div id="lianxi2">
+                            <div class="col-md-8">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A93&nbsp;&nbsp;&nbsp;&nbsp;联系人2(关系):</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="connect2" name="connect2" type="text" value="@connect2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A94&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="conphones2" name="conphones2" type="text" value="@conphones2">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                    else
+                    {
+                        <div id="lianxi2" style="display:none">
+                            <div class="col-md-8">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A93&nbsp;&nbsp;&nbsp;&nbsp;联系人2(关系):</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="connect2" name="connect2" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A94&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="conphones2" name="conphones2" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @{
+                    if (Convert.ToString(item[15]) != "")
+                    {
+                        string connect3 = Convert.ToString(item[15]);
+                        string conphones3 = Convert.ToString(item[16]);
+                        <div id="lianxi3">
+                            <div class="col-md-8">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A95&nbsp;&nbsp;&nbsp;&nbsp;联系人3(关系):</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="connect3" name="connect3" type="text" value="@connect3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A96&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="conphones3" name="conphones3" type="text" value="@conphones3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="lianxi3" style="display:none">
+                            <div class="col-md-8">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A95&nbsp;&nbsp;&nbsp;&nbsp;联系人3(关系):</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="connect3" name="connect3" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="font-size:18px;padding:3px;">
+                                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A96&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
+                                    <div class="col-md-8" style="margin-bottom:8px">
+                                        <input class="form-control text-box single-line" data-val="true" id="conphones3" name="conphones3" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
 
-                @{
-                    string connect2 = Convert.ToString(item[13]);
-                }
-                <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="connect2" name="connect2" type="text" value="@connect2">
-                        </div>
-                    </div>
-                </div>
-                @{
-                    string conphones2 = Convert.ToString(item[14]);
-                }
-                <div class="col-md-4">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="conphones2" name="conphones2" type="text" value="@conphones2">
-                        </div>
-                    </div>
-                </div>
-                @{
-                    string connect3 = Convert.ToString(item[15]);
-                }
-                <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A91&nbsp;&nbsp;&nbsp;&nbsp;联系人1(关系):</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="connect3" name="connect3" type="text" value="@connect3">
-                        </div>
-                    </div>
-                </div>
-                @{
-                    string conphones3 = Convert.ToString(item[16]);
-                }
-                <div class="col-md-4">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">A92&nbsp;&nbsp;&nbsp;&nbsp;电话:</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="conphones3" name="conphones3" type="text" value="@conphones3">
-                        </div>
-                    </div>
-                </div>
 
                 @{
                     int Currentresidences = Convert.ToInt32(item[17]);
                 }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0;margin-top:50px">
                     <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">A10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现居地:</label>
                     <div class="col-md-10">
 
@@ -354,3 +479,26 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $('#myModal1').click(function () {
+        $("#lianxi1").show();
+        $("#myModal1").hide();
+        $("#myModal2").show();
+    });
+    $('#myModal2').click(function () {
+        $("#lianxi2").show();
+        $("#myModal2").hide();
+        $("#myModal3").show();
+    });
+    $('#myModal3').click(function () {
+        $("#lianxi3").show();
+        $("#myModal3").hide();
+        $("#myModal4").show();
+    });
+    $('#myModal4').click(function () {
+        alert("最多只能添加3个常用联系人");
+    });
+</script>

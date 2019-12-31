@@ -15,6 +15,7 @@ using System.IO;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using DataTable = System.Data.DataTable;
+using System.Text;
 
 namespace WebApplication4.Controllers
 {
@@ -35,9 +36,10 @@ namespace WebApplication4.Controllers
         {
             DataTable dt= GetVisit();
             string path= Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/";
+            string path1 = "E:\\exceldoc" + "/";
             Hashtable ht = new Hashtable();
             string strTitle = "就诊表";
-            ExportDataToExcel(dt, path,ht, strTitle);
+            ExportDataToExcel(dt, path1, ht, strTitle);
             return "成功调用";
         }
 
@@ -128,7 +130,7 @@ namespace WebApplication4.Controllers
         /// <param name="nameList">DataTable中列名的中文对应表</param>
         /// <param name="strTitle">Excel表的标题</param>
         /// <returns>Excel文件名</returns>
-        public FileStreamResult ExportDataToExcel(System.Data.DataTable dt, string xlsFileDir, Hashtable nameList, string strTitle)
+        public void ExportDataToExcel(System.Data.DataTable dt, string xlsFileDir, Hashtable nameList, string strTitle)
         {
             
            
@@ -194,10 +196,25 @@ namespace WebApplication4.Controllers
             excel.Quit();
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excel);
             excel = null;
-            
-            var stream = System.IO.File.OpenRead(xlsFileDir+strFileName);//excel表转换成流
-            return File(stream, "application/vnd.android.package-archive", Path.GetFileName(xlsFileDir+strFileName));//进行浏览器下载
 
+            FileInfo fi = new FileInfo(xlsFileDir + strFileName);
+
+            Response.Clear();
+            Response.Buffer = true; //设置<span style="color: rgb(51, 51, 51); line-height: 24px; white-space: pre-wrap;">输出页面是否被缓冲</span>
+            Response.Charset = "GB2312"; //设置了类型为中文防止乱码的出现 
+            Response.AppendHeader("Content-Disposition", String.Format("attachment;filename={0}", HttpUtility.UrlEncode(strFileName))); //定义输出文件和文件名 
+            Response.AppendHeader("Content-Length", fi.Length.ToString());
+            Response.ContentEncoding = Encoding.Default;
+            Response.ContentType = "application/ms-excel";//设置输出文件类型为excel文件。 
+            Response.WriteFile(fi.FullName);
+            Response.Flush();
+            Response.End();
+
+
+            //var stream = System.IO.File.OpenRead(xlsFileDir+strFileName);//excel表转换成流
+            //return File(stream, "application/vnd.android.package-archive", Path.GetFileName(xlsFileDir+strFileName));//进行浏览器下载
+                                                                                                                     //直接获取字节数组
+           
 
         }
 

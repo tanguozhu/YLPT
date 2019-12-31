@@ -95,6 +95,7 @@ namespace WebApplication4.Models
         [ValidateAntiForgeryToken]
         public ActionResult Index(DateTime dt1,int page = 1)
         {
+            
             string d = dt1.ToString("yyyy-MM-dd");
             List<ReturnVisit> listreturnvisits = new List<ReturnVisit>();
             MySqlConnection mysql = getMySqlConnection();

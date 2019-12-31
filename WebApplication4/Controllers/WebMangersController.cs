@@ -28,7 +28,7 @@ namespace WebApplication4.Controllers
             MySqlCommand mySqlCommand = getSqlCommand("select * from webmanger", mysql);
             mysql.Open();
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
-            var i=0;
+            var i = 0;
             try
             {
                 while (reader.Read())
@@ -48,7 +48,7 @@ namespace WebApplication4.Controllers
                         webmanger.daochu = reader.GetInt32("daochu");
                         listwebManger.Add(webmanger);
                         //db.WebMangers.Add(webmanger);
-                        i=i+1;
+                        i = i + 1;
                     }
                 }
 
@@ -67,6 +67,7 @@ namespace WebApplication4.Controllers
 
 
             return View(data);
+
         }
 
         

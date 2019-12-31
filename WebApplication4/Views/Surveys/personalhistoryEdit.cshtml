@@ -33,336 +33,576 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @foreach (DataRow item in Model.dt3.Rows)
         {
-            <div style="overflow-y:auto; overflow-x:auto;">
+        <div style="overflow-y:auto; overflow-x:auto;">
 
-                <h4>吸烟史</h4>
-                @{
-                    int whetherSmoking = Convert.ToInt32(item[2]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">C1&nbsp;&nbsp;&nbsp;&nbsp;生病前是否吸烟:</label>
-                    <div class="col-md-10">
-
-
-                        <label>@Html.RadioButtonFor(model => whetherSmoking, 1, new { htmlAttributes = new { @class = "form-control" } }) 从不</label>
-
-                        <label>@Html.RadioButtonFor(model => whetherSmoking, 2, new { htmlAttributes = new { @class = "form-control" } }) 已戒烟(不吸烟三个月以上)</label>
-                        <label>@Html.RadioButtonFor(model => whetherSmoking, 3, new { htmlAttributes = new { @class = "form-control" } }) 吸烟(每天>= 1支，持续6个月以上)</label>
+            <h4>吸烟史</h4>
+            @{
+                int whetherSmoking = Convert.ToInt32(item[2]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">C1&nbsp;&nbsp;&nbsp;&nbsp;生病前是否吸烟:</label>
+                <div class="col-md-10">
 
 
-                    </div>
+                    <label>@Html.RadioButtonFor(model => whetherSmoking, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check3(1)" }) 从不</label>
+
+                    <label>@Html.RadioButtonFor(model => whetherSmoking, 2, new { htmlAttributes = new { @class = "form-control" }, onclick = "check3(2)" }) 已戒烟(不吸烟三个月以上)</label>
+                    <label>@Html.RadioButtonFor(model => whetherSmoking, 3, new { htmlAttributes = new { @class = "form-control" }, onclick = "check3(3)" }) 吸烟(每天>= 1支，持续6个月以上)</label>
+
+
                 </div>
+            </div>
 
+            @{
+                if (whetherSmoking == 1)
+                {
+                    <div id="xiyan" style="display:none">
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C11&nbsp;&nbsp;&nbsp;&nbsp;若吸烟</label>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
 
-
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C11&nbsp;&nbsp;&nbsp;&nbsp;若吸烟</label>
-                    <div class="col-md-8">
-                    </div>
-                </div>
-
-                @{
-                    string smokingPerDay = Convert.ToString(item[3]);
-                }
-                <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C111&nbsp;&nbsp;&nbsp;每天吸烟量(只):</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="smokingPerDay" name="smokingPerDay" type="text" value="@smokingPerDay">
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C111&nbsp;&nbsp;&nbsp;每天吸烟量(只):</label>
+                                <div class="col-md-8" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="smokingPerDay" name="smokingPerDay" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C112&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularSmoking" name="regularSmoking" type="text" value="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @{
-                    string regularSmoking = Convert.ToString(item[4]);
-                }
-                <div class="col-md-4" style="padding-left:0">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C112&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
-                        <div class="col-md-7" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="regularSmoking" name="regularSmoking" type="text" value="@regularSmoking">
+                    <div id="buxiyan" style="display:none">
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C12&nbsp;&nbsp;&nbsp;&nbsp;若已经戒烟</label>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C121&nbsp;&nbsp;&nbsp;戒烟前每天吸烟量(只):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularsmokingbefore" name="regularsmokingbefore" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C122&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="rgbefore" name="rgbefore" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C123&nbsp;&nbsp;&nbsp;戒烟年龄(岁):</label>
+                                <div class="col-md-8" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="smokingCessationAge" name="smokingCessationAge" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C124&nbsp;&nbsp;&nbsp;&nbsp;戒烟年数(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="yearsOfSmokingCessation" name="yearsOfSmokingCessation" type="text" value="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
+                else if (whetherSmoking == 2)
+                {
+                    <div id="xiyan" style="display:none">
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C11&nbsp;&nbsp;&nbsp;&nbsp;若吸烟</label>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
 
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C12&nbsp;&nbsp;&nbsp;&nbsp;若已经戒烟</label>
-                    <div class="col-md-8">
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C111&nbsp;&nbsp;&nbsp;每天吸烟量(只):</label>
+                                <div class="col-md-8" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="smokingPerDay" name="smokingPerDay" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C112&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularSmoking" name="regularSmoking" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                @{
                     string regularsmokingbefore = Convert.ToString(item[5]);
-                }
-                <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C121&nbsp;&nbsp;&nbsp;戒烟前每天吸烟量(只):</label>
-                        <div class="col-md-7" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="regularsmokingbefore" name="regularsmokingbefore" type="text" value="@regularsmokingbefore">
-                        </div>
-                    </div>
-                </div>
-                @{
                     string rgbefore = Convert.ToString(item[6]);
-                }
-                <div class="col-md-4" style="padding-left:0">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C122&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
-                        <div class="col-md-7" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="rgbefore" name="rgbefore" type="text" value="@rgbefore">
-                        </div>
-                    </div>
-                </div>
-                @{
                     string smokingCessationAge = Convert.ToString(item[7]);
-                }
-                <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C123&nbsp;&nbsp;&nbsp;戒烟年龄(岁):</label>
-                        <div class="col-md-8" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="smokingCessationAge" name="smokingCessationAge" type="text" value="@smokingCessationAge">
-                        </div>
-                    </div>
-                </div>
-                @{
                     string yearsOfSmokingCessation = Convert.ToString(item[8]);
-                }
-                <div class="col-md-4" style="padding-left:0">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C124&nbsp;&nbsp;&nbsp;&nbsp;戒烟年数(年):</label>
-                        <div class="col-md-7" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="yearsOfSmokingCessation" name="yearsOfSmokingCessation" type="text" value="@yearsOfSmokingCessation">
-                        </div>
-                    </div>
-                </div>
-
-                @{
-                    int passiveSmoking = Convert.ToInt32(item[9]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C13&nbsp;&nbsp;&nbsp;&nbsp;在家或者单位是否存在被动吸烟:</label>
-                    <div class="col-md-8">
-
-
-                        <label>@Html.RadioButtonFor(model => passiveSmoking, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
-
-                        <label>@Html.RadioButtonFor(model => passiveSmoking, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
-
-
-                    </div>
-                </div>
-                <hr />
-                <h4>饮酒史</h4>
-                @{
-                    int whetherDrinkingAlcohol = Convert.ToInt32(item[10]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">C2&nbsp;&nbsp;&nbsp;&nbsp;生病前是否饮酒:</label>
-                    <div class="col-md-10">
-                        <div class="col-sm-6">
-                            <div>
-                                <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 1, new { htmlAttributes = new { @class = "form-control" } }) 从不饮或几乎从不喝</label>
-                            </div>
-                            <div>
-                                <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 2, new { htmlAttributes = new { @class = "form-control" } }) 只在特殊场合下（如喜庆、聚会或节假日）偶尔喝</label>
-                            </div>
-                            <div>
-                                <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 3, new { htmlAttributes = new { @class = "form-control" } }) 每个月都喝，但频度不到每周一次</label>
+                    <div id="buxiyan">
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C12&nbsp;&nbsp;&nbsp;&nbsp;若已经戒烟</label>
+                            <div class="col-md-8">
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div>
-                                <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 4, new { htmlAttributes = new { @class = "form-control" } }) 1次/周</label>
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C121&nbsp;&nbsp;&nbsp;戒烟前每天吸烟量(只):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularsmokingbefore" name="regularsmokingbefore" type="text" value="@regularsmokingbefore">
+                                </div>
                             </div>
-                            <div>
-                                <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 5, new { htmlAttributes = new { @class = "form-control" } }) 2-3次/周</label>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C122&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="rgbefore" name="rgbefore" type="text" value="@rgbefore">
+                                </div>
                             </div>
-                            <div>
-                                <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 6, new { htmlAttributes = new { @class = "form-control" } }) 4次及以上/周</label>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C123&nbsp;&nbsp;&nbsp;戒烟年龄(岁):</label>
+                                <div class="col-md-8" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="smokingCessationAge" name="smokingCessationAge" type="text" value="@smokingCessationAge">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C124&nbsp;&nbsp;&nbsp;&nbsp;戒烟年数(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="yearsOfSmokingCessation" name="yearsOfSmokingCessation" type="text" value="@yearsOfSmokingCessation">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                @{
-                    string startRegularDrinkingAge = Convert.ToString(item[11]);
                 }
+                else if (whetherSmoking == 3)
+                {
+                    string smokingPerDay = Convert.ToString(item[3]);
+                    string regularSmoking = Convert.ToString(item[4]);
+                    <div id="xiyan" style="display:none">
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C11&nbsp;&nbsp;&nbsp;&nbsp;若吸烟</label>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C111&nbsp;&nbsp;&nbsp;每天吸烟量(只):</label>
+                                <div class="col-md-8" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="smokingPerDay" name="smokingPerDay" type="text" value="@smokingPerDay">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C112&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularSmoking" name="regularSmoking" type="text" value="@regularSmoking">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="buxiyan" style="display:none">
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C12&nbsp;&nbsp;&nbsp;&nbsp;若已经戒烟</label>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C121&nbsp;&nbsp;&nbsp;戒烟前每天吸烟量(只):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularsmokingbefore" name="regularsmokingbefore" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C122&nbsp;&nbsp;&nbsp;&nbsp;规律吸烟(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="rgbefore" name="rgbefore" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C123&nbsp;&nbsp;&nbsp;戒烟年龄(岁):</label>
+                                <div class="col-md-8" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="smokingCessationAge" name="smokingCessationAge" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C124&nbsp;&nbsp;&nbsp;&nbsp;戒烟年数(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="yearsOfSmokingCessation" name="yearsOfSmokingCessation" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+
+            @{
+                int passiveSmoking = Convert.ToInt32(item[9]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C13&nbsp;&nbsp;&nbsp;&nbsp;在家或者单位是否存在被动吸烟:</label>
                 <div class="col-md-8">
-                    <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                        <label class="control-label col-md-6" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C21若饮酒,开始规律饮酒年龄(岁):</label>
-                        <div class="col-md-6" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="startRegularDrinkingAge" name="startRegularDrinkingAge" type="text" value="@startRegularDrinkingAge">
+
+
+                    <label>@Html.RadioButtonFor(model => passiveSmoking, 0, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
+
+                    <label>@Html.RadioButtonFor(model => passiveSmoking, 1, new { htmlAttributes = new { @class = "form-control" } }) 是</label>
+
+
+                </div>
+            </div>
+            <hr />
+            <h4>饮酒史</h4>
+            @{
+                int whetherDrinkingAlcohol = Convert.ToInt32(item[10]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">C2&nbsp;&nbsp;&nbsp;&nbsp;生病前是否饮酒:</label>
+                <div class="col-md-10">
+                    <div class="col-sm-6">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(1)" }) 从不饮或几乎从不喝</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 2, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(2)" }) 只在特殊场合下（如喜庆、聚会或节假日）偶尔喝</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 3, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(3)" }) 每个月都喝，但频度不到每周一次</label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div>
+                            <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 4, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(4)" }) 1次/周</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 5, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(5)" }) 2-3次/周</label>
+                        </div>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => whetherDrinkingAlcohol, 6, new { htmlAttributes = new { @class = "form-control" }, onclick = "check4(6)" }) 4次及以上/周</label>
                         </div>
                     </div>
                 </div>
-                @{
+            </div>
+            @{
+                if (whetherDrinkingAlcohol == 4 || whetherDrinkingAlcohol == 5 || whetherDrinkingAlcohol == 6)
+                {
+                    string startRegularDrinkingAge = Convert.ToString(item[11]);
                     string regularDrinking = Convert.ToString(item[12]);
-                }
-                <div class="col-md-4" style="padding-left:0">
-                    <div class="form-group" style="font-size:18px;padding:3px;">
-                        <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C22&nbsp;&nbsp;&nbsp;&nbsp;规律饮酒(年):</label>
-                        <div class="col-md-7" style="margin-bottom:8px">
-                            <input class="form-control text-box single-line" data-val="true" id="regularDrinking" name="regularDrinking" type="text" value="@regularDrinking">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group" style="font-size:18px;padding:3px;">
-                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(规律饮酒定义为每周至少喝一次及以上)</label>
-                    <div class="col-md-7" style="margin-bottom:8px">
-                        &nbsp;&nbsp;
-                    </div>
-                </div>
-                @{
                     string drinkingAmountEachTime = Convert.ToString(item[13]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;">
-                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C23&nbsp;&nbsp;&nbsp;&nbsp;每次饮酒量(两):</label>
-                    <div class="col-md-8" style="margin-bottom:8px">
-                        <input class="form-control text-box single-line" data-val="true" id="drinkingAmountEachTime" name="drinkingAmountEachTime" type="text" value="@drinkingAmountEachTime">
-                    </div>
-                </div>
-
-                @{
                     int drinkingReaction = Convert.ToInt32(item[14]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C24&nbsp;&nbsp;&nbsp;&nbsp;喝酒后会出现脸红、心跳加快及头晕等反应:</label>
-                    <div class="col-md-7">
-                        <div class="col-sm-6">
-                            <div>
-                                <label>@Html.RadioButtonFor(model => drinkingReaction, 1, new { htmlAttributes = new { @class = "form-control" } }) 喝上—两口就会出现</label>
+                    <div id="yinjiu">
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                                <label class="control-label col-md-6" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C21若饮酒,开始规律饮酒年龄(岁):</label>
+                                <div class="col-md-6" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="startRegularDrinkingAge" name="startRegularDrinkingAge" type="text" value="@startRegularDrinkingAge">
+                                </div>
                             </div>
-                            <div>
-                                <label>@Html.RadioButtonFor(model => drinkingReaction, 2, new { htmlAttributes = new { @class = "form-control" } }) 少量饮酒后会出现</label>
-                            </div>
-
                         </div>
-                        <div class="col-sm-6">
-                            <div>
-                                <label>@Html.RadioButtonFor(model => drinkingReaction, 3, new { htmlAttributes = new { @class = "form-control" } }) 大量饮酒后才会出现</label>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C22&nbsp;&nbsp;&nbsp;&nbsp;规律饮酒(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularDrinking" name="regularDrinking" type="text" value="@regularDrinking">
+                                </div>
                             </div>
-                            <div>
-                                <label>@Html.RadioButtonFor(model => drinkingReaction, 4, new { htmlAttributes = new { @class = "form-control" } }) 不会出现类似反应</label>
-                            </div>
-
                         </div>
 
 
-                    </div>
-                </div>
+                        <div class="form-group" style="font-size:18px;padding:3px;">
+                            <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(规律饮酒定义为每周至少喝一次及以上)</label>
+                            <div class="col-md-7" style="margin-bottom:8px">
+                                &nbsp;&nbsp;
+                            </div>
+                        </div>
 
-                <hr />
-                <h4>饮食史</h4>
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">C3&nbsp;&nbsp;&nbsp;&nbsp;饮食习惯:</label>
-                    <div class="col-md-7">
-                    </div>
-                </div>
+                        <div class="form-group" style="font-size:18px;padding:3px;">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C23&nbsp;&nbsp;&nbsp;&nbsp;每次饮酒量(两):</label>
+                            <div class="col-md-8" style="margin-bottom:8px">
+                                <input class="form-control text-box single-line" data-val="true" id="drinkingAmountEachTime" name="drinkingAmountEachTime" type="text" value="@drinkingAmountEachTime">
+                            </div>
+                        </div>
 
-                @{
-                    int eatingRegularly = Convert.ToInt32(item[15]);
+
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C24&nbsp;&nbsp;&nbsp;&nbsp;喝酒后会出现脸红、心跳加快及头晕等反应:</label>
+                            <div class="col-md-7">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 1, new { htmlAttributes = new { @class = "form-control" } }) 喝上—两口就会出现</label>
+                                    </div>
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 2, new { htmlAttributes = new { @class = "form-control" } }) 少量饮酒后会出现</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 3, new { htmlAttributes = new { @class = "form-control" } }) 大量饮酒后才会出现</label>
+                                    </div>
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 4, new { htmlAttributes = new { @class = "form-control" } }) 不会出现类似反应</label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
                 }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C31&nbsp;&nbsp;&nbsp;&nbsp;一日三餐是否规律:</label>
-                    <div class="col-md-9">
+                else
+                {
+                    <div id="yinjiu" style="display:none">
+                        <div class="col-md-8">
+                            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                                <label class="control-label col-md-6" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C21若饮酒,开始规律饮酒年龄(岁):</label>
+                                <div class="col-md-6" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="startRegularDrinkingAge" name="startRegularDrinkingAge" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left:0">
+                            <div class="form-group" style="font-size:18px;padding:3px;">
+                                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C22&nbsp;&nbsp;&nbsp;&nbsp;规律饮酒(年):</label>
+                                <div class="col-md-7" style="margin-bottom:8px">
+                                    <input class="form-control text-box single-line" data-val="true" id="regularDrinking" name="regularDrinking" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
 
-                        <label>@Html.RadioButtonFor(model => eatingRegularly, 1, new { htmlAttributes = new { @class = "form-control" } }) 规律</label>
 
-                        <label>@Html.RadioButtonFor(model => eatingRegularly, 2, new { htmlAttributes = new { @class = "form-control" } }) 较规律/偶尔不规律</label>
+                        <div class="form-group" style="font-size:18px;padding:3px;">
+                            <label class="control-label col-md-5" style="padding-top:1px;padding-left:0;padding-right:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(规律饮酒定义为每周至少喝一次及以上)</label>
+                            <div class="col-md-7" style="margin-bottom:8px">
+                                &nbsp;&nbsp;
+                            </div>
+                        </div>
 
-                        <label>@Html.RadioButtonFor(model => eatingRegularly, 3, new { htmlAttributes = new { @class = "form-control" } }) 经常不规律</label>
+                        <div class="form-group" style="font-size:18px;padding:3px;">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C23&nbsp;&nbsp;&nbsp;&nbsp;每次饮酒量(两):</label>
+                            <div class="col-md-8" style="margin-bottom:8px">
+                                <input class="form-control text-box single-line" data-val="true" id="drinkingAmountEachTime" name="drinkingAmountEachTime" type="text" value="">
+                            </div>
+                        </div>
 
+                        @{
+                            int drinkingReaction = 1;
+                        }
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C24&nbsp;&nbsp;&nbsp;&nbsp;喝酒后会出现脸红、心跳加快及头晕等反应:</label>
+                            <div class="col-md-7">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 1, new { htmlAttributes = new { @class = "form-control" } }) 喝上—两口就会出现</label>
+                                    </div>
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 2, new { htmlAttributes = new { @class = "form-control" } }) 少量饮酒后会出现</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 3, new { htmlAttributes = new { @class = "form-control" } }) 大量饮酒后才会出现</label>
+                                    </div>
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => drinkingReaction, 4, new { htmlAttributes = new { @class = "form-control" } }) 不会出现类似反应</label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-                @{
-                    int eatingSpeed = Convert.ToInt32(item[16]);
                 }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C32&nbsp;&nbsp;&nbsp;&nbsp;进食速度:</label>
-                    <div class="col-md-10">
+            }
 
 
-                        <label>@Html.RadioButtonFor(model => eatingSpeed, 1, new { htmlAttributes = new { @class = "form-control" } }) 慢/>30分钟</label>
-
-                        <label>@Html.RadioButtonFor(model => eatingSpeed, 2, new { htmlAttributes = new { @class = "form-control" } }) 速度正常/10-30分钟</label>
-
-                        <label>@Html.RadioButtonFor(model => eatingSpeed, 2, new { htmlAttributes = new { @class = "form-control" } }) 过快/≤10分钟</label>
 
 
-                    </div>
+
+
+            <hr />
+            <h4>饮食史</h4>
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">C3&nbsp;&nbsp;&nbsp;&nbsp;饮食习惯:</label>
+                <div class="col-md-7">
+                </div>
+            </div>
+
+            @{
+                int eatingRegularly = Convert.ToInt32(item[15]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-3" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C31&nbsp;&nbsp;&nbsp;&nbsp;一日三餐是否规律:</label>
+                <div class="col-md-9">
+
+                    <label>@Html.RadioButtonFor(model => eatingRegularly, 1, new { htmlAttributes = new { @class = "form-control" } }) 规律</label>
+
+                    <label>@Html.RadioButtonFor(model => eatingRegularly, 2, new { htmlAttributes = new { @class = "form-control" } }) 较规律/偶尔不规律</label>
+
+                    <label>@Html.RadioButtonFor(model => eatingRegularly, 3, new { htmlAttributes = new { @class = "form-control" } }) 经常不规律</label>
 
                 </div>
-
-                @{
-                    int eatingHabit = Convert.ToInt32(item[17]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C32&nbsp;&nbsp;&nbsp;&nbsp;进食习惯:</label>
-                    <div class="col-md-10">
-
-
-                        <label>@Html.RadioButtonFor(model => eatingHabit, 1, new { htmlAttributes = new { @class = "form-control" } }) 过冷</label>
-
-                        <label>@Html.RadioButtonFor(model => eatingHabit, 2, new { htmlAttributes = new { @class = "form-control" } }) 温度适中</label>
-
-                        <label>@Html.RadioButtonFor(model => eatingHabit, 2, new { htmlAttributes = new { @class = "form-control" } }) 过烫</label>
-
-
-                    </div>
-
-                </div>
-                <hr />
-                <h4>饮茶史</h4>
-                @{
-                    int whetherDrinkTeaRegularly = Convert.ToInt32(item[18]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C4&nbsp;&nbsp;&nbsp;&nbsp;是否经常饮茶(每周至少三杯,持续六个月以上):</label>
-                    <div class="col-md-7">
-
-
-                        <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 1, new { htmlAttributes = new { @class = "form-control" } }) 否</label>
-
-                        <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 2, new { htmlAttributes = new { @class = "form-control" } }) 是,但现在已不饮 </label>
-                        <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 3, new { htmlAttributes = new { @class = "form-control" } }) 是,且现在仍在饮用</label>
-
-
-                    </div>
-                </div>
-
-                @{
-                    string yearsOfTeaDrinking = Convert.ToString(item[19]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;">
-                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C41&nbsp;&nbsp;&nbsp;&nbsp;经常饮茶年数(年):</label>
-                    <div class="col-md-8" style="margin-bottom:8px">
-                        <input class="form-control text-box single-line" data-val="true" id="yearsOfTeaDrinking" name="yearsOfTeaDrinking" type="text" value="@yearsOfTeaDrinking">
-                    </div>
-                </div>
-
-                @{
-                    int strongOrLightTea = Convert.ToInt32(item[20]);
-                }
-                <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
-                    <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C42&nbsp;&nbsp;&nbsp;&nbsp;喜欢喝浓茶还是淡茶:</label>
-                    <div class="col-md-8">
-
-
-                        <label>@Html.RadioButtonFor(model => strongOrLightTea, 1, new { htmlAttributes = new { @class = "form-control" } }) 淡茶</label>
-
-                        <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 适中</label>
-
-                        <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 浓茶</label>
-
-
-                    </div>
-
-                </div>
-
 
             </div>
+
+            @{
+                int eatingSpeed = Convert.ToInt32(item[16]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C32&nbsp;&nbsp;&nbsp;&nbsp;进食速度:</label>
+                <div class="col-md-10">
+
+
+                    <label>@Html.RadioButtonFor(model => eatingSpeed, 1, new { htmlAttributes = new { @class = "form-control" } }) 慢/>30分钟</label>
+
+                    <label>@Html.RadioButtonFor(model => eatingSpeed, 2, new { htmlAttributes = new { @class = "form-control" } }) 速度正常/10-30分钟</label>
+
+                    <label>@Html.RadioButtonFor(model => eatingSpeed, 2, new { htmlAttributes = new { @class = "form-control" } }) 过快/≤10分钟</label>
+
+
+                </div>
+
+            </div>
+
+            @{
+                int eatingHabit = Convert.ToInt32(item[17]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-2" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C32&nbsp;&nbsp;&nbsp;&nbsp;进食习惯:</label>
+                <div class="col-md-10">
+
+
+                    <label>@Html.RadioButtonFor(model => eatingHabit, 1, new { htmlAttributes = new { @class = "form-control" } }) 过冷</label>
+
+                    <label>@Html.RadioButtonFor(model => eatingHabit, 2, new { htmlAttributes = new { @class = "form-control" } }) 温度适中</label>
+
+                    <label>@Html.RadioButtonFor(model => eatingHabit, 2, new { htmlAttributes = new { @class = "form-control" } }) 过烫</label>
+
+
+                </div>
+
+            </div>
+            <hr />
+            <h4>饮茶史</h4>
+            @{
+                int whetherDrinkTeaRegularly = Convert.ToInt32(item[18]);
+            }
+            <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                <label class="control-label col-md-5" style="padding-top:1px;padding-left:0">C4&nbsp;&nbsp;&nbsp;&nbsp;是否经常饮茶(每周至少三杯,持续六个月以上):</label>
+                <div class="col-md-7">
+
+
+                    <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 1, new { htmlAttributes = new { @class = "form-control" }, onclick = "check5(1)" }) 否</label>
+
+                    <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 2, new { htmlAttributes = new { @class = "form-control" }, onclick = "check5(2)" }) 是,但现在已不饮 </label>
+                    <label>@Html.RadioButtonFor(model => whetherDrinkTeaRegularly, 3, new { htmlAttributes = new { @class = "form-control" }, onclick = "check5(3)" }) 是,且现在仍在饮用</label>
+
+
+                </div>
+            </div>
+
+            @{
+                if (whetherDrinkTeaRegularly == 1)
+                {
+                    <div id="yincha" style="display:none">
+                        <div class="form-group" style="font-size:18px;padding:3px;">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C41&nbsp;&nbsp;&nbsp;&nbsp;经常饮茶年数(年):</label>
+                            <div class="col-md-8" style="margin-bottom:8px">
+                                <input class="form-control text-box single-line" data-val="true" id="yearsOfTeaDrinking" name="yearsOfTeaDrinking" type="text" value="">
+                            </div>
+                        </div>
+
+                        @{
+                            int strongOrLightTea = 1;
+                        }
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C42&nbsp;&nbsp;&nbsp;&nbsp;喜欢喝浓茶还是淡茶:</label>
+                            <div class="col-md-8">
+
+
+                                <label>@Html.RadioButtonFor(model => strongOrLightTea, 1, new { htmlAttributes = new { @class = "form-control" } }) 淡茶</label>
+
+                                <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 适中</label>
+
+                                <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 浓茶</label>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                else
+                {
+                     string yearsOfTeaDrinking = Convert.ToString(item[19]);
+                     int strongOrLightTea = Convert.ToInt32(item[20]);
+                    <div id="yincha" >
+                        <div class="form-group" style="font-size:18px;padding:3px;">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C41&nbsp;&nbsp;&nbsp;&nbsp;经常饮茶年数(年):</label>
+                            <div class="col-md-8" style="margin-bottom:8px">
+                                <input class="form-control text-box single-line" data-val="true" id="yearsOfTeaDrinking" name="yearsOfTeaDrinking" type="text" value="@yearsOfTeaDrinking">
+                            </div>
+                        </div>
+              
+                        <div class="form-group" style="font-size:18px;padding:3px;overflow-y:auto; overflow-x:auto;margin-bottom:0">
+                            <label class="control-label col-md-4" style="padding-top:1px;padding-left:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C42&nbsp;&nbsp;&nbsp;&nbsp;喜欢喝浓茶还是淡茶:</label>
+                            <div class="col-md-8">
+
+
+                                <label>@Html.RadioButtonFor(model => strongOrLightTea, 1, new { htmlAttributes = new { @class = "form-control" } }) 淡茶</label>
+
+                                <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 适中</label>
+
+                                <label>@Html.RadioButtonFor(model => strongOrLightTea, 2, new { htmlAttributes = new { @class = "form-control" } }) 浓茶</label>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+        </div>
         }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
@@ -379,3 +619,42 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    function check3(val) {
+        var dom = $("#xiyan");
+        var dom1 = $("#buxiyan");
+        if (val == 2) {
+            dom1.show();
+            dom.hide();
+        }
+        else if (val == 3) {
+            dom.show();
+            dom1.hide();
+        }
+        else if (val == 1) {
+            dom.hide();
+            dom1.hide();
+        }
+    }
+    function check4(val) {
+        var dom = $("#yinjiu");
+        if (val == 4 || val == 5 || val == 6) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+    function check5(val) {
+        var dom = $("#yincha");
+        if (val == 2 || val == 3) {
+            dom.show();
+        }
+        else {
+            dom.hide();
+        }
+    }
+</script>
