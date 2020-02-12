@@ -1,0 +1,169 @@
+﻿@model WebApplication4.Models.qiye
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>发布岗位信息</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @{
+        string a = "";
+    }
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">岗位类别:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">工作年限要求:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">工作时间:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">工资:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">学历要求:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">性别要求:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">年龄要求:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">工作地点:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">具体内容:</label>
+        <div class="col-md-10">
+            <textarea htmlattributes="{ class = white-space:pre-wrap }" style="height:150px;width:400px" id="Introduction" name="Introduction"></textarea>
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">招聘人数:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">专业要求:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">岗位标签1:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">岗位标签2:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">岗位标签3:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="font-size:18px;padding:3px;">
+        <label class="control-label col-md-2" style="padding-top:1px">岗位标签4:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

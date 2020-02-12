@@ -1,0 +1,168 @@
+﻿@model IEnumerable<WebApplication4.Models.qiye>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>岗位信息列表</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<p style="font-size:18px;padding:3px">
+    关键词: @Html.TextBox("scannum")
+    条件1: @Html.TextBox("Identinum")
+    条件2: @Html.TextBox("Identinum1")
+    <input type="submit" value="检索" />
+</p>
+}
+
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+        <th>
+            发布公司id
+        </th>
+        <th>
+            岗位类别
+        </th>
+        <th>
+            具体内容
+        </th>
+        <th>
+            浏览数
+        </th>
+        <th>
+            收藏数
+        </th>
+
+        <th>
+            申请数
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            招聘人才
+        </td>
+
+        <td>
+            aaa
+        </td>
+        <td>
+            bbb
+        </td>
+        <td>
+            ccc
+        </td>
+        <td>
+            ddd
+        </td>
+
+
+        <td>
+            @{
+                string b = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            @b
+        </td>
+
+        <td>
+            @{
+                int a = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = a })
+
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            招聘人才
+        </td>
+        <td>
+            aaa
+        </td>
+        <td>
+            bbb
+        </td>
+        <td>
+            ccc
+        </td>
+        <td>
+            ddd
+        </td>
+       
+        <td>
+
+            @b
+        </td>
+
+        <td>
+
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            招聘人才
+        </td>
+        <td>
+            aaa
+        </td>
+        <td>
+            bbb
+        </td>
+        <td>
+            ccc
+        </td>
+        <td>
+            ddd
+        </td>
+       
+        <td>
+
+            @b
+        </td>
+
+        <td>
+
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            招聘人才
+        </td>
+        <td>
+            aaa
+        </td>
+        <td>
+            bbb
+        </td>
+        <td>
+            ccc
+        </td>
+        <td>
+            ddd
+        </td>
+        
+        <td>
+
+            @b
+        </td>
+
+        <td>
+
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+

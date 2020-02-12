@@ -1,0 +1,131 @@
+﻿@model IEnumerable<WebApplication4.Models.putong>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>企业列表</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p style="font-size:18px;padding:3px">
+        企业id: @Html.TextBox("scannum")
+       
+        <input type="submit" value="检索" />
+    </p>
+}
+
+    <table class="table" style="font-size:15px;padding:3px">
+        <tr>
+            <th>
+                企业id
+            </th>
+            <th>
+                系统企业状态
+            </th>
+            <th>
+                邮箱功能权限
+            </th>
+            <th>
+                发布岗位权限
+            </th>
+            
+
+
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>
+                1
+            </td>
+
+            <td>
+                aaa
+            </td>
+            <td>
+                bbb
+            </td>
+            <td>
+                ccc
+            </td>
+            
+
+            <td>
+                @{
+                    int a = 1;
+                }
+                @Html.ActionLink("编辑", "Edit", new { id = a })
+
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                2
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                bbb
+            </td>
+            <td>
+                ccc
+            </td>
+           
+
+           
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                3
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                bbb
+            </td>
+            <td>
+                ccc
+            </td>
+          
+
+           
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                4
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                bbb
+            </td>
+            <td>
+                ccc
+            </td>
+           
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+    </table>

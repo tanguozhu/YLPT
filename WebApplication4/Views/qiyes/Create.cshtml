@@ -1,0 +1,233 @@
+﻿@model WebApplication4.Models.qiye
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>录入企业信息</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @{
+        string a = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">企业名字:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    @{
+        string mima = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">企业账号登录密码:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => mima, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+
+
+    @{
+        string danwei = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">企业类型:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => danwei, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    @{
+        string gonghao = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">统一社会信用代码:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => gonghao, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    @{
+        string Phone = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">法定代表人:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => Phone, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    @{
+        DateTime t = DateTime.Now;
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(Model => t, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+
+        </div>
+    </div>
+   
+
+    @{
+        string b = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">企业地址:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => b, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    @{
+        string c = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">注册号:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => c, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+    @{
+        string d = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">企业状态:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => d, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    @{
+        string f = "";
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" style="padding-top:1px">企业邮箱:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => d, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+            <input type="submit" value="保存" class="btn btn-default" />|
+            <a href="javascript:window.history.go(-1)">返回</a>
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#my-img1').on('click', function () {
+            $('#filename').click();
+        });
+
+    });
+
+    $('#filename').on('change', function () {//当chooseImage的值改变时，执行此函数
+        $("#cb1").show();
+        $("#my-img1").hide();
+        $("#btn1").show();
+        $("#btn2").show();
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        } else {
+            $('#cb1').attr('src', src);
+        }
+    });
+    $('#btn1').on('click', function () {
+        $('#cb1').attr('src', "");
+        $('#cb1').hide();
+        $('#btn1').hide();
+        $('#btn2').hide();
+        $("#my-img1").show();
+    });
+    $(document).ready(function () {
+        $('#btn2').on('click', function () {
+            $('#filename').click();
+        });
+
+    });
+
+    $(function () {
+        $(".pic").on("click", function () {
+            var _this = $(this);//将当前的pimg元素作为_this传入函数
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+        });
+    });
+    function imgShow(outerdiv, innerdiv, bigimg, _this) {
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+        $("<img/>").attr("src", src).on("load", function () {
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+            if (realHeight > windowH * scale) {//判断图片高度
+                imgHeight = windowH * scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight / realHeight * realWidth;//等比例缩放宽度
+                if (imgWidth > windowW * scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW * scale;//再对宽度进行缩放
+                }
+            } else if (realWidth > windowW * scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW * scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth / realWidth * realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width", imgWidth);//以最终的宽度对图片缩放
+            var w = (windowW - imgWidth) / 2;//计算图片与窗口左边距
+            var h = (windowH - imgHeight) / 2;//计算图片与窗口上边距
+            $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+        });
+        $(outerdiv).on("click", function () {//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }
+
+</script>

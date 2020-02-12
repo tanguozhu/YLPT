@@ -188,6 +188,8 @@
     <Compile Include="Controllers\patientsController.cs" />
     <Compile Include="Controllers\PopSciinMangersController.cs" />
     <Compile Include="Controllers\PreviouseradicationsController.cs" />
+    <Compile Include="Controllers\putongsController.cs" />
+    <Compile Include="Controllers\qiyesController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\TreatmentsController.cs" />
@@ -230,6 +232,10 @@
     <Compile Include="Models\PopSciinMangerDbContext.cs" />
     <Compile Include="Models\Previouseradication.cs" />
     <Compile Include="Models\PreviouseradicationDbContext.cs" />
+    <Compile Include="Models\putong.cs" />
+    <Compile Include="Models\putongDbContext.cs" />
+    <Compile Include="Models\qiye.cs" />
+    <Compile Include="Models\qiyeDbContext.cs" />
     <Compile Include="Models\ReturnVisit.cs" />
     <Compile Include="Models\ReturnVisitDbContext.cs" />
     <Compile Include="Models\ReturnVisitsController.cs" />
@@ -419,6 +425,20 @@
     <Content Include="Views\patients\Details.cshtml" />
     <Content Include="Views\patients\Edit.cshtml" />
     <Content Include="Views\patients\Index.cshtml" />
+    <Content Include="Views\qiyes\Create.cshtml" />
+    <Content Include="Views\qiyes\Delete.cshtml" />
+    <Content Include="Views\qiyes\Details.cshtml" />
+    <Content Include="Views\qiyes\Edit.cshtml" />
+    <Content Include="Views\qiyes\Index.cshtml" />
+    <Content Include="Views\qiyes\Index1.cshtml" />
+    <Content Include="Views\qiyes\Details1.cshtml" />
+    <Content Include="Views\putongs\Create.cshtml" />
+    <Content Include="Views\putongs\Delete.cshtml" />
+    <Content Include="Views\putongs\Details.cshtml" />
+    <Content Include="Views\putongs\Edit.cshtml" />
+    <Content Include="Views\putongs\Index.cshtml" />
+    <Content Include="Views\qiyes\Details2.cshtml" />
+    <Content Include="Views\putongs\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pic\" />

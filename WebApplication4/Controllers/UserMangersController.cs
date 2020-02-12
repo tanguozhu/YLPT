@@ -248,8 +248,8 @@ namespace WebApplication4.Controllers
             {
                 string aa = Request.Form["checkidentinum"];
                 userManger.checkidentinum = Convert.ToInt32(aa);
-               
 
+                userManger.Isnew = "1";
                 MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand("INSERT INTO user(name,pnickname,identinum,scannum,phone,password,Image,kind,isnew)VALUES" + "(" +
                 "\"" + userManger.Name + "\"" + "," + "\"" + userManger.pnickname + "\"" + "," + "\"" + userManger.Identinum + "\"" + "," + "\"" + userManger.scannum + "\"" + ","+ "\"" + userManger.Phone + "\"" + "," +
@@ -377,9 +377,11 @@ namespace WebApplication4.Controllers
                
                 MySqlConnection mysql = getMySqlConnection();
                 MySqlCommand mySqlCommand = getSqlCommand(" UPDATE user set name=" + 
-                 "'" + userManger.Name + "'" + ",identinum=" + "\"" + userManger.Identinum + "\"" + ",phone=" + "\"" + userManger.Phone + "\"" + ",password=" +
-                "\"" + userManger.Password + "\"" + ",pnickname=" + "\"" + userManger.pnickname + "\""+
-                 ",Image=" + "\"" + userManger.Image + "\""  +"where id="+userManger.Id, mysql);
+                 "'" + userManger.Name + "'" + ",identinum=" + "'" + userManger.Identinum + "'" + 
+                 ",phone=" + "'" + userManger.Phone + "'" + ",password=" +"'" + 
+                 userManger.Password + "'" + ",scannum='"+userManger.scannum+
+                 "',pnickname=" + "'" + userManger.pnickname + "'"+
+                 ",Image=" + "'" + userManger.Image + "'"  +"where id="+userManger.Id, mysql);
                 mysql.Open();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
                 mySqlCommand.ExecuteNonQuery();

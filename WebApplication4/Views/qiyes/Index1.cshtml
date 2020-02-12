@@ -1,0 +1,232 @@
+﻿@model IEnumerable<WebApplication4.Models.qiye>
+
+@{
+    ViewBag.Title = "Index1";
+}
+
+<h2>用户信息列表</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p style="font-size:18px;padding:3px">
+        用户名: @Html.TextBox("scannum")
+        擅长领域: @Html.TextBox("Identinum")
+        匹配度: @Html.TextBox("Identinum")
+        <input type="submit" value="检索" />
+    </p>
+}
+
+    <table class="table" style="font-size:15px;padding:3px">
+        <tr>
+            <th>
+                程序员姓名
+            </th>
+            <th>
+                程序员性别
+            </th>
+            <th>
+                程序员年龄
+            </th>
+            
+            <th>
+                程序员标签1
+            </th>
+            <th>
+                程序员标签2
+            </th>
+            <th>
+                程序员标签2
+            </th>
+            <th>
+                程序员标签3
+            </th>
+
+            <th>
+                浏览数
+            </th>
+            <th>
+                收藏数
+            </th>
+            <th>
+                申请数
+            </th>
+            <th></th>
+        </tr>
+
+        <tr>
+
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                @{
+                    int a = 1;
+                }
+                @Html.ActionLink("查看详情", "Details1", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("收藏", "Edit", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("发邮件", "Edit", new { id = a })
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                aaa
+            </td>
+            
+            <td>
+                90%
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+
+            <td>
+
+                @Html.ActionLink("查看详情", "Details1", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("收藏", "Edit", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("发邮件", "Edit", new { id = a })
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+           
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("查看详情", "Details1", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("收藏", "Edit", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("发邮件", "Edit", new { id = a })
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                aaa
+            </td>
+           
+            <td>
+                90%
+            </td>
+            <td>
+                aaa
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+            <td>
+                c/c++
+            </td>
+            <td>
+                90%
+            </td>
+
+            <td>
+
+                @Html.ActionLink("查看详情", "Details1", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("收藏", "Edit", new { id = a })
+                <span>|</span>
+                @Html.ActionLink("发邮件", "Edit", new { id = a })
+            </td>
+        </tr>
+    </table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

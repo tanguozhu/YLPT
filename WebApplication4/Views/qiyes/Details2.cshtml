@@ -1,0 +1,202 @@
+﻿@model WebApplication4.Models.qiye
+@{
+    ViewBag.Title = "Details2";
+}
+
+<h2>查看详情</h2>
+
+<div>
+
+            <h3>
+                仓库一
+            </h3>
+      
+
+    <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+
+        <div class="col-md-5">
+            
+            <div>
+                @{
+                    string a = "存储仓库关注数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库被赞数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库拷贝数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库提交数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库简介";
+                }
+                @a:
+                1
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div>
+                @{
+                    a = "存储仓库分支数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库贡献者数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库创立时间";
+                }
+                @a:
+                2020-01-01
+            </div>
+            <div>
+                @{
+                    a = "存储仓库类型";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库使用语言";
+                }
+                @a:
+                1
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<hr style="border:#000000 1px solid;" />
+<div>
+
+    <h3>
+        仓库二
+    </h3>
+
+
+    <div style="overflow-y:auto; overflow-x:auto;font-size:18px;padding:3px">
+
+        <div class="col-md-5">
+
+            <div>
+                @{
+                    a = "存储仓库关注数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库被赞数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库拷贝数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库提交数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库简介";
+                }
+                @a:
+                1
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div>
+                @{
+                    a = "存储仓库分支数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库贡献者数";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库创立时间";
+                }
+                @a:
+                2020-01-01
+            </div>
+            <div>
+                @{
+                    a = "存储仓库类型";
+                }
+                @a:
+                1
+            </div>
+            <div>
+                @{
+                    a = "存储仓库使用语言";
+                }
+                @a:
+                1
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<hr style="border:#000000 1px solid;" />
+
+<div style="font-size:18px;padding:3px">
+    <p>
+
+        @Html.ActionLink("返回用户详情", "Details1", new { id = 1 })
+
+
+    </p>
+</div>
+
+
