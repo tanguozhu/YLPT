@@ -439,6 +439,7 @@
     <Content Include="Views\putongs\Index.cshtml" />
     <Content Include="Views\qiyes\Details2.cshtml" />
     <Content Include="Views\putongs\Index1.cshtml" />
+    <Content Include="Views\qiyes\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pic\" />

@@ -1,21 +1,20 @@
 ﻿@model IEnumerable<WebApplication4.Models.qiye>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index2";
 }
 
-<h2>岗位信息列表</h2>
-
+<h2>招聘情况统计</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<p style="font-size:18px;padding:3px">
-    岗位关键词: @Html.TextBox("scannum")
-    地点: @Html.TextBox("Identinum")
-    公司: @Html.TextBox("Identinum1")
-    <input type="submit" value="检索" />
-</p>
+    <p style="font-size:18px;padding:3px">
+        用户名: @Html.TextBox("scannum")
+        擅长领域: @Html.TextBox("Identinum")
+        匹配度: @Html.TextBox("Identinum")
+        <input type="submit" value="检索" />
+    </p>
 }
 
 <table class="table" style="font-size:15px;padding:3px">
@@ -359,4 +358,3 @@
 
 </table>
 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
-
