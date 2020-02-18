@@ -4,33 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2>企业列表</h2>
+<h2>企业管理列表</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <p style="font-size:18px;padding:3px">
-        企业id: @Html.TextBox("scannum")
-       
-        <input type="submit" value="检索" />
-    </p>
+<p style="font-size:15px;padding:3px">
+    
+        企业名称: @Html.TextBox("scannum")
+        企业状态: @Html.TextBox("scannum")
+        邮箱权限: @Html.TextBox("scannum")
+        发布权限: @Html.TextBox("scannum")
+    
+    <input  type="submit" value="检索" />
+</p>
 }
 
     <table class="table" style="font-size:15px;padding:3px">
         <tr>
             <th>
-                企业id
+                企业名称
             </th>
             <th>
-                系统企业状态
+                企业状态
             </th>
             <th>
-                邮箱功能权限
+                邮箱权限
             </th>
             <th>
-                发布岗位权限
+                发布权限
             </th>
-            
+
 
 
             <th></th>
@@ -38,19 +42,19 @@
 
         <tr>
             <td>
-                1
+                中国移动通信集团有限公司
             </td>
 
             <td>
-                aaa
+               0
             </td>
             <td>
-                bbb
+                1
             </td>
             <td>
-                ccc
+                1
             </td>
-            
+
 
             <td>
                 @{
@@ -63,43 +67,20 @@
         <tr>
 
             <td>
-                2
+                中国电信集团有限公司
             </td>
             <td>
-                aaa
+                1
             </td>
             <td>
-                bbb
+                0
             </td>
             <td>
-                ccc
+                0
             </td>
-           
 
-           
 
-            <td>
 
-                @Html.ActionLink("编辑", "Edit", new { id = 1 })
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-                3
-            </td>
-            <td>
-                aaa
-            </td>
-            <td>
-                bbb
-            </td>
-            <td>
-                ccc
-            </td>
-          
-
-           
 
             <td>
 
@@ -109,18 +90,146 @@
         </tr>
         <tr>
             <td>
-                4
+                百度
             </td>
             <td>
-                aaa
+                1
             </td>
             <td>
-                bbb
+                0
             </td>
             <td>
-                ccc
+                1
             </td>
-           
+
+
+
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                腾讯
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                0
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                阿里巴巴
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                京东
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                1
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                北京字节跳动科技有限公司
+            </td>
+            <td>
+               0
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                0
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                迅雷
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("编辑", "Edit", new { id = 1 })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                北京奇虎科技有限公司
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                0
+            </td>
+
 
             <td>
 

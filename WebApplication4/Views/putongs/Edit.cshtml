@@ -10,56 +10,190 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>企业权限</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
 
-    
+    <div class="form-horizontal">
+        <h4>企业权限</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-    @{
-        int webkind3 = 0;
-    }
-    <div class="form-group">
-        <label class="control-label col-md-2" style="padding-top:0">系统企业状态:</label>
-        <div class="col-md-10">
 
-            <label>@Html.RadioButtonFor(model => webkind3, 0, new { htmlAttributes = new { @class = "form-control" } }) aaa</label>
-            <label>@Html.RadioButtonFor(model => webkind3, 1, new { htmlAttributes = new { @class = "form-control" } }) bbb</label>
-            <label>@Html.RadioButtonFor(model => webkind3, 2, new { htmlAttributes = new { @class = "form-control" } }) ccc</label>
+
+        @{
+            int webkind3 = 0;
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:0">系统企业状态:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => webkind3, 0, new { htmlAttributes = new { @class = "form-control" } }) 在业</label>
+                <label>@Html.RadioButtonFor(model => webkind3, 1, new { htmlAttributes = new { @class = "form-control" } }) 停业</label>
+                <label>@Html.RadioButtonFor(model => webkind3, 2, new { htmlAttributes = new { @class = "form-control" } }) 封禁</label>
+            </div>
         </div>
+
+
+        @{
+            int webkind1 = 0;
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:0">邮箱功能权限:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => webkind1, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+                <label>@Html.RadioButtonFor(model => webkind1, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+
+            </div>
+        </div>
+
+        @{
+            int webkind2 = 0;
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:0">发布岗位权限:</label>
+            <div class="col-md-10">
+
+                <label>@Html.RadioButtonFor(model => webkind2, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
+                <label>@Html.RadioButtonFor(model => webkind2, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+
+            </div>
+        </div>
+
     </div>
 
+    <h2>企业信息修改</h2>
+    <div class="form-horizontal">
 
-    @{
-        int webkind1 = 0;
-    }
-    <div class="form-group">
-        <label class="control-label col-md-2" style="padding-top:0">邮箱功能权限:</label>
-        <div class="col-md-10">
+        <hr />
 
-            <label>@Html.RadioButtonFor(model => webkind1, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-            <label>@Html.RadioButtonFor(model => webkind1, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @{
+            string a = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">企业名字:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => a, new { htmlAttributes = new { @class = "form-control" } })
 
+            </div>
         </div>
+
+
+        @{
+            string mima = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">企业账号登录密码:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => mima, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+
+
+
+        @{
+            string danwei = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">企业类型:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => danwei, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        @{
+            string gonghao = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">统一社会信用代码:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => gonghao, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        @{
+            string Phone = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">法定代表人:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => Phone, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        @{
+            DateTime t = DateTime.Now;
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:3px">时间:</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(Model => t, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+
+            </div>
+        </div>
+
+
+        @{
+            string b = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">企业地址:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => b, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        @{
+            string c = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">注册号:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => c, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+
+        @{
+            string d = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">企业状态:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => d, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        @{
+            string f = "";
+        }
+        <div class="form-group">
+            <label class="control-label col-md-2" style="padding-top:1px">企业邮箱:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => d, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="font-size:18px;padding:3px">
+                <input type="submit" value="保存" class="btn btn-default" />|
+                <a href="javascript:window.history.go(-1)">返回</a>
+            </div>
+        </div>
+
     </div>
 
-    @{
-        int webkind2 = 0;
-    }
-    <div class="form-group">
-        <label class="control-label col-md-2" style="padding-top:0">发布岗位权限:</label>
-        <div class="col-md-10">
-
-            <label>@Html.RadioButtonFor(model => webkind2, 0, new { htmlAttributes = new { @class = "form-control" } }) 无</label>
-            <label>@Html.RadioButtonFor(model => webkind2, 1, new { htmlAttributes = new { @class = "form-control" } }) 有</label>
-
-        </div>
-    </div>
-   
-</div>
 }
 
 <div class="form-group">
@@ -72,3 +206,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+
