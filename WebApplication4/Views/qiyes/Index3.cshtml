@@ -1,0 +1,364 @@
+﻿@model IEnumerable<WebApplication4.Models.qiye>
+
+@{
+               
+
+                ViewBag.Title = "Index3";
+}
+
+
+
+<h2>招聘情况统计</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p style="font-size:18px;padding:3px">
+        用户名: @Html.TextBox("scannum")
+        擅长领域: @Html.TextBox("Identinum")
+        匹配度: @Html.TextBox("Identinum")
+        <input type="submit" value="检索" />
+    </p>
+}
+
+<table class="table" style="font-size:15px;padding:3px">
+    <tr>
+
+        <th>
+            岗位名称
+        </th>
+        <th>
+            发布公司
+        </th>
+        <th>
+            学历
+        </th>
+        <th>
+            招聘人数
+        </th>
+        <th>
+            工作地点
+        </th>
+        <th>
+            发布时间
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+
+
+        <td>
+            常州县公司-计算机/云计算/人工智能相关专业岗位
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            本科
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            常州
+        </td>
+
+
+        <td>
+            @{
+                string b = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            @b
+        </td>
+
+        <td>
+            @{
+                int a = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            常州市公司-计算机/云计算/人工智能相关专业岗位
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            硕士
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            常州
+        </td>
+
+
+        <td>
+            @{
+                string b11 = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            @b11
+        </td>
+
+        <td>
+            @{
+                int a11 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            信息技术类
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            本科
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            北京
+        </td>
+        <td>
+            @{
+                string b7 = DateTime.Now.ToString("2020-02-16");
+            }
+            @b7
+        </td>
+
+        <td>
+            @{
+                int a7 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            软件开发中心-智能硬件高级软件开发
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            本科
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            深圳
+        </td>
+
+
+        <td>
+            @{
+                string b1 = DateTime.Now.ToString("2020-02-13");
+            }
+            @b1
+        </td>
+
+        <td>
+            @{
+                int a1 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            软件开发中心-手机终端软件开发工程师
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            本科
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            深圳
+        </td>
+
+
+        <td>
+            @{
+                string b2 = DateTime.Now.ToString("2020-02-13");
+            }
+            @b2
+        </td>
+
+        <td>
+            @{
+                int a2 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+
+    <tr>
+
+
+        <td>
+            软件开发中心-手机终端软件质量工程师
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            本科
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            深圳
+        </td>
+
+
+        <td>
+            @{
+                string b4 = DateTime.Now.ToString("2020-02-13");
+            }
+            @b4
+        </td>
+
+        <td>
+            @{
+                int a4 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            软件开发中心-手机终端软件需求工程师
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            本科
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            深圳
+        </td>
+
+
+        <td>
+            @{
+                string b5 = DateTime.Now.ToString("2020-02-13");
+            }
+            @b5
+        </td>
+
+        <td>
+            @{
+                int a5 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            研发岗
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            硕士
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            黑龙江省
+        </td>
+
+
+        <td>
+            @{
+                string b6 = DateTime.Now.ToString("2020-02-13");
+            }
+            @b6
+        </td>
+
+        <td>
+            @{
+                int a6 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            软件测试工程师
+        </td>
+        <td>
+            中国移动
+        </td>
+        <td>
+            硕士
+        </td>
+        <td>
+            若干
+        </td>
+        <td>
+            武汉
+        </td>
+
+
+        <td>
+            @{
+                string b3 = DateTime.Now.ToString("2020-01-20");
+            }
+            @b3
+        </td>
+
+        <td>
+            @{
+                int a3 = 1;
+            }
+            @Html.ActionLink("查看", "Details", new { id = 1 })
+
+        </td>
+    </tr>
+
+</table>
+

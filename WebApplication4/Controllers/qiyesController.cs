@@ -43,6 +43,26 @@ namespace WebApplication4.Controllers
         }
 
 
+        // GET: qiyes
+        public ActionResult Index3()
+        {
+            List<qiye> listqiyes = new List<qiye>();
+           
+
+            return View(listqiyes);
+
+        }
+
+        // GET: qiyes
+        public ActionResult Index4()
+        {
+            List<qiye> listqiyes = new List<qiye>();
+            
+
+            return View(listqiyes);
+
+        }
+
         // GET: qiyes/Details/5
         public ActionResult Details(int id=1)
         {

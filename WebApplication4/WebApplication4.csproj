@@ -279,6 +279,8 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\css\bootstrap.min.css" />
     <Content Include="Scripts\css\demo.css" />
+    <Content Include="Scripts\echarts.common.min.js" />
+    <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\css\now-ui-kit.css" />
     <Content Include="Scripts\css\StyleSheet1.css" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -441,6 +443,8 @@
     <Content Include="Views\putongs\Index1.cshtml" />
     <Content Include="Views\qiyes\Index2.cshtml" />
     <Content Include="Views\DocMangers\Index2.cshtml" />
+    <Content Include="Views\qiyes\Index3.cshtml" />
+    <Content Include="Views\qiyes\Index4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pic\" />
