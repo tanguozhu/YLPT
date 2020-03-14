@@ -150,107 +150,343 @@ namespace WebApplication4.Controllers
             Pathology pathology = new Pathology();
             pathology.pathologynum = num;
             pathology.detailid = detailid;
-
-            if (dt.Rows[0][0]!=DBNull.Value)
+            int flag = dt.Rows.Count;
+            if (flag == 1)
             {
-                pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
-                DataTable dtContent = GetContent(pathology.idd);
-                pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
-                pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
-                pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
-                pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
-                pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
-                pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
-                pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
-                pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
-                pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
+                    DataTable dtContent = GetContent(pathology.idd);
+                    pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                
+                    
+                    pathology.id1 = 0;
+                    pathology.id2 = 0;
+                    pathology.id3 = 0;
+                    pathology.id4 = 0;
+              
             }
-            else
+            if (flag==2)
             {
-                pathology.idd = 0;
-            }
-
-            if (dt.Rows[1][0] != DBNull.Value)
-            {
-                pathology.id1 = Convert.ToInt32(dt.Rows[1][0]);
-                DataTable dtContent = GetContent(pathology.id1);
-                pathology.parts1 = Convert.ToString(dtContent.Rows[0][2]);
-                pathology.chronic1 = Convert.ToInt32(dtContent.Rows[0][3]);
-                pathology.acute1 = Convert.ToInt32(dtContent.Rows[0][4]);
-                pathology.atrophy1 = Convert.ToInt32(dtContent.Rows[0][5]);
-                pathology.intestinal1 = Convert.ToInt32(dtContent.Rows[0][6]);
-                pathology.dysplasia1 = Convert.ToInt32(dtContent.Rows[0][7]);
-                pathology.lymphoid1 = Convert.ToInt32(dtContent.Rows[0][8]);
-                pathology.pitepithelial1 = Convert.ToInt32(dtContent.Rows[0][9]);
-                pathology.Mucosal1 = Convert.ToInt32(dtContent.Rows[0][10]);
-            }
-            else
-            {
-                pathology.id1 = 0;
-            }
-
-            if (dt.Rows[2][0] != DBNull.Value)
-            {
-                pathology.id2 = Convert.ToInt32(dt.Rows[2][0]);
-                DataTable dtContent2 = GetContent(pathology.id2);
-                pathology.parts2 = Convert.ToString(dtContent2.Rows[0][2]);
-                pathology.chronic2 = Convert.ToInt32(dtContent2.Rows[0][3]);
-                pathology.acute2 = Convert.ToInt32(dtContent2.Rows[0][4]);
-                pathology.atrophy2 = Convert.ToInt32(dtContent2.Rows[0][5]);
-                pathology.intestinal2 = Convert.ToInt32(dtContent2.Rows[0][6]);
-                pathology.dysplasia2 = Convert.ToInt32(dtContent2.Rows[0][7]);
-                pathology.lymphoid2 = Convert.ToInt32(dtContent2.Rows[0][8]);
-                pathology.pitepithelial2 = Convert.ToInt32(dtContent2.Rows[0][9]);
-                pathology.Mucosal2 = Convert.ToInt32(dtContent2.Rows[0][10]);
-            }
-            else
-            {
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
+                    DataTable dtContent = GetContent(pathology.idd);
+                    pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[1][0] != DBNull.Value)
+                {
+                    pathology.id1 = Convert.ToInt32(dt.Rows[1][0]);
+                    DataTable dtContent = GetContent(pathology.id1);
+                    pathology.parts1 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic1 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute1 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy1 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal1 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia1 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid1 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial1 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal1 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
                 pathology.id2 = 0;
-            }
-
-            if (dt.Rows[3][0] != DBNull.Value)
-            {
-                pathology.id3 = Convert.ToInt32(dt.Rows[3][0]);
-                DataTable dtContent = GetContent(pathology.id3);
-                pathology.parts3 = Convert.ToString(dtContent.Rows[0][2]);
-                pathology.chronic3 = Convert.ToInt32(dtContent.Rows[0][3]);
-                pathology.acute3 = Convert.ToInt32(dtContent.Rows[0][4]);
-                pathology.atrophy3 = Convert.ToInt32(dtContent.Rows[0][5]);
-                pathology.intestinal3 = Convert.ToInt32(dtContent.Rows[0][6]);
-                pathology.dysplasia3 = Convert.ToInt32(dtContent.Rows[0][7]);
-                pathology.lymphoid3 = Convert.ToInt32(dtContent.Rows[0][8]);
-                pathology.pitepithelial3 = Convert.ToInt32(dtContent.Rows[0][9]);
-                pathology.Mucosal3 = Convert.ToInt32(dtContent.Rows[0][10]);
-            }
-            else
-            {
                 pathology.id3 = 0;
-            }
-            if (dt.Rows[4][0] != DBNull.Value)
-            {
-                pathology.id4 = Convert.ToInt32(dt.Rows[4][0]);
-                DataTable dtContent = GetContent(pathology.id4);
-                pathology.parts4 = Convert.ToString(dtContent.Rows[0][2]);
-                pathology.chronic4 = Convert.ToInt32(dtContent.Rows[0][3]);
-                pathology.acute4 = Convert.ToInt32(dtContent.Rows[0][4]);
-                pathology.atrophy4 = Convert.ToInt32(dtContent.Rows[0][5]);
-                pathology.intestinal4 = Convert.ToInt32(dtContent.Rows[0][6]);
-                pathology.dysplasia4 = Convert.ToInt32(dtContent.Rows[0][7]);
-                pathology.lymphoid4 = Convert.ToInt32(dtContent.Rows[0][8]);
-                pathology.pitepithelial4 = Convert.ToInt32(dtContent.Rows[0][9]);
-                pathology.Mucosal4 = Convert.ToInt32(dtContent.Rows[0][10]);
-            }
-            else
-            {
                 pathology.id4 = 0;
             }
+            if (flag == 3)
+            {
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
+                    DataTable dtContent = GetContent(pathology.idd);
+                    pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[1][0] != DBNull.Value)
+                {
+                    pathology.id1 = Convert.ToInt32(dt.Rows[1][0]);
+                    DataTable dtContent = GetContent(pathology.id1);
+                    pathology.parts1 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic1 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute1 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy1 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal1 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia1 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid1 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial1 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal1 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[2][0] != DBNull.Value)
+                {
+                    pathology.id2 = Convert.ToInt32(dt.Rows[2][0]);
+                    DataTable dtContent2 = GetContent(pathology.id2);
+                    pathology.parts2 = Convert.ToString(dtContent2.Rows[0][2]);
+                    pathology.chronic2 = Convert.ToInt32(dtContent2.Rows[0][3]);
+                    pathology.acute2 = Convert.ToInt32(dtContent2.Rows[0][4]);
+                    pathology.atrophy2 = Convert.ToInt32(dtContent2.Rows[0][5]);
+                    pathology.intestinal2 = Convert.ToInt32(dtContent2.Rows[0][6]);
+                    pathology.dysplasia2 = Convert.ToInt32(dtContent2.Rows[0][7]);
+                    pathology.lymphoid2 = Convert.ToInt32(dtContent2.Rows[0][8]);
+                    pathology.pitepithelial2 = Convert.ToInt32(dtContent2.Rows[0][9]);
+                    pathology.Mucosal2 = Convert.ToInt32(dtContent2.Rows[0][10]);
+                }
+                pathology.id3 = 0;
+                pathology.id4 = 0;
+            }
+            if (flag==4)
+            {
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
+                    DataTable dtContent = GetContent(pathology.idd);
+                    pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[1][0] != DBNull.Value)
+                {
+                    pathology.id1 = Convert.ToInt32(dt.Rows[1][0]);
+                    DataTable dtContent = GetContent(pathology.id1);
+                    pathology.parts1 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic1 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute1 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy1 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal1 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia1 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid1 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial1 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal1 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[2][0] != DBNull.Value)
+                {
+                    pathology.id2 = Convert.ToInt32(dt.Rows[2][0]);
+                    DataTable dtContent2 = GetContent(pathology.id2);
+                    pathology.parts2 = Convert.ToString(dtContent2.Rows[0][2]);
+                    pathology.chronic2 = Convert.ToInt32(dtContent2.Rows[0][3]);
+                    pathology.acute2 = Convert.ToInt32(dtContent2.Rows[0][4]);
+                    pathology.atrophy2 = Convert.ToInt32(dtContent2.Rows[0][5]);
+                    pathology.intestinal2 = Convert.ToInt32(dtContent2.Rows[0][6]);
+                    pathology.dysplasia2 = Convert.ToInt32(dtContent2.Rows[0][7]);
+                    pathology.lymphoid2 = Convert.ToInt32(dtContent2.Rows[0][8]);
+                    pathology.pitepithelial2 = Convert.ToInt32(dtContent2.Rows[0][9]);
+                    pathology.Mucosal2 = Convert.ToInt32(dtContent2.Rows[0][10]);
+                }
+                if (dt.Rows[3][0] != DBNull.Value)
+                {
+                    pathology.id3 = Convert.ToInt32(dt.Rows[3][0]);
+                    DataTable dtContent = GetContent(pathology.id3);
+                    pathology.parts3 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic3 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute3 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy3 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal3 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia3 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid3 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial3 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal3 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                pathology.id4 = 0;
+            }
+            if (flag == 5)
+            {
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
+                    DataTable dtContent = GetContent(pathology.idd);
+                    pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[1][0] != DBNull.Value)
+                {
+                    pathology.id1 = Convert.ToInt32(dt.Rows[1][0]);
+                    DataTable dtContent = GetContent(pathology.id1);
+                    pathology.parts1 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic1 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute1 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy1 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal1 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia1 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid1 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial1 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal1 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[2][0] != DBNull.Value)
+                {
+                    pathology.id2 = Convert.ToInt32(dt.Rows[2][0]);
+                    DataTable dtContent2 = GetContent(pathology.id2);
+                    pathology.parts2 = Convert.ToString(dtContent2.Rows[0][2]);
+                    pathology.chronic2 = Convert.ToInt32(dtContent2.Rows[0][3]);
+                    pathology.acute2 = Convert.ToInt32(dtContent2.Rows[0][4]);
+                    pathology.atrophy2 = Convert.ToInt32(dtContent2.Rows[0][5]);
+                    pathology.intestinal2 = Convert.ToInt32(dtContent2.Rows[0][6]);
+                    pathology.dysplasia2 = Convert.ToInt32(dtContent2.Rows[0][7]);
+                    pathology.lymphoid2 = Convert.ToInt32(dtContent2.Rows[0][8]);
+                    pathology.pitepithelial2 = Convert.ToInt32(dtContent2.Rows[0][9]);
+                    pathology.Mucosal2 = Convert.ToInt32(dtContent2.Rows[0][10]);
+                }
+                if (dt.Rows[3][0] != DBNull.Value)
+                {
+                    pathology.id3 = Convert.ToInt32(dt.Rows[3][0]);
+                    DataTable dtContent = GetContent(pathology.id3);
+                    pathology.parts3 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic3 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute3 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy3 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal3 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia3 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid3 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial3 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal3 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+                if (dt.Rows[4][0] != DBNull.Value)
+                {
+                    pathology.id4 = Convert.ToInt32(dt.Rows[4][0]);
+                    DataTable dtContent = GetContent(pathology.id4);
+                    pathology.parts4 = Convert.ToString(dtContent.Rows[0][2]);
+                    pathology.chronic4 = Convert.ToInt32(dtContent.Rows[0][3]);
+                    pathology.acute4 = Convert.ToInt32(dtContent.Rows[0][4]);
+                    pathology.atrophy4 = Convert.ToInt32(dtContent.Rows[0][5]);
+                    pathology.intestinal4 = Convert.ToInt32(dtContent.Rows[0][6]);
+                    pathology.dysplasia4 = Convert.ToInt32(dtContent.Rows[0][7]);
+                    pathology.lymphoid4 = Convert.ToInt32(dtContent.Rows[0][8]);
+                    pathology.pitepithelial4 = Convert.ToInt32(dtContent.Rows[0][9]);
+                    pathology.Mucosal4 = Convert.ToInt32(dtContent.Rows[0][10]);
+                }
+            }
+
+            //if (dt.Rows[0][0]!=DBNull.Value)
+            //{
+            //    pathology.idd = Convert.ToInt32(dt.Rows[0][0]);
+            //    DataTable dtContent = GetContent(pathology.idd);
+            //    pathology.parts = Convert.ToString(dtContent.Rows[0][2]);
+            //    pathology.chronic = Convert.ToInt32(dtContent.Rows[0][3]);
+            //    pathology.acute = Convert.ToInt32(dtContent.Rows[0][4]);
+            //    pathology.atrophy = Convert.ToInt32(dtContent.Rows[0][5]);
+            //    pathology.intestinal = Convert.ToInt32(dtContent.Rows[0][6]);
+            //    pathology.dysplasia = Convert.ToInt32(dtContent.Rows[0][7]);
+            //    pathology.lymphoid = Convert.ToInt32(dtContent.Rows[0][8]);
+            //    pathology.pitepithelial = Convert.ToInt32(dtContent.Rows[0][9]);
+            //    pathology.Mucosal = Convert.ToInt32(dtContent.Rows[0][10]);
+            //}
+            //else
+            //{
+            //    pathology.idd = 0;
+            //}
+
+            //if (dt.Rows[1][0] != DBNull.Value)
+            //{
+            //    pathology.id1 = Convert.ToInt32(dt.Rows[1][0]);
+            //    DataTable dtContent = GetContent(pathology.id1);
+            //    pathology.parts1 = Convert.ToString(dtContent.Rows[0][2]);
+            //    pathology.chronic1 = Convert.ToInt32(dtContent.Rows[0][3]);
+            //    pathology.acute1 = Convert.ToInt32(dtContent.Rows[0][4]);
+            //    pathology.atrophy1 = Convert.ToInt32(dtContent.Rows[0][5]);
+            //    pathology.intestinal1 = Convert.ToInt32(dtContent.Rows[0][6]);
+            //    pathology.dysplasia1 = Convert.ToInt32(dtContent.Rows[0][7]);
+            //    pathology.lymphoid1 = Convert.ToInt32(dtContent.Rows[0][8]);
+            //    pathology.pitepithelial1 = Convert.ToInt32(dtContent.Rows[0][9]);
+            //    pathology.Mucosal1 = Convert.ToInt32(dtContent.Rows[0][10]);
+            //}
+            //else
+            //{
+            //    pathology.id1 = 0;
+            //}
+
+            //if (dt.Rows[2][0] != DBNull.Value)
+            //{
+            //    pathology.id2 = Convert.ToInt32(dt.Rows[2][0]);
+            //    DataTable dtContent2 = GetContent(pathology.id2);
+            //    pathology.parts2 = Convert.ToString(dtContent2.Rows[0][2]);
+            //    pathology.chronic2 = Convert.ToInt32(dtContent2.Rows[0][3]);
+            //    pathology.acute2 = Convert.ToInt32(dtContent2.Rows[0][4]);
+            //    pathology.atrophy2 = Convert.ToInt32(dtContent2.Rows[0][5]);
+            //    pathology.intestinal2 = Convert.ToInt32(dtContent2.Rows[0][6]);
+            //    pathology.dysplasia2 = Convert.ToInt32(dtContent2.Rows[0][7]);
+            //    pathology.lymphoid2 = Convert.ToInt32(dtContent2.Rows[0][8]);
+            //    pathology.pitepithelial2 = Convert.ToInt32(dtContent2.Rows[0][9]);
+            //    pathology.Mucosal2 = Convert.ToInt32(dtContent2.Rows[0][10]);
+            //}
+            //else
+            //{
+            //    pathology.id2 = 0;
+            //}
+
+            //if (dt.Rows[3][0] != DBNull.Value)
+            //{
+            //    pathology.id3 = Convert.ToInt32(dt.Rows[3][0]);
+            //    DataTable dtContent = GetContent(pathology.id3);
+            //    pathology.parts3 = Convert.ToString(dtContent.Rows[0][2]);
+            //    pathology.chronic3 = Convert.ToInt32(dtContent.Rows[0][3]);
+            //    pathology.acute3 = Convert.ToInt32(dtContent.Rows[0][4]);
+            //    pathology.atrophy3 = Convert.ToInt32(dtContent.Rows[0][5]);
+            //    pathology.intestinal3 = Convert.ToInt32(dtContent.Rows[0][6]);
+            //    pathology.dysplasia3 = Convert.ToInt32(dtContent.Rows[0][7]);
+            //    pathology.lymphoid3 = Convert.ToInt32(dtContent.Rows[0][8]);
+            //    pathology.pitepithelial3 = Convert.ToInt32(dtContent.Rows[0][9]);
+            //    pathology.Mucosal3 = Convert.ToInt32(dtContent.Rows[0][10]);
+            //}
+            //else
+            //{
+            //    pathology.id3 = 0;
+            //}
+            //if (dt.Rows[4][0] != DBNull.Value)
+            //{
+            //    pathology.id4 = Convert.ToInt32(dt.Rows[4][0]);
+            //    DataTable dtContent = GetContent(pathology.id4);
+            //    pathology.parts4 = Convert.ToString(dtContent.Rows[0][2]);
+            //    pathology.chronic4 = Convert.ToInt32(dtContent.Rows[0][3]);
+            //    pathology.acute4 = Convert.ToInt32(dtContent.Rows[0][4]);
+            //    pathology.atrophy4 = Convert.ToInt32(dtContent.Rows[0][5]);
+            //    pathology.intestinal4 = Convert.ToInt32(dtContent.Rows[0][6]);
+            //    pathology.dysplasia4 = Convert.ToInt32(dtContent.Rows[0][7]);
+            //    pathology.lymphoid4 = Convert.ToInt32(dtContent.Rows[0][8]);
+            //    pathology.pitepithelial4 = Convert.ToInt32(dtContent.Rows[0][9]);
+            //    pathology.Mucosal4 = Convert.ToInt32(dtContent.Rows[0][10]);
+            //}
+            //else
+            //{
+            //    pathology.id4 = 0;
+            //}
 
 
 
-
-
-
-
+           
 
             return View(pathology);
         }
@@ -274,7 +510,7 @@ namespace WebApplication4.Controllers
                     UpdatePathlogy(pathology.idd, pathology.pathologynum, pathology.parts, pathology.chronic, pathology.acute, pathology.atrophy,
                    pathology.intestinal, pathology.dysplasia, pathology.lymphoid, pathology.pitepithelial, pathology.Mucosal);
                 }
-                else if(pathology.idd == 0&&pathology.parts!="")
+                else if(pathology.idd == 0&&pathology.parts!=null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts, pathology.chronic, pathology.acute,
                         pathology.atrophy, pathology.intestinal, pathology.dysplasia, pathology.lymphoid,
@@ -286,7 +522,7 @@ namespace WebApplication4.Controllers
                     UpdatePathlogy(pathology.id1, pathology.pathologynum, pathology.parts1, pathology.chronic1, pathology.acute1, pathology.atrophy1,
                   pathology.intestinal1, pathology.dysplasia1, pathology.lymphoid1, pathology.pitepithelial1, pathology.Mucosal1);
                 }
-                else if (pathology.id1 == 0 && pathology.parts1 != "")
+                else if (pathology.id1 == 0 && pathology.parts1 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts1, pathology.chronic1, pathology.acute1,
                        pathology.atrophy1, pathology.intestinal1, pathology.dysplasia1, pathology.lymphoid1,
@@ -299,7 +535,7 @@ namespace WebApplication4.Controllers
                     UpdatePathlogy(pathology.id2, pathology.pathologynum, pathology.parts2, pathology.chronic2, pathology.acute2, pathology.atrophy2,
                    pathology.intestinal2, pathology.dysplasia2, pathology.lymphoid2, pathology.pitepithelial2, pathology.Mucosal2);
                 }
-                else if (pathology.id2 == 0 && pathology.parts2 != "")
+                else if (pathology.id2 == 0 && pathology.parts2 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts2, pathology.chronic2, pathology.acute2,
                        pathology.atrophy2, pathology.intestinal2, pathology.dysplasia2, pathology.lymphoid2,
@@ -311,7 +547,7 @@ namespace WebApplication4.Controllers
                     UpdatePathlogy(pathology.id3, pathology.pathologynum, pathology.parts3, pathology.chronic3, pathology.acute3, pathology.atrophy3,
                    pathology.intestinal3, pathology.dysplasia3, pathology.lymphoid3, pathology.pitepithelial3, pathology.Mucosal3);
                 }
-                else if (pathology.id3 == 0 && pathology.parts3 != "")
+                else if (pathology.id3 == 0 && pathology.parts3 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts3, pathology.chronic3, pathology.acute3,
                         pathology.atrophy3, pathology.intestinal3, pathology.dysplasia3, pathology.lymphoid3,
@@ -323,7 +559,7 @@ namespace WebApplication4.Controllers
                     UpdatePathlogy(pathology.id4, pathology.pathologynum, pathology.parts4, pathology.chronic4, pathology.acute4, pathology.atrophy4,
                     pathology.intestinal4, pathology.dysplasia4, pathology.lymphoid4, pathology.pitepithelial4, pathology.Mucosal4);
                 }
-                else if (pathology.id4 == 0 && pathology.parts4 != "")
+                else if (pathology.id4 == 0 && pathology.parts4 != null)
                 {
                     InsertPathlogy(pathology.pathologynum, pathology.parts4, pathology.chronic4, pathology.acute4,
                         pathology.atrophy4, pathology.intestinal4, pathology.dysplasia4, pathology.lymphoid4,

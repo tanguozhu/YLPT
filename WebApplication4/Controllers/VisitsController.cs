@@ -592,6 +592,32 @@ namespace WebApplication4.Controllers
             mysql.Close();
         }
 
+        public static int Check_followp(string visit, string scannum )
+        {
+            int flag = 0;
+            MySqlConnection mysql = getMySqlConnection();
+            string sql;
+            sql = "select * from followup where scannum=" + "'" + scannum + "'" + "and visit=" + "'" + visit + "'";
+            MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+            mysql.Open();
+            MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+            mySqlCommand.ExecuteNonQuery();
+            mysql.Close();
+            DataSet ds = new DataSet();
+            command.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            if (dt.Rows.Count==0)
+            {
+                flag = 0;
+            }
+            else
+            {
+                flag = 1;
+            }
+            return flag;
+
+        }
+
         public static DataSet GetTreatmentDetail(int id)
         {
             MySqlConnection mysql = getMySqlConnection();
@@ -737,160 +763,186 @@ namespace WebApplication4.Controllers
 			string other_treat_time = Get_treatment_followuptime(VisitID, scannum, 1);
 			string operater_treat_time = Get_treatment_followuptime(VisitID, scannum, 2);
 
-			if (weijing_check_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set weijing_check=1,weijing_check_time='" + weijing_check_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-            }
-            else if (weijing_check_time == "")
+            if (weijing_check_time == ""&& weinianmo_check_time==""&& youmen_check_time==""&&
+                other_check_time==""&& youmen_treat_time==""&& other_treat_time==""&& operater_treat_time=="")
             {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set weijing_check=0,weijing_check_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
+
             }
-			if (weinianmo_check_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set weinianmo_check=1,weinianmo_check_time='" + weinianmo_check_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-			}
-            else if (weinianmo_check_time == "")
+            else
             {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set weinianmo_check=0,weinianmo_check_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
+                int checkid = Check_followp(VisitID,scannum);
+                if (checkid==0)
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string d = DateTime.Now.ToString("yyyy-MM-dd");
+                    string sql = "INSERT INTO followup(visit,scannum,weijing_check,weijing_check_time,weinianmo_check," +
+                        "weinianmo_check_time,youmen_check,youmen_check_time,other_check,other_check_time,youmen_treat," +
+                        "youmen_treat_time,operater_treat,operater_treat_time,other_treat,other_treat_time)" +
+                        " VALUES('" +VisitID + "','" +scannum+"',0,'"+d+"',0,'" + d+"',0,'" + d + "',0,'" + d +
+                        "',0,'" + d + "',0,'" + d + "',0,'" + d +"')";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (weijing_check_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set weijing_check=1,weijing_check_time='" + weijing_check_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (weijing_check_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set weijing_check=0,weijing_check_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (weinianmo_check_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set weinianmo_check=1,weinianmo_check_time='" + weinianmo_check_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (weinianmo_check_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set weinianmo_check=0,weinianmo_check_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (youmen_check_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set youmen_check=1,youmen_check_time='" + youmen_check_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (youmen_check_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set youmen_check=0,youmen_check_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (other_check_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set other_check=1,other_check_time='" + other_check_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (other_check_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set other_check=0,other_check_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (youmen_treat_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set youmen_treat=1,youmen_treat_time='" + youmen_treat_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (youmen_treat_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set youmen_treat=0,youmen_treat_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (other_treat_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set other_treat=1,other_treat_time='" + other_treat_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (other_treat_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set other_treat=0,other_treat_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                if (operater_treat_time != "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set operater_treat=1,operater_treat_time='" + operater_treat_time + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
+                else if (operater_treat_time == "")
+                {
+                    MySqlConnection mysql = getMySqlConnection();
+                    mysql.Open();
+                    string sql = "update followup set operater_treat=0,operater_treat_time='" + DateTime.Now + "' " +
+                        "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
+                    MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
+                    MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
+                    mySqlCommand.ExecuteNonQuery();
+                    mysql.Close();
+                }
             }
-			if (youmen_check_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set youmen_check=1,youmen_check_time='" + youmen_check_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-			}
-            else if (youmen_check_time == "")
-            {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set youmen_check=0,youmen_check_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
-            }
-			if (other_check_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set other_check=1,other_check_time='" + other_check_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-			}
-            else if (other_check_time == "")
-            {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set other_check=0,other_check_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
-            }
-			if (youmen_treat_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set youmen_treat=1,youmen_treat_time='" + youmen_treat_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-			}
-            else if (youmen_treat_time == "")
-            {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set youmen_treat=0,youmen_treat_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
-            }
-			if (other_treat_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set other_treat=1,other_treat_time='" + other_treat_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-			}
-            else if (other_treat_time == "")
-            {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set other_treat=0,other_treat_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
-            }
-			if (operater_treat_time != "")
-			{
-				MySqlConnection mysql = getMySqlConnection();
-				mysql.Open();
-				string sql = "update followup set operater_treat=1,operater_treat_time='" + operater_treat_time + "' " +
-					"where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-				MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-				MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-				mySqlCommand.ExecuteNonQuery();
-				mysql.Close();
-			}
-            else if (operater_treat_time == "")
-            {
-                MySqlConnection mysql = getMySqlConnection();
-                mysql.Open();
-                string sql = "update followup set operater_treat=0,operater_treat_time='" + DateTime.Now + "' " +
-                    "where scannum='" + scannum + "' and visit=" + "'" + VisitID + "' ;";
-                MySqlCommand mySqlCommand = getSqlCommand(sql, mysql);
-                MySqlDataAdapter command = new MySqlDataAdapter(mySqlCommand);
-                mySqlCommand.ExecuteNonQuery();
-                mysql.Close();
-            }
+
+			
 		}
 
         public DataSet GetFollowUp(string scannum, string VisitID)

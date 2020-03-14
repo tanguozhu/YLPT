@@ -123,11 +123,11 @@
                     <li><a href="javascript:;">Hello, @webusername</a></li>
                     @if (webuserkind == "0")
                     {
-                        <li><a href="javascript:;">(用户)</a></li>
+                        <li><a href="javascript:;">(管理员)</a></li>
                     }
                     else if (webuserkind == "1")
                     {
-                        <li><a href="javascript:;">(企业)</a></li>
+                        <li><a href="javascript:;">(超级管理员)</a></li>
                     }
                     else if (webuserkind == "2")
                     {
@@ -167,8 +167,8 @@
                 <div>
                     <div id="logo">
                         <img src="" alt="" />
-                        @*<h1 style="text-align: center;"><a href="/Students">主页</a></h1>*@
-                        <h1 style="text-align: center;"><a href="/qiyes/Create">主页</a></h1>
+                        <h1 style="text-align: center;"><a href="/Students">主页</a></h1>
+                        @*<h1 style="text-align: center;"><a href="/qiyes/Create">主页</a></h1>*@
                     </div>
                     <div id="menu">
                         <ul>
@@ -181,20 +181,20 @@
                             }
                             else if (webuserkind == "1")
                             {
-                                @*<li class="current_page_item"><a href="/UserMangers">病人信息管理</a></li>
+                                <li class="current_page_item"><a href="/UserMangers">病人信息管理</a></li>
             <li class="current_page_item"><a href="/Visits">检查与治疗</a></li>
             <li class="current_page_item"><a href="/ReturnVisits">今日复查</a></li>
             <li class="current_page_item"><a href="/DocMangers">医生账号管理</a></li>
             <li class="current_page_item"><a href="/WebMangers">网页管理员账号管理</a></li>
             <li class="current_page_item"><a href="/BriefIntroes">医科联盟简介管理</a></li>
-            <li class="current_page_item"><a href="/PopSciinMangers">科普信息管理</a></li>*@
+            <li class="current_page_item"><a href="/PopSciinMangers">科普信息管理</a></li>
 
 
-                                <li class="current_page_item"><a href="/qiyes/Edit">发布岗位信息</a></li>
+                                @*<li class="current_page_item"><a href="/qiyes/Edit">发布岗位信息</a></li>
                                 <li class="current_page_item"><a href="/qiyes/Index">查看已发布岗位信息</a></li>
                                 <li class="current_page_item"><a href="/qiyes/Index1">查看程序员信息</a></li>
                                 <li class="current_page_item"><a href="/qiyes/Index3">查看统计信息</a></li>
-                                <li class="current_page_item"><a href="/qiyes/Index4">图</a></li>
+                                <li class="current_page_item"><a href="/qiyes/Index4">图</a></li>*@
 
                             }
                             else if (webuserkind == "2")

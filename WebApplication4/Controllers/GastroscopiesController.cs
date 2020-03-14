@@ -575,6 +575,8 @@ namespace WebApplication4.Controllers
             HttpPostedFileBase files6 = Request.Files["filename6"];
             HttpPostedFileBase files7 = Request.Files["filename7"];
 
+            
+
             result = SaveImage(files);
             result1 = SaveImage(files1);
             result2 = SaveImage(files2);
@@ -583,6 +585,8 @@ namespace WebApplication4.Controllers
             result5 = SaveImage(files5);
             result6 = SaveImage(files6);
             result7 = SaveImage(files7);
+
+           
 
             if (result != "error")
             {

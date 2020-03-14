@@ -47,7 +47,20 @@
             @Html.ValidationMessageFor(model => model.isfollowup, "", new { @class = "text-danger" })
         </div>
     </div>
-  
+    @{
+        if (Model.isfollowup == 0)
+        {
+            <div class="form-group" style="font-size:18px;padding:3px;display:none" id="fucha" name="fucha">
+
+                <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(Model => Model.followuptime, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.followuptime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else if (Model.isfollowup == 1)
+        {
             <div class="form-group" style="font-size:18px;padding:3px" id="fucha" name="fucha">
 
                 <label class="control-label col-md-2" style="padding-top:3px">复查时间:</label>
@@ -56,7 +69,8 @@
                     @Html.ValidationMessageFor(model => model.followuptime, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+        }
+    }
 
     <div style="margin-bottom:10px">
         <div>

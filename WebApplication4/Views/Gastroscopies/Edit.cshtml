@@ -260,8 +260,8 @@
                         <div class="col-sm-2" id="col1" style="padding-left:0">
                             <div>
                                 <img height="100" width="100" src="http://58.192.132.31:9010/pic/plus.jpg" id="my-img1" />
-                                <img src="#" id="cb1" height="100" width="100" style="display:none" class="pic" />
-                                <input type="file" name="filename" id="filename" style="display:none" />
+                                <img src="#" id="cb1" name="cb1" height="100" width="100" style="display:none" class="pic" runat="server" />
+                                <input type="file" name="filename" id="filename"  style="display:none" />
                             </div>
                             <div>
                                 <input type="button" value="移除" id="btn1" style="display:none" />&nbsp;&nbsp;
@@ -275,8 +275,8 @@
                         <div class="col-sm-2" id="col1" style="padding-left:0">
                             <div>
                                 <img height="100" width="100" src="http://58.192.132.31:9010/pic/plus.jpg" id="my-img1" style="display:none" />
-                                <img src="@Model.Pic1" id="cb1" height="100" width="100" class="pic" />
-                                <input type="file" name="filename" id="filename" style="display:none" />
+                                <img src="@Model.Pic1" id="cb1" name="cb1" height="100" width="100" class="pic" runat="server" />
+                                <input type="file" name="filename" id="filename"  style="display:none" />
                             </div>
                             <div>
                                 <input type="button" value="移除" id="btn1" />&nbsp;&nbsp;
@@ -559,6 +559,9 @@
             dom.hide();
         }
     }
+
+   
+
 
     $(document).ready(function () {
         $('#my-img1').on('click', function () {

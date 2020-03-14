@@ -550,11 +550,11 @@ namespace WebApplication4.Controllers
               new SelectListItem
               {
                      Text = "男",
-                     Value = "1"
+                     Value = "0"
               },new SelectListItem
               {
                      Text = "女",
-                     Value = "0"
+                     Value = "1"
               }
        };
         }

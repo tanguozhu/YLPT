@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -22,6 +23,28 @@ namespace WebApplication4.Controllers
         {
             Login login = new Login();
             return View(login);
+        }
+
+        public void Button_Up_Click()
+        {
+            string fileName = "扬大附院消化科室.apk";//客户端保存的文件名
+            string imageStr = "pic/"; // 获取保存附件的项目文件夹
+            //string uploadPath = Server.MapPath("~/" + imageStr); // 将项目路径与文件夹合并
+            string filePath = Server.MapPath("~/" + imageStr+ fileName);//路径
+
+            //以字符流的形式下载文件
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+            byte[] bytes = new byte[(int)fs.Length];
+            fs.Read(bytes, 0, bytes.Length);
+            fs.Close();
+            Response.ContentType = "application/octet-stream";
+            //通知浏览器下载文件而不是打开
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8));
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+            // ExportDataToExcel(dt, path1, ht, strTitle, sheetName1, xlsName);
+
         }
 
         [HttpPost]
@@ -69,8 +92,8 @@ namespace WebApplication4.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
+            Button_Up_Click();
             return View();
         }
 
